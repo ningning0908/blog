@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="媒体查询提供一种查询语法去扩展媒体类型，这种查询语法可以更加具体地为用户的设备提供样式，媒体查询可以给你一种自由，让网站真正地与设备无关，不管用户如何访问网站，都为它们提供最佳的合适体验。 媒体查询的优点媒体查询会基于设备的属性来检测设备，这样就不需要使用浏览器探测脚本，之后允许直接安装设备的功能区设定目标样式表，所以如果检测到用户适应小屏幕的设备，CSS规则就会调整以适应该屏幕尺寸，从屏幕上去掉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="媒体查询">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="媒体查询提供一种查询语法去扩展媒体类型，这种查询语法可以更加具体地为用户的设备提供样式，媒体查询可以给你一种自由，让网站真正地与设备无关，不管用户如何访问网站，都为它们提供最佳的合适体验。 媒体查询的优点媒体查询会基于设备的属性来检测设备，这样就不需要使用浏览器探测脚本，之后允许直接安装设备的功能区设定目标样式表，所以如果检测到用户适应小屏幕的设备，CSS规则就会调整以适应该屏幕尺寸，从屏幕上去掉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-17T12:38:59.729Z">
+<meta property="article:modified_time" content="2019-11-17T11:09:33.340Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="CSS3">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>媒体查询 | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          媒体查询
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-17 19:09:33" itemprop="dateModified" datetime="2019-11-17T19:09:33+08:00">2019-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">CSS权威指南</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>媒体查询提供一种查询语法去扩展媒体类型，这种查询语法可以更加具体地为用户的设备提供样式，媒体查询可以给你一种自由，让网站真正地与设备无关，不管用户如何访问网站，都为它们提供最佳的合适体验。</p>
+<h2 id="媒体查询的优点"><a href="#媒体查询的优点" class="headerlink" title="媒体查询的优点"></a>媒体查询的优点</h2><p>媒体查询会基于设备的属性来检测设备，这样就不需要使用浏览器探测脚本，之后允许直接安装设备的功能区设定目标样式表，所以如果检测到用户适应小屏幕的设备，CSS规则就会调整以适应该屏幕尺寸，从屏幕上去掉无关元素，提供更小的图片，让文本变得更加清晰。</p>
+<h2 id="HTML-lt-link-gt-标签"><a href="#HTML-lt-link-gt-标签" class="headerlink" title="HTML&lt;link&gt;标签"></a>HTML<code>&lt;link&gt;</code>标签</h2><p>实例：链接一个外部样式表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"theme.css"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在用于样式表时，<code>&lt;link&gt;</code>标签得到了几乎所有浏览器的支持，但是几乎没有浏览器支持其他方面的用途。<br><strong>定义和用法：</strong><br><code>&lt;link&gt;</code> 标签定义文档与外部资源的关系。<br><code>&lt;link&gt;</code> 标签最常见的用途是链接样式表。<br><strong>HTML 与 XHTML 之间的差异:</strong></p>
+<p>第一种是使用<code>&lt;link&gt;</code>元素区调用一个外部样式表：<br>在 HTML 中，<code>&lt;link&gt;</code> 标签没有结束标签。<br>在 XHTML 中，<code>&lt;link&gt;</code> 标签必须被正确地关闭。<br><strong>提示和注释：</strong><br>注释：link 元素是空元素，它仅包含属性。<br>注释：此元素只能存在于 head 部分，不过它可出现任何次数。<br><strong>属性：这里仅介绍HTML5中的新属性</strong></p>
+<table>
+    <tr>
+        <td>属性</td>
+        <td>值</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>href</td>
+        <td>URL</td>
+        <td>规定被链接文档的位置。</td>
+    </tr>
+    <tr>
+        <td>hreflang</td>
+        <td>language_code</td>
+        <td>规定被链接文档中文本的语言。</td>
+    </tr>
+    <tr>
+        <td>media</td>
+        <td>media_query</td>
+        <td>规定被链接文档将被显示在什么设备上。</td>
+    </tr>
+    <tr>
+        <td rowspan="13">rel</td>
+        <td >alternate</td>
+        <td rowspan="13">规定当前文档与被链接文档之间的关系。</td>
+    </tr>
+    <tr>
+        <td >author</td>
+    </tr>
+    <tr>
+        <td >help</td>
+    </tr>
+    <tr>
+        <td >icon</td>
+    </tr>
+    <tr>
+        <td >licence</td>
+    </tr>
+    <tr>
+        <td >next</td>
+    </tr>
+    <tr>
+        <td >pingback</td>
+    </tr>
+    <tr>
+        <td >prefetch</td>
+    </tr>
+    <tr>
+        <td >prev</td>
+    </tr>
+    <tr>
+        <td >search</td>
+    </tr>
+    <tr>
+        <td >sidebar</td>
+    </tr>
+    <tr>
+        <td >tag</td>
+    </tr>
+    <tr>
+        <td >stylesheet</td>
+    </tr>
+    <tr>
+        <td rowspan="2">sizes</td>
+        <td>heightxwidth</td>
+        <td rowspan="2">规定被链接资源的尺寸。仅适用于 rel="icon"。</td>
+    </tr>
+    <tr>
+        <td>any</td>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>MIME_type</td>
+        <td>规定被链接文档的 MIME 类型。</td>
+    </tr>
+</table>
+
+<p><strong>全局属性</strong></p>
+<table>
+    <tr>
+        <td>属性</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>accesskey</td>
+        <td>规定激活元素的快捷键。</td>
+    </tr>
+    <tr>
+        <td>class</td>
+        <td>规定元素的一个或多个类名（引用样式表中的类）</td>
+    </tr>
+    <tr>
+        <td>contenteditable</td>
+        <td>规定元素内容是否可编辑。</td>
+    </tr>
+    <tr>
+        <td>contextmenu</td>
+        <td>规定元素的上下文菜单。上下文菜单在用户点击元素时显示。</td>
+    </tr>
+    <tr>
+        <td>data-*</td>
+        <td>用于存储页面或应用程序的私有定制数据。</td>
+    </tr>
+    <tr>
+        <td>dir</td>
+        <td>规定元素中内容的文本方向。</td>
+    </tr>
+    <tr>
+        <td>draggle</td>
+        <td>规定元素是否可拖动。</td>
+    </tr>
+    <tr>
+        <td>dropzone</td>
+        <td>规定在拖动被拖动数据时是否进行复制、移动或链接。</td>
+    </tr>
+    <tr>
+        <td>hidden</td>
+        <td>规定元素仍未或不再相关。</td>
+    </tr>
+    <tr>
+        <td>id</td>
+        <td>规定元素的唯一 id。</td>
+    </tr>
+    <tr>
+        <td>lang</td>
+        <td>规定元素内容的语言。</td>
+    </tr>
+    <tr>
+        <td>spellcheck</td>
+        <td>规定是否对元素进行拼写和语法检查。</td>
+    </tr>
+    <tr>
+        <td>style</td>
+        <td>规定元素的行内 CSS 样式。</td>
+    </tr>
+    <tr>
+        <td>tabindex</td>
+        <td>规定元素的 tab 键次序。</td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td>规定有关元素的额外信息。</td>
+    </tr>
+    <tr>
+        <td>translate</td>
+        <td>规定是否应该翻译元素内容。</td>
+    </tr>
+</table>
+
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>媒体查询设置了一个参数（或者一系列参数），如果设备在查看页面的时候具有与该参数匹配的属性，就会显示与之相关的样式规则。有三种方式使用媒体查询，它们是和我们把CSS应用到文档中的不同方式相匹配的，第一种是使用一个link元素去调用一个外部样式表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">"file"</span> rel=<span class="string">"stylesheet"</span> media=<span class="string">"logic media and (expression)"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第二种是使用@import指令调用外部的样式表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> url(<span class="string">'file'</span>) logic media and (expression);</span><br></pre></td></tr></table></figure>
+
+<p>第三种是在一个嵌入的style元素中或在样式表本身利用扩展的@media规则使用媒体查询：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@media logic media and (expression) &#123; rules &#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/CSS3/" rel="tag"># CSS3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/" rel="prev" title="HTML标记与文档结构">
+      <i class="fa fa-chevron-left"></i> HTML标记与文档结构
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E7%9B%92%E6%A8%A1%E5%9E%8B/" rel="next" title="盒模型">
+      盒模型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询的优点"><span class="nav-number">1.</span> <span class="nav-text">媒体查询的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-lt-link-gt-标签"><span class="nav-number">2.</span> <span class="nav-text">HTML&lt;link&gt;标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="属性选择器属性选择器是在CSS2中引入的，他们能够指定一些规则，这些规则根据元素的属性（诸如href或title）以及这些属性的值对元素进行匹配 12345&lt;ul&gt;    &lt;li&gt;&lt;a href&#x3D;&quot;&quot; lang&#x3D;&quot;en-GB&quot; rel&#x3D;&quot;friend net&quot;&gt;Peter&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;    &lt;li&gt;&lt;a href&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM选择器">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/DOM%E9%80%89%E6%8B%A9%E5%99%A8/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="属性选择器属性选择器是在CSS2中引入的，他们能够指定一些规则，这些规则根据元素的属性（诸如href或title）以及这些属性的值对元素进行匹配 12345&lt;ul&gt;    &lt;li&gt;&lt;a href&#x3D;&quot;&quot; lang&#x3D;&quot;en-GB&quot; rel&#x3D;&quot;friend net&quot;&gt;Peter&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;    &lt;li&gt;&lt;a href&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-17T12:38:59.719Z">
+<meta property="article:modified_time" content="2019-11-17T11:08:46.438Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="CSS3">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/DOM%E9%80%89%E6%8B%A9%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DOM选择器 | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/DOM%E9%80%89%E6%8B%A9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DOM选择器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-17 19:08:46" itemprop="dateModified" datetime="2019-11-17T19:08:46+08:00">2019-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">CSS权威指南</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><p>属性选择器是在CSS2中引入的，他们能够指定一些规则，这些规则根据元素的属性（诸如href或title）以及这些属性的值对元素进行匹配</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">lang</span>=<span class="string">"en-GB"</span> <span class="attr">rel</span>=<span class="string">"friend net"</span>&gt;</span>Peter<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="" lang="es-ES" rel-"fiend"&gt;Pedro&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="" lang="es-MX" rel-"contact"&gt;Pancho&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="简单属性选择器"><a href="#简单属性选择器" class="headerlink" title="简单属性选择器"></a>简单属性选择器</h3><p>将规则应用到定义了指定属性的元素上，而不管属性的值是什么</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于所有元素都有rel属性，所以所有元素都会应用这条规则</p>
+<h3 id="精确属性值选择器"><a href="#精确属性值选择器" class="headerlink" title="精确属性值选择器"></a>精确属性值选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel=<span class="string">'friend'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代码只会将规则标记到第二个a元素</p>
+<h3 id="部分属性选择器"><a href="#部分属性选择器" class="headerlink" title="部分属性选择器"></a>部分属性选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel~=<span class="string">'friend'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代码会选择rel属性中带有friend的值的元素，则这个规则会标记到第一与第二个</p>
+<h3 id="语言属性选择器"><a href="#语言属性选择器" class="headerlink" title="语言属性选择器"></a>语言属性选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[lang|=<span class="string">'es'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>选中所有属性值以es开头的lang语言，即会选中2和3</p>
+<h2 id="CSS3的新属性选择器"><a href="#CSS3的新属性选择器" class="headerlink" title="CSS3的新属性选择器"></a>CSS3的新属性选择器</h2><h3 id="开始字串属性值选择器（开始选择器）"><a href="#开始字串属性值选择器（开始选择器）" class="headerlink" title="开始字串属性值选择器（开始选择器）"></a>开始字串属性值选择器（开始选择器）</h3><p>该选择器会选择一些元素，这些元素所选择的属性是以一个字符串为起始，该字符串会作为参数提供给选择器，这个选择器使用插入符号(^)修饰属性中的等号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E[attr^=<span class="string">'value'</span>] &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这行代码将在指定属性的起始处寻找指定的值<br>示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Lorem ipsum dolor &lt;a href=<span class="string">"mailto:email@example.com"</span>&gt;email&lt;a&gt; sit amet.&lt;<span class="regexp">/a&gt;&lt;/</span>p&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">a[href^=<span class="string">'mailto'</span>] &#123;</span><br><span class="line">    background-image: url(<span class="string">'email_go.png'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum dolor email sit amet.  #这里的email是一个地址即上述href绑定的地址 email原为一图片索引，本人懒就没放图片</span><br></pre></td></tr></table></figure>
+
+<h3 id="结束子串属性值选择器（结束选择器）"><a href="#结束子串属性值选择器（结束选择器）" class="headerlink" title="结束子串属性值选择器（结束选择器）"></a>结束子串属性值选择器（结束选择器）</h3><p>与开始选择器相反，使用该选择器去选择以指定的值结束的属性<br>语法差异为用($)去修饰(=)</p>
+<h3 id="任意子串属性值选择器（任意选择器）"><a href="#任意子串属性值选择器（任意选择器）" class="headerlink" title="任意子串属性值选择器（任意选择器）"></a>任意子串属性值选择器（任意选择器）</h3><p>该选择器使用规则即在指定的属性字符串的内部任意位置搜索指定的子串<br>该选择器使用的符号是(*)</p>
+<h3 id="多属性选择器"><a href="#多属性选择器" class="headerlink" title="多属性选择器"></a>多属性选择器</h3><p>可以把多个选择器串接在一起，这样在选择目标的时候能够做到非常的具体，使用多选择器，可以通过定义在开始、结束以及中间任意位置的值创建应用到属性上的规则</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://example.com/folder1/file.pdf"</span>&gt;</span>Lorem ipsum<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;&lt;a href="http:/</span><span class="regexp">/example.com/</span>folder2/file.pdf<span class="string">"&gt;Lorem ipsum&lt;/a&gt;&lt;/p&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 如果要指定一条只应用到第二个p元素的规则，可以把一些选择器串接到一起：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[href^=<span class="string">'http://'</span>][href*=<span class="string">'/folder2/'</span>][href$=<span class="string">'.pdf'</span>] &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这行代码会寻找这样的a元素，它具有一个href属性，是以 http: // 开始，以.pdf结束，并且在中间包含了/folder2/，非常明确</p>
+<h3 id="普通兄弟连结符"><a href="#普通兄弟连结符" class="headerlink" title="普通兄弟连结符"></a>普通兄弟连结符</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E + F &#123;&#125; #相邻兄弟连结符</span><br><span class="line">E ~ F &#123;&#125; #普通兄弟连结符</span><br></pre></td></tr></table></figure>
+
+<p>相邻兄弟连结符选择的是文档树的同一层级，紧邻在元素(E)之后的任意元素；<br>普通兄弟连结符选择的是文档树的同一层级，位于元素(E)之后的任意元素。<br>示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Next we are going to discuss ... &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;h2&gt;Ren&amp;eacute; Descartes&lt;/</span>h2&gt;</span><br><span class="line">&lt;p&gt;A highly influential French philosopher...&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;He only famously declared:&lt;/</span>p&gt;</span><br><span class="line">&lt;blockquote&gt;</span><br><span class="line">    &lt;p&gt;I think,therefore I am.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>blockquote&gt;  </span><br><span class="line">&lt;p&gt;However,<span class="keyword">this</span> presumes the existence <span class="keyword">of</span> the speaker.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">h2 + p &#123;</span></span><br><span class="line"><span class="regexp">    font-weight:bolder;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">h2 ~ p &#123;</span></span><br><span class="line"><span class="regexp">    font-style: italic;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/CSS3/" rel="tag"># CSS3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/CSS%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="prev" title="CSS工作原理">
+      <i class="fa fa-chevron-left"></i> CSS工作原理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/" rel="next" title="HTML标记与文档结构">
+      HTML标记与文档结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">1.</span> <span class="nav-text">属性选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单属性选择器"><span class="nav-number">1.1.</span> <span class="nav-text">简单属性选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精确属性值选择器"><span class="nav-number">1.2.</span> <span class="nav-text">精确属性值选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分属性选择器"><span class="nav-number">1.3.</span> <span class="nav-text">部分属性选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语言属性选择器"><span class="nav-number">1.4.</span> <span class="nav-text">语言属性选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3的新属性选择器"><span class="nav-number">2.</span> <span class="nav-text">CSS3的新属性选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始字串属性值选择器（开始选择器）"><span class="nav-number">2.1.</span> <span class="nav-text">开始字串属性值选择器（开始选择器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束子串属性值选择器（结束选择器）"><span class="nav-number">2.2.</span> <span class="nav-text">结束子串属性值选择器（结束选择器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意子串属性值选择器（任意选择器）"><span class="nav-number">2.3.</span> <span class="nav-text">任意子串属性值选择器（任意选择器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多属性选择器"><span class="nav-number">2.4.</span> <span class="nav-text">多属性选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通兄弟连结符"><span class="nav-number">2.5.</span> <span class="nav-text">普通兄弟连结符</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
