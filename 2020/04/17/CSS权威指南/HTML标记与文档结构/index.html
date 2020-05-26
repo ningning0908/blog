@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="CSS的用途就是为HTML标记添加样式，所以，我们首先要先知道怎么编写和构造HTML标记，才能让CSS更方便地为它添加样式。用HTML标记内容的目的是为了赋予网页语义，我们平常用的浏览器、给视障用户朗读网页的屏幕阅读器，以及搜索引擎放出的Web爬虫都是用户代理，它们需要显示、朗读和分析网页。HTML规定了一组标签，用来给内容打上不同的标记，每个标签都是对所包含内容的一种描述，最常用的HTML标签描">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML标记与文档结构">
-<meta property="og:url" content="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="学习笔记">
 <meta property="og:description" content="CSS的用途就是为HTML标记添加样式，所以，我们首先要先知道怎么编写和构造HTML标记，才能让CSS更方便地为它添加样式。用HTML标记内容的目的是为了赋予网页语义，我们平常用的浏览器、给视障用户朗读网页的屏幕阅读器，以及搜索引擎放出的Web爬虫都是用户代理，它们需要显示、朗读和分析网页。HTML规定了一组标签，用来给内容打上不同的标记，每个标签都是对所包含内容的一种描述，最常用的HTML标签描">
 <meta property="og:locale" content="zh_CN">
@@ -36,7 +36,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML%E5%A4%8D%E5%90%88%E5%85%83%E7%B4%A0.png">
 
-<link rel="canonical" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
 
 
 <script id="page-configurations">
@@ -107,6 +107,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -136,11 +137,38 @@
     <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -164,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -279,12 +307,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" rel="prev" title="媒体查询">
-      <i class="fa fa-chevron-left"></i> 媒体查询
+    <a href="/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/DOM%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="DOM选择器">
+      <i class="fa fa-chevron-left"></i> DOM选择器
     </a></div>
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/CSS%E7%AC%94%E8%AE%B0/%E7%9B%92%E6%A8%A1%E5%9E%8B/" rel="next" title="盒模型">
-      盒模型 <i class="fa fa-chevron-right"></i>
+    <a href="/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" rel="next" title="媒体查询">
+      媒体查询 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -358,20 +386,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -441,6 +469,10 @@
   
 
 
+
+
+  
+<script src="/blog/js/local-search.js"></script>
 
 
 
