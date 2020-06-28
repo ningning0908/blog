@@ -28,7 +28,7 @@
 <meta property="og:description" content="关于字符串与正则表达式，这里不介绍太多细致内容，本章整理的不是很全面。 识别子字符串的方法自从 JS 引入了 indexOf() 方法，开发者们就使用它来识别字符串是否存在于其它字符串中。ES6 包含了以下三个方法来满足这类需求：              includes()方法：在给定文本存在于字符串中的任意位置时会返回 true，否则返回false；startsWith()方法：在给定文本出">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-17T12:38:59.939Z">
-<meta property="article:modified_time" content="2019-11-18T14:24:48.988Z">
+<meta property="article:modified_time" content="2020-06-09T04:09:13.767Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="深入理解ES6">
 <meta name="twitter:card" content="summary">
@@ -219,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 22:24:48" itemprop="dateModified" datetime="2019-11-18T22:24:48+08:00">2019-11-18</time>
+                <time title="修改时间：2020-06-09 12:09:13" itemprop="dateModified" datetime="2020-06-09T12:09:13+08:00">2020-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +272,6 @@
 <p><strong>和正则表达式其他标志相同，你可以根据一个属性来检测 y 标志是否存在。此时你需要检查的是 sticky 属性，如下：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/hello\d/y</span>;</span><br><span class="line"><span class="built_in">console</span>.log(pattern.sticky); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="复制正则表达式"><a href="#复制正则表达式" class="headerlink" title="复制正则表达式"></a>复制正则表达式</h3>
     </div>
 
     
@@ -290,12 +289,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/" rel="prev" title="块级作用域绑定">
-      <i class="fa fa-chevron-left"></i> 块级作用域绑定
+    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E6%89%A9%E5%B1%95%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%8A%9F%E8%83%BD/" rel="prev" title="扩展的对象功能">
+      <i class="fa fa-chevron-left"></i> 扩展的对象功能
     </a></div>
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%87%BD%E6%95%B0/" rel="next" title="函数">
-      函数 <i class="fa fa-chevron-right"></i>
+    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/" rel="next" title="块级作用域绑定">
+      块级作用域绑定 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -355,7 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#识别子字符串的方法"><span class="nav-number">1.</span> <span class="nav-text">识别子字符串的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat-方法"><span class="nav-number">2.</span> <span class="nav-text">repeat()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的其他改动"><span class="nav-number">3.</span> <span class="nav-text">正则表达式的其他改动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式-y-标志"><span class="nav-number">3.1.</span> <span class="nav-text">正则表达式 y 标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制正则表达式"><span class="nav-number">3.2.</span> <span class="nav-text">复制正则表达式</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#识别子字符串的方法"><span class="nav-number">1.</span> <span class="nav-text">识别子字符串的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat-方法"><span class="nav-number">2.</span> <span class="nav-text">repeat()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的其他改动"><span class="nav-number">3.</span> <span class="nav-text">正则表达式的其他改动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式-y-标志"><span class="nav-number">3.1.</span> <span class="nav-text">正则表达式 y 标志</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -369,20 +368,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
