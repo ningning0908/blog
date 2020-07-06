@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-06 17:26:31" itemprop="dateModified" datetime="2020-07-06T17:26:31+08:00">2020-07-06</time>
+                <time title="修改时间：2020-07-06 18:23:00" itemprop="dateModified" datetime="2020-07-06T18:23:00+08:00">2020-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -414,7 +414,7 @@
 <h4 id="通过link"><a href="#通过link" class="headerlink" title="通过link"></a>通过link</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyle</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">'link'</span>)</span><br><span class="line"></span><br><span class="line">    link.rel = <span class="string">'stylesheet'</span></span><br><span class="line">    link.type = <span class="string">'text/css'</span></span><br><span class="line">    link.href = url</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">'head'</span>)[<span class="number">0</span>]</span><br><span class="line">    head.appendChild(link)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadStyle(<span class="string">'style.css'</span>)</span><br></pre></td></tr></table></figure>
 
 <div class="note info">
-            <p>注意事项：</p><ul><li>必须将<link>元素添加到<head>而不是<body>元素，才能保证在所有浏览器中的行为一致；</li><li>加载外部样式文件的过程是异步的。</li></ul>
+            <p>注意事项：</p><ul><li>必须将<code>&lt;link&gt;</code>元素添加到<code>&lt;head&gt;</code>而不是<code>&lt;body&gt;</code>元素，才能保证在所有浏览器中的行为一致；</li><li>加载外部样式文件的过程是异步的。</li></ul>
           </div>
       
     </div>
