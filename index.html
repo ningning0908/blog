@@ -185,6 +185,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/" class="post-title-link" itemprop="url">剩余时间段页面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-09 17:06:20 / 修改时间：17:19:19" itemprop="dateCreated datePublished" datetime="2020-07-09T17:06:20+08:00">2020-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">项目中的难点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>js 24小时制 给定多个时间段 计算剩下的时间段</strong><br>废话不多说，直接上图，为达到图中的功能，最后一个时间段是由其他几个时间段计算出来的，下图中的平时段是自动计算得到的。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E9%A1%B9%E7%9B%AE%E9%9A%BE%E7%82%B9/1594285891%281%29.png" alt="自定义输入时段个数及每个时段的输入时间，计算出最后一个时段的剩余时间段"><br>代码如下，代码很简单，就是为了满足条件操作时间的时候，逻辑上很恶心，vue代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"peakValleySetting"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"padding: 10px 20px"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 最后一个输入时段之前的时段可以进行自定义 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(item,i) in sourceFirst"</span> <span class="attr">:key</span>=<span class="string">"i"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dateSetting"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.name &#125;&#125;: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-time-picker</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-for</span>=<span class="string">"(res, m) of item.items"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">:key</span>=<span class="string">"m"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-model</span>=<span class="string">"item.items[m]"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">is-range</span></span></span><br><span class="line"><span class="tag">              <span class="attr">format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">range-separator</span>=<span class="string">"-"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">start-placeholder</span>=<span class="string">"开始时间"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">end-placeholder</span>=<span class="string">"结束时间"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">placeholder</span>=<span class="string">"请选择时间范围"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-if</span>=<span class="string">"item.items.length &gt;= 1"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">type</span>=<span class="string">"danger"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">icon</span>=<span class="string">"el-icon-delete"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">              @<span class="attr">click</span>=<span class="string">"onDelete(item, sourceFirst)"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">              <span class="attr">type</span>=<span class="string">"success"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">icon</span>=<span class="string">"el-icon-circle-plus"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">              @<span class="attr">click</span>=<span class="string">"onAdd(item.name, sourceFirst)"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dateSetting"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; sourceLast.name &#125;&#125;: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-time-picker</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-for</span>=<span class="string">"(res, m) of sourceLast.items"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:key</span>=<span class="string">"m"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-model</span>=<span class="string">"sourceLast.items[m]"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">is-range</span></span></span><br><span class="line"><span class="tag">            <span class="attr">format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">value-format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">range-separator</span>=<span class="string">"-"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">start-placeholder</span>=<span class="string">"开始时间"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">end-placeholder</span>=<span class="string">"结束时间"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">placeholder</span>=<span class="string">"选择时间范围"</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">type</span>=<span class="string">"success"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">icon</span>=<span class="string">"el-icon-circle-plus"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">            <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">click</span>=<span class="string">"lastAdd(sourceLast)"</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      date: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">      radioOptions: [<span class="string">'5%'</span>, <span class="string">'10%'</span>, <span class="string">'20%'</span>, <span class="string">'30%'</span>, <span class="string">'40%'</span>, <span class="string">'50%'</span>, <span class="string">'60%'</span>, <span class="string">'70%'</span>, <span class="string">'80%'</span>, <span class="string">'90%'</span>, <span class="string">'100%'</span>],</span></span><br><span class="line">      sourceFirst: [</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'峰时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'谷时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'缓冲时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      sourceLast: &#123;</span><br><span class="line"><span class="actionscript">        name: <span class="string">'平时段'</span>,</span></span><br><span class="line">        items: [],</span><br><span class="line"><span class="actionscript">        radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">        change: <span class="string">''</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onAdd(name, source) &#123;</span><br><span class="line"><span class="javascript">      source.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name == name) &#123;</span><br><span class="line"><span class="actionscript">          item.items.push(<span class="string">' '</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    onDelete(time, source) &#123;</span><br><span class="line"><span class="javascript">      source.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name == time.name &amp;&amp; time.items.length &gt;= 1) &#123;</span><br><span class="line">          item.items.pop()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 获得输入时间段数组</span></span></span><br><span class="line">    getArr() &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arr = []</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.sourceFirst.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name) &#123;</span><br><span class="line"><span class="javascript">          item.items.map(<span class="function"><span class="params">m</span> =&gt;</span> &#123;</span></span><br><span class="line">            arr.push(m)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> arr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 显示按钮</span></span></span><br><span class="line">    lastAdd(last) &#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">// 获得时间段数组</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arr = <span class="keyword">this</span>.getArr()</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> newArr = []</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 时间格式化为HH:mm形式</span></span></span><br><span class="line"><span class="javascript">      arr.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">if</span> (item != <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="actionscript">          newArr.push([(<span class="string">'0'</span> + item[<span class="number">0</span>].getHours().toString()).slice(<span class="number">-2</span>) + <span class="string">':'</span> + (<span class="string">'0'</span> + item[<span class="number">0</span>].getMinutes().toString()).slice(<span class="number">-2</span>),</span></span><br><span class="line"><span class="actionscript">            (<span class="string">'0'</span> + item[<span class="number">1</span>].getHours().toString()).slice(<span class="number">-2</span>) + <span class="string">':'</span> + (<span class="string">'0'</span> + item[<span class="number">1</span>].getMinutes().toString()).slice(<span class="number">-2</span>)])</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> result = <span class="keyword">this</span>.time(newArr)</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(result)</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sourceLast.items = result</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// time 计算方法</span></span></span><br><span class="line">    time(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> newArr = <span class="keyword">this</span>.formatTime(arr)</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> sortArr = <span class="keyword">this</span>.timeSort(newArr) <span class="comment">// 时间段进行排序</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(sortArr)</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> aaa = <span class="string">'00:00'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> bbb = <span class="string">'23:59'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> resArr = []</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 开始比较</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span> (sortArr[<span class="number">0</span>] != <span class="literal">undefined</span> &amp;&amp; aaa &lt; sortArr[<span class="number">0</span>][<span class="number">0</span>]) &#123;</span></span><br><span class="line">        resArr.push([aaa, sortArr[0][0]])</span><br><span class="line">      &#125;</span><br><span class="line"><span class="javascript">      sortArr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span></span><br><span class="line">        if (index === sortArr.length - 1) &#123;</span><br><span class="line"><span class="actionscript">          <span class="keyword">return</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> startTime = item[<span class="number">1</span>]</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> endTime = sortArr[index + <span class="number">1</span>][<span class="number">0</span>]</span></span><br><span class="line">        if (startTime &lt; endTime) &#123;</span><br><span class="line">          resArr.push([startTime, endTime])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span> (sortArr[sortArr.length - <span class="number">1</span>] != <span class="literal">undefined</span> &amp;&amp; bbb &gt; sortArr[sortArr.length - <span class="number">1</span>][<span class="number">1</span>]) &#123;</span></span><br><span class="line">        resArr.push([sortArr[sortArr.length - 1][1], bbb])</span><br><span class="line">      &#125;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> resArr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 如果存在 ['22:00','00:10']  这样格式的 转化为['22:00','23:59'] 和['00:00','00:10']</span></span></span><br><span class="line">    formatTime(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> newArr = [...arr]</span></span><br><span class="line"><span class="javascript">      arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;item[<span class="number">0</span>]&#125;</span>:00`</span>) &gt; <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;item[<span class="number">1</span>]&#125;</span>:00`</span>)) &#123;</span></span><br><span class="line">          newArr.splice(index, 1)</span><br><span class="line"><span class="actionscript">          newArr.push([item[<span class="number">0</span>], <span class="string">'23:59'</span>])</span></span><br><span class="line"><span class="actionscript">          newArr.push([<span class="string">'00:00'</span>, item[<span class="number">1</span>]])</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> newArr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 时间  排序</span></span></span><br><span class="line">    timeSort(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arrSort = arr.sort(<span class="function"><span class="keyword">function</span><span class="params">(a, b)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;a[<span class="number">0</span>]&#125;</span>:00`</span>) - <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;b[<span class="number">0</span>]&#125;</span>:00`</span>)</span></span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> arrSort</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.peakValleySetting</span> &#123;</span></span><br><span class="line">  position: relative;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 50%;</span><br><span class="line"><span class="css">  <span class="comment">/* padding: 10px; */</span></span></span><br><span class="line">  background-color: white;</span><br><span class="line">  border: 2px solid rgb(141, 137, 79);</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.dateSetting</span> &#123;</span></span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.el-date-editor</span><span class="selector-class">.el-input</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.el-date-editor</span><span class="selector-class">.el-input__inner</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">width</span>: 12<span class="selector-class">.105vw</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/06/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/DOM%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/07/06/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/DOM%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">第十一章 DOM扩展</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-06 21:14:56" itemprop="dateCreated datePublished" datetime="2020-07-06T21:14:56+08:00">2020-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-08 20:14:45" itemprop="dateModified" datetime="2020-07-08T20:14:45+08:00">2020-07-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">JavaScript高级程序设计</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>关于DOM全面的干货博客：<a href="https://www.cnblogs.com/sugartang/p/11342453.html" target="_blank" rel="noopener">https://www.cnblogs.com/sugartang/p/11342453.html</a></strong></p>
+<h2 id="选择符API"><a href="#选择符API" class="headerlink" title="选择符API"></a>选择符API</h2><p>Selectors API是由W3C发起指定的一个标准，致力于让浏览器原生支持CSS查询。Selectors API Level1级的核心是两个方法：<code>querySelector()</code>和<code>querySelectorAll()</code>。在兼容的浏览器中，可以通过Document及Element类型的实例调用它们。目前已完全支持Selectors API Level1级的浏览器有IE8+、Firefox3.5+、Safari3.1+、Chrome和Opera10+。</p>
+<h3 id="querySelector-方法"><a href="#querySelector-方法" class="headerlink" title="querySelector( )方法"></a>querySelector( )方法</h3><p>该方法接受单个CSS选择符作为参数，返回与该模式匹配的第一个元素，如果没有找到匹配的元素则返回<code>null</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 取得body元素</span></span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.querySelector(<span class="string">'body'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得ID为"myDiv"元素</span></span><br><span class="line"><span class="keyword">var</span> myDiv = <span class="built_in">document</span>.querySelector(<span class="string">'#myDiv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得类为"selected"的第一个元素</span></span><br><span class="line"><span class="keyword">var</span> selected = <span class="built_in">document</span>.querySelector(<span class="string">'.selected'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得类为"button"的第一个图像元素</span></span><br><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.querySelector(<span class="string">'img.button'</span>)</span><br></pre></td></tr></table></figure>
+<p>通过Document类型调用<code>querySelector()</code>方法时，会在文档元素的范围内查找匹配的元素。而通过Element类型调用<code>querySelector()</code>方法时，只会在该元素后代元素的范围内查找匹配的元素。CSS选择符可以简单也可以复杂，视情况而定。如果传入了不被支持的选择符，<code>querySelector()</code>方法会抛出错误。</p>
+<h3 id="querySelectorAll-方法"><a href="#querySelectorAll-方法" class="headerlink" title="querySelectorAll( )方法"></a>querySelectorAll( )方法</h3><p><code>querySelectorAll()</code>方法接受的参数与<code>querySelector()</code>方法一样，都是一个CSS选择符，但返回的是所有匹配元素而不仅仅是一个元素。这个方法返回的是一个带有<code>NodeList</code>所有属性和方法的一个快照，而非不断对文档进行搜索的动态查询。这样实现可以避免使用<code>NodeList</code>对象通常会引起的大多数性能问题。</p>
+<p><code>querySelectorAll()</code>的用法类似于<code>querySelector()</code>，就不介绍了。</p>
+<h3 id="matchesSelector-方法"><a href="#matchesSelector-方法" class="headerlink" title="matchesSelector( )方法"></a>matchesSelector( )方法</h3><p>Selectors API Level2级规范为Element类型新增了一个方法<code>matchesSelector()</code>。这个方法接收一个参数，即CSS选择符，如果调用元素与该选择符匹配，返回<code>true</code>；否则返回<code>false</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/04/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/DOM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -216,7 +365,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-06 21:10:30" itemprop="dateModified" datetime="2020-07-06T21:10:30+08:00">2020-07-06</time>
+                <time title="修改时间：2020-07-06 21:33:01" itemprop="dateModified" datetime="2020-07-06T21:33:01+08:00">2020-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,7 +536,7 @@
             <p>DOM1级描述了DocumentType对象的3个属性：</p><ul><li><strong>name</strong>：表示文档类型的名称；</li><li><strong>entities</strong>：由文档类型描述的实体的<code>NamedNodeMap</code>对象；</li><li><strong>notations</strong>：由文档类型描述的符号的<code>NamedNodeMap</code>对象。</li></ul>
           </div>
 <p>通常，浏览器中的文档使用的都是HTML或XHTML文档类型，因而<code>entities</code>和<code>notations</code>都是空列表（列表中的项来自行内文档类型声明）。但不管怎样，只有<code>name</code>属性是有用的。这个属性中保存的是文档类型的名称，也就是出现在<code>&lt;!DOCTYPE</code>和<code>&gt;</code>之间的文本。</p>
-<h4 id="DocumentFragment类型"><a href="#DocumentFragment类型" class="headerlink" title="DocumentFragment类型"></a>DocumentFragment类型</h4><p>在所有节点类型中，只有DocumentFragment在文档中没有对应的标记。DOM规定文档片段（document fragment）是一种“轻量级”的文档，可以包含和控制节点，但不会像完整的文档那样占用额外的资源。DocumentFragment节点具有下列特征：</p>
+<h3 id="DocumentFragment类型"><a href="#DocumentFragment类型" class="headerlink" title="DocumentFragment类型"></a>DocumentFragment类型</h3><p>在所有节点类型中，只有DocumentFragment在文档中没有对应的标记。DOM规定文档片段（document fragment）是一种“轻量级”的文档，可以包含和控制节点，但不会像完整的文档那样占用额外的资源。DocumentFragment节点具有下列特征：</p>
 <div class="note info">
             <ul><li><code>nodeType</code>的值为<code>11</code>；</li><li><code>nodeName</code>的值为<code>#document-fragment</code>；</li><li><code>nodeValue</code>的值为<code>null</code>；</li><li><code>parentNode</code>是值为<code>null</code>；</li><li>其子节点可能是Element、Text、Comment、ProcessingInstruction、CDATASection或EntityReference。</li></ul>
           </div>
@@ -395,7 +544,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment()</span><br></pre></td></tr></table></figure>
 <p>文档片段继承了Node的所有方法，通常用于执行那些针对文档的DOM操作。如果将文档中的节点添加到文档片段中，就会从文档树中移除该节点，也不会从浏览器中再看到该节点。添加到文档片段中的新节点同样也不属于文档树。可以通过<code>appendChild()</code>或<code>insertBefore()</code>将文档片段中的内容添加到文档中。在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有字节点添加到相应位置上，文档片段本身永远不会称为文档树的一部分。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"myList"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    var fragment = document.createDocumentFragment();</span><br><span class="line">    var ul = document.getElementById('myList');</span><br><span class="line">    var li = null;</span><br><span class="line"></span><br><span class="line">    for (let i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">        li = document.createElement('li');</span><br><span class="line">        li.appendChild(document.createTextNode('Item' + (i+1)));</span><br><span class="line"><span class="css">        <span class="selector-tag">fragment</span><span class="selector-class">.appendChild</span>(<span class="selector-tag">li</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">ul</span><span class="selector-class">.appendChild</span>(<span class="selector-tag">fragment</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="Attr类型"><a href="#Attr类型" class="headerlink" title="Attr类型"></a>Attr类型</h4><p>元素的特性在DOM中以Attr类型来表示。在所有浏览器中，都可以访问Attr类型的构造函数和原型。从技术角度讲，特性就是存在于元素的<code>attributes</code>属性中的节点。特性节点具有下列特征：</p>
+<h3 id="Attr类型"><a href="#Attr类型" class="headerlink" title="Attr类型"></a>Attr类型</h3><p>元素的特性在DOM中以Attr类型来表示。在所有浏览器中，都可以访问Attr类型的构造函数和原型。从技术角度讲，特性就是存在于元素的<code>attributes</code>属性中的节点。特性节点具有下列特征：</p>
 <div class="note info">
             <ul><li><code>nodeType</code>的值为<code>2</code>；</li><li><code>nodeName</code>的值为特性的名称；</li><li><code>nodeValue</code>的值为特性的值；</li><li><code>parentNode</code>是值为null；</li><li>在HTML中不支持（没有）子节点；</li><li>在XML中子节点可以是Text或EntityReference。</li></ul>
           </div>
@@ -405,7 +554,7 @@
           </div>
 <p>使用<code>document.createAttribute()</code>并传入特性的名称可以创建新的特性节点。例如，要为元素添加<code>align</code>特性，可以使用下列代码:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> attr = <span class="built_in">document</span>.createAttribute(<span class="string">'align'</span>)</span><br><span class="line">attr.value = <span class="string">'left'</span></span><br><span class="line"></span><br><span class="line">element.attributes.setNamedItem(attr)</span><br></pre></td></tr></table></figure>
-<h2 id="DOM操作技术"><a href="#DOM操作技术" class="headerlink" title="DOM操作技术"></a>DOM操作技术</h2><p>创建动态脚本有两种方式：插入外部文件和直接插入JavaScript代码。</p>
+<h2 id="DOM操作技术"><a href="#DOM操作技术" class="headerlink" title="DOM操作技术"></a>DOM操作技术</h2><h3 id="动态脚本"><a href="#动态脚本" class="headerlink" title="动态脚本"></a>动态脚本</h3><p>创建动态脚本有两种方式：插入外部文件和直接插入JavaScript代码。</p>
 <h4 id="插入外部文件"><a href="#插入外部文件" class="headerlink" title="插入外部文件"></a>插入外部文件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line"></span><br><span class="line">    script.type = <span class="string">'text/javascript'</span></span><br><span class="line">    script.src = url</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadScript(<span class="string">'clent.js'</span>)</span><br></pre></td></tr></table></figure>
 <h4 id="插入JavaScript代码"><a href="#插入JavaScript代码" class="headerlink" title="插入JavaScript代码"></a>插入JavaScript代码</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScriptString</span> (<span class="params">code</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line"></span><br><span class="line">    script.type = <span class="string">'text/javascript'</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        script.appendChild(<span class="built_in">document</span>.createTextNode(code))</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        script.text = code</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadScriptString(<span class="string">'function sayHi () &#123;console.log("hi")&#125;'</span>)</span><br></pre></td></tr></table></figure>
 <p>以这种方式加载的代码会在全局作用域中执行，而且当脚本执行后将立即可用。实际上，这样执行代码与在全局作用域中把相同的字符串传递给<code>eval()</code>是一样的。</p>
@@ -417,15 +566,17 @@
             <p>注意事项：</p><ul><li>必须将<code>&lt;link&gt;</code>元素添加到<code>&lt;head&gt;</code>而不是<code>&lt;body&gt;</code>元素，才能保证在所有浏览器中的行为一致；</li><li>加载外部样式文件的过程是异步的。</li></ul>
           </div>
 
+<h4 id="通过style"><a href="#通过style" class="headerlink" title="通过style"></a>通过style</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadStyleString</span> (<span class="params">css</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">'style'</span>)</span><br><span class="line"></span><br><span class="line">    style.type = <span class="string">'text/css'</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        style.appendChild(<span class="built_in">document</span>.createTextNode(css))</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        style.styleSheet.cssText = css</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementByTagName(<span class="string">'head'</span>)[<span class="number">0</span>]</span><br><span class="line">    head.appendChild(link)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadStyleString(<span class="string">'body &#123;background-color: red&#125;'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="操作表格"><a href="#操作表格" class="headerlink" title="操作表格"></a>操作表格</h3><p>为了方便构建表格，HTML DOM为<code>&lt;table&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tr&gt;</code>元素添加了一些属性和方法：</p>
 <div class="note info">
             <p>为<code>&lt;table&gt;</code>元素添加的属性和方法：</p><ul><li><code>caption</code>：保存着对<code>&lt;caption&gt;</code>元素（如果有）的引用；</li><li><code>tHead</code>：保存着对<code>&lt;thead&gt;</code>元素（如果有）的引用；</li><li><code>tBodies</code>：是一个<code>&lt;tbody</code>&gt;元素的HTMLCollection；</li><li><code>tFoot</code>：保存着对<code>&lt;tfoot&gt;</code>元素（如果有）的引用；</li><li><code>rows</code>：是一个表格中所有行的<code>HTMLCollection</code>；</li><li><code>createCaption()</code>：创建<code>&lt;caption&gt;</code>元素，将其放到表格中，返回引用；</li><li><code>createTHead()</code>：创建<code>&lt;thead&gt;</code>元素，将其放到表格中，返回引用；</li><li><code>createTFoot()</code>：创建<code>&lt;tfoot&gt;</code>元素，将其放到表格中，返回引用；</li><li><code>deleteCaption()</code>：删除<code>&lt;caption&gt;</code>元素；</li><li><code>deleteTHead()</code>：删除<code>&lt;thead&gt;</code>元素；</li><li><code>deleteTFoot()</code>：删除<code>&lt;tfoot&gt;</code>元素；</li><li><code>deleteRow(pos)</code>：删除指定位置的行；</li><li><code>insertRow(pos)</code>：向rows集合中的指定位置插入一行。</li></ul><hr><p>为<code>&lt;tbody&gt;</code>元素添加的属性和方法：</p><ul><li><strong>rows</strong>：保存着<code>&lt;tbody&gt;</code>元素中行的<code>HTMLCollection</code>；</li><li><strong>deleteRow(pos)</strong>：删除指定位置的行；</li><li><strong>insertRow(pos)</strong>：向rows集合中的指定位置插入一行，返回对新插入行的引用。</li></ul><hr><p>为<code>&lt;tr&gt;</code>元素添加的属性和方法：</p><ul><li><strong>cells</strong>：保存着<code>&lt;tr&gt;</code>元素中单元格的<code>HTMLCollection</code>；</li><li><strong>deleteCell(pos)</strong>：删除指定位置的单元格；</li><li><strong>insertCell(pos)</strong>：向<code>cells</code>集合中的指定位置插入一个单元格，返回对新插入单元格的引用。</li></ul>
           </div>
-<h4 id="想创建下面的HTML表格："><a href="#想创建下面的HTML表格：" class="headerlink" title="想创建下面的HTML表格："></a>想创建下面的HTML表格：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"100%"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, col 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, col 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, col 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, col 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>想创建下面的HTML表格：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"100%"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, col 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, col 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, col 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, col 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>创建的代码：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> table = <span class="built_in">document</span>.createElement(<span class="string">'table'</span>)</span><br><span class="line">table.border = <span class="number">1</span></span><br><span class="line">table.width = <span class="string">'100%'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tbody = <span class="built_in">document</span>.createElement(<span class="string">'tbody'</span>)</span><br><span class="line">table.appendChild(tbody)</span><br><span class="line"></span><br><span class="line">tbody.insertRow(<span class="number">0</span>)</span><br><span class="line">tbody.rows[<span class="number">0</span>].insertCell(<span class="number">0</span>)</span><br><span class="line">tbody.rows[<span class="number">0</span>].cells[<span class="number">0</span>].appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'row 1, col 1'</span>))</span><br><span class="line">tbody.rows[<span class="number">0</span>].insertCell(<span class="number">1</span>)</span><br><span class="line">tbody.rows[<span class="number">0</span>].cells[<span class="number">1</span>].appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'row 1, col 2'</span>))</span><br><span class="line"></span><br><span class="line">tbody.insertRow(<span class="number">1</span>)</span><br><span class="line">tbody.rows[<span class="number">1</span>].insertCell(<span class="number">0</span>)</span><br><span class="line">tbody.rows[<span class="number">1</span>].cells[<span class="number">0</span>].appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'row 2, col 1'</span>))</span><br><span class="line">tbody.rows[<span class="number">1</span>].insertCell(<span class="number">1</span>)</span><br><span class="line">tbody.rows[<span class="number">1</span>].cells[<span class="number">1</span>].appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'row 2, col 2'</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(table)</span><br></pre></td></tr></table></figure>
 
-<h4 id="使用Nodelist"><a href="#使用Nodelist" class="headerlink" title="使用Nodelist"></a>使用Nodelist</h4><p>理解<code>Nodelist</code>及其“近亲”<code>NamedNodeMap</code>和<code>HTMLCollection</code>，是从整体上透彻理解DOM的关键所在。这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。从本质上说，所有<code>Nodelist</code>对象都是在访问DOM文档时实时运行的查询。</p>
+<h3 id="使用Nodelist"><a href="#使用Nodelist" class="headerlink" title="使用Nodelist"></a>使用Nodelist</h3><p>理解<code>Nodelist</code>及其“近亲”<code>NamedNodeMap</code>和<code>HTMLCollection</code>，是从整体上透彻理解DOM的关键所在。这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。从本质上说，所有<code>Nodelist</code>对象都是在访问DOM文档时实时运行的查询。</p>
 <p>例如，下列代码会导致无限循环：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> divs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>),</span><br><span class="line">    i,</span><br><span class="line">    div;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; divs.length; i++) &#123;</span><br><span class="line">    div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(div)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>第一行代码会取得文档中所有<code>&lt;div</code>元素的<code>HTMLCollection</code>。由于这个集合是“动态的”，因此只要有新<code>&lt;div&gt;</code>元素被添加到页面中，这个元素也会被添加到该集合中。浏览器不会将所有集合都保存在一个列表中，而是在下一次访问时再更新集合。结果，在遇到上例中所示的循环代码时，就会导致一个有趣的问题。每次循环都要对条件<code>i&lt;divs.length</code>求值，意味着会运行取得所有<code>&lt;div&gt;</code>元素的查询。考虑到循环体每次都会创建一个新<code>&lt;div&gt;</code>元素并将其添加到文档中，因此<code>divs.length</code>的值在每次循环后都会递增。既然<code>i</code>与<code>divs.length</code>每次都会同时递增，结果他们的值永远不会相等。<br>如果想要迭代一个<code>NodeList</code>，最好是使用<code>length</code>属性初始化第二个变量，然后将迭代器与该变量进行比较，如下面的例子所示：</p>
@@ -1456,423 +1607,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/20/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/05/20/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/" class="post-title-link" itemprop="url">数据结构2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-20 14:28:59" itemprop="dateCreated datePublished" datetime="2020-05-20T14:28:59+08:00">2020-05-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-30 09:16:26" itemprop="dateModified" datetime="2020-05-30T09:16:26+08:00">2020-05-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Python-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" itemprop="url" rel="index"><span itemprop="name">Python 知识汇总</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>队列是限制在两端进行插入操作和删除操作的线性表，允许进行存入操作的一端称为“队尾”，允许进行删除操作的一端称为“队头”。</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li><ol>
-<li>队列只能在队头和队尾进行数据操作。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>具有先进先出或者叫做后进后出的规律。</li>
-</ol>
-</li>
-</ul>
-<h3 id="基础程序"><a href="#基础程序" class="headerlink" title="基础程序"></a>基础程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">链式队列</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 队列异常</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#结点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,val,next=None)</span>:</span></span><br><span class="line">        self.val = val  <span class="comment"># 有用数据</span></span><br><span class="line">        self.next = next</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LQueue</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.front = self.rear = Node(<span class="literal">None</span>)</span><br><span class="line">    <span class="comment">#判断为空</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.front <span class="keyword">is</span> self.rear</span><br><span class="line">    <span class="comment">#入队</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        self.rear.next = Node(item)</span><br><span class="line">        self.rear = self.rear.next</span><br><span class="line">    <span class="comment">#出队</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.front == self.rear:</span><br><span class="line">            <span class="keyword">raise</span> QueueError(<span class="string">"Queue is empty"</span>)</span><br><span class="line">        self.front = self.front.next</span><br><span class="line">        <span class="keyword">return</span> self.front.val</span><br><span class="line">    <span class="comment">#清空</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.front = self.rear</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    lq = LQueue()</span><br><span class="line">    print(lq.is_empty())</span><br><span class="line">    lq.enqueue(<span class="number">10</span>)</span><br><span class="line">    lq.enqueue(<span class="number">20</span>)</span><br><span class="line">    lq.enqueue(<span class="number">30</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> lq.is_empty():</span><br><span class="line">        print(lq.dequeue())</span><br></pre></td></tr></table></figure>
-
-<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
-<li><ol>
-<li>定义：树(Tree)是n(n&gt;=0)个节点的有限集合T，它满足两个条件：有且仅有一个特定的称为根(Root)的节点，其余的节点可以分为m(m&gt;=0)个互不相交的有限集合T1、T2、……、Tm，其中每一个集合又是一个树，并称其为根的子树(Subtree)。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>基本概念</li>
-</ol>
-<ul>
-<li>一个节点的子树的个数称为该节点的度数，一棵树的度数是指该树中节点的最大度数。</li>
-<li>度数为零的节点称为树叶或终端节点，度数不为零的节点称为分支节点，除根节点外的分支节点称为内部节点。</li>
-<li>一个节点系列k1,k2,……,ki,ki+1,……,kj,并满足ki是ki+1的父节点，就称为一条从k1到kj的路径，路径的长度为j-1，即路径中的边数。路径中前面的节点是后面节点的祖先，后面节点是前面节点的子孙。</li>
-<li>节点的层数等于父节点的层数加一，根节点的层数定义为一。树中节点层数的最大值称为该树的高度或深度。</li>
-</ul>
-</li>
-</ul>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="定义与特征"><a href="#定义与特征" class="headerlink" title="定义与特征"></a>定义与特征</h3><ul>
-<li><p>1.二叉树的定义：<br>二叉树是n(n&gt;=0)个节点的有限集合，它或者是空集(n=0),或者是由一个根节点以及两颗互不相交的、分别称为左子树和右子树的二叉树组成。二叉树与普通有序树不同，二叉树严格区分左孩子和右孩子，即使只有一个子节点也要区分左右。</p>
-<ul>
-<li>特殊的树形结构</li>
-<li>度数最多为2</li>
-<li>严格区分左子树和右子树</li>
-</ul>
-</li>
-<li><ol start="2">
-<li>二叉树的特征：<ul>
-<li>二叉树第i(i&gt;=1)层上的节点最多为<code>2^(i-1)</code>个</li>
-<li>深度为k(k&gt;=1)的二叉树最多有<code>2^k-1</code>个节点</li>
-<li>在任意一颗二叉树中，树叶的数目比度数为2的节点的数目多一</li>
-<li>满二叉树：深度为k(k&gt;=1)时有<code>2^k-1</code>个节点的二叉树</li>
-<li>完全二叉树： 只有最下面两层有度数小于2的节点，且最下面一层的叶节点在最左边的若干位置上。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><p>遍历：沿某条搜索路径周游二叉树，对树中的每一个节点访问一次且仅访问一次。<br>先序遍历：先访问树根，再访问左子树，最后访问右子树；<br>中序遍历：先访问左子树，再访问树根，最后访问右子树；<br>后序遍历：先访问左子树，再访问右子树，最后访问树根；<br>层次遍历：从根节点开始，逐层从左向右进行遍历。<br><strong>下图是一个完全二叉树</strong><br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91.png" alt="attr"></p>
-<p><strong>先序遍历（根 左 右）：1 2 8 9 10 11 3 6 12 7</strong><br><strong>中序遍历（左 根 右）：8 4 9 2 10 5 11 1 12 6 3 7</strong><br><strong>后序遍历（左 右 根）：8 9 4 10 11 5 2 12 6 7 3 1</strong><br><strong>层次遍历（从上到下，从左到右）：1 2 3 4 5 6 7 8 9 10 11 12</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/15/HTML5+CSS3/HTML5%E6%A0%87%E7%AD%BE(%E4%B8%8B)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/05/15/HTML5+CSS3/HTML5%E6%A0%87%E7%AD%BE(%E4%B8%8B)/" class="post-title-link" itemprop="url">HTML标签(下)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-15 13:04:36" itemprop="dateCreated datePublished" datetime="2020-05-15T13:04:36+08:00">2020-05-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-17 23:44:23" itemprop="dateModified" datetime="2020-05-17T23:44:23+08:00">2020-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/HTML5-CSS3/" itemprop="url" rel="index"><span itemprop="name">HTML5+CSS3</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="表格标签"><a href="#表格标签" class="headerlink" title="表格标签"></a>表格标签</h2><h3 id="表格标签的基本语法"><a href="#表格标签的基本语法" class="headerlink" title="表格标签的基本语法:"></a>表格标签的基本语法:</h3><ul>
-<li><ol>
-<li><code>&lt;table&gt;&lt;/table&gt;</code>是用于定义表格的标签。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li><code>&lt;tr&gt;&lt;/tr&gt;</code>标签用于定义表格中的行，必须嵌套在<code>&lt;table&gt;&lt;/table&gt;</code>标签中。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li><code>&lt;td&gt;&lt;/td&gt;</code>用于定义表格中的单元格，必须嵌套在<code>&lt;tr&gt;&lt;/tr&gt;</code>标签中。</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>字母td指表格数据(table data)，即数据单元格的内容。</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>单元格内的文字<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表头单元格标签"><a href="#表头单元格标签" class="headerlink" title="表头单元格标签"></a>表头单元格标签</h3><p><code>&lt;th&gt;</code>标签表示HTML表格的表头部分(table head)：会加粗居中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span> <span class="tag">&lt;<span class="name">th</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">th</span>&gt;</span> <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>刘德华<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>56<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>张学友<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>56<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表格属性"><a href="#表格属性" class="headerlink" title="表格属性"></a>表格属性</h3><p>表格标签这部分属性在实际开发中不常用，后面用CSS来设置。</p>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>align</td>
-<td>left  center  right</td>
-<td>规定相对周围元素的对齐方式</td>
-</tr>
-<tr>
-<td>border</td>
-<td>1或””</td>
-<td>规定表格单元是否拥有边框，默认为””,表示没有边框</td>
-</tr>
-<tr>
-<td>cellpadding</td>
-<td>像素值</td>
-<td>规定单元边沿其内容之间的空白，默认1像素</td>
-</tr>
-<tr>
-<td>cellspacing</td>
-<td>像素值</td>
-<td>规定单元格之间的空白，默认2像素</td>
-</tr>
-<tr>
-<td>width</td>
-<td>像素值或百分比</td>
-<td>规定表格的宽度</td>
-</tr>
-</tbody></table>
-<h3 id="表格结构标签"><a href="#表格结构标签" class="headerlink" title="表格结构标签"></a>表格结构标签</h3><p>表格分为头部区域与主体区域<br><code>&lt;thead&gt;&lt;/thead&gt;</code>表示表格的头部区域，<code>&lt;tbody&gt;&lt;/tbody&gt;</code>表示表格的主体区域。</p>
-<h3 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h3><ul>
-<li>1.合并单元格的方式：<ul>
-<li>跨行合并：rowspan=”合并单元格的个数”，最上侧为目标单元格，写合并代码；</li>
-<li>跨列合并：colspan=”合并单元格的个数”，最左侧为目标单元格，写合并代码。</li>
-</ul>
-</li>
-<li>2.合并单元格三部曲：<ul>
-<li>先确定是跨行还是跨列</li>
-<li>找到目标单元格，写上合并方式=”合并的单元格数量”，比如：<code>&lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;</code></li>
-<li>删除多余的单元格</li>
-</ul>
-</li>
-</ul>
-<h2 id="列表标签"><a href="#列表标签" class="headerlink" title="列表标签"></a>列表标签</h2><p>表格是用来展示数据的，列表是用来布局的，列表最大的特点就是整洁、有序，它作为布局会更加自由和方便。</p>
-<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p><code>&lt;ul&gt;&lt;/ul&gt;</code>标签表示HTML页面中的无序列表，一般会以项目符号呈现列表项，而列表项使用<code>&lt;li&gt;&lt;/li&gt;</code>标签定义。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.无序列表的各个列表项之间没有顺序级别之分，是并列的。</li>
-<li>2.<code>&lt;ul&gt;&lt;/ul&gt;</code>中只能嵌套<code>&lt;li&gt;&lt;/li&gt;</code>，直接在<code>&lt;ul&gt;&lt;/ul&gt;</code>中输入其它标签或者文字的做法是不被允许的。</li>
-<li>3.<code>&lt;li&gt;&lt;/li&gt;</code>相当于一个容器，可以容纳所有元素。</li>
-<li>4.无序列表会带有自己的样式属性，但在实际应用时，我们使用CSS来设置。</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>在HTML中，<code>&lt;ol&gt;</code>标签用于定义有序列表，列表排序以数字来显示，并且使用<code>&lt;li&gt;</code>标签来定义列表项。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;ol&gt;&lt;/ol&gt;</code>中只能放<code>&lt;li&gt;&lt;/li&gt;</code>，不允许放其他元素。</li>
-<li>2.<code>&lt;li&gt;&lt;/li&gt;</code>相当于一个容器，可以容纳所有元素。</li>
-<li>3.有序列表会带有自己的样式属性，但在实际应用时，我们使用CSS来设置。</li>
-</ul>
-<h3 id="自定义列表"><a href="#自定义列表" class="headerlink" title="自定义列表"></a>自定义列表</h3><p>自定义列表经常用于对术语或者名词进行解释和描述，定义列表的列表项前没有任何项目符号。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>名词1<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释1<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释2<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释3<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;dl&gt;</code>里只能出现<code>&lt;dt&gt;</code>与<code>&lt;dd&gt;</code></li>
-<li>2.<code>&lt;dt&gt;</code>与<code>&lt;dd&gt;</code>标签个数无限制</li>
-</ul>
-<h2 id="表单标签"><a href="#表单标签" class="headerlink" title="表单标签"></a>表单标签</h2><p>使用表单标签的目的是为了收集用户信息，在HTML中，一个完整的表单通常由表单域、表单控件(表单元素)和提示信息3个部分组成。</p>
-<h3 id="表单域：是一个包含表单元素的区域。"><a href="#表单域：是一个包含表单元素的区域。" class="headerlink" title="表单域：是一个包含表单元素的区域。"></a>表单域：是一个包含表单元素的区域。</h3><p>在HTML中，<code>&lt;form&gt;&lt;/form&gt;</code>标签用于定义表单域，以实现用户信息的收集和传递。<code>&lt;form&gt;&lt;/form&gt;</code>会把它范围内的表单元素提交给服务器。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"url地址"</span> <span class="attr">method</span>=<span class="string">"提交方式"</span> <span class="attr">name</span>=<span class="string">"表单域名称"</span>&gt;</span>各种表单元素控件<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>常用属性</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>action</td>
-<td>url地址</td>
-<td>用于指定接收并处理表单数据的服务器程序的url地址</td>
-</tr>
-<tr>
-<td>method</td>
-<td>get/post</td>
-<td>用于设置表单数据的提交方式，其取值为get/post</td>
-</tr>
-<tr>
-<td>name</td>
-<td>名称</td>
-<td>用于指定表单的名称，以区分一个页面中的多个表单域</td>
-</tr>
-</tbody></table>
-<h3 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h3><p><strong><code>&lt;input&gt;</code>表单元素：用于手机用户信息。</strong><br>语法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"属性"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>type属性的属性值及其描述如下：</p>
-<table>
-<thead>
-<tr>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>button</td>
-<td>定义可点击按钮</td>
-</tr>
-<tr>
-<td>checkbox</td>
-<td>定义复选框</td>
-</tr>
-<tr>
-<td>file</td>
-<td>定义输入字段和”浏览”按钮，供文件上传</td>
-</tr>
-<tr>
-<td>hidden</td>
-<td>定义隐藏的输入字段</td>
-</tr>
-<tr>
-<td>image</td>
-<td>定义图像形式的提交按钮</td>
-</tr>
-<tr>
-<td>password</td>
-<td>定义密码字段，该字段的字符被掩码</td>
-</tr>
-<tr>
-<td>radio</td>
-<td>定义单选按钮</td>
-</tr>
-<tr>
-<td>reset</td>
-<td>定义重置按钮，重置按钮会清除表单中的所有数据</td>
-</tr>
-<tr>
-<td>submit</td>
-<td>定义提交按钮，提交按钮会把表单数据发送到服务器</td>
-</tr>
-<tr>
-<td>text</td>
-<td>定义单行的输入字段，用户可在其中输入文本，默认宽度20个字符</td>
-</tr>
-</tbody></table>
-<p>除type属性外，还有其他属性，其常用属性如下：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>name</td>
-<td>由用户定义</td>
-<td>定义input元素的名称</td>
-</tr>
-<tr>
-<td>value</td>
-<td>由用户定义</td>
-<td>定义input元素的值</td>
-</tr>
-<tr>
-<td>checked</td>
-<td>checked</td>
-<td>规定此input元素首次加载时应当被选中</td>
-</tr>
-<tr>
-<td>maxlength</td>
-<td>正整数</td>
-<td>规定输入字段的字符的最大长度</td>
-</tr>
-</tbody></table>
-<p>**<code>&lt;label&gt;</code>标签为<code>&lt;input&gt;</code>元素标注（标签）<br><code>&lt;label&gt;</code>标签用于绑定一个表单元素，当点击<code>&lt;label&gt;</code>标签的文本时，浏览器就会自动将焦点（光标）转到或者选择对应的表单元素上，用来增加用户体验。<br>语法如下：<code>&lt;label&gt;</code>标签中的for属性与相应的元素的id属性相同。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"sex"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">id</span>=<span class="string">"sex"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong><code>&lt;select&gt;</code>下拉表单元素</strong><br>在页面中，如果有多个选项让用户选择，并且想要节约页面空间时，我们可以使用<code>&lt;select&gt;</code>标签控件定义下拉列表。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>选项1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>选项2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;select&gt;</code>中至少包含一对<code>&lt;option&gt;</code></li>
-<li>2.在<code>&lt;option&gt;</code>中定义selected=”selected”时，当前项即为默认选项。</li>
-</ul>
-<p><strong><code>&lt;textarea&gt;</code>文本域元素</strong><br>当用户输入内容较多的情况下，不能使用文本框表单了，就使用文本域元素。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">"3"</span> <span class="attr">cols</span>=<span class="string">"20"</span>&gt;</span>文本内容<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过<code>&lt;textarea&gt;</code>可以轻松地创建行文本输入框,cols=”每行的字符数”，rows=”显示的行数”(实际开发中不会使用，都是用CSS来改变大小)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1942,20 +1676,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
