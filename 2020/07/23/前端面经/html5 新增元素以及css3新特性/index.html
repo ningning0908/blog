@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="HTML5HTML5 新元素HTML5提供了新的元素来创建更好的页面结构：    HTML5元素 含义    &lt;article&gt; 定义页面独立的内容区域   &lt;aside&gt; 定义页面的侧边栏内容   &lt;bdi&gt; 允许您设置一段文本，使其脱离父元素的文本方向设置（目前只有 Firefox 和 Chrome 浏览器支持 bdi 标签）   &lt;command&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html5 新增元素以及css3新特性">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/07/23/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/html5%20%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acss3%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="HTML5HTML5 新元素HTML5提供了新的元素来创建更好的页面结构：    HTML5元素 含义    &lt;article&gt; 定义页面独立的内容区域   &lt;aside&gt; 定义页面的侧边栏内容   &lt;bdi&gt; 允许您设置一段文本，使其脱离父元素的文本方向设置（目前只有 Firefox 和 Chrome 浏览器支持 bdi 标签）   &lt;command&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif">
+<meta property="article:published_time" content="2020-07-23T10:23:23.060Z">
+<meta property="article:modified_time" content="2020-07-24T01:59:20.978Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="前端面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/07/23/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/html5%20%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acss3%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>html5 新增元素以及css3新特性 | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/23/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/html5%20%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acss3%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          html5 新增元素以及css3新特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-23 18:23:23" itemprop="dateCreated datePublished" datetime="2020-07-23T18:23:23+08:00">2020-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-24 09:59:20" itemprop="dateModified" datetime="2020-07-24T09:59:20+08:00">2020-07-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h3 id="HTML5-新元素"><a href="#HTML5-新元素" class="headerlink" title="HTML5 新元素"></a>HTML5 新元素</h3><p>HTML5提供了新的元素来创建更好的页面结构：</p>
+<table>
+<thead>
+<tr>
+<th>HTML5元素</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;article&gt;</code></td>
+<td>定义页面独立的内容区域</td>
+</tr>
+<tr>
+<td><code>&lt;aside&gt;</code></td>
+<td>定义页面的侧边栏内容</td>
+</tr>
+<tr>
+<td><code>&lt;bdi&gt;</code></td>
+<td>允许您设置一段文本，使其脱离父元素的文本方向设置（目前只有 Firefox 和 Chrome 浏览器支持 bdi 标签）</td>
+</tr>
+<tr>
+<td><code>&lt;command&gt;</code></td>
+<td>定义命令按钮，比如单选按钮、复选框或按钮</td>
+</tr>
+<tr>
+<td><code>&lt;details&gt;</code></td>
+<td>用于描述文档或文档某个部分的细节</td>
+</tr>
+<tr>
+<td><code>&lt;dialog&gt;</code></td>
+<td>定义对话框，比如提示框</td>
+</tr>
+<tr>
+<td><code>&lt;summary&gt;</code></td>
+<td>标签包含 <code>&lt;details&gt;</code> 元素的标题</td>
+</tr>
+<tr>
+<td><code>&lt;figure&gt;</code></td>
+<td>规定独立的流内容（图像、图表、照片、代码等等）</td>
+</tr>
+<tr>
+<td><code>&lt;figcaption&gt;</code></td>
+<td>定义 <code>&lt;figure&gt;</code> 元素的标题</td>
+</tr>
+<tr>
+<td><code>&lt;footer&gt;</code></td>
+<td>定义 section 或 document 的页脚</td>
+</tr>
+<tr>
+<td><code>&lt;header&gt;</code></td>
+<td>定义了文档的头部区域</td>
+</tr>
+<tr>
+<td><code>&lt;mark&gt;</code></td>
+<td>定义带有记号的文本。</td>
+</tr>
+<tr>
+<td><code>&lt;meter&gt;</code></td>
+<td>定义度量衡。仅用于已知最大和最小值的度量</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>定义导航链接的部分</td>
+</tr>
+<tr>
+<td><code>&lt;progress&gt;</code></td>
+<td>定义任何类型的任务的进度</td>
+</tr>
+<tr>
+<td><code>&lt;ruby&gt;</code></td>
+<td>定义 <code>ruby</code> 注释（中文注音或字符）</td>
+</tr>
+<tr>
+<td><code>&lt;rt&gt;</code></td>
+<td>定义字符（中文注音或字符）的解释或发音</td>
+</tr>
+<tr>
+<td><code>&lt;rp&gt;</code></td>
+<td>在 <code>ruby</code> 注释中使用，定义不支持 <code>ruby</code> 元素的浏览器所显示的内容</td>
+</tr>
+<tr>
+<td><code>&lt;section&gt;</code></td>
+<td>定义文档中的节（section、区段）</td>
+</tr>
+<tr>
+<td><code>&lt;time&gt;</code></td>
+<td>定义日期或时间</td>
+</tr>
+<tr>
+<td><code>&lt;wbr&gt;</code></td>
+<td>规定在文本中的何处适合添加换行符</td>
+</tr>
+</tbody></table>
+<h3 id="HTML5-Canvas"><a href="#HTML5-Canvas" class="headerlink" title="HTML5 Canvas"></a>HTML5 Canvas</h3><div class="note info">
+            <p>HTML5 <code>&lt;canvas&gt;</code> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.</p><ul><li><code>&lt;canvas&gt;</code>标签只是图形容器，您必须使用脚本来绘制图形。</li><li>使用 <code>JavaScript</code> 来绘制图像, <code>canvas</code> 元素本身是没有绘图能力的。所有的绘制工作必须在 <code>JavaScript</code> 内部完成</li></ul>
+          </div>
+<p><code>&lt;canvas&gt;</code>简单实例如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span><span class="attr">width</span>=<span class="string">"200"</span><span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">  ctx.fillStyle=<span class="string">"#FF0000"</span>;</span></span><br><span class="line">  ctx.fillRect(0,0,150,75);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML5-拖放"><a href="#HTML5-拖放" class="headerlink" title="HTML5 拖放"></a>HTML5 拖放</h3><p><strong>拖放（<code>Drag</code> 和 <code>drop</code>）是 <code>HTML5</code> 标准的组成部分。</strong></p>
+<p>拖放是一种常见的特性，即抓取对象以后拖到另一个位置。在 <code>HTML5</code> 中，拖放是标准的一部分，任何元素都能够拖放。</p>
+<h4 id="HTML5-拖放实例"><a href="#HTML5-拖放实例" class="headerlink" title="HTML5 拖放实例"></a>HTML5 拖放实例</h4><p>下面的例子是一个简单的拖放实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">allowDrop</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line">        ev.preventDefault();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">drag</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line"><span class="actionscript">        ev.dataTransfer.setData(<span class="string">"Text"</span>,ev.target.id);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">drop</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line">        ev.preventDefault();</span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> data=ev.dataTransfer.getData(<span class="string">"Text"</span>);</span></span><br><span class="line"><span class="javascript">        ev.target.appendChild(<span class="built_in">document</span>.getElementById(data));</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">ondragover</span>=<span class="string">"allowDrop(event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"drag1"</span> <span class="attr">src</span>=<span class="string">"img_logo.gif"</span> <span class="attr">draggable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> <span class="attr">width</span>=<span class="string">"336"</span> <span class="attr">height</span>=<span class="string">"69"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置元素为可拖放"><a href="#设置元素为可拖放" class="headerlink" title="设置元素为可拖放"></a>设置元素为可拖放</h4><p>首先，为了使元素可拖动，把 draggable 属性设置为 true </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="拖动什么-ondragstart-和-setData"><a href="#拖动什么-ondragstart-和-setData" class="headerlink" title="拖动什么 - ondragstart 和 setData()"></a>拖动什么 - ondragstart 和 setData()</h4><p>然后，规定当元素被拖动时，会发生什么。</p>
+<p>在上面的例子中，<code>ondragstart</code> 属性调用了一个函数，<code>drag(event)</code>，它规定了被拖动的数据。</p>
+<p><code>dataTransfer.setData()</code> 方法设置被拖数据的数据类型和值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">  ev.dataTransfer.setData(<span class="string">"Text"</span>,ev.target.id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，数据类型是 <code>&quot;Text&quot;</code>，值是可拖动元素的 <code>id (&quot;drag1&quot;)</code>。</p>
+<h4 id="放到何处-ondragover"><a href="#放到何处-ondragover" class="headerlink" title="放到何处 - ondragover"></a>放到何处 - ondragover</h4><p><code>ondragover</code> 事件规定在何处放置被拖动的数据。</p>
+<p><strong>默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。</strong></p>
+<p>这要通过调用 <code>ondragover</code> 事件的 <code>event.preventDefault()</code> 方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event.preventDefault()</span><br></pre></td></tr></table></figure>
+
+<h4 id="进行放置-ondrop"><a href="#进行放置-ondrop" class="headerlink" title="进行放置 - ondrop"></a>进行放置 - ondrop</h4><p>当放置被拖数据时，会发生 <code>drop</code> 事件。</p>
+<p>在上面的例子中，ondrop 属性调用了一个函数，<code>drop(event)</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">  ev.preventDefault();</span><br><span class="line">  <span class="keyword">var</span> data = ev.dataTransfer.getData(<span class="string">"Text"</span>);</span><br><span class="line">  ev.target.appendChild(<span class="built_in">document</span>.getElementById(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>代码解释：</p><ul><li>调用 <code>preventDefault()</code> 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）;</li><li>通过 <code>dataTransfer.getData(&quot;Text&quot;)</code> 方法获得被拖的数据。该方法将返回在 <code>setData()</code> 方法中设置为相同类型的任何数据;</li><li>被拖数据是被拖元素的 <code>id (&quot;drag1&quot;)</code>;</li><li>把被拖元素追加到放置元素（目标元素）中。</li></ul>
+          </div>
+
+<h4 id="HTML-5-Canvas（画布）"><a href="#HTML-5-Canvas（画布）" class="headerlink" title="HTML 5 Canvas（画布）"></a>HTML 5 Canvas（画布）</h4><p><code>canvas</code> 元素用于在网页上绘制图形。</p>
+<h4 id="什么是-Canvas？"><a href="#什么是-Canvas？" class="headerlink" title="什么是 Canvas？"></a>什么是 Canvas？</h4><div class="note info">
+            <ul><li>HTML5 的 <code>canvas</code> 元素使用 JavaScript 在网页上绘制图像。</li><li>画布是一个矩形区域，您可以控制其每一像素。</li><li><code>canvas</code> 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li></ul>
+          </div>
+
+<h4 id="创建-Canvas-元素"><a href="#创建-Canvas-元素" class="headerlink" title="创建 Canvas 元素"></a>创建 Canvas 元素</h4><p>向 HTML5 页面添加 <code>canvas</code> 元素。规定元素的 id、宽度和高度：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="通过-JavaScript-来绘制"><a href="#通过-JavaScript-来绘制" class="headerlink" title="通过 JavaScript 来绘制"></a>通过 JavaScript 来绘制</h4><p><strong>canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//JavaScript 使用 id 来寻找 canvas 元素：</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c = <span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//创建 context 对象,getContext("2d") 对象是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> cxt = c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//下面的两行代码绘制一个红色的矩形,fillStyle 方法将其染成红色，fillRect 方法规定了形状、位置和尺寸</span></span></span><br><span class="line"><span class="actionscript">  cxt.fillStyle = <span class="string">"#FF0000"</span>;</span></span><br><span class="line">  cxt.fillRect(0,0,150,75);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的 <code>fillRect</code> 方法拥有参数 <code>(0,0,150,75)</code>。意思是：在画布上绘制 <code>150x75</code> 的矩形，从左上角开始 <code>(0,0)</code>。如下图所示，画布的 X 和 Y 坐标用于在画布上对绘画进行定位。</p>
+<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif" alt="attr"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" rel="tag"># 前端面经</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/" rel="prev" title="剩余时间段页面">
+      <i class="fa fa-chevron-left"></i> 剩余时间段页面
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-新元素"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5 新元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-Canvas"><span class="nav-number">1.2.</span> <span class="nav-text">HTML5 Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-拖放"><span class="nav-number">1.3.</span> <span class="nav-text">HTML5 拖放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-拖放实例"><span class="nav-number">1.3.1.</span> <span class="nav-text">HTML5 拖放实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置元素为可拖放"><span class="nav-number">1.3.2.</span> <span class="nav-text">设置元素为可拖放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拖动什么-ondragstart-和-setData"><span class="nav-number">1.3.3.</span> <span class="nav-text">拖动什么 - ondragstart 和 setData()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放到何处-ondragover"><span class="nav-number">1.3.4.</span> <span class="nav-text">放到何处 - ondragover</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行放置-ondrop"><span class="nav-number">1.3.5.</span> <span class="nav-text">进行放置 - ondrop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-5-Canvas（画布）"><span class="nav-number">1.3.6.</span> <span class="nav-text">HTML 5 Canvas（画布）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-Canvas？"><span class="nav-number">1.3.7.</span> <span class="nav-text">什么是 Canvas？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Canvas-元素"><span class="nav-number">1.3.8.</span> <span class="nav-text">创建 Canvas 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-JavaScript-来绘制"><span class="nav-number">1.3.9.</span> <span class="nav-text">通过 JavaScript 来绘制</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
