@@ -185,6 +185,433 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E7%AC%A6%E5%8F%B7%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%B1%9E%E6%80%A7%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E7%AC%A6%E5%8F%B7%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%B1%9E%E6%80%A7%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" class="post-title-link" itemprop="url">符号与符号属性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-28 20:09:02" itemprop="dateModified" datetime="2019-11-28T20:09:02+08:00">2019-11-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在JS已有的基本类型（字符串、数值、布尔类型、null与undefined）之外，ES6引入了一种新的基本类型：符号（Symbol）。符号起初被设计用于创建私有成员，而这也是JS开发者期待已久的特性。在符号诞生之前，将字符串作为属性名称导致属性可以被轻易访问，无论命名规则如何。而“私有名称”意味着开发者可以创建非字符串类型的属性名称，由此可以防止使用常规手段来探查这些名称。<br>“私有名称”提案最终发展成为ES6中的符号，而本章将会教你如何有效使用它。虽然它只保留了实现细节（即：引入了非字符串类型的属性名）而丢弃了私有性意图，但它仍然显著有别于对象的其余属性。</p>
+<h2 id="创建符号值"><a href="#创建符号值" class="headerlink" title="创建符号值"></a>创建符号值</h2><p><strong>符号没有字面量形式。</strong>有别于布尔类型的<code>true</code>或数值类型的<code>42</code>等等。可以使用全局<code>Symbol</code>函数来创建一个符号值，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line">person[firstName] = <span class="string">"Nicholas"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码创建了一个符号类型的<code>firstName</code>变量，并将它作为<code>person</code>对象的一个属性，而每次访问该属性都要使用这个符号值。为符号变量适当命名是个好主意，这样你就可以很容易地说明它的含义。</p>
+<div class="note info">
+            <p>由于符号值是基本类型的值，因此调用 new Symbol() 将会抛出错误。你可以通过 newObject(yourSymbol) 来创建一个符号实例，但尚不清楚这能有什么作用。</p>
+          </div>
+
+<p>Symbol 函数还可以接受一个额外的参数用于描述符号值，该描述并不能用来访问对应属性，但它能用于调试，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>(<span class="string">"first name"</span>);</span><br><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line">person[firstName] = <span class="string">"Nicholas"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"first name"</span> <span class="keyword">in</span> person); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(firstName); <span class="comment">// "Symbol(first name)"</span></span><br></pre></td></tr></table></figure>
+
+<p>符号的描述信息被存储在内部属性<code>[[Description]]</code>中，当符号的<code>toString()</code>方法被显式或隐式调用时，该属性都会被读取。在本例中，<code>console.log()</code>隐式调用了 <code>firstName</code>变量的<code>toString()</code>方法，于是描述信息就被输出到日志。此外没有任何办法可以从代码中直接访问<code>[[Description]]</code>属性。我建议始终应给符号提供描述信息，以便更好地阅读代码或进行调试。</p>
+<div class="note into">
+            <p>识别符号值<br>由于符号是基本类型的值，因此你可以使用 typeof 运算符来判断一个变量是否为符号。 ES6 扩充了 typeof 的功能以便让它在作用于符号值的时候能够返回 “symbol” ，尽管有其他方法可以判断一个变量是否为符号， typeof 运算符依然是最准确、最优先的判别手段。例如：</p>
+          </div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> symbol = <span class="built_in">Symbol</span>(<span class="string">"test symbol"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol); <span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用符号值"><a href="#使用符号值" class="headerlink" title="使用符号值"></a>使用符号值</h2><p>可以在任意能使用“需计算属性名”的场合使用符号，此外还可以在<code>Object.defineProperty()</code>或<code>Object.defineProperties()</code>调用中使用它。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>(<span class="string">"first name"</span>);</span><br><span class="line"><span class="comment">// 使用一个需计算字面量属性</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    [firstName]: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 让该属性变为只读</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, firstName, &#123; <span class="attr">writable</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"><span class="keyword">let</span> lastName = <span class="built_in">Symbol</span>(<span class="string">"last name"</span>);</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person, &#123;</span><br><span class="line">    [lastName]: &#123;</span><br><span class="line">        value: <span class="string">"Zakas"</span>,</span><br><span class="line">    writable: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(person[lastName]); <span class="comment">// "Zakas"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="共享符号值"><a href="#共享符号值" class="headerlink" title="共享符号值"></a>共享符号值</h3><p>你或许想在不同的代码段中使用相同的符号值，例如：假设在应用中需要在两个不同的对象类型中使用同一个符号属性，用来表示一个唯一标识符。跨越文件或代码来追踪符号值是很<br>困难并且易错的，为此， <strong>ES6 提供了“全局符号注册表”供你在任意时间点进行访问。</strong><br>若你想创建共享符号值，应使用<code>Symbol.for()方法</code>而不是<code>Symbol()方法</code>。 <strong><code>Symbol.for()</code>方法仅接受单个字符串类型的参数，作为目标符号值的标识符，同时此参数也会成为该符号的描述信息。</strong>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;&#125;;</span><br><span class="line">object[uid] = <span class="string">"12345"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(object[uid]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Symbol.for()</code> 方法首先会搜索全局符号注册表，看是否存在一个键值为 <code>&quot;uid&quot;</code> 的符号值。若是，该方法会返回这个已存在的符号值；否则，会创建一个新的符号值，并使用该键值将其记录到全局符号注册表中，然后返回这个新的符号值。这就意味着此后使用同一个键值去调用 <code>Symbol.for()</code>方法都将会返回同一个符号值，就像下面这个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">    [uid]: <span class="string">"12345"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(object[uid]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid); <span class="comment">// "Symbol(uid)"</span></span><br><span class="line"><span class="keyword">let</span> uid2 = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(uid === uid2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(object[uid2]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid2); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
+
+<p>本例中，<code>uid</code>与<code>uid2</code>包含同一个符号值，因此它们可以互换使用。<strong>第一次调用<code>Symbol.for()</code>创建了这个符号值，而第二次调用则从全局符号注册表中将其检索了出来。</strong><br><strong>共享符号值还有另一个独特用法，你可以使用<code>Symbol.keyFor()</code>方法在全局符号注册表中根据符号值检索出对应的键值</strong>，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid)); <span class="comment">// "uid"</span></span><br><span class="line"><span class="keyword">let</span> uid2 = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid2)); <span class="comment">// "uid"</span></span><br><span class="line"><span class="keyword">let</span> uid3 = <span class="built_in">Symbol</span>(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid3)); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：使用符号值<code>uid</code>与<code>uid2</code>都返回了键值<code>&quot;uid&quot;</code>，而符号值<code>uid3</code>在全局符号注册表中并不存在，因此没有关联的键值，<code>Symbol.keyFor()</code>方法只会返回 undefined 。</p>
+<div class="note info">
+            <p>全局符号注册表类似于全局作用域，是一个共享环境，这意味着你不应当假设某些值是否已存在于其中。在使用第三方组件时，为符号的键值使用命名空间能够减少命名冲突<br>的可能性，举个例子：<code>jQuery</code>代码应当为它的所有键值使用 <code>&quot;jquery.&quot;</code> 的前缀，如<code>&quot;jquery.element&quot;</code> 或类似的形式。</p>
+          </div>
+
+<h2 id="符号值的转换"><a href="#符号值的转换" class="headerlink" title="符号值的转换"></a>符号值的转换</h2><p>类型转换是<strong>JS</strong>语言重要的一部分，能够非常灵活地将一种数据类型转换为另一种。然而符号类型在进行转换时非常不灵活，因为其他类型缺乏与符号值的合理等价，尤其是符号值无法被转换为字符串值或数值。因此将符号作为属性所达成的效果，是其他类型所无法替代的。<br>前面例子中使用了<code>console.log()</code>来展示符号值的输出，能这么做是由于自动调用了符号的<code>String()</code>方法来产生输出，也可以直接调用<code>String()</code>方法来获取相同结果，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">    desc = <span class="built_in">String</span>(uid);</span><br><span class="line"><span class="built_in">console</span>.log(desc); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>String()</code>方法调用了<code>uid.toString()</code>来获取符号的字符串描述信息。但若你想直接将符号转换为字符串，则会引发错误：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">    desc = uid + <span class="string">""</span>; <span class="comment">// 引发错误！</span></span><br></pre></td></tr></table></figure>
+
+<p>将 uid 与空字符串相连接，会首先要求把 uid 转换为一个字符串，而这会引发错误，从而阻止了转换行为。相似地，你不能将符号转换为数值，对符号使用所有数学运算符都会引发错误，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">sum = uid / <span class="number">1</span>; <span class="comment">// 引发错误！</span></span><br></pre></td></tr></table></figure>
+
+<p>此例试图把符号值除以 1 ，同样引发了错误。无论对符号使用哪种数学运算符都会导致错误，但使用逻辑运算符则不会，因为符号值在逻辑运算中会被认为等价于 true （就像 JS<br>中其他的非空值那样）。</p>
+<h2 id="检索符号属性"><a href="#检索符号属性" class="headerlink" title="检索符号属性"></a>检索符号属性</h2><p><code>Object.keys()</code> 与 <code>Object.getOwnPropertyNames()</code> 方法可以检索对象的所有属性名称，前者返回所有的可枚举属性名称，而后者则返回所有属性名称而无视其是否可枚举。然而两者都不能返回符号类型的属性，以保持它们在<strong>ES5</strong>中的功能不发生变化。而 <strong>ES6</strong> 新增了<code>Object.getOwnPropertySymbols()</code> 方法，以便让你可以检索对象的符号类型属性。<br><code>Object.getOwnPropertySymbols()</code> 方法会返回一个数组，包含了对象自有属性名中的符号值，例如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">    [uid]: <span class="string">"12345"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> symbols = <span class="built_in">Object</span>.getOwnPropertySymbols(object);</span><br><span class="line"><span class="built_in">console</span>.log(symbols.length);         <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(symbols[<span class="number">0</span>]);             <span class="comment">// "Symbol(uid)"</span></span><br><span class="line"><span class="built_in">console</span>.log(object[symbols[<span class="number">0</span>]]);    <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用知名符号暴露内部方法"><a href="#使用知名符号暴露内部方法" class="headerlink" title="使用知名符号暴露内部方法"></a>使用知名符号暴露内部方法</h2><p>ES5的中心主题之一是披露并定义了一些魔术般的成分，而这些部分是当时开发者所无法自行模拟的。ES6延续了这些工作，对原先属于语言内部逻辑的部分进行了进一步的暴露，允许使用符号类型的原型属性来定义某些对象的基础行为。</p>
+<p>ES6定义了“知名符号”来代表JS中一些公共行为，而这些行为此前被认为只能是内部操作，每一个知名符号都对应全局<code>Sympol</code>对象的一个属性，例如<code>Sympol.create</code>。<br>这些知名符号是：</p>
+<div class="note info">
+            <ul><li><code>Sympol.hasInstance</code>: 供<code>instanceof</code>运算符使用的一个方法，用于判断对象继承关系。</li><li><code>Symbol.isConcatSpreadable</code>: 一个布尔类型值，在集合对象作为参数传递给<code>Array.prototype.concat()</code>方法时，指示是否要将该集合的元素扁平化。</li><li><code>Symbol.iterator</code>: 返回迭代器的一个方法。</li><li><code>Symbol.match</code>: 供<code>String.prototype.match()</code>函数使用的一个方法，用于比较字符串。</li><li><code>Symbol.replace</code>: 供<code>String.prototype.replace()</code>函数使用的一个方法，用于替换子字符串。</li><li><code>Symbol.search</code>: 供<code>String.prototype.search()</code> 函数使用的一个方法，用于定位子字符串。</li><li><code>Symbol.species</code>: 用于产生派生对象的构造器。</li><li><code>Symbol.split</code>: 供<code>String.prototype.split()</code>函数使用的一个方法，用于分割字符串。</li><li><code>Symbol.toPrimitive</code>: 返回对象所对应的基本类型值的一个方法。</li><li><code>Symbol.toStringTag</code>: 供 <code>String.prototype.toString()</code> 函数使用的一个方法，用于创建对象的描述信息。</li><li><code>Symbol.unscopables</code>: 一个对象，该对象的属性指示了哪些属性名不允许被包含在<code>with</code> 语句中。</li></ul>
+          </div>
+
+<div class="note into">
+            <p>重写知名符号所定义的方法，会把一个普通对象改变成奇异对象，因为它改变了一些默认的内部行为。这并不会对你的代码造成实际影响，它只是改变了规范所描述的对象特征。</p>
+          </div>
+
+<h3 id="Symbol-hasInstance属性"><a href="#Symbol-hasInstance属性" class="headerlink" title="Symbol.hasInstance属性"></a>Symbol.hasInstance属性</h3><p>每个函数都具有一个 <code>Symbol.hasInstance</code> 方法，用于判断指定对象是否为本函数的一个实例。这个方法定义在 <code>Function.prototype</code> 上，因此所有函数都继承了面对<code>instanceof</code>运算符时的默认行为。<code>Symbol.hasInstance</code>属性自身不可写入、不可配置、不可枚举的，从而保证它不会被错误地重写。<br><code>Symbol.hasInstance</code> 方法只接受单个参数，即需要检测的值。如果该值是本函数的一个实例，则方法会返回 <code>true</code> 。为了理解该方法是如何工作的，可研究下述代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj <span class="keyword">instanceof</span> <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这句话等价于：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>[<span class="built_in">Symbol</span>.hasInstance](obj);</span><br></pre></td></tr></table></figure>
+
+<p>ES6从本质上将<code>instanceof</code>运算符重定义为上述方法调用的简写语法，这样使用<code>instanceof</code> 便会触发一次方法调用，实际上允许你改变该运算符的工作。<br>例如:假设你想定义一个函数，使得任意对象都不会被判断为该函数的一个实例，你可以采用硬编码的方式让该函数的<code>Symbol.hasInstance</code>方法始终返回<code>false</code>，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    name: <span class="string">"foo"</span>;</span><br><span class="line">    type: <span class="string">"Indentifier"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(MyObject, <span class="built_in">Symbol</span>.hasInstance,&#123;</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Obj = <span class="keyword">new</span> MyObject();</span><br><span class="line"><span class="built_in">console</span>.log(MyObject[<span class="built_in">Symbol</span>.hasInstance](Obj));  <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(Obj <span class="keyword">instanceof</span> MyObject);        <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>要重写一个不可写入的属性，你必须像这个例子一样使用 <code>Object.defineProperty()</code> 。此代码将 <code>Symbol.hasInstance</code> 方法重写为一个始终返回 <code>false</code> 的函数，所以此后即使传入的对象确实是 <code>MyObject</code> 类的一个实例， <code>instanceof</code> 运算符仍然会返回 <code>false</code>。</p>
+<p>当然，你可以基于各种条件来决定一个值是否应当被判断为某个类的实例。例如，将介于 1到 100 之间的数值认定为一个特殊的数值类型，为此你可以书写如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SpecialNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// empty</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(SpecialNumber, <span class="built_in">Symbol</span>.hasInstance, &#123;</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (v <span class="keyword">instanceof</span> <span class="built_in">Number</span>) &amp;&amp; (v &gt;= <span class="number">1</span> &amp;&amp; v &lt;= <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> two = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">2</span>);</span><br><span class="line">    zero = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(two <span class="keyword">instanceof</span> SpecialNumber);   <span class="comment">//two</span></span><br><span class="line"><span class="built_in">console</span>.log(zero <span class="keyword">instanceof</span> SpecialNumber);  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码重写了 <code>Symbol.hasInstance</code> 方法，在目标对象是数值对象的实例、并且其值介于 1 到100 之间时，返回 true 。于是， <code>SpecialNumber</code> 类会把变量 <code>two</code>判断为自身的一个实例，即使二者之间并不存在直接的定义关联。需要注意的是： <code>instanceof</code> 的操作数必须是一个对象，以便触发 <code>Symbol.hasInstance</code> 调用；若操作数并非对象， instanceof 只会简单地返回 <code>false</code>。</p>
+<h3 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h3><p>JS在数组上设计了<code>concat()</code> 方法用于将两个数组连接在一起，此处示范了如何使用该方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors1 = [<span class="string">"red"</span>, <span class="string">"green"</span>],</span><br><span class="line">    colors2 = colors1.concat([<span class="string">"blue"</span>, <span class="string">"black"</span>]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(colors2.length);    <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors2);       <span class="comment">//[ 'red', 'green', 'blue', 'black' ]</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码将一个新数组连接到 <code>colors1</code> 末尾，并创建了 <code>colors2</code> ，后者包含了前两个数组中所有的项。不过， <code>concat()</code> 方法也可以接受非数组的参数，此时这些参数只是简单地被添加到数组末尾，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors1 = [ <span class="string">"red"</span>, <span class="string">"green"</span> ],</span><br><span class="line">    colors2 = colors1.concat([ <span class="string">"blue"</span>, <span class="string">"black"</span> ], <span class="string">"brown"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors2.length); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(colors2); <span class="comment">// ["red","green","blue","black","brown"]</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码向 <code>concat()</code> 方法传递了一个额外参数 <code>&quot;brown&quot;</code> ，使得它成为数组 <code>colors2</code> 的第 <strong>5</strong> 项。<strong>为何数组类型的参数与字符串类型的参数会被区别对待？这是因为 <code>JS</code> 规范要求此时数组类型的参数需要被自动分离出各个子项，而其他类型的参数无需如此处理。在 ES6 之前，没有任何手段可以改变这种行为。</strong><br><code>Symbol.isConcatSpreadable</code> 属性是一个布尔类型的属性，它表示目标对象拥有长度属性与数值类型的键、并且数值类型键所对应的属性值在参与 <code>concat()</code> 调用时需要被分离为个体。该符号与其他的知名符号不同，默认情况下并不会作为任意常规对象的属性。它只出现在特定类型的对象上，用来标示该对象在作为 <code>concat()</code> 参数时应如何工作，从而有效改变该对象的默认行为。你可以用它来定义任意类型的对象，让该对象在参与 <code>concat()</code> 调用时能够表现得像数组一样，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> collection = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">"Hello"</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">"world"</span>,</span><br><span class="line">    length: <span class="number">2</span>,</span><br><span class="line">    [<span class="built_in">Symbol</span>.isConcatSpreadable]: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> messages = [ <span class="string">"Hi"</span> ].concat(collection);</span><br><span class="line"><span class="built_in">console</span>.log(messages.length); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(messages); <span class="comment">// ["hi","Hello","world"]</span></span><br></pre></td></tr></table></figure>
+
+<p>本例中的 <code>collection</code> 对象的特征类似于数组：拥有长度属性以及两个数值类型的键，并且<code>Symbol.isConcatSpreadable</code> 属性值被设为 <code>true</code> ，用于指示该对象在被添加到数组时应该使用分离的属性值。当 <code>collection</code> 对象被传递给 <code>concat()</code> 方法时， <code>&quot;Hello&quot;</code> 与 <code>&quot;world&quot;</code>被分离为独立的项，并跟在 <code>&quot;hi&quot;</code> 元素之后。</p>
+<div class="note info">
+            <p>你也可以将数组的子类的 <code>Symbol.isConcatSpreadable</code> 属性值设为 <code>false</code> ，用于在<code>concat()</code> 调用时避免项目被分离。子类的介绍在迭代器与生成器部分介绍。</p>
+          </div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%A7%A3%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%A7%A3%E6%9E%84/" class="post-title-link" itemprop="url">解构：更方便的数据访问</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-23 18:29:28" itemprop="dateModified" datetime="2019-11-23T18:29:28+08:00">2019-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h2><p>对象解构语法在赋值语句的左侧使用了对象字面量，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br></pre></td></tr></table></figure>
+
+<p>在此代码中，<code>node.type</code> 的值被存储到 <code>type</code> 本地变量中， <code>node.name</code> 的值则存储到<code>name</code>变量中, <code>type</code> 与 <code>name</code> 标识符既声明了本地变量，也读取了对象的相应属性值。</p>
+<p>**不要遗忘初始化器：当使用解构来配合<code>var</code> <code>let</code> 或 <code>const</code>来声明变量时，必须提供初始化器（即等号右边的值）。下面的代码都会因为没有提供初始化器而抛出错误：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">var</span> &#123; type, name &#125;;</span><br><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">let</span> &#123; type, name &#125;;</span><br><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">const</span> &#123; type, name &#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>const</code> 总是要求有初始化器，即使没有使用解构的变量；而 <code>var</code> 与 <code>let</code> 则仅在使用解构时才作此要求。</strong></p>
+<h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3><p>在变量声明之后也可以进行解构赋值。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;,</span><br><span class="line">type = <span class="string">"Literal"</span>,</span><br><span class="line">name = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 使用解构来分配不同的值</span></span><br><span class="line">(&#123; type, name &#125; = node);</span><br><span class="line"><span class="built_in">console</span>.log(type); <span class="comment">// "Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：必须用圆括号包裹解构赋值语句，这是因为暴露的花括号会被解析为代码块语句，而块语句不允许在赋值操作符（即等号）左侧出现。圆括号标示了里面的花括号并不是块语句，而应该被解释为表达式，从而允许完成赋值操作。</strong></p>
+<h3 id="对象解构默认值"><a href="#对象解构默认值" class="headerlink" title="对象解构默认值"></a>对象解构默认值</h3><p>当你使用解构赋值语句时，如果所指定的本地变量在对象中没有找到同名属性，那么该变量会被赋值为<code>undefined</code>。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name, value&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Indentifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br><span class="line"><span class="built_in">console</span>.log(value);   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以选择性地定义一个默认值，以便在指定属性不存在时使用该值。若要这么做，需要在属性名后面添加一个等号并指定默认值，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name, value=<span class="string">"12"</span>&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Indentifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br><span class="line"><span class="built_in">console</span>.log(value);   <span class="comment">//"12"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="赋值给不同的本地变量名"><a href="#赋值给不同的本地变量名" class="headerlink" title="赋值给不同的本地变量名"></a>赋值给不同的本地变量名</h3><p><strong>ES6</strong>有一个扩展语法，允许你在给本地变量赋值时使用一个不同的名称，而且该语法看上去就像是使用对象字面量的非简写的属性初始化，看下面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">type</span>: localType, <span class="attr">name</span>: localName&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(localType);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(localName);    <span class="comment">//"foo"</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以给变量别名添加默认值，依然是在本地变量名称后添加等号与默认值，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">type</span>: localType, <span class="attr">name</span>: localName=<span class="string">"bar"</span>&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(localType);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(localName);    <span class="comment">//"bar"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="嵌套的对象解构"><a href="#嵌套的对象解构" class="headerlink" title="嵌套的对象解构"></a>嵌套的对象解构</h3><p>使用类似于对象字面量的语法，可以深入到嵌套的对象结构中去提取你想要的数据。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line:<span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">loc</span>: &#123;start&#125;&#125; = node</span><br><span class="line"><span class="built_in">console</span>.log(start.line);   <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(start.column); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在对象的嵌套解构中同样能为本地变量使用不同的名称</strong>，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line:<span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 提取 node.loc.start</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">loc</span>: &#123;<span class="attr">start</span>: localStart&#125;&#125; = node</span><br><span class="line"><span class="built_in">console</span>.log(localStart.line);   <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(localStart.column); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数组解构"><a href="#数组解构" class="headerlink" title="数组解构"></a>数组解构</h2><p>数组解构的语法看起来与对象解构非常相似，只是将对象字面量替换成了数组字面量。数组解构时，解构作用在数组内部的位置上，而不是作用在对象的具名属性上，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, secondColor ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
+
+<p>此处数组解构从<code>colors</code>数组中取出了<code>&quot;red&quot;</code> 与 <code>&quot;green&quot;</code> ，并将它们赋值给 <code>fristColor</code>与 <code>secondColor</code> 变量。这些值被选择，是由于它们在数组中的位置，实际的变量名称是任意的（与位置无关）。任何没有在解构模式中明确指定的项都会被忽略。记住，<strong>数组本身并没有以任何方式被改变</strong>。<br>在解构模式中可以忽略一些项，并且只给感兴趣的项提供变量名，例如：若只想获取数组中的第三个元素，那么不必给前两项提供变量名，以下展示了这种方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ , , thirdColor ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(thirdColor); <span class="comment">// "blue"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h3><p><strong>可以在赋值表达式中使用数组解构，但是与对象解构不同，不必将表达式包含在圆括号内</strong>，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ],</span><br><span class="line">firstColor = <span class="string">"black"</span>,</span><br><span class="line">secondColor = <span class="string">"purple"</span>;</span><br><span class="line">[firstColor, secondColor] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>数组解构赋值有一个非常独特的用例，能轻易地互换两个变量的值。互换变量值在排序算法中十分常用。</strong>如下例所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 ES6 中互换值</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="number">2</span>;</span><br><span class="line">[a, b] = [b, a];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>本例中的数组解构赋值看起来如同镜像。赋值语句左侧（即等号之前）的解构模式正如其他数组解构的范例，右侧则是为了互换而临时创建的数组字面量。 b 与 a 的值分别被复制到<br>临时数组的第一个与第二个位置，并对该数组进行解构，结果两个变量就互换了它们的值。<br><strong>与对象解构赋值相同，若等号右侧的计算结果为 null 或 undefined ，那么数组解构赋值表达式也会抛出错误。</strong></p>
+<h3 id="数组解构默认值"><a href="#数组解构默认值" class="headerlink" title="数组解构默认值"></a>数组解构默认值</h3><p><strong>数组解构赋值同样允许在数组任意位置指定默认值，当指定位置的项不存在、或其值为<code>undefined</code>, 那么该默认值就会被使用。</strong>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, secondColor = <span class="string">"green"</span> ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码的<code>colors</code>数组只有一个项，因此没有能与<code>secondColor</code>匹配的项，又由于此处有个默认值，<code>secondColor</code>的值就被设置为<code>&quot;green&quot;</code>，而不是<code>undefined</code>。</p>
+<h3 id="嵌套的解构"><a href="#嵌套的解构" class="headerlink" title="嵌套的解构"></a>嵌套的解构</h3><p>与解构嵌套的对象相似，可以用类似的方式来解构嵌套的数组。在整个解构模式中插入另一个数组模式，解构数组就会下行到嵌套的数组中，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, [ <span class="string">"green"</span>, <span class="string">"lightgreen"</span> ], <span class="string">"blue"</span> ];</span><br><span class="line"><span class="comment">// 随后</span></span><br><span class="line"><span class="keyword">let</span> [ firstColor, [ secondColor ] ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="剩余项"><a href="#剩余项" class="headerlink" title="剩余项"></a>剩余项</h3><p>与函数的剩余参数类似，数组解构有一个名为剩余项的概念，它使用<code>...</code>语法来将剩下的项目赋值给一个指定的变量，范例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, ...restColors ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors[<span class="number">0</span>]); <span class="comment">// "green"</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors[<span class="number">1</span>]); <span class="comment">// "blue"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>除此之外在ES6中可以使用剩余项的语法来进行数组克隆。</strong>示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 ES6 中克隆数组</span></span><br><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ ...clonedColors ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(clonedColors); <span class="comment">//"[red,green,blue]"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>剩余项必须是数组解构模式中最后的部分，之后不能再有逗号，否则就是语法错误。</strong></p>
+<h2 id="混合解构"><a href="#混合解构" class="headerlink" title="混合解构"></a>混合解构</h2><p><strong>对象与数组解构能被用在一起，以创建更复杂的解构表达式。在对象与数组混合而成的结构中，这么做便能准确提取其中你想要的信息片段。</strong>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    range: [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;</span><br><span class="line">    loc: &#123;start&#125;,</span><br><span class="line">    range: [startIndex]</span><br><span class="line">&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(start);      <span class="comment">//&#123; line: 1, column: 1 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(startIndex); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参数解构"><a href="#参数解构" class="headerlink" title="参数解构"></a>参数解构</h2><p>解构的另外一个特别有用的场景，即在传递函数参数时，<strong>当JS的函数接收大量可选参数时，一个常用模式是创建一个<code>option</code>对象</strong>，其中包含了附加的参数，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, options</span>) </span>&#123;</span><br><span class="line">    options = options || &#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> secure = options.secure,</span><br><span class="line">        path = options.path,</span><br><span class="line">        domain = options.domain,</span><br><span class="line">        expires = options.expires;</span><br><span class="line">    <span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    expires: <span class="number">60000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>很多<code>JS</code>的库都包含了类似于此例的<code>setCookie()</code>函数。在此函数内，<code>name</code>与<code>value</code>参数是必需的，而<code>secure</code>、<code>path</code> 、 <code>domain</code> 与 <code>expires</code> 则不是。并且因为此处对于其余数据并没有顺序要求，将它们作为 <code>options</code> 对象的具名属性会更有效率，而无须列出一堆额外的具名参数。这种方法很有用，但无法仅通过查看函数定义就判断出函数所期望的输入，你必须阅读函数体的代码。<br>参数解构提供了更清楚地标明函数期望输入的替代方案。它使用对象或数组解构的模式替代了具名参数。要看到其实际效果，请查看下例中重写版本的 <code>setCookie()</code> 函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, &#123; secure, path, domain, expires &#125;</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    expires: <span class="number">60000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>现在对于<code>setCookie()</code> 函数的使用者来说，解构参数之外的参数明显是必需的；而可选项目存在于额外的参数组中，这同样是非常明确的；同时，若使用了第三个参数，其中应当包含什么值当然也是极其明确的。解构参数在没有传递值的情况下类似于常规参数，它们会被设为<code>undefined</code>。</p>
+<h3 id="解构的参数是必需的"><a href="#解构的参数是必需的" class="headerlink" title="解构的参数是必需的"></a>解构的参数是必需的</h3><p>参数解构有一个怪异点：默认情况下调用函数时未给参数解构传值会抛出错误，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 出错！</span></span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>调用时第三个参数缺失了，因此它不出预料地等于<code>undefined</code>。这导致了一个错误，因为参数解构实际上只是解构声明的简写。当<code>setCookie()</code> 函数被调用时，<code>JS</code>引擎实际上是这么做的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; secure, path, domain, expires &#125; = options;</span><br><span class="line">    <span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若你让解构的参数作为必选参数，那么上述行为并不会令人困扰。但若你要求它是可选的，可以给解构的参数提供默认值来处理这种行为，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, &#123; secure, path, domain, expires &#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此例为第三个参数提供了一个空对象作为其默认值。给解构的参数提供默认值，也就意味着若未向 setCookie() 函数传递第三个参数，则 secure 、 path 、 domain 与 expires 的值全都会是 undefined ，此时不会有错误被抛出。</p>
+<h3 id="参数解构的默认值"><a href="#参数解构的默认值" class="headerlink" title="参数解构的默认值"></a>参数解构的默认值</h3><p>你可以为参数解构提供可解构的默认值，就像在解构赋值时所做的那样，只需在其中每个参数后面添加等号并指定默认值即可。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value,</span></span></span><br><span class="line"><span class="function"><span class="params">&#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    secure = false,</span></span></span><br><span class="line"><span class="function"><span class="params">    path = <span class="string">"/"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    domain = <span class="string">"example.com"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    expires = new Date(Date.now(</span>) + 360000000)</span></span><br><span class="line"><span class="function">&#125; = </span>&#123;&#125;</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">块级作用域绑定</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-17 19:48:38" itemprop="dateModified" datetime="2019-11-17T19:48:38+08:00">2019-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>变量声明的工作方式历来是JS编程中最微妙的部分之一。在大多数类C语言中，变量（或绑定）总是在它被声明的地方创建。然而JS就不是这样，变量实际创建的位置取决于你如何声明它，而ES6提供了额外选择以便你能更轻易地控制变量的作用域。</p>
+<h2 id="var声明与变量提升"><a href="#var声明与变量提升" class="headerlink" title="var声明与变量提升"></a>var声明与变量提升</h2><p>使用var关键字声明的变量，无论其实际声明位置在何处，都会被视为声明于所在函数的顶部（如果声明不在任意函数内，则视为在全局作用域的顶部），这种方式就是变量提升。<br>如下例所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不太熟悉 JS ，或许会认为仅当 condition 的值为 true 时，变量 value 才会被创建。但实际上，value 无论如何都会被创建。 JS 引擎在后台对 getValue 函数进行了调整，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>value 变量的声明被提升到了顶部，而初始化工作则保留在原处。这意味着在 else 分支内value 变量也是可访问的，此处它的值会是 undefined ，因为它并没有被初始化。</strong></p>
+<h2 id="块级声明"><a href="#块级声明" class="headerlink" title="块级声明"></a>块级声明</h2><p>块级声明即让所声明的变量在指定块的作用域外无法被访问。块级作用域（又被称为词法作用域）在如下情况被创建：</p>
+<ul>
+<li>在一个函数内部</li>
+<li>在一个代码块（由一对花括号包裹）内部</li>
+</ul>
+<h3 id="let声明"><a href="#let声明" class="headerlink" title="let声明"></a>let声明</h3><p>let声明与var的语法一致，但是let声明不会被提升到当前代码块的顶部，需要手动将let声明放置到顶部，以便让变量在整个代码块内部使用。<strong>let声明会将变量的作用域限制在当前代码块中。</strong>范例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        <span class="keyword">let</span> value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// value 在此处不可用</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// value 在此处不可用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="禁止重复声明"><a href="#禁止重复声明" class="headerlink" title="禁止重复声明"></a>禁止重复声明</h3><p><strong>如果一个标识符已经在代码块内部被定义，那么在此代码块内使用同一个标识符进行let声明就会导致抛出错误。</strong><br>但是在嵌套的作用域内使用let声明一个同名的新变量，则不会抛出错误。范例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 抛出错误</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">40</span>;</span><br><span class="line"><span class="comment">// 不会抛出错误</span></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">40</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="常量声明"><a href="#常量声明" class="headerlink" title="常量声明"></a>常量声明</h3><p>使用const语法进行声明的变量是常量，在设置完成后就不能再被改变，正因为如此，所有的const变量都需要在声明时进行初始化。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有效的常量</span></span><br><span class="line"><span class="keyword">const</span> maxItems = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 语法错误；未进行初始化</span></span><br><span class="line"><span class="keyword">const</span> name;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对比常量声明与let声明： 常量声明与let声明一样，都是块级声明。即常量在声明它们的语句块外部是无法访问的，并且声明也不会被提升；同样不能重复声明。</li>
+<li>使用const声明对象：const声明会阻止对于变量绑定与变量自身值的修改，意味着const声明并不会阻止对变量成员的修改。如下例所示：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 工作正常</span></span><br><span class="line">person.name = <span class="string">"Greg"</span>;</span><br><span class="line"><span class="comment">// 抛出错误</span></span><br><span class="line">person = &#123;</span><br><span class="line">name: <span class="string">"Greg"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上例中，修改 person.name 是可能的，并不会抛出错误，因为该操作只修改了 person 对象的成员，而没有修改 person 的绑定值。当代码试图为 person 对象自身赋值时（这会改变变量绑定），就会导致错误。</p>
+<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><p>使用let或const声明的变量在达到声明处之前是无法访问的，试图访问会导致一个引用错误。</p>
+<h2 id="循环中的块级绑定"><a href="#循环中的块级绑定" class="headerlink" title="循环中的块级绑定"></a>循环中的块级绑定</h2><h3 id="循环内的函数"><a href="#循环内的函数" class="headerlink" title="循环内的函数"></a>循环内的函数</h3><p>长期以来，var的特点是使得循环变量在循环作用域之外仍然可被访问，于是在循环内创建函数就变得很有问题。例如下例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func(); <span class="comment">// 输出数值 "10" 十次</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>上例预期为这段代码会输出0到9的数值，但它却在同一行将数值10输出了十次。因为变量i在循环的每次迭代中都被共享了，意味着循环内创建的那些函数都拥有对于同一变量的引用。</strong></p>
+<h3 id="循环内的let声明"><a href="#循环内的let声明" class="headerlink" title="循环内的let声明"></a>循环内的let声明</h3><p>let是属于局部作用域声明，因此使用let代替var将避免上面的问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func(); <span class="comment">// 从 0 到 9 依次输出</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>在循环中let声明每次都创建了一个新的i变量，因此在循环内部创建的函数获得了各自的i副本，而每个i副本的值都在每次循环迭代声明变量的时候被确定了。</strong></p>
+<h3 id="循环内的常量声明"><a href="#循环内的常量声明" class="headerlink" title="循环内的常量声明"></a>循环内的常量声明</h3><p>ES6中没有明确禁止在循环中使用const声明，但是它会根据循环方式的不同而有不同行为。在常规的for循环中，可以在初始化时使用const，但循环会在你试图改变该变量的值时抛出错误。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="comment">// 在一次迭代后抛出错误</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>const 变量在 for-in 或 for-of 循环中使用时，与 let 变量效果相同。</strong>const 能够在 for-in 与 for-of 循环内工作，是因为循环为每次迭<br>代创建了一个新的变量绑定，而不是试图去修改已绑定的变量的值</p>
+<h2 id="全局块级绑定"><a href="#全局块级绑定" class="headerlink" title="全局块级绑定"></a>全局块级绑定</h2><p>在全局作用域上使用var时，会创建一个新的全局变量，并成为全局对象（在浏览器中是window）的一个属性，即使用var可能会无意覆盖一个已有的全局属性。<br>在全局作用域上使用let或const时，虽然在全局作用域上会创建新的绑定，但不会有任何属性被添加到全局对象上。即不能使用let或const来覆盖一个全局变量，只能将其屏蔽。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -380,122 +807,6 @@
 <li>进行尾调用的函数在尾调用返回结果后不能做额外操作。</li>
 <li>尾调用的结果作为当前函数的返回值。</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">块级作用域绑定</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 19:48:38" itemprop="dateModified" datetime="2019-11-17T19:48:38+08:00">2019-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>变量声明的工作方式历来是JS编程中最微妙的部分之一。在大多数类C语言中，变量（或绑定）总是在它被声明的地方创建。然而JS就不是这样，变量实际创建的位置取决于你如何声明它，而ES6提供了额外选择以便你能更轻易地控制变量的作用域。</p>
-<h2 id="var声明与变量提升"><a href="#var声明与变量提升" class="headerlink" title="var声明与变量提升"></a>var声明与变量提升</h2><p>使用var关键字声明的变量，无论其实际声明位置在何处，都会被视为声明于所在函数的顶部（如果声明不在任意函数内，则视为在全局作用域的顶部），这种方式就是变量提升。<br>如下例所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        <span class="keyword">var</span> value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果不太熟悉 JS ，或许会认为仅当 condition 的值为 true 时，变量 value 才会被创建。但实际上，value 无论如何都会被创建。 JS 引擎在后台对 getValue 函数进行了调整，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>value 变量的声明被提升到了顶部，而初始化工作则保留在原处。这意味着在 else 分支内value 变量也是可访问的，此处它的值会是 undefined ，因为它并没有被初始化。</strong></p>
-<h2 id="块级声明"><a href="#块级声明" class="headerlink" title="块级声明"></a>块级声明</h2><p>块级声明即让所声明的变量在指定块的作用域外无法被访问。块级作用域（又被称为词法作用域）在如下情况被创建：</p>
-<ul>
-<li>在一个函数内部</li>
-<li>在一个代码块（由一对花括号包裹）内部</li>
-</ul>
-<h3 id="let声明"><a href="#let声明" class="headerlink" title="let声明"></a>let声明</h3><p>let声明与var的语法一致，但是let声明不会被提升到当前代码块的顶部，需要手动将let声明放置到顶部，以便让变量在整个代码块内部使用。<strong>let声明会将变量的作用域限制在当前代码块中。</strong>范例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">        <span class="keyword">let</span> value = <span class="string">"blue"</span>;</span><br><span class="line">        <span class="comment">// 其他代码</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// value 在此处不可用</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// value 在此处不可用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="禁止重复声明"><a href="#禁止重复声明" class="headerlink" title="禁止重复声明"></a>禁止重复声明</h3><p><strong>如果一个标识符已经在代码块内部被定义，那么在此代码块内使用同一个标识符进行let声明就会导致抛出错误。</strong><br>但是在嵌套的作用域内使用let声明一个同名的新变量，则不会抛出错误。范例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 抛出错误</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">40</span>;</span><br><span class="line"><span class="comment">// 不会抛出错误</span></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">40</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="常量声明"><a href="#常量声明" class="headerlink" title="常量声明"></a>常量声明</h3><p>使用const语法进行声明的变量是常量，在设置完成后就不能再被改变，正因为如此，所有的const变量都需要在声明时进行初始化。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有效的常量</span></span><br><span class="line"><span class="keyword">const</span> maxItems = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 语法错误；未进行初始化</span></span><br><span class="line"><span class="keyword">const</span> name;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>对比常量声明与let声明： 常量声明与let声明一样，都是块级声明。即常量在声明它们的语句块外部是无法访问的，并且声明也不会被提升；同样不能重复声明。</li>
-<li>使用const声明对象：const声明会阻止对于变量绑定与变量自身值的修改，意味着const声明并不会阻止对变量成员的修改。如下例所示：</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 工作正常</span></span><br><span class="line">person.name = <span class="string">"Greg"</span>;</span><br><span class="line"><span class="comment">// 抛出错误</span></span><br><span class="line">person = &#123;</span><br><span class="line">name: <span class="string">"Greg"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>上例中，修改 person.name 是可能的，并不会抛出错误，因为该操作只修改了 person 对象的成员，而没有修改 person 的绑定值。当代码试图为 person 对象自身赋值时（这会改变变量绑定），就会导致错误。</p>
-<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><p>使用let或const声明的变量在达到声明处之前是无法访问的，试图访问会导致一个引用错误。</p>
-<h2 id="循环中的块级绑定"><a href="#循环中的块级绑定" class="headerlink" title="循环中的块级绑定"></a>循环中的块级绑定</h2><h3 id="循环内的函数"><a href="#循环内的函数" class="headerlink" title="循环内的函数"></a>循环内的函数</h3><p>长期以来，var的特点是使得循环变量在循环作用域之外仍然可被访问，于是在循环内创建函数就变得很有问题。例如下例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func(); <span class="comment">// 输出数值 "10" 十次</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>上例预期为这段代码会输出0到9的数值，但它却在同一行将数值10输出了十次。因为变量i在循环的每次迭代中都被共享了，意味着循环内创建的那些函数都拥有对于同一变量的引用。</strong></p>
-<h3 id="循环内的let声明"><a href="#循环内的let声明" class="headerlink" title="循环内的let声明"></a>循环内的let声明</h3><p>let是属于局部作用域声明，因此使用let代替var将避免上面的问题。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func(); <span class="comment">// 从 0 到 9 依次输出</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>在循环中let声明每次都创建了一个新的i变量，因此在循环内部创建的函数获得了各自的i副本，而每个i副本的值都在每次循环迭代声明变量的时候被确定了。</strong></p>
-<h3 id="循环内的常量声明"><a href="#循环内的常量声明" class="headerlink" title="循环内的常量声明"></a>循环内的常量声明</h3><p>ES6中没有明确禁止在循环中使用const声明，但是它会根据循环方式的不同而有不同行为。在常规的for循环中，可以在初始化时使用const，但循环会在你试图改变该变量的值时抛出错误。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="comment">// 在一次迭代后抛出错误</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>const 变量在 for-in 或 for-of 循环中使用时，与 let 变量效果相同。</strong>const 能够在 for-in 与 for-of 循环内工作，是因为循环为每次迭<br>代创建了一个新的变量绑定，而不是试图去修改已绑定的变量的值</p>
-<h2 id="全局块级绑定"><a href="#全局块级绑定" class="headerlink" title="全局块级绑定"></a>全局块级绑定</h2><p>在全局作用域上使用var时，会创建一个新的全局变量，并成为全局对象（在浏览器中是window）的一个属性，即使用var可能会无意覆盖一个已有的全局属性。<br>在全局作用域上使用let或const时，虽然在全局作用域上会创建新的绑定，但不会有任何属性被添加到全局对象上。即不能使用let或const来覆盖一个全局变量，只能将其屏蔽。</p>
 
       
     </div>
@@ -1275,354 +1586,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">面向对象高级编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 19:34:24" itemprop="dateModified" datetime="2019-11-17T19:34:24+08:00">2019-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Python-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" itemprop="url" rel="index"><span itemprop="name">Python 知识汇总</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>数据封装、继承和多态只是面向对象程序设计中最基础的3个概念。在Python中，面向对象还有很多高级特性，允许我们写出非常强大的功能，我们会讨论多重继承、定制类、元类等概念。</p>
-<h2 id="使用slots"><a href="#使用slots" class="headerlink" title="使用slots"></a>使用<strong>slots</strong></h2><p><strong>slots</strong>是用来限制class实例能添加的属性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    __slots__ = (<span class="string">'name'</span>, <span class="string">'age'</span>) <span class="comment"># 用tuple定义允许绑定的属性名称</span></span><br></pre></td></tr></table></figure>
-
-<p>测试结果L:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student() <span class="comment"># 创建新的实例</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Michael'</span> <span class="comment"># 绑定属性'name'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.age = <span class="number">25</span> <span class="comment"># 绑定属性'age'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span> <span class="comment"># 绑定属性'score'</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'score'</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>由于’score’没有被放到<strong>slots</strong>中，所以不能绑定score属性，试图绑定score将得到AttributeError的错误。使用<strong>slots</strong>要注意，<strong>slots</strong>定义的属性仅对当前类实例起作用，对继承的子类是不起作用的：</strong></p>
-<h2 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h2><p>在绑定属性时，如果我们直接向下面这样把属性暴露出去，虽然写起来简单，但是，没办法检查参数，导致成绩可以随便改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = Student()</span><br><span class="line">s.score = <span class="number">9999</span></span><br></pre></td></tr></table></figure>
-
-<p>这显然不合逻辑。为了限制score的范围，可以通过一个set_score()方法来设置成绩，再通过一个get_score()来获取成绩，这样，在set_score()方法里，就可以检查参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_score</span><span class="params">(self)</span>:</span></span><br><span class="line">         <span class="keyword">return</span> self._score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value, int):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer!'</span>)</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span> <span class="keyword">or</span> value &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0 ~ 100!'</span>)</span><br><span class="line">        self._score = value</span><br></pre></td></tr></table></figure>
-
-<p>现在，对任意的Student实例进行操作，就不能随心所欲地设置score了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.set_score(<span class="number">60</span>) <span class="comment"># ok!</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.get_score()</span><br><span class="line"><span class="number">60</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.set_score(<span class="number">9999</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: score must between <span class="number">0</span> ~ <span class="number">100</span>!</span><br></pre></td></tr></table></figure>
-
-<p>但是，上面的调用方法又略显复杂，没有直接用属性这么直接简单。<br>有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？对于追求完美的Python程序员来说，这是必须要做到的！<br>还记得装饰器（decorator）可以给函数动态加上功能吗？对于类的方法，装饰器一样起作用。Python内置的@property装饰器就是负责把一个方法变成属性调用的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._score</span><br><span class="line"></span><br><span class="line"><span class="meta">    @score.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value, int):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer!'</span>)</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span> <span class="keyword">or</span> value &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0 ~ 100!'</span>)</span><br><span class="line">        self._score = value</span><br></pre></td></tr></table></figure>
-
-<p>@property的实现比较复杂，我们先考察如何使用。把一个getter方法变成属性，只需要加上@property就可以了，此时，@property本身又创建了另一个装饰器@score.setter，负责把一个setter方法变成属性赋值，于是，我们就拥有一个可控的属性操作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">60</span> <span class="comment"># OK，实际转化为s.set_score(60)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score <span class="comment"># OK，实际转化为s.get_score()</span></span><br><span class="line"><span class="number">60</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">9999</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: score must between <span class="number">0</span> ~ <span class="number">100</span>!</span><br></pre></td></tr></table></figure>
-
-<p>注意到这个神奇的@property，我们在对实例属性操作的时候，就知道该属性很可能不是直接暴露的，而是通过getter和setter方法来实现的。<br>还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">birth</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._birth</span><br><span class="line"></span><br><span class="line"><span class="meta">    @birth.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">birth</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self._birth = value</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">2015</span> - self._birth</span><br></pre></td></tr></table></figure>
-
-<p>上面的birth是可读写属性，而age就是一个只读属性，因为age可以根据birth和当前时间计算出来。<br><strong>@property广泛应用在类的定义中，可以让调用者写出简短的代码，同时保证对参数进行必要的检查，这样，程序运行时就减少了出错的可能性。</strong></p>
-<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>继承是面向对象编程的一个重要的方式，因为通过继承，子类就可以扩展父类的功能，例如Animal类层的设计，假设我们要实现以下4种动物：</p>
-<ul>
-<li>Dog - 狗狗；</li>
-<li>Bat - 蝙蝠；</li>
-<li>Parrot - 鹦鹉；</li>
-<li>Ostrich - 鸵鸟。<br>如果按照哺乳动物与鸟类归类，可以将Dog与Bat归为一类，Parrot与Ostrich归为一类，但是如果我们再按照能跑与能飞来分类，将非常麻烦，所以python设计多重继承</li>
-</ul>
-<p>我们要给动物加上Runable与Flyable的功能，只需要定义好Runnable与Flyable的类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Runnable</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Running...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flyable</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fly</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Flying...'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>对于需要Runnable功能的动物，就多继承一个Runnable，例如Dog：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Mammal, Runnable)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>对于需要Flyable功能的动物，就多继承一个Flyable，例如Bat：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bat</span><span class="params">(Mammal, Flyable)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>通过多重继承，一个子类就可以同时获得多个父类的所有功能。</p>
-<h3 id="MixIn"><a href="#MixIn" class="headerlink" title="MixIn"></a>MixIn</h3><p>在设计类的继承关系时，通常，主线都是单一继承下来的，例如，Ostrich继承自Bird。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让Ostrich除了继承自Bird外，再同时继承Runnable。这种设计通常称之为MixIn。<br>为了更好地看出继承关系，我们把Runnable和Flyable改为RunnableMixIn和FlyableMixIn。类似的，你还可以定义出肉食动物CarnivorousMixIn和植食动物HerbivoresMixIn，让某个动物同时拥有好几个MixIn：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Mammal, RunnableMixIn, CarnivorousMixIn)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>MixIn的目的就是给一个类增加多个功能，这样，在设计类的时候，我们优先考虑通过多重继承来组合多个MixIn的功能，而不是设计多层次的复杂的继承关系。</p>
-<p>Python自带的很多库也使用了MixIn。举个例子，Python自带了TCPServer和UDPServer这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由ForkingMixIn和ThreadingMixIn提供。通过组合，我们就可以创造出合适的服务来。<br>比如，编写一个多进程模式的TCP服务，定义如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTCPServer</span><span class="params">(TCPServer, ForkingMixIn)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>编写一个多线程模式的UDP服务，定义如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUDPServer</span><span class="params">(UDPServer, ThreadingMixIn)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你打算搞一个更先进的协程模型，可以编写一个CoroutineMixIn：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTCPServer</span><span class="params">(TCPServer, CoroutineMixIn)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>这样一来，我们不需要复杂而庞大的继承链，只要选择组合不同的类的功能，就可以快速构造出所需的子类。<br><strong>由于Python允许使用多重继承，因此，MixIn就是一种常见的设计。只允许单一继承的语言（如Java）不能使用MixIn的设计。</strong></p>
-<h2 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h2><p><strong>str</strong><br>我们先定义一个Student类，打印一个实例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.name = name</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(Student(<span class="string">'Michael'</span>))</span><br><span class="line">&lt;__main__.Student object at <span class="number">0x109afb190</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>打印出一堆&lt;<strong>main</strong>.Student object at 0x109afb190&gt;，不好看。<br>怎么才能打印得好看呢？只需要定义好<strong>str</strong>()方法，返回一个好看的字符串就可以了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.name = name</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">'Student object (name: %s)'</span> % self.name</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(Student(<span class="string">'Michael'</span>))</span><br><span class="line">Student object (name: Michael)</span><br></pre></td></tr></table></figure>
-
-<p>这样打印出来的实例，不但好看，而且容易看出实例内部重要的数据。<br>但是细心的朋友会发现直接敲变量不用print，打印出来的实例还是不好看：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student(<span class="string">'Michael'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line">&lt;__main__.Student object at <span class="number">0x109afb310</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这是因为直接显示变量调用的不是<strong>str</strong>()，而是<strong>repr</strong>()，两者的区别是<strong>str</strong>()返回用户看到的字符串，而<strong>repr</strong>()返回程序开发者看到的字符串，也就是说，<strong>repr</strong>()是为调试服务的。</p>
-<p>解决办法是再定义一个<strong>repr</strong>()。但是通常<strong>str</strong>()和<strong>repr</strong>()代码都是一样的，所以，有个偷懒的写法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Student object (name=%s)'</span> % self.name</span><br><span class="line">    __repr__ = __str__</span><br></pre></td></tr></table></figure>
-
-<h3 id="iter"><a href="#iter" class="headerlink" title="iter"></a><strong>iter</strong></h3><p>如果一个类想被用于for … in循环，类似list或tuple那样，就必须实现一个<strong>iter</strong>()方法，该方法返回一个迭代对象，然后，Python的for循环就会不断调用该迭代对象的<strong>next</strong>()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环。</p>
-<p>我们以斐波那契数列为例，写一个Fib类，可以作用于for循环：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fib</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.a, self.b = <span class="number">0</span>, <span class="number">1</span> <span class="comment"># 初始化两个计数器a，b</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self <span class="comment"># 实例本身就是迭代对象，故返回自己</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.a, self.b = self.b, self.a + self.b <span class="comment"># 计算下一个值</span></span><br><span class="line">        <span class="keyword">if</span> self.a &gt; <span class="number">100000</span>: <span class="comment"># 退出循环的条件</span></span><br><span class="line">            <span class="keyword">raise</span> StopIteration()</span><br><span class="line">        <span class="keyword">return</span> self.a <span class="comment"># 返回下一个值</span></span><br></pre></td></tr></table></figure>
-
-<p>现在，试试把Fib实例作用于for循环：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> n <span class="keyword">in</span> Fib():</span><br><span class="line"><span class="meta">... </span>    print(n)</span><br><span class="line">...</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">...</span><br><span class="line"><span class="number">46368</span></span><br><span class="line"><span class="number">75025</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="getitem"><a href="#getitem" class="headerlink" title="getitem"></a><strong>getitem</strong></h3><p>Fib实例虽然能作用于for循环，看起来和list有点像，但是，把它当成list来使用还是不行，比如，取第5个元素：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Fib()[<span class="number">5</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: <span class="string">'Fib'</span> object does <span class="keyword">not</span> support indexing</span><br></pre></td></tr></table></figure>
-
-<p>要表现得像list那样按照下标取出元素，需要实现<strong>getitem</strong>()方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fib</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        a, b = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(n):</span><br><span class="line">            a, b = b, a + b</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
-
-<p>现在，就可以按下标访问数列的任意一项了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = Fib()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">0</span>]</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">1</span>]</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">2</span>]</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">3</span>]</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">10</span>]</span><br><span class="line"><span class="number">89</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f[<span class="number">100</span>]</span><br><span class="line"><span class="number">573147844013817084101</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">面向对象编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-09 23:01:14" itemprop="dateModified" datetime="2020-05-09T23:01:14+08:00">2020-05-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Python-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" itemprop="url" rel="index"><span itemprop="name">Python 知识汇总</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h2><p>面向对象最重要的概念就是类（Class）和实例（Instance），类是抽象的模板，实例是根据类创建出来的一个个具体的“对象”。<br>以Student类为例，定义Student类，定义类的关键字是class</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>class后面紧接着是类名，即Student，类名通常是大写开头的单词，紧接着是(object)，表示该类是从哪个类继承下来的，继承的概念我们后面再讲，通常，如果没有合适的继承类，就使用object类，这是所有类最终都会继承的类。<br>定义好了Student类，就可以根据Student类创建出Student的实例，创建实例是通过类名+()实现的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart</span><br><span class="line">&lt;__main__.Student object at <span class="number">0x10a67a590</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Student</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">__main__</span>.<span class="title">Student</span>'&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到，变量bart指向的就是一个Student的实例，后面的0x10a67a590是内存地址，每个object的地址都不一样，而Student本身则是一个类。<br>由于类可以起到模板的作用，因此，可以在创建实例的时候，把一些我们认为必须绑定的属性强制填写进去。通过定义一个特殊的<strong>init</strong>方法，在创建实例的时候，就把name，score等属性绑上去：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br></pre></td></tr></table></figure>
-
-<p>注意到<strong>init</strong>方法的第一个参数永远是self，表示创建的实例本身，因此，在<strong>init</strong>方法内部，就可以把各种属性绑定到self，因为self就指向创建的实例本身。<br>有了<strong>init</strong>方法，在创建实例的时候，就不能传入空的参数了，必须传入与<strong>init</strong>方法匹配的参数，但self不需要传，Python解释器自己会把实例变量传进去：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart Simpson'</span>, <span class="number">59</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.name</span><br><span class="line"><span class="string">'Bart Simpson'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.score</span><br><span class="line"><span class="number">59</span></span><br></pre></td></tr></table></figure>
-
-<p>和普通的函数相比，在类中定义的函数只有一点不同，就是第一个参数永远是实例变量self，并且，调用时，不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以，你仍然可以用默认参数、可变参数、关键字参数和命名关键字参数。</p>
-<h3 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h3><p>数据封装即是类的方法，类的方法包括类方法和实例方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lass Student(object):</span><br><span class="line">   </span><br><span class="line">    <span class="comment">#类变量</span></span><br><span class="line">    score = <span class="number">0</span>      </span><br><span class="line">    <span class="comment"># 类方法（简单介绍一下）</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_total_score</span><span class="params">(cls,score)</span>:</span></span><br><span class="line">        cls.score += score</span><br><span class="line">    <span class="comment"># 实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'%s: %s'</span> % (self.name, self.score))</span><br></pre></td></tr></table></figure>
-
-<p>在Student这个类中定义了print_score方法；和普通函数一样，要调用一个方法，只需要在实例变量上直接调用，除了self不用传递，其他参数正常传入。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.print_score()</span><br><span class="line">Bart Simpson: <span class="number">59</span></span><br></pre></td></tr></table></figure>
-
-<p>练习1:在Student类里定义get_grade方法，成绩在90分以上返回这个人的名字和A，60到90之间为B，60以下为C</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_grade</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.score &gt;= <span class="number">90</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'A'</span></span><br><span class="line">        <span class="keyword">elif</span> self.score &gt;= <span class="number">60</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'B'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'C'</span></span><br><span class="line">lisa = Student(<span class="string">'Lisa'</span>, <span class="number">99</span>)</span><br><span class="line">bart = Student(<span class="string">'Bart'</span>, <span class="number">59</span>)</span><br><span class="line">print(lisa.name, lisa.get_grade())</span><br><span class="line">print(bart.name, bart.get_grade())</span><br></pre></td></tr></table></figure>
-
-<p>输出结果如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Lisa A</span><br><span class="line">Bart C</span><br></pre></td></tr></table></figure>
-
-<p><strong>总结</strong><br>类是创建实例的模板，而实例则是一个一个具体的对象，各个实例拥有的数据都互相独立，互不影响；<br>方法就是与实例绑定的函数，和普通函数不同，方法可以直接访问实例的数据；<br>通过在实例上调用方法，我们就直接操作了对象内部的数据，但无需知道方法内部的实现细节。<br>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同</p>
-<h2 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h2><p>在Class内部，可以有属性和方法，而外部代码可以通过直接调用实例变量的方法来操作数据，这样，就隐藏了内部的复杂逻辑。<br>但是，从前面Student类的定义来看，外部代码还是可以自由地修改一个实例的name、score属性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart Simpson'</span>, <span class="number">59</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.score</span><br><span class="line"><span class="number">59</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.score = <span class="number">99</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart.score</span><br><span class="line"><span class="number">99</span></span><br></pre></td></tr></table></figure>
-
-<p>如果要让内部属性不被外部访问，可以把属性的名称前加上两个下划线 __ ，在Python中，实例的变量名如果以__开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问，所以，我们把Student类改一改,但是如果外部代码要获取name和score怎么办？可以给Student类增加get_name和get_score这样的方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.__name = name         </span><br><span class="line">        self.__score = score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span>      <span class="comment">#通过get_name获取内部名字等</span></span><br><span class="line">        <span class="keyword">return</span> self.__name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_score</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__score</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self, score)</span>:</span>   <span class="comment">#通过set_score修改内部变量，用这种办法，可以对参数进行检查，避免传入无效的参数</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span> &lt;= score &lt;= <span class="number">100</span>:</span><br><span class="line">            self.__score = score</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'bad score'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，在Python中，变量名类似<strong>xxx</strong>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用<strong>name</strong>、<strong>score</strong>这样的变量名。<br>有些时候，你会看到以一个下划线开头的实例变量名，比如_name，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。<br>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问<strong>name是因为Python解释器对外把</strong>name变量改成了_Student__name，所以，仍然可以通过_Student__name来访问__name变量：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bart._Student__name</span><br><span class="line"><span class="string">'Bart Simpson'</span></span><br></pre></td></tr></table></figure>
-
-<p>但是强烈建议你不要这么干，因为不同版本的Python解释器可能会把__name改成不同的变量名。<br>总的来说就是，Python本身没有任何机制阻止你干坏事，一切全靠自觉。<br>练习2：请把下面的Student对象的gender字段对外隐藏起来，用get_gender()和set_gender()代替，并检查参数有效性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, gender)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.__gender = gender</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_gender</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__gender</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_gender</span><span class="params">(self,gender)</span>:</span></span><br><span class="line">        self.__gender = gender</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line">bart = Student(<span class="string">'Bart'</span>, <span class="string">'male'</span>)</span><br><span class="line"><span class="keyword">if</span> bart.get_gender() != <span class="string">'male'</span>:</span><br><span class="line">    print(<span class="string">'测试失败!'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    bart.set_gender(<span class="string">'female'</span>)</span><br><span class="line">    <span class="keyword">if</span> bart.get_gender() != <span class="string">'female'</span>:</span><br><span class="line">        print(<span class="string">'测试失败!'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'测试成功!'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>测试结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-
-<h2 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h2><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>在OOP程序设计中，当我们定义一个class的时候，可以从某个现有的class继承，新的class称为子类（Subclass），而被继承的class称为基类、父类或超类（Base class、Super class）。比如，我们已经编写了一个名为Animal的class，有一个run()方法可以直接打印，当我们需要编写Dog和Cat类时，就可以直接从Animal类继承</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Animal is running...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span><span class="params">(Animal)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>对于Dog来说，Animal就是它的父类，对于Animal来说，Dog就是它的子类。Cat和Dog类似。<br>继承就是子类获得了父类的全部功能。由于Animial实现了run()方法，因此，Dog和Cat作为它的子类，什么事也没干，就自动拥有了run()方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dog = Dog()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dog.run()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cat = Cat()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cat.run()</span><br><span class="line">Animal <span class="keyword">is</span> running...</span><br><span class="line">Animal <span class="keyword">is</span> running...</span><br></pre></td></tr></table></figure>
-
-<p>不仅可以实现继承，同时子类可以对代码进行改进与修改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>   <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>       print(<span class="string">'Dog is running...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Cat</span><span class="params">(Animal)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>       print(<span class="string">'Cat is running...'</span>)</span><br><span class="line">Dog <span class="keyword">is</span> running...</span><br><span class="line">Cat <span class="keyword">is</span> running...</span><br></pre></td></tr></table></figure>
-
-<p><strong>子类和父类都存在相同的run()方法时，我们说，子类的run()覆盖了父类的run()，在代码运行的时候，总是会调用子类的run(),即继承的另一个好处：多态。</strong></p>
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">run_twice</span><span class="params">(animal)</span>:</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>   animal.run()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>   animal.run()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>run_twice(Animal())</span><br><span class="line">Animal <span class="keyword">is</span> running...</span><br><span class="line">Animal <span class="keyword">is</span> running...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>run_twice(Dog())</span><br><span class="line">Dog <span class="keyword">is</span> running...</span><br><span class="line">Dog <span class="keyword">is</span> running...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>run_twice(Cat())</span><br><span class="line">Cat <span class="keyword">is</span> running...</span><br><span class="line">Cat <span class="keyword">is</span> running...</span><br></pre></td></tr></table></figure>
-
-<p>对于一个变量，我们只需要知道它是Animal类型，无需确切地知道它的子类型，就可以放心地调用run()方法，而具体调用的run()方法是作用在Animal、Dog、还是Cat对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：调用方只管调用，不管细节，而当我们新增一种Animal的子类时，只要确保run()方法编写正确，不用管原来的代码是如何调用的。这就是著名的“开闭”原则：<br>对扩展开放：允许新增Animal子类；<br>对修改封闭：不需要修改依赖Animal类型的run_twice()等函数。<br>继承还可以一级一级地继承下来，就好比从爷爷到爸爸、再到儿子这样的关系。而任何类，最终都可以追溯到根类object，这些继承关系看上去就像一颗倒着的树</p>
-<h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><h3 id="使用type"><a href="#使用type" class="headerlink" title="使用type()"></a>使用type()</h3><ul>
-<li>1 基本类型可以用type()判断</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="number">123</span>)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(<span class="string">'str'</span>)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(None)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">type</span><span class="params">(None)</span> '<span class="title">NoneType</span>'&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>2 如果一个变量指向函数或者类，也可以用type()判断</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(abs)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">builtin_function_or_method</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">type</span><span class="params">(a)</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">__main__</span>.<span class="title">Animal</span>'&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>3 判断一个对象是否是函数可以使用types模块中定义的常量</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> types</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">fn</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">pass</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(fn)==types.FunctionType</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(abs)==types.BuiltinFunctionType</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="keyword">lambda</span> x: x)==types.LambdaType</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)))==types.GeneratorType</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="使用isinstance"><a href="#使用isinstance" class="headerlink" title="使用isinstance()"></a>使用isinstance()</h3><p>对于class的继承关系来说，使用types()就很不方便，为了判断class的类型，可以使用isinstance()函数:</p>
-<ul>
-<li>1 对于如下继承关系的函数</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object -&gt; Animal -&gt; Dog -&gt; Husky</span><br></pre></td></tr></table></figure>
-
-<p>可以创建3种类型的对象，然后判断，isinstance()判断的是一个对象是否是该类型本身，或者位于该类型的父继承链上</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = Animal()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = Dog()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h = Husky()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(h, Husky)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(h, Dog)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(d, Dog) <span class="keyword">and</span> isinstance(d, Animal)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(d, Husky)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>2 可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是list或者tuple:</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], (list, tuple))</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (list, tuple))</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="使用dir"><a href="#使用dir" class="headerlink" title="使用dir()"></a>使用dir()</h3><p>dir()函数可以获得一个对象的所有属性和方法，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(<span class="string">'ABC'</span>)</span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>,..., <span class="string">'__subclasshook__'</span>, <span class="string">'capitalize'</span>, <span class="string">'casefold'</span>,..., <span class="string">'zfill'</span>]</span><br></pre></td></tr></table></figure>
-
-<p>类似<strong>xxx</strong>的属性和方法在Python中都是有特殊用途的，比如<strong>len</strong>方法返回长度。在Python中，如果你调用len()函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的<strong>len</strong>()方法，所以，下面的代码是等价的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>len(<span class="string">'ABC'</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'ABC'</span>.__len__()</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<p>我们自己写的类，如果也想用len(myObj)的话，就自己写一个<strong>len</strong>()方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">MyDog</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="number">100</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dog = MyDog()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>len(dog)</span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure>
-
-<p>仅仅把属性和方法列出来是不够的，配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.x = <span class="number">9</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> self.x * self.x</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj = MyObject()</span><br><span class="line">&gt;&gt; hasattr(obj, <span class="string">'x'</span>) <span class="comment"># 有属性'x'吗？</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.x</span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(obj, <span class="string">'y'</span>) <span class="comment"># 有属性'y'吗？</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>setattr(obj, <span class="string">'y'</span>, <span class="number">19</span>) <span class="comment"># 设置一个属性'y'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(obj, <span class="string">'y'</span>) <span class="comment"># 有属性'y'吗？</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(obj, <span class="string">'y'</span>) <span class="comment"># 获取属性'y'</span></span><br><span class="line"><span class="number">19</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>obj.y <span class="comment"># 获取属性'y'</span></span><br><span class="line"><span class="number">19</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(obj, <span class="string">'z'</span>) <span class="comment"># 获取属性'z',试图获取不存在的属性，会抛出AttributeError的错误</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">AttributeError: <span class="string">'MyObject'</span> object has no attribute <span class="string">'z'</span></span><br></pre></td></tr></table></figure>
-
-<p>可以传入一个default参数，如果属性不存在，就返回默认值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(obj, <span class="string">'z'</span>, <span class="number">404</span>) <span class="comment"># 获取属性'z'，如果不存在，返回默认值404</span></span><br><span class="line"><span class="number">404</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以获得对象的方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(obj, <span class="string">'power'</span>) <span class="comment"># 有属性'power'吗？</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(obj, <span class="string">'power'</span>) <span class="comment"># 获取属性'power'</span></span><br><span class="line">&lt;bound method MyObject.power of &lt;__main__.MyObject object at <span class="number">0x10077a6a0</span>&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fn = getattr(obj, <span class="string">'power'</span>) <span class="comment"># 获取属性'power'并赋值到变量fn</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fn <span class="comment"># fn指向obj.power</span></span><br><span class="line">&lt;bound method MyObject.power of &lt;__main__.MyObject object at <span class="number">0x10077a6a0</span>&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fn() <span class="comment"># 调用fn()与调用obj.power()是一样的</span></span><br><span class="line"><span class="number">81</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="实例属性和类属性"><a href="#实例属性和类属性" class="headerlink" title="实例属性和类属性"></a>实例属性和类属性</h2><p>由于Python是动态语言，根据类创建的实例可以任意绑定属性。给实例绑定属性的方法是通过实例变量，或者通过self变量：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">s = Student(<span class="string">'Bob'</span>)</span><br><span class="line">s.score = <span class="number">90</span></span><br></pre></td></tr></table></figure>
-
-<p>但是，如果Student类本身需要绑定一个属性呢？可以直接在class中定义属性，这种属性是类属性，归Student类所有：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    name = <span class="string">'Student'</span></span><br></pre></td></tr></table></figure>
-
-<p>当我们定义了一个类属性后，这个属性虽然归类所有，但类的所有实例都可以访问到。来测试一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">... </span>    name = <span class="string">'Student'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student() <span class="comment"># 创建实例s</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(s.name) <span class="comment"># 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性</span></span><br><span class="line">Student</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(Student.name) <span class="comment"># 打印类的name属性</span></span><br><span class="line">Student</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Michael'</span> <span class="comment"># 给实例绑定name属性</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(s.name) <span class="comment"># 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性</span></span><br><span class="line">Michael</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(Student.name) <span class="comment"># 但是类属性并未消失，用Student.name仍然可以访问</span></span><br><span class="line">Student</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> s.name <span class="comment"># 如果删除实例的name属性</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(s.name) <span class="comment"># 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了</span></span><br><span class="line">Student</span><br></pre></td></tr></table></figure>
-
-<p>练习:为了统计学生人数，可以给Student类增加一个类属性，每创建一个实例，该属性自动增加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        Student.count += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 测试:</span></span><br><span class="line"><span class="keyword">if</span> Student.count != <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'测试失败!'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    bart = Student(<span class="string">'Bart'</span>)</span><br><span class="line">    <span class="keyword">if</span> Student.count != <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">'测试失败!'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        lisa = Student(<span class="string">'Bart'</span>)</span><br><span class="line">        <span class="keyword">if</span> Student.count != <span class="number">2</span>:</span><br><span class="line">            print(<span class="string">'测试失败!'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'Students:'</span>, Student.count)</span><br><span class="line">            print(<span class="string">'测试通过!'</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Students: <span class="number">2</span></span><br><span class="line">测试通过!</span><br></pre></td></tr></table></figure>
-
-<p><strong>实例属性属于各个实例所有，互不干扰；类属性属于类所有，所有实例共享一个属性；不要对实例属性和类属性使用相同的名字，否则将产生难以发现的错误。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1692,20 +1655,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -28,8 +28,9 @@
 <meta property="og:description" content="HTML5HTML5 新元素HTML5提供了新的元素来创建更好的页面结构：    HTML5元素 含义    &lt;article&gt; 定义页面独立的内容区域   &lt;aside&gt; 定义页面的侧边栏内容   &lt;bdi&gt; 允许您设置一段文本，使其脱离父元素的文本方向设置（目前只有 Firefox 和 Chrome 浏览器支持 bdi 标签）   &lt;command&amp;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/HTML5%20SVG%E5%86%85%E8%81%94.png">
 <meta property="article:published_time" content="2020-07-23T10:23:23.060Z">
-<meta property="article:modified_time" content="2020-07-24T01:59:20.978Z">
+<meta property="article:modified_time" content="2020-07-26T13:56:04.634Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="前端面经">
 <meta name="twitter:card" content="summary">
@@ -221,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-24 09:59:20" itemprop="dateModified" datetime="2020-07-24T09:59:20+08:00">2020-07-24</time>
+                <time title="修改时间：2020-07-26 21:56:04" itemprop="dateModified" datetime="2020-07-26T21:56:04+08:00">2020-07-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -381,7 +382,272 @@
 
 <p>上面的 <code>fillRect</code> 方法拥有参数 <code>(0,0,150,75)</code>。意思是：在画布上绘制 <code>150x75</code> 的矩形，从左上角开始 <code>(0,0)</code>。如下图所示，画布的 X 和 Y 坐标用于在画布上对绘画进行定位。</p>
 <p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif" alt="attr"></p>
+<h3 id="HTML5-内联-SVG"><a href="#HTML5-内联-SVG" class="headerlink" title="HTML5 内联 SVG"></a>HTML5 内联 SVG</h3><p><strong>HTML5 支持内联 SVG。</strong></p>
+<div class="note info">
+            <p>什么是SVG？</p><ul><li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li><li>SVG 用于定义用于网络的基于矢量的图形</li><li>SVG 使用 XML 格式定义图形</li><li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失</li><li>SVG 是万维网联盟的标准</li></ul>
+          </div>
+<div class="note info">
+            <p>SVG 的优势</p><ul><li>与其他图像格式相比（比如 JPEG 和 GIF），使用 SVG 的优势在于：</li><li>SVG 图像可通过文本编辑器来创建和修改</li><li>SVG 图像可被搜索、索引、脚本化或压缩</li><li>SVG 是可伸缩的</li><li>SVG 图像可在任何的分辨率下被高质量地打印</li><li>SVG 可在图像质量不下降的情况下被放大</li></ul>
+          </div>
 
+<h4 id="把-SVG-直接嵌入-HTML-页面"><a href="#把-SVG-直接嵌入-HTML-页面" class="headerlink" title="把 SVG 直接嵌入 HTML 页面"></a>把 SVG 直接嵌入 HTML 页面</h4><p>在 HTML5 中，您能够将 SVG 元素直接嵌入 HTML 页面中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">height</span>=<span class="string">"190"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">"100,10 40,180 190,60 10,60 160,180"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">style</span>=<span class="string">"fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/HTML5%20SVG%E5%86%85%E8%81%94.png" alt="attr"></p>
+<h3 id="Canvas-与-SVG-的比较"><a href="#Canvas-与-SVG-的比较" class="headerlink" title="Canvas 与 SVG 的比较"></a>Canvas 与 SVG 的比较</h3><div class="note info">
+            <p>Canvas</p><ul><li>依赖分辨率</li><li>不支持事件处理器</li><li>弱的文本渲染能力</li><li>能够以 .png 或 .jpg 格式保存结果图像</li><li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li></ul><p>SVG</p><ul><li>不依赖分辨率</li><li>支持事件处理器</li><li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li><li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li><li>不适合游戏应用</li></ul>
+          </div>
+
+<h3 id="HTML5-地理定位"><a href="#HTML5-地理定位" class="headerlink" title="HTML5 地理定位"></a>HTML5 地理定位</h3><p><strong>HTML5 Geolocation（地理定位）用于定位用户的位置。</strong></p>
+<h4 id="定位用户的位置"><a href="#定位用户的位置" class="headerlink" title="定位用户的位置"></a>定位用户的位置</h4><p>HTML5 Geolocation API 用于获得用户的地理位置。<br>鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。</p>
+<h4 id="HTML5-使用地理定位"><a href="#HTML5-使用地理定位" class="headerlink" title="HTML5 - 使用地理定位"></a>HTML5 - 使用地理定位</h4><p>请使用 <code>getCurrentPosition()</code> 方法来获得用户的位置。下例是一个简单的地理定位实例，可返回用户位置的经度和纬度。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">()</span></span></span></span><br><span class="line">    &#123;</span><br><span class="line">    if (navigator.geolocation)</span><br><span class="line">      &#123;</span><br><span class="line">      navigator.geolocation.getCurrentPosition(showPosition);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">else</span>&#123;x.innerHTML=<span class="string">"Geolocation is not supported by this browser."</span>;&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">showPosition</span><span class="params">(position)</span></span></span></span><br><span class="line">    &#123;</span><br><span class="line"><span class="actionscript">    x.innerHTML=<span class="string">"Latitude: "</span> + position.coords.latitude +</span></span><br><span class="line"><span class="actionscript">    <span class="string">"&lt;br /&gt;Longitude: "</span> + position.coords.longitude;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>例子解释：</p><ul><li>检测是否支持地理定位</li><li>如果支持，则运行 getCurrentPosition() 方法。如果不支持，则向用户显示一段消息。</li><li>如果getCurrentPosition()运行成功，则向参数showPosition中规定的函数返回一个coordinates对象</li><li>showPosition() 函数获得并显示经度和纬度</li></ul>
+          </div>
+
+<h4 id="处理错误和拒绝"><a href="#处理错误和拒绝" class="headerlink" title="处理错误和拒绝"></a>处理错误和拒绝</h4><p><code>getCurrentPosition()</code> 方法的第二个参数用于处理错误。它规定当获取用户位置失败时运行的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">error</span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span>(error.code)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> error.PERMISSION_DENIED:</span><br><span class="line">      x.innerHTML=<span class="string">"User denied the request for Geolocation."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.POSITION_UNAVAILABLE:</span><br><span class="line">      x.innerHTML=<span class="string">"Location information is unavailable."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.TIMEOUT:</span><br><span class="line">      x.innerHTML=<span class="string">"The request to get user location timed out."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.UNKNOWN_ERROR:</span><br><span class="line">      x.innerHTML=<span class="string">"An unknown error occurred."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>错误代码：</p><ul><li>Permission denied - 用户不允许地理定位</li><li>Position unavailable - 无法获取当前位置</li><li>Timeout - 操作超时</li></ul>
+          </div>
+
+<h4 id="在地图中显示结果"><a href="#在地图中显示结果" class="headerlink" title="在地图中显示结果"></a>在地图中显示结果</h4><p>如需在地图中显示结果，您需要访问可使用经纬度的地图服务，比如谷歌地图或百度地图：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span>(<span class="params">position</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> latlon=position.coords.latitude+<span class="string">","</span>+position.coords.longitude;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> img_url=<span class="string">"http://maps.googleapis.com/maps/api/staticmap?center="</span></span><br><span class="line">              +latlon+<span class="string">"&amp;zoom=14&amp;size=400x300&amp;sensor=false"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"mapholder"</span>).innerHTML=<span class="string">"&lt;img src='"</span>+img_url+<span class="string">"' /&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="getCurrentPosition-方法-返回数据"><a href="#getCurrentPosition-方法-返回数据" class="headerlink" title="getCurrentPosition() 方法 - 返回数据"></a>getCurrentPosition() 方法 - 返回数据</h4><p>若成功，则 <code>getCurrentPosition()</code> 方法返回对象。始终会返回 <code>latitude</code>、<code>longitude</code> 以及 <code>accuracy</code> 属性。如果可用，则会返回其他下面的属性。<br>属性             |    描述<br>—————–|—————————–<br>coords.latitude  | 十进制数的纬度<br>coords.longitude | 十进制数的经度<br>coords.accuracy  |     位置精度<br>coords.altitude  | 海拔，海平面以上以米计<br>coords.altitudeAccuracy | 位置的海拔精度<br>coords.heading   | 方向，从正北开始以度计<br>coords.speed     | 速度，以米/每秒计<br>timestamp        | 响应的日期/时间</p>
+<h4 id="Geolocation-对象-其他有趣的方法"><a href="#Geolocation-对象-其他有趣的方法" class="headerlink" title="Geolocation 对象 - 其他有趣的方法"></a>Geolocation 对象 - 其他有趣的方法</h4><p><code>watchPosition()</code> - 返回用户的当前位置，并继续返回用户移动时的更新位置（就像汽车上的 GPS）。<br><code>clearWatch()</code> - 停止 <code>watchPosition()</code> 方法<br>下面的例子展示 <code>watchPosition()</code> 方法。您需要一台精确的 <code>GPS</code> 设备来测试该例（比如 iPhone）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">()</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line">  if (navigator.geolocation)</span><br><span class="line">    &#123;</span><br><span class="line">    navigator.geolocation.watchPosition(showPosition);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">else</span>&#123;x.innerHTML=<span class="string">"Geolocation is not supported by this browser."</span>;&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span><span class="params">(position)</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line"><span class="actionscript">  x.innerHTML=<span class="string">"Latitude: "</span> + position.coords.latitude +</span></span><br><span class="line"><span class="actionscript">  <span class="string">"&lt;br /&gt;Longitude: "</span> + position.coords.longitude;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="HTML5-Audio-音频-、Video-视频"><a href="#HTML5-Audio-音频-、Video-视频" class="headerlink" title="HTML5  Audio(音频)、Video(视频)"></a>HTML5  Audio(音频)、Video(视频)</h3><p>HTML5 规定了一种通过 <code>video</code> 元素来包含视频的标准方法。</p>
+<h4 id="lt-video-gt-标签的属性如下："><a href="#lt-video-gt-标签的属性如下：" class="headerlink" title="&lt;video&gt; 标签的属性如下："></a><code>&lt;video&gt;</code> 标签的属性如下：</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>如果出现该属性，则视频在就绪后马上播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
+</tr>
+<tr>
+<td>height</td>
+<td>pixels</td>
+<td>设置视频播放器的高度</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>如果出现该属性，则当媒介文件完成播放后再次开始播放</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>如果出现该属性，则视频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>url</td>
+<td>要播放的视频的 URL</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels</td>
+<td>设置视频播放器的宽度</td>
+</tr>
+</tbody></table>
+<p>例子如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogg"</span> <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">Your browser does not support the video tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML5-lt-video-gt-方法、属性以及事件"><a href="#HTML5-lt-video-gt-方法、属性以及事件" class="headerlink" title="HTML5 &lt;video&gt; - 方法、属性以及事件"></a>HTML5 <code>&lt;video&gt;</code> - 方法、属性以及事件</h4><p>下面列出了大多数浏览器支持的视频方法、属性和事件：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>属性</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>play()</td>
+<td>currentSrc</td>
+<td>play</td>
+</tr>
+<tr>
+<td>pause()</td>
+<td>currentTime</td>
+<td>pause</td>
+</tr>
+<tr>
+<td>load()</td>
+<td>videoWidth</td>
+<td>progress</td>
+</tr>
+<tr>
+<td>canPlayType</td>
+<td>videoHeight</td>
+<td>error</td>
+</tr>
+<tr>
+<td></td>
+<td>duration</td>
+<td>timeupdate</td>
+</tr>
+<tr>
+<td></td>
+<td>ended</td>
+<td>ended</td>
+</tr>
+<tr>
+<td></td>
+<td>error</td>
+<td>abort</td>
+</tr>
+<tr>
+<td></td>
+<td>paused</td>
+<td>empty</td>
+</tr>
+<tr>
+<td></td>
+<td>muted</td>
+<td>emptied</td>
+</tr>
+<tr>
+<td></td>
+<td>seeking</td>
+<td>waiting</td>
+</tr>
+<tr>
+<td></td>
+<td>volume</td>
+<td>loadedmetadata</td>
+</tr>
+<tr>
+<td></td>
+<td>height</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>width</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="HTML5-音频"><a href="#HTML5-音频" class="headerlink" title="HTML5 音频"></a>HTML5 音频</h3><p>HTML5 规定了在网页上嵌入音频元素的标准，即使用 <code>&lt;audio&gt;</code> 元素</p>
+<h4 id="lt-audio-gt-标签的属性"><a href="#lt-audio-gt-标签的属性" class="headerlink" title="&lt;audio&gt; 标签的属性"></a><code>&lt;audio&gt;</code> 标签的属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>如果出现该属性，则音频在就绪后马上播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>如果出现该属性，则当媒介文件完成播放后再次开始播放</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>如果出现该属性，则音频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>url</td>
+<td>要播放的音频的 URL</td>
+</tr>
+</tbody></table>
+<h3 id="HTML-5-Web-存储"><a href="#HTML-5-Web-存储" class="headerlink" title="HTML 5 Web 存储"></a>HTML 5 Web 存储</h3><h4 id="在客户端存储数据"><a href="#在客户端存储数据" class="headerlink" title="在客户端存储数据"></a>在客户端存储数据</h4><div class="note info">
+            <p>HTML5 提供了两种在客户端存储数据的新方法：</p><ul><li>localStorage: 没有时间限制的数据存储</li><li>sessionStorage: 针对一个session的数据存储</li></ul>
+          </div>
+<p><strong>HTML5 使用 JavaScript 来存储和访问数据。</strong><br>之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。</p>
+<p>在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。</p>
+<h4 id="localStorage-方法"><a href="#localStorage-方法" class="headerlink" title="localStorage 方法"></a>localStorage 方法</h4><p><code>localStorage</code> 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。<br>如何创建和访问 localStorage：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// Check browser support</span></span></span><br><span class="line"><span class="actionscript"><span class="keyword">if</span> (<span class="keyword">typeof</span>(Storage) !== <span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// Store</span></span></span><br><span class="line"><span class="actionscript">    localStorage.setItem(<span class="string">"lastname"</span>, <span class="string">"Gates"</span>);</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// Retrieve</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = localStorage.getItem(<span class="string">"lastname"</span>);</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = <span class="string">"抱歉！您的浏览器不支持 Web Storage ..."</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面的例子对用户访问页面的次数进行计数：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">if (localStorage.pagecount) &#123;</span><br><span class="line"><span class="javascript">  localStorage.pagecount=<span class="built_in">Number</span>(localStorage.pagecount) +<span class="number">1</span>;</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">  localStorage.pagecount=1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.write(<span class="string">"Visits "</span>+ localStorage.pagecount + <span class="string">" time(s)."</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="sessionStorage-方法"><a href="#sessionStorage-方法" class="headerlink" title="sessionStorage 方法"></a>sessionStorage 方法</h4><p><code>sessionStorage</code> 方法针对一个 <code>session</code> 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。<br>如何创建并访问一个 sessionStorage：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">  sessionStorage.lastname=<span class="string">"Smith"</span>;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.write(sessionStorage.lastname);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面的例子对用户在当前 session 中访问页面的次数进行计数：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">if (sessionStorage.pagecount) &#123;</span><br><span class="line"><span class="javascript">  sessionStorage.pagecount=<span class="built_in">Number</span>(sessionStorage.pagecount) +<span class="number">1</span>;</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">  sessionStorage.pagecount=1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.write(<span class="string">"Visits "</span>+sessionStorage.pagecount+<span class="string">" time(s) this session."</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML-5-应用程序缓存"><a href="#HTML-5-应用程序缓存" class="headerlink" title="HTML 5 应用程序缓存"></a>HTML 5 应用程序缓存</h3><p><strong>使用 HTML5，通过创建 cache manifest 文件，可以轻松地创建 web 应用的离线版本</strong></p>
+<div class="note info">
+            <p>HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。应用程序缓存为应用带来三个优势：</p><ul><li>离线浏览 - 用户可在应用离线时使用它们</li><li>速度 - 已缓存资源加载得更快</li><li>减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。</li></ul>
+          </div>
+
+<p>下面的例子展示了带有 cache manifest 的 HTML 文档（供离线浏览）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    The content of the document......</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Cache-Manifest-基础"><a href="#Cache-Manifest-基础" class="headerlink" title="Cache Manifest 基础"></a>Cache Manifest 基础</h4><p>如需启用应用程序缓存，请在文档的 <code>&lt;html&gt;</code> 标签中包含 <code>manifest</code> 属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>每个指定了 manifest 的页面在用户对其访问时都会被缓存。如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。</p>
+<p>manifest 文件的建议的文件扩展名是：<code>&quot;.appcache&quot;</code>。</p>
+<p><strong>请注意，manifest 文件需要配置正确的 MIME-type，即 “text/cache-manifest”。必须在 web 服务器上进行配置。</strong></p>
+<h4 id="Manifest-文件"><a href="#Manifest-文件" class="headerlink" title="Manifest 文件"></a>Manifest 文件</h4><p>manifest 文件是简单的文本文件，它告知浏览器被缓存的内容（以及不缓存的内容）。</p>
+<div class="note info">
+            <p>manifest 文件可分为三个部分：</p><ul><li>CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</li><li>NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</li><li>FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</li></ul>
+          </div>
+<h5 id="CACHE-MANIFEST"><a href="#CACHE-MANIFEST" class="headerlink" title="CACHE MANIFEST"></a>CACHE MANIFEST</h5><p><strong>第一行，CACHE MANIFEST，是必需的：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br></pre></td></tr></table></figure>
+<h5 id="NETWORK"><a href="#NETWORK" class="headerlink" title="NETWORK"></a>NETWORK</h5><p><strong>下面的 NETWORK 小节规定文件 “login.asp” 永远不会被缓存，且离线时是不可用的：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br></pre></td></tr></table></figure>
+
+<p><strong>可以使用星号来指示所有其他资源/文件都需要因特网连接：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+<h5 id="FALLBACK"><a href="#FALLBACK" class="headerlink" title="FALLBACK"></a>FALLBACK</h5><p><strong>下面的 FALLBACK 小节规定如果无法建立因特网连接，则用 “offline.html” 替代 /html5/ 目录中的所有文件：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FALLBACK:</span><br><span class="line">/html5/ <span class="regexp">/404.html</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h4><div class="note info">
+            <p>一旦应用被缓存，它就会保持缓存直到发生下列情况：</p><ul><li>用户清空浏览器缓存</li><li>manifest 文件被修改（参阅下面的提示）</li><li>由程序来更新应用缓存</li></ul>
+          </div>
+
+<h4 id="实例-完整的-Manifest-文件"><a href="#实例-完整的-Manifest-文件" class="headerlink" title="实例 - 完整的 Manifest 文件"></a>实例 - 完整的 Manifest 文件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"># 2012-02-21 v1.0.0</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">/html5/ <span class="regexp">/404.html</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML-5-Web-Workers"><a href="#HTML-5-Web-Workers" class="headerlink" title="HTML 5 Web Workers"></a>HTML 5 Web Workers</h3><p>web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。</p>
+<h4 id="HTML5-Web-Workers-实例"><a href="#HTML5-Web-Workers-实例" class="headerlink" title="HTML5 Web Workers 实例"></a>HTML5 Web Workers 实例</h4><p>下面的例子创建了一个简单的 web worker，在后台计数：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>计数: <span class="tag">&lt;<span class="name">output</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">output</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"startWorker()"</span>&gt;</span>开始 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"stopWorker()"</span>&gt;</span>停止 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> w;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">startWorker</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span>(<span class="keyword">typeof</span>(w)==<span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">      w=<span class="keyword">new</span> Worker(<span class="string">"/example/html5/demo_workers.js"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    w.onmessage = <span class="function"><span class="keyword">function</span> <span class="params">(event)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="actionscript">  &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"Sorry, your browser does not support Web Workers..."</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">stopWorker</span><span class="params">()</span> </span>&#123; </span></span><br><span class="line">  w.terminate();</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="检测-Web-Worker-支持"><a href="#检测-Web-Worker-支持" class="headerlink" title="检测 Web Worker 支持"></a>检测 Web Worker 支持</h4><p>在创建 web worker 之前，请检测用户的浏览器是否支持它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  <span class="comment">// Yes! Web worker support!</span></span><br><span class="line">  <span class="comment">// Some code.....</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Sorry! No Web Worker support..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建-web-worker-文件"><a href="#创建-web-worker-文件" class="headerlink" title="创建 web worker 文件"></a>创建 web worker 文件</h4><p>现在，让我们在一个外部 JavaScript 中创建我们的 web worker。在这里，我们创建了计数脚本。该脚本存储于 “demo_workers.js” 文件中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">i=i+<span class="number">1</span>;</span><br><span class="line">postMessage(i);</span><br><span class="line">setTimeout(<span class="string">"timedCount()"</span>,<span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timedCount();</span><br></pre></td></tr></table></figure>
+<p><strong>以上代码中重要的部分是 postMessage() 方法 - 它用于向 HTML 页面传回一段消息。</strong></p>
+<p><strong>注释：web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务。</strong></p>
+<h4 id="创建-Web-Worker-对象"><a href="#创建-Web-Worker-对象" class="headerlink" title="创建 Web Worker 对象"></a>创建 Web Worker 对象</h4><p>我们已经有了 web worker 文件，现在我们需要从 HTML 页面调用它。</p>
+<p>下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象，然后运行 “demo_workers.js” 中的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(w)==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  w=<span class="keyword">new</span> Worker(<span class="string">"demo_workers.js"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以从 web worker 发生和接收消息了。</p>
+<p>向 web worker 添加一个 “onmessage” 事件监听器：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当 web worker 传递消息时，会执行事件监听器中的代码。event.data 中存有来自 event.data 的数据。</p>
+<h4 id="终止-Web-Worker"><a href="#终止-Web-Worker" class="headerlink" title="终止 Web Worker"></a>终止 Web Worker</h4><p>当我们创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止。</p>
+<p>如需终止 web worker，并释放浏览器/计算机资源，请使用 <code>terminate()</code> 方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w.terminate();</span><br></pre></td></tr></table></figure>
+<h4 id="Web-Workers-和-DOM"><a href="#Web-Workers-和-DOM" class="headerlink" title="Web Workers 和 DOM"></a>Web Workers 和 DOM</h4><div class="note info">
+            <p>由于 web worker 位于外部文件中，它们无法访问下例 JavaScript 对象：</p><ul><li>window 对象</li><li>document 对象</li><li>parent 对象</li></ul>
+          </div>
+
+<h3 id="HTML-5-服务器发送事件"><a href="#HTML-5-服务器发送事件" class="headerlink" title="HTML 5 服务器发送事件"></a>HTML 5 服务器发送事件</h3><p><strong>HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。</strong></p>
+<h3 id="Server-Sent-事件-单向消息传递"><a href="#Server-Sent-事件-单向消息传递" class="headerlink" title="Server-Sent 事件 - 单向消息传递"></a>Server-Sent 事件 - 单向消息传递</h3>
     </div>
 
     
@@ -402,7 +668,10 @@
     <a href="/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/" rel="prev" title="剩余时间段页面">
       <i class="fa fa-chevron-left"></i> 剩余时间段页面
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/07/24/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%8E%9F%E7%94%9FAjax%E4%B8%8EPromise%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8/" rel="next" title="原生Ajax与Promise的结合使用">
+      原生Ajax与Promise的结合使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -461,7 +730,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-新元素"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5 新元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-Canvas"><span class="nav-number">1.2.</span> <span class="nav-text">HTML5 Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-拖放"><span class="nav-number">1.3.</span> <span class="nav-text">HTML5 拖放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-拖放实例"><span class="nav-number">1.3.1.</span> <span class="nav-text">HTML5 拖放实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置元素为可拖放"><span class="nav-number">1.3.2.</span> <span class="nav-text">设置元素为可拖放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拖动什么-ondragstart-和-setData"><span class="nav-number">1.3.3.</span> <span class="nav-text">拖动什么 - ondragstart 和 setData()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放到何处-ondragover"><span class="nav-number">1.3.4.</span> <span class="nav-text">放到何处 - ondragover</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行放置-ondrop"><span class="nav-number">1.3.5.</span> <span class="nav-text">进行放置 - ondrop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-5-Canvas（画布）"><span class="nav-number">1.3.6.</span> <span class="nav-text">HTML 5 Canvas（画布）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-Canvas？"><span class="nav-number">1.3.7.</span> <span class="nav-text">什么是 Canvas？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Canvas-元素"><span class="nav-number">1.3.8.</span> <span class="nav-text">创建 Canvas 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-JavaScript-来绘制"><span class="nav-number">1.3.9.</span> <span class="nav-text">通过 JavaScript 来绘制</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-新元素"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5 新元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-Canvas"><span class="nav-number">1.2.</span> <span class="nav-text">HTML5 Canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-拖放"><span class="nav-number">1.3.</span> <span class="nav-text">HTML5 拖放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-拖放实例"><span class="nav-number">1.3.1.</span> <span class="nav-text">HTML5 拖放实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置元素为可拖放"><span class="nav-number">1.3.2.</span> <span class="nav-text">设置元素为可拖放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拖动什么-ondragstart-和-setData"><span class="nav-number">1.3.3.</span> <span class="nav-text">拖动什么 - ondragstart 和 setData()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放到何处-ondragover"><span class="nav-number">1.3.4.</span> <span class="nav-text">放到何处 - ondragover</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行放置-ondrop"><span class="nav-number">1.3.5.</span> <span class="nav-text">进行放置 - ondrop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-5-Canvas（画布）"><span class="nav-number">1.3.6.</span> <span class="nav-text">HTML 5 Canvas（画布）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-Canvas？"><span class="nav-number">1.3.7.</span> <span class="nav-text">什么是 Canvas？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Canvas-元素"><span class="nav-number">1.3.8.</span> <span class="nav-text">创建 Canvas 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-JavaScript-来绘制"><span class="nav-number">1.3.9.</span> <span class="nav-text">通过 JavaScript 来绘制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-内联-SVG"><span class="nav-number">1.4.</span> <span class="nav-text">HTML5 内联 SVG</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把-SVG-直接嵌入-HTML-页面"><span class="nav-number">1.4.1.</span> <span class="nav-text">把 SVG 直接嵌入 HTML 页面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas-与-SVG-的比较"><span class="nav-number">1.5.</span> <span class="nav-text">Canvas 与 SVG 的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-地理定位"><span class="nav-number">1.6.</span> <span class="nav-text">HTML5 地理定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定位用户的位置"><span class="nav-number">1.6.1.</span> <span class="nav-text">定位用户的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-使用地理定位"><span class="nav-number">1.6.2.</span> <span class="nav-text">HTML5 - 使用地理定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理错误和拒绝"><span class="nav-number">1.6.3.</span> <span class="nav-text">处理错误和拒绝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在地图中显示结果"><span class="nav-number">1.6.4.</span> <span class="nav-text">在地图中显示结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getCurrentPosition-方法-返回数据"><span class="nav-number">1.6.5.</span> <span class="nav-text">getCurrentPosition() 方法 - 返回数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Geolocation-对象-其他有趣的方法"><span class="nav-number">1.6.6.</span> <span class="nav-text">Geolocation 对象 - 其他有趣的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-Audio-音频-、Video-视频"><span class="nav-number">1.7.</span> <span class="nav-text">HTML5  Audio(音频)、Video(视频)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-video-gt-标签的属性如下："><span class="nav-number">1.7.1.</span> <span class="nav-text">&lt;video&gt; 标签的属性如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-lt-video-gt-方法、属性以及事件"><span class="nav-number">1.7.2.</span> <span class="nav-text">HTML5 &lt;video&gt; - 方法、属性以及事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-音频"><span class="nav-number">1.8.</span> <span class="nav-text">HTML5 音频</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-audio-gt-标签的属性"><span class="nav-number">1.8.1.</span> <span class="nav-text">&lt;audio&gt; 标签的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-5-Web-存储"><span class="nav-number">1.9.</span> <span class="nav-text">HTML 5 Web 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在客户端存储数据"><span class="nav-number">1.9.1.</span> <span class="nav-text">在客户端存储数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#localStorage-方法"><span class="nav-number">1.9.2.</span> <span class="nav-text">localStorage 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sessionStorage-方法"><span class="nav-number">1.9.3.</span> <span class="nav-text">sessionStorage 方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-5-应用程序缓存"><span class="nav-number">1.10.</span> <span class="nav-text">HTML 5 应用程序缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Manifest-基础"><span class="nav-number">1.10.1.</span> <span class="nav-text">Cache Manifest 基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Manifest-文件"><span class="nav-number">1.10.2.</span> <span class="nav-text">Manifest 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CACHE-MANIFEST"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">CACHE MANIFEST</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NETWORK"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">NETWORK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FALLBACK"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">FALLBACK</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新缓存"><span class="nav-number">1.10.3.</span> <span class="nav-text">更新缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例-完整的-Manifest-文件"><span class="nav-number">1.10.4.</span> <span class="nav-text">实例 - 完整的 Manifest 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-5-Web-Workers"><span class="nav-number">1.11.</span> <span class="nav-text">HTML 5 Web Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-Web-Workers-实例"><span class="nav-number">1.11.1.</span> <span class="nav-text">HTML5 Web Workers 实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检测-Web-Worker-支持"><span class="nav-number">1.11.2.</span> <span class="nav-text">检测 Web Worker 支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-web-worker-文件"><span class="nav-number">1.11.3.</span> <span class="nav-text">创建 web worker 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Web-Worker-对象"><span class="nav-number">1.11.4.</span> <span class="nav-text">创建 Web Worker 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#终止-Web-Worker"><span class="nav-number">1.11.5.</span> <span class="nav-text">终止 Web Worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-Workers-和-DOM"><span class="nav-number">1.11.6.</span> <span class="nav-text">Web Workers 和 DOM</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-5-服务器发送事件"><span class="nav-number">1.12.</span> <span class="nav-text">HTML 5 服务器发送事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server-Sent-事件-单向消息传递"><span class="nav-number">1.13.</span> <span class="nav-text">Server-Sent 事件 - 单向消息传递</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,20 +744,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

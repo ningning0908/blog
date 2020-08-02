@@ -185,6 +185,541 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/25/Vue/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/05/25/Vue/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" class="post-title-link" itemprop="url">前后端交互</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-25 09:59:53" itemprop="dateCreated datePublished" datetime="2020-05-25T09:59:53+08:00">2020-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 10:49:39" itemprop="dateModified" datetime="2020-05-26T10:49:39+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前后端交互模式"><a href="#前后端交互模式" class="headerlink" title="前后端交互模式"></a>前后端交互模式</h2><h3 id="接口调用方式"><a href="#接口调用方式" class="headerlink" title="接口调用方式"></a>接口调用方式</h3><ul>
+<li><ol>
+<li>原生ajax</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>基于jQuery的ajax</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>fetch</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>axios</li>
+</ol>
+</li>
+</ul>
+<h3 id="URL地址格式"><a href="#URL地址格式" class="headerlink" title="URL地址格式"></a>URL地址格式</h3><p><strong>1. 传统形式的URL</strong></p>
+<ul>
+<li>格式：schema://host:port/path?query#fragment<ul>
+<li>schema: 协议，例如http、https、ftp等</li>
+<li>host: 域名或者IP地址</li>
+<li>port: 端口，http默认端口80，可以省略</li>
+<li>path: 路径，例如/abc/a/b/c</li>
+<li>query: 查询参数，例如 uname=list&amp;age=12</li>
+<li>fragment: 锚点(哈希Hash)，用于定位页面的某个位置</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>符合规则的URL<ul>
+<li><a href="http://www.itcast.cn" target="_blank" rel="noopener">http://www.itcast.cn</a></li>
+<li><a href="http://www.itcast.cn/java/web" target="_blank" rel="noopener">http://www.itcast.cn/java/web</a></li>
+<li><a href="http://www.itcast.cn/java/web?flag=1" target="_blank" rel="noopener">http://www.itcast.cn/java/web?flag=1</a></li>
+<li><a href="http://www.itcast.cn/java/web?flag=1#function" target="_blank" rel="noopener">http://www.itcast.cn/java/web?flag=1#function</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Restful形式的URL</strong></p>
+<ul>
+<li>HTTP请求房方式<ul>
+<li>GET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查询</li>
+<li>POST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加</li>
+<li>PUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改</li>
+<li>DELETE&nbsp;&nbsp;&nbsp;&nbsp;删除</li>
+</ul>
+</li>
+<li>符合规则的URL地址<ul>
+<li><a href="http://www.hello.com/books" target="_blank" rel="noopener">http://www.hello.com/books</a> &nbsp;&nbsp;        GET</li>
+<li><a href="http://www.hello.com/books" target="_blank" rel="noopener">http://www.hello.com/books</a>    &nbsp;&nbsp;     POST</li>
+<li><a href="http://www.hello.com/books/123" target="_blank" rel="noopener">http://www.hello.com/books/123</a>   &nbsp;&nbsp;  PUT</li>
+<li><a href="http://www.hello.com/books/123" target="_blank" rel="noopener">http://www.hello.com/books/123</a>  &nbsp;&nbsp;   DELETE</li>
+</ul>
+</li>
+</ul>
+<h2 id="Promise-用法"><a href="#Promise-用法" class="headerlink" title="Promise 用法"></a>Promise 用法</h2><h3 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h3><ul>
+<li>异步效果分析：定时任务、Ajax、事件函数</li>
+<li>多次异步调用的结果分析<ul>
+<li>多次异步调用的结果顺序不确定</li>
+<li>异步调用结果如果存在依赖需要嵌套（容易产生回调地狱）</li>
+</ul>
+</li>
+</ul>
+<h3 id="Promise-概述"><a href="#Promise-概述" class="headerlink" title="Promise 概述"></a>Promise 概述</h3><p>Promise是异步编程的一种解决方案，从语法上讲，Promise是一个对象，从它可以获取异步操作的消息。<br>使用Promise主要有一下好处：<br>    - 可以避免多层嵌套问题（回调地狱）<br>    - Promise对象提供了简洁的API，使得控制异步操作更加容易<br><strong>官方Promise文档：</strong><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Promise" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Promise</a></p>
+<h3 id="Promise-基本用法"><a href="#Promise-基本用法" class="headerlink" title="Promise 基本用法"></a>Promise 基本用法</h3><ul>
+<li><ol>
+<li>实例化<code>Promise</code>对象，构造函数中传递函数，该函数用于处理异步任务</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>resolve</code>和<code>reject</code>两个参数用于处理成功和失败两种情况，并通过<code>p.then</code>获取处理结果。</li>
+</ol>
+</li>
+<li><em>基于Promise处理定时任务*</em><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//成功时调用resolve()</span></span><br><span class="line">    <span class="comment">//失败时调用reject()</span></span><br><span class="line">&#125;);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params">ret</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//从resolve得到正常结果</span></span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">ret</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//从reject得到错误信息</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+示例代码如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=&lt;device-width&gt;, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//定时异步操作任务</span></span></span><br><span class="line"><span class="actionscript">            setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> flag = <span class="literal">true</span></span></span><br><span class="line">                if(flag) &#123;</span><br><span class="line"><span class="actionscript">                    resolve(<span class="string">"hello world"</span>)</span></span><br><span class="line"><span class="actionscript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    reject(<span class="string">"出错了"</span>)</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,1000)</span><br><span class="line">        &#125;);</span><br><span class="line"><span class="actionscript">        p.then(<span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(data)     <span class="comment">//hello world(flag=true)</span></span></span><br><span class="line"><span class="actionscript">        &#125;,<span class="function"><span class="keyword">function</span><span class="params">(error)</span> </span>&#123;      </span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(error)    <span class="comment">//出错了(flag=false)</span></span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>基于Promise处理Ajax请求</strong><br>这里请求的后台没有写，只是示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=&lt;device-width&gt;, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">queryData</span><span class="params">(url)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="actionscript">                xhr.onreadystatechange = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">if</span>(xhr.readyState != <span class="number">4</span>) <span class="keyword">return</span>;</span></span><br><span class="line">                    if(xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123;</span><br><span class="line">                        resolve(xhr.responseText);</span><br><span class="line"><span class="actionscript">                    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">                        reject(<span class="string">"服务器错误"</span>)</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;;</span><br><span class="line"><span class="actionscript">                xhr.open(<span class="string">'get'</span>,url);</span></span><br><span class="line"><span class="actionscript">                xhr.send(<span class="literal">null</span>);</span></span><br><span class="line">            &#125;);</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> p;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        queryData(<span class="string">'http://localhost:3000/data'</span>)</span></span><br><span class="line"><span class="actionscript">        .then(<span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(data);</span></span><br><span class="line"><span class="actionscript">        &#125;,<span class="function"><span class="keyword">function</span><span class="params">(error)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(error)</span></span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>发送多次Ajax请求</strong><br>通过then的链式操作解决回调地狱问题</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=&lt;device-width&gt;, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">queryData</span><span class="params">(url)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="actionscript">                xhr.onreadystatechange = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">if</span>(xhr.readyState != <span class="number">4</span>) <span class="keyword">return</span>;</span></span><br><span class="line">                    if(xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123;</span><br><span class="line">                        resolve(xhr.responseText);</span><br><span class="line"><span class="actionscript">                    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">                        reject(<span class="string">"服务器错误"</span>)</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;;</span><br><span class="line"><span class="actionscript">                xhr.open(<span class="string">'get'</span>,url);</span></span><br><span class="line"><span class="actionscript">                xhr.send(<span class="literal">null</span>);</span></span><br><span class="line">            &#125;);</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> p;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        queryData(<span class="string">'http://localhost:3000/data'</span>)</span></span><br><span class="line"><span class="actionscript">            .then(<span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(data);</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> queryData(<span class="string">'http://localhost:3000/data1'</span>)</span></span><br><span class="line">            &#125;)</span><br><span class="line"><span class="actionscript">            .then(<span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(data);</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> queryData(<span class="string">'http://localhost:3000/data2'</span>)</span></span><br><span class="line">            &#125;)</span><br><span class="line"><span class="actionscript">            .then(<span class="function"><span class="keyword">function</span><span class="params">(data)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(data);</span></span><br><span class="line">            &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>then参数中的函数返回值</strong></p>
+<ul>
+<li><ol>
+<li>返回Promise实例对象: 返回的该实例对象会调用下一个then</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>返回普通值: 返回的普通值会直接传递给下一个then，通过then参数中函数的参数接收该值</li>
+</ol>
+</li>
+</ul>
+<h3 id="Promise常用的API"><a href="#Promise常用的API" class="headerlink" title="Promise常用的API"></a>Promise常用的API</h3><p><strong>实例方法</strong></p>
+<ul>
+<li><ol>
+<li>p.then()得到异步任务的正确结果</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>p.catch()获取异常信息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>p.finally()成功与否都会执行(尚且不是正是标准)</li>
+</ol>
+</li>
+</ul>
+<p><strong>对象方法</strong></p>
+<ul>
+<li><ol>
+<li>Promise.all() 并发处理多个异步任务，所有任务都执行完成才能得到结果</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Promise.race() 并发处理多个异步任务，只要有一个任务完成就能得到结果<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([p1,p2,p3]).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Promise</span>.race([p1,p2,p3]).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="接口调用-axios方法"><a href="#接口调用-axios方法" class="headerlink" title="接口调用-axios方法"></a>接口调用-axios方法</h2><p>axios（官网: <a href="https://github.com/axios/axios）是一个基于Promise用于浏览器和node.js的HTTP客户端。" target="_blank" rel="noopener">https://github.com/axios/axios）是一个基于Promise用于浏览器和node.js的HTTP客户端。</a><br>它具有以下特征：</p>
+<ul>
+<li><ol>
+<li>支持浏览器和node.js</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>支持promise</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>能拦截请求和响应</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>自动转换JSON数据</li>
+</ol>
+</li>
+</ul>
+<h3 id="axios的基本用法"><a href="#axios的基本用法" class="headerlink" title="axios的基本用法"></a>axios的基本用法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'http://localhost:3000/adata'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">ret</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//注意data属性是固定用法，用于获取后台的实际数据</span></span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="axios常用的API"><a href="#axios常用的API" class="headerlink" title="axios常用的API"></a>axios常用的API</h3><p>axios常用的API主要是get、post、put、delete<br><strong>GET传递参数</strong><br>通过URL传递参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传统URL传递参数</span></span><br><span class="line">axios.get(<span class="string">'http://localhost:3000/adata?id=123'</span>).then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//restful形式的URL传递参数</span></span><br><span class="line">axios.fet(<span class="string">'http://localhost:3000/adata/123'</span>).then(<span class="function"><span class="params">ret</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过params选项传递参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'http://localhost:3000/adata'</span>,&#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">        id: <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>POST传递参数(默认是json格式的数据)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'http://localhost:3000/adata'</span>,&#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">        uname: <span class="string">'tom'</span>,</span><br><span class="line">        pwd: <span class="number">123</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>PUT传递参数(默认是json格式的数据)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.put(<span class="string">'http://localhost:3000/adata/123'</span>,&#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">        uname: <span class="string">'tom'</span>,</span><br><span class="line">        pwd: <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>DELETE传递参数(默认是json格式的数据)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">axios.delete(<span class="string">'http://localhost:3000/adata/123'</span>,&#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">        id: <span class="number">111</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="axios的相应结果"><a href="#axios的相应结果" class="headerlink" title="axios的相应结果"></a>axios的相应结果</h3><p><strong>响应结果的主要属性</strong></p>
+<ul>
+<li><ol>
+<li>data: 实际响应回来的数据</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>headers: 响应头信息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>status: 响应状态码</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>statusText: 响应状态信息<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'http://localhost:3000/axios-json'</span>).then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="axios的全局配置"><a href="#axios的全局配置" class="headerlink" title="axios的全局配置"></a>axios的全局配置</h3><ul>
+<li><ol>
+<li>axios.defaults.timeout = 3000;   //超时时间</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>axios.defaults.baseURL = “<a href="http://localhost:3000/app&quot;" target="_blank" rel="noopener">http://localhost:3000/app&quot;</a> //默认地址</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>axios.defaults.headers[‘mytoken’] = ‘aqwererqretewterw23’ //设置请求头</li>
+</ol>
+</li>
+</ul>
+<h3 id="axios拦截器"><a href="#axios拦截器" class="headerlink" title="axios拦截器"></a>axios拦截器</h3><p><strong>请求拦截器：</strong>在请求发出之前设置一些信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加一个请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="keyword">function</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//在请求发出之前进行一些信息设置</span></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理响应的错误信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应拦截器：</strong>在获取数据之前对数据做一些加工处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加一个响应拦截器</span></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//在这里对返回的数据进行处理</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理响应的错误信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口调用-async-await用法"><a href="#接口调用-async-await用法" class="headerlink" title="接口调用-async/await用法"></a>接口调用-async/await用法</h2><ul>
+<li><ol>
+<li>async/await是ES7引入的新语法，可以更加方便的进行异步操作</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>async关键字用于函数上（async函数的返回值是Promise实例对象）</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>await关键字用于async函数中（await可以得到异步的结果）</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>async/await处理多个异步请求<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">queryData</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> info = <span class="keyword">await</span> axios.get(<span class="string">'/async1'</span>);</span><br><span class="line">    <span class="keyword">const</span> ret = <span class="keyword">await</span> axios.get(<span class="string">'async2?info='</span> + info.data)</span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br><span class="line">queryData.then(<span class="function"><span class="params">ret</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ret)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/21/HTML5+CSS3/CSS_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/05/21/HTML5+CSS3/CSS_01/" class="post-title-link" itemprop="url">CSS_01</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-21 21:38:32" itemprop="dateCreated datePublished" datetime="2020-05-21T21:38:32+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-25 09:58:49" itemprop="dateModified" datetime="2020-05-25T09:58:49+08:00">2020-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/HTML5-CSS3/" itemprop="url" rel="index"><span itemprop="name">HTML5+CSS3</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><p>CSS是层叠样式表的简称，有时我们也会称之为CSS样式表或级联样式表，CSS主要用于设置HTML页面中的文本内容（字体、大小、对齐方式等）、图片的外形（宽度、边框样式、边距等）以及版本的布局和外观显示样式。<br>CSS规则主要由两个主要部分组成：选择器以及一条或多条生命。即选择器{样式}。</p>
+<h2 id="选择器分类"><a href="#选择器分类" class="headerlink" title="选择器分类"></a>选择器分类</h2><p>选择器分为基础选择器和复合选择器两大类，基础选择器是由单个选择器组成的，复合选择器是由两个或多个基础选择器复合组成的。基础选择器包括标签选择器、类选择器、id选择器和通配符选择器。</p>
+<h3 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h3><p>标签选择器由HTML标签名作为选择器，示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="comment">/* 标签选择器：标签名 */</span></span></span><br><span class="line">p &#123;</span><br><span class="line">    color: green</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h3><p>如果想要差异化不同的标签，单独选一个或者某几个标签，可以使用类选择器。<br>语法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">.类名 &#123;</span><br><span class="line">    属性1：属性值1</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h3><p>为标有特定id的HTML元素指定特定的样式，用”#”定义。<br>语法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-id">#id</span>名 &#123;</span></span><br><span class="line">    属性1：属性值1</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通配符选择器"><a href="#通配符选择器" class="headerlink" title="通配符选择器"></a>通配符选择器</h3><p>在CSS中，通配符选择器用”*”定义，它表示选取页面中所有元素（标签）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">* &#123;</span><br><span class="line">    属性1：属性值1</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS字体属性总结"><a href="#CSS字体属性总结" class="headerlink" title="CSS字体属性总结"></a>CSS字体属性总结</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>表示</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>font-size</td>
+<td>字号</td>
+<td>通常用的单位是px，一定要跟上单位</td>
+</tr>
+<tr>
+<td>font-family</td>
+<td>字体</td>
+<td>实际工作中按照团队工作来写字体</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>字体粗细</td>
+<td>加粗是700或者bold，不加粗是400或者normal，记住数字不加单位</td>
+</tr>
+<tr>
+<td>font-style</td>
+<td>字体样式</td>
+<td>倾斜italic，不倾斜是normal</td>
+</tr>
+<tr>
+<td>font</td>
+<td>字体连写</td>
+<td>font-style font-weight  font-size/line-height   font-family</td>
+</tr>
+</tbody></table>
+<h2 id="CSS文本属性总结"><a href="#CSS文本属性总结" class="headerlink" title="CSS文本属性总结"></a>CSS文本属性总结</h2><p>em是一个相对单位，就是当前文字(font-size)个字体的大小，如果当前元素没有设置大小，则会按照父元素的一个文字大小。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>表示</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>文本颜色</td>
+<td>通常用十进制，比如#fff</td>
+</tr>
+<tr>
+<td>text-align</td>
+<td>文本对齐</td>
+<td>设定文字水平的对齐方式</td>
+</tr>
+<tr>
+<td>text-indent</td>
+<td>文本缩进</td>
+<td>通常用于段落首行缩进2个字的距离</td>
+</tr>
+<tr>
+<td>text-decoration</td>
+<td>文本修饰</td>
+<td>none:没有；underline:下划线；overline:上划线；line-through:删除线</td>
+</tr>
+<tr>
+<td>line-height</td>
+<td>行高</td>
+<td>控制行与行之间你的距离</td>
+</tr>
+</tbody></table>
+<h2 id="Emmet-语法"><a href="#Emmet-语法" class="headerlink" title="Emmet 语法"></a>Emmet 语法</h2><h3 id="快速生成HTML结构标签"><a href="#快速生成HTML结构标签" class="headerlink" title="快速生成HTML结构标签"></a>快速生成HTML结构标签</h3><ul>
+<li><ol>
+<li>生成标签，直接输入标签名按tab键即可，比如 <code>div</code>然后 <code>tab</code> 键，就可以生成<code>&lt;div&gt;&lt;/div&gt;</code></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>如果想要生成多个相同标签，加上 <code>*</code> 就可以了，比如 <code>div*3</code> 就可以生成3个<code>div</code>标签</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>如果有父子级关系的标签，可以用<code>&gt;</code>比如 <code>ul &gt; li</code> 就可以了</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>如果有兄弟关系的标签，用 <code>+</code> 就可以了，比如 <code>div+p</code></li>
+</ol>
+</li>
+<li><ol start="5">
+<li>如果生成带有类名或者id名字的，直接写<code>.demo</code>或者 <code>#two</code> 按tab键就可以了</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>如果生成的div类名是有顺序的，可以用自增符号 <code>$</code></li>
+</ol>
+</li>
+<li><ol start="7">
+<li>如果想要在生成的标签内部写内容可以用<code>{}</code> 表示</li>
+</ol>
+</li>
+</ul>
+<h3 id="快速生成CSS样式"><a href="#快速生成CSS样式" class="headerlink" title="快速生成CSS样式"></a>快速生成CSS样式</h3><p>每个单词的第一个字母然后按tab键就可以了</p>
+<h3 id="快速格式化代码"><a href="#快速格式化代码" class="headerlink" title="快速格式化代码"></a>快速格式化代码</h3><p>在VScode里的右键有快速格式化文档选项，也可以用<code>shift + Alt + F</code></p>
+<h2 id="CSS的复合选择器"><a href="#CSS的复合选择器" class="headerlink" title="CSS的复合选择器"></a>CSS的复合选择器</h2><p>复合选择器是建立在基础选择器之上的，对基本选择器进行组合形成的。<br>常用的复合选择器有后代选择器、子选择器、并集选择器、伪类选择器等等。</p>
+<h3 id="后代选择器（重要）"><a href="#后代选择器（重要）" class="headerlink" title="后代选择器（重要）"></a>后代选择器（重要）</h3><p>后代选择器又称为包含选择器，可以选择父元素里面子元素，其写法就是把外层标签写在前面，内层标签写在后面，中间用空格分隔，当标签发生嵌套时，内层标签就称为外层标签的后代。<br>语法规则如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">元素1 元素2 &#123;样式声明&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面语法表示选择元素1里面的所有元素2(后代元素)。</li>
+<li>元素1和元素2中间用空格隔开</li>
+<li>元素1是父级，元素2是子级，最终选择的是元素2</li>
+<li>元素2可以是儿子，也可以是孙子等，只要是元素2的后代即可</li>
+<li>元素1和元素2可以是任意的基础选择器</li>
+</ul>
+<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>子元素选择器只能选择作为某元素的最近一级元素，简单理解就是选亲儿子元素<br>语法规则如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">元素1&gt;元素2 &#123;样式声明&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>元素1额话元素2之间用<code>大于号</code>隔开</li>
+<li>元素1是父级，元素2是子级，最终选择的是元素2</li>
+<li>元素2必须是亲儿子，其孙子、重孙之类的都不归他管，你也可以叫他亲儿子选择器</li>
+</ul>
+<h3 id="并集选择器"><a href="#并集选择器" class="headerlink" title="并集选择器"></a>并集选择器</h3><p>并集选择器可以选择多组标签，同时为他们定义相同的样式，通常用于集体声明。<br>并集选择器是各选择器通过英文(,)连接而成，任何形式的选择器都可以作为并集选择器的一部分。<br>语法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">元素1,元素2 &#123;样式声明&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>元素1和元素2之间用逗号分开</li>
+<li>约定的语法规范，并集选择器喜欢竖着写</li>
+<li>逗号可以理解为和的意思</li>
+<li>并集选择器通常用于集体声明</li>
+</ul>
+<h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><p>伪类选择器用于向某些选择器添加特殊的效果，比如给链接添加特殊效果，或选择第1个，第n个元素。<br>伪类选择器的最大的特点是用冒号(:)表示，比如：hover:first-child</p>
+<ul>
+<li>链接伪类选择器</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a:link    /*选择所有未被访问的链接*/</span><br><span class="line">a:visited /*选择所有已被访问的链接*/</span><br><span class="line">a:hover   /*选择鼠标指针位于其上的链接*/</span><br><span class="line">a:active /*选择活动链接(鼠标按下未弹起的链接)*/</span><br></pre></td></tr></table></figure>
+<p>示例程序如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>链接伪类选择器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="comment">/* 未访问的链接a:link，把没有点击过的(访问过的)链接选出来 */</span></span></span><br><span class="line"><span class="css">        <span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">            text-decoration: none;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* a:visited选择点击过的(访问过的)链接 */</span></span></span><br><span class="line"><span class="css">        <span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span></span><br><span class="line">            color: grey;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* a:hover选择鼠标经过那个链接 */</span></span></span><br><span class="line"><span class="css">        <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line">            color: skyblue;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* a:active选择的是鼠标正在按下还没弹起鼠标的那个链接 */</span></span></span><br><span class="line"><span class="css">        <span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span></span><br><span class="line">            color: tomato;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>小猪佩奇<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项：</strong>为了确保生效，按照LVHA的顺序声明 :link  :visited  :hover  :active</p>
+<h3 id="focus伪类选择器"><a href="#focus伪类选择器" class="headerlink" title="focus伪类选择器"></a>focus伪类选择器</h3><p>:focus伪类选择器用于选取获得焦点的表单元素，焦点就是光标，一般情况<code>&lt;input&gt;</code>类元素才能获取，因此这个选择器也主要针对于表单元素来说。示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input:focus &#123;</span><br><span class="line">    background-color:pink;  //获得焦点的那个input背景变为粉色</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS的元素的显示模式"><a href="#CSS的元素的显示模式" class="headerlink" title="CSS的元素的显示模式"></a>CSS的元素的显示模式</h2><p>元素显示模式就是元素（标签）以什么方式进行显示。比如<code>&lt;div&gt;</code>自己占一行，一行可以放多个<code>&lt;span&gt;</code>。<br>HTML元素一般分为<code>块元素</code>和<code>行内元素</code>两种类型。</p>
+<h3 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h3><p>常见的块元素有<code>&lt;h1&gt;~&lt;h6&gt;、&lt;p&gt;、&lt;div&gt;、&lt;ul&gt;、&lt;ol&gt;、&lt;li&gt;</code>等，其中<code>&lt;div&gt;</code>标签是<strong>最典形的元素</strong><br>块元素的特点：</p>
+<ul>
+<li>比较霸道，自己独占一行</li>
+<li>高度、宽度、外边距以及内边距都可以控制</li>
+<li>宽度默认是容器(父级宽度)的100%</li>
+<li>是一个容器级盒子，里面可以放行内元素或者块级元素</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>文字类的元素不能使用块级元素</li>
+<li><code>&lt;p&gt;</code>标签主要用于存放文字，因此<code>&lt;p&gt;</code>里面不能放块级元素，特别不能放<code>&lt;div&gt;</code></li>
+<li>同理，<code>&lt;h1&gt;~&lt;h6&gt;</code>等都是文字类块级标签，里面也不能放其他块元素</li>
+</ul>
+<h3 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h3><p>常见的行内元素有<code>&lt;a&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;em&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;del&gt;</code>、<code>&lt;s&gt;</code>、<code>&lt;ins&gt;</code>、<code>&lt;u&gt;</code>、<code>&lt;span&gt;</code>等，其中<code>&lt;span&gt;</code>标签是最典形的行内元素，有的地方也将行内元素称为内联元素。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%98%9F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -199,7 +734,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">栈</a>
+            <a href="/blog/2020/05/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">队列</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +751,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-23 00:52:57" itemprop="dateModified" datetime="2020-05-23T00:52:57+08:00">2020-05-23</time>
+                <time title="修改时间：2020-08-02 15:59:37" itemprop="dateModified" datetime="2020-08-02T15:59:37+08:00">2020-08-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1392,317 +1927,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%A7%A3%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%A7%A3%E6%9E%84/" class="post-title-link" itemprop="url">解构：更方便的数据访问</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-23 18:29:28" itemprop="dateModified" datetime="2019-11-23T18:29:28+08:00">2019-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h2><p>对象解构语法在赋值语句的左侧使用了对象字面量，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br></pre></td></tr></table></figure>
-
-<p>在此代码中，<code>node.type</code> 的值被存储到 <code>type</code> 本地变量中， <code>node.name</code> 的值则存储到<code>name</code>变量中, <code>type</code> 与 <code>name</code> 标识符既声明了本地变量，也读取了对象的相应属性值。</p>
-<p>**不要遗忘初始化器：当使用解构来配合<code>var</code> <code>let</code> 或 <code>const</code>来声明变量时，必须提供初始化器（即等号右边的值）。下面的代码都会因为没有提供初始化器而抛出错误：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">var</span> &#123; type, name &#125;;</span><br><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">let</span> &#123; type, name &#125;;</span><br><span class="line"><span class="comment">// 语法错误！</span></span><br><span class="line"><span class="keyword">const</span> &#123; type, name &#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong><code>const</code> 总是要求有初始化器，即使没有使用解构的变量；而 <code>var</code> 与 <code>let</code> 则仅在使用解构时才作此要求。</strong></p>
-<h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3><p>在变量声明之后也可以进行解构赋值。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;,</span><br><span class="line">type = <span class="string">"Literal"</span>,</span><br><span class="line">name = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 使用解构来分配不同的值</span></span><br><span class="line">(&#123; type, name &#125; = node);</span><br><span class="line"><span class="built_in">console</span>.log(type); <span class="comment">// "Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：必须用圆括号包裹解构赋值语句，这是因为暴露的花括号会被解析为代码块语句，而块语句不允许在赋值操作符（即等号）左侧出现。圆括号标示了里面的花括号并不是块语句，而应该被解释为表达式，从而允许完成赋值操作。</strong></p>
-<h3 id="对象解构默认值"><a href="#对象解构默认值" class="headerlink" title="对象解构默认值"></a>对象解构默认值</h3><p>当你使用解构赋值语句时，如果所指定的本地变量在对象中没有找到同名属性，那么该变量会被赋值为<code>undefined</code>。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name, value&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Indentifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br><span class="line"><span class="built_in">console</span>.log(value);   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-
-<p>你可以选择性地定义一个默认值，以便在指定属性不存在时使用该值。若要这么做，需要在属性名后面添加一个等号并指定默认值，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;type, name, value=<span class="string">"12"</span>&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(type);    <span class="comment">//"Indentifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(name);    <span class="comment">//"foo"</span></span><br><span class="line"><span class="built_in">console</span>.log(value);   <span class="comment">//"12"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="赋值给不同的本地变量名"><a href="#赋值给不同的本地变量名" class="headerlink" title="赋值给不同的本地变量名"></a>赋值给不同的本地变量名</h3><p><strong>ES6</strong>有一个扩展语法，允许你在给本地变量赋值时使用一个不同的名称，而且该语法看上去就像是使用对象字面量的非简写的属性初始化，看下面的例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">type</span>: localType, <span class="attr">name</span>: localName&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(localType);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(localName);    <span class="comment">//"foo"</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以给变量别名添加默认值，依然是在本地变量名称后添加等号与默认值，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Identifier"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">type</span>: localType, <span class="attr">name</span>: localName=<span class="string">"bar"</span>&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(localType);    <span class="comment">//"Identifier"</span></span><br><span class="line"><span class="built_in">console</span>.log(localName);    <span class="comment">//"bar"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="嵌套的对象解构"><a href="#嵌套的对象解构" class="headerlink" title="嵌套的对象解构"></a>嵌套的对象解构</h3><p>使用类似于对象字面量的语法，可以深入到嵌套的对象结构中去提取你想要的数据。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line:<span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">loc</span>: &#123;start&#125;&#125; = node</span><br><span class="line"><span class="built_in">console</span>.log(start.line);   <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(start.column); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>在对象的嵌套解构中同样能为本地变量使用不同的名称</strong>，示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line:<span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 提取 node.loc.start</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">loc</span>: &#123;<span class="attr">start</span>: localStart&#125;&#125; = node</span><br><span class="line"><span class="built_in">console</span>.log(localStart.line);   <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(localStart.column); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="数组解构"><a href="#数组解构" class="headerlink" title="数组解构"></a>数组解构</h2><p>数组解构的语法看起来与对象解构非常相似，只是将对象字面量替换成了数组字面量。数组解构时，解构作用在数组内部的位置上，而不是作用在对象的具名属性上，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, secondColor ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
-
-<p>此处数组解构从<code>colors</code>数组中取出了<code>&quot;red&quot;</code> 与 <code>&quot;green&quot;</code> ，并将它们赋值给 <code>fristColor</code>与 <code>secondColor</code> 变量。这些值被选择，是由于它们在数组中的位置，实际的变量名称是任意的（与位置无关）。任何没有在解构模式中明确指定的项都会被忽略。记住，<strong>数组本身并没有以任何方式被改变</strong>。<br>在解构模式中可以忽略一些项，并且只给感兴趣的项提供变量名，例如：若只想获取数组中的第三个元素，那么不必给前两项提供变量名，以下展示了这种方式：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ , , thirdColor ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(thirdColor); <span class="comment">// "blue"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h3><p><strong>可以在赋值表达式中使用数组解构，但是与对象解构不同，不必将表达式包含在圆括号内</strong>，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ],</span><br><span class="line">firstColor = <span class="string">"black"</span>,</span><br><span class="line">secondColor = <span class="string">"purple"</span>;</span><br><span class="line">[firstColor, secondColor] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>数组解构赋值有一个非常独特的用例，能轻易地互换两个变量的值。互换变量值在排序算法中十分常用。</strong>如下例所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 ES6 中互换值</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="number">2</span>;</span><br><span class="line">[a, b] = [b, a];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>本例中的数组解构赋值看起来如同镜像。赋值语句左侧（即等号之前）的解构模式正如其他数组解构的范例，右侧则是为了互换而临时创建的数组字面量。 b 与 a 的值分别被复制到<br>临时数组的第一个与第二个位置，并对该数组进行解构，结果两个变量就互换了它们的值。<br><strong>与对象解构赋值相同，若等号右侧的计算结果为 null 或 undefined ，那么数组解构赋值表达式也会抛出错误。</strong></p>
-<h3 id="数组解构默认值"><a href="#数组解构默认值" class="headerlink" title="数组解构默认值"></a>数组解构默认值</h3><p><strong>数组解构赋值同样允许在数组任意位置指定默认值，当指定位置的项不存在、或其值为<code>undefined</code>, 那么该默认值就会被使用。</strong>例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, secondColor = <span class="string">"green"</span> ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码的<code>colors</code>数组只有一个项，因此没有能与<code>secondColor</code>匹配的项，又由于此处有个默认值，<code>secondColor</code>的值就被设置为<code>&quot;green&quot;</code>，而不是<code>undefined</code>。</p>
-<h3 id="嵌套的解构"><a href="#嵌套的解构" class="headerlink" title="嵌套的解构"></a>嵌套的解构</h3><p>与解构嵌套的对象相似，可以用类似的方式来解构嵌套的数组。在整个解构模式中插入另一个数组模式，解构数组就会下行到嵌套的数组中，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, [ <span class="string">"green"</span>, <span class="string">"lightgreen"</span> ], <span class="string">"blue"</span> ];</span><br><span class="line"><span class="comment">// 随后</span></span><br><span class="line"><span class="keyword">let</span> [ firstColor, [ secondColor ] ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(secondColor); <span class="comment">// "green"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="剩余项"><a href="#剩余项" class="headerlink" title="剩余项"></a>剩余项</h3><p>与函数的剩余参数类似，数组解构有一个名为剩余项的概念，它使用<code>...</code>语法来将剩下的项目赋值给一个指定的变量，范例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ firstColor, ...restColors ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(firstColor); <span class="comment">// "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors.length); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors[<span class="number">0</span>]); <span class="comment">// "green"</span></span><br><span class="line"><span class="built_in">console</span>.log(restColors[<span class="number">1</span>]); <span class="comment">// "blue"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>除此之外在ES6中可以使用剩余项的语法来进行数组克隆。</strong>示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 ES6 中克隆数组</span></span><br><span class="line"><span class="keyword">let</span> colors = [ <span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span> ];</span><br><span class="line"><span class="keyword">let</span> [ ...clonedColors ] = colors;</span><br><span class="line"><span class="built_in">console</span>.log(clonedColors); <span class="comment">//"[red,green,blue]"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>剩余项必须是数组解构模式中最后的部分，之后不能再有逗号，否则就是语法错误。</strong></p>
-<h2 id="混合解构"><a href="#混合解构" class="headerlink" title="混合解构"></a>混合解构</h2><p><strong>对象与数组解构能被用在一起，以创建更复杂的解构表达式。在对象与数组混合而成的结构中，这么做便能准确提取其中你想要的信息片段。</strong>例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = &#123;</span><br><span class="line">    type: <span class="string">"Indentifier"</span>,</span><br><span class="line">    name: <span class="string">"foo"</span>,</span><br><span class="line">    loc: &#123;</span><br><span class="line">        start: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        end: &#123;</span><br><span class="line">            line: <span class="number">1</span>,</span><br><span class="line">            column: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    range: [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;</span><br><span class="line">    loc: &#123;start&#125;,</span><br><span class="line">    range: [startIndex]</span><br><span class="line">&#125; = node;</span><br><span class="line"><span class="built_in">console</span>.log(start);      <span class="comment">//&#123; line: 1, column: 1 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(startIndex); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="参数解构"><a href="#参数解构" class="headerlink" title="参数解构"></a>参数解构</h2><p>解构的另外一个特别有用的场景，即在传递函数参数时，<strong>当JS的函数接收大量可选参数时，一个常用模式是创建一个<code>option</code>对象</strong>，其中包含了附加的参数，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, options</span>) </span>&#123;</span><br><span class="line">    options = options || &#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> secure = options.secure,</span><br><span class="line">        path = options.path,</span><br><span class="line">        domain = options.domain,</span><br><span class="line">        expires = options.expires;</span><br><span class="line">    <span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    expires: <span class="number">60000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>很多<code>JS</code>的库都包含了类似于此例的<code>setCookie()</code>函数。在此函数内，<code>name</code>与<code>value</code>参数是必需的，而<code>secure</code>、<code>path</code> 、 <code>domain</code> 与 <code>expires</code> 则不是。并且因为此处对于其余数据并没有顺序要求，将它们作为 <code>options</code> 对象的具名属性会更有效率，而无须列出一堆额外的具名参数。这种方法很有用，但无法仅通过查看函数定义就判断出函数所期望的输入，你必须阅读函数体的代码。<br>参数解构提供了更清楚地标明函数期望输入的替代方案。它使用对象或数组解构的模式替代了具名参数。要看到其实际效果，请查看下例中重写版本的 <code>setCookie()</code> 函数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, &#123; secure, path, domain, expires &#125;</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>, &#123;</span><br><span class="line">    secure: <span class="literal">true</span>,</span><br><span class="line">    expires: <span class="number">60000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>现在对于<code>setCookie()</code> 函数的使用者来说，解构参数之外的参数明显是必需的；而可选项目存在于额外的参数组中，这同样是非常明确的；同时，若使用了第三个参数，其中应当包含什么值当然也是极其明确的。解构参数在没有传递值的情况下类似于常规参数，它们会被设为<code>undefined</code>。</p>
-<h3 id="解构的参数是必需的"><a href="#解构的参数是必需的" class="headerlink" title="解构的参数是必需的"></a>解构的参数是必需的</h3><p>参数解构有一个怪异点：默认情况下调用函数时未给参数解构传值会抛出错误，示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 出错！</span></span><br><span class="line">setCookie(<span class="string">"type"</span>, <span class="string">"js"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>调用时第三个参数缺失了，因此它不出预料地等于<code>undefined</code>。这导致了一个错误，因为参数解构实际上只是解构声明的简写。当<code>setCookie()</code> 函数被调用时，<code>JS</code>引擎实际上是这么做的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; secure, path, domain, expires &#125; = options;</span><br><span class="line">    <span class="comment">// 设置 cookie 的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>若你让解构的参数作为必选参数，那么上述行为并不会令人困扰。但若你要求它是可选的，可以给解构的参数提供默认值来处理这种行为，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, &#123; secure, path, domain, expires &#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此例为第三个参数提供了一个空对象作为其默认值。给解构的参数提供默认值，也就意味着若未向 setCookie() 函数传递第三个参数，则 secure 、 path 、 domain 与 expires 的值全都会是 undefined ，此时不会有错误被抛出。</p>
-<h3 id="参数解构的默认值"><a href="#参数解构的默认值" class="headerlink" title="参数解构的默认值"></a>参数解构的默认值</h3><p>你可以为参数解构提供可解构的默认值，就像在解构赋值时所做的那样，只需在其中每个参数后面添加等号并指定默认值即可。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value,</span></span></span><br><span class="line"><span class="function"><span class="params">&#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    secure = false,</span></span></span><br><span class="line"><span class="function"><span class="params">    path = <span class="string">"/"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    domain = <span class="string">"example.com"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    expires = new Date(Date.now(</span>) + 360000000)</span></span><br><span class="line"><span class="function">&#125; = </span>&#123;&#125;</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E7%AC%A6%E5%8F%B7%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%B1%9E%E6%80%A7%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E7%AC%A6%E5%8F%B7%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%B1%9E%E6%80%A7%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" class="post-title-link" itemprop="url">符号与符号属性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-28 20:09:02" itemprop="dateModified" datetime="2019-11-28T20:09:02+08:00">2019-11-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在JS已有的基本类型（字符串、数值、布尔类型、null与undefined）之外，ES6引入了一种新的基本类型：符号（Symbol）。符号起初被设计用于创建私有成员，而这也是JS开发者期待已久的特性。在符号诞生之前，将字符串作为属性名称导致属性可以被轻易访问，无论命名规则如何。而“私有名称”意味着开发者可以创建非字符串类型的属性名称，由此可以防止使用常规手段来探查这些名称。<br>“私有名称”提案最终发展成为ES6中的符号，而本章将会教你如何有效使用它。虽然它只保留了实现细节（即：引入了非字符串类型的属性名）而丢弃了私有性意图，但它仍然显著有别于对象的其余属性。</p>
-<h2 id="创建符号值"><a href="#创建符号值" class="headerlink" title="创建符号值"></a>创建符号值</h2><p><strong>符号没有字面量形式。</strong>有别于布尔类型的<code>true</code>或数值类型的<code>42</code>等等。可以使用全局<code>Symbol</code>函数来创建一个符号值，如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line">person[firstName] = <span class="string">"Nicholas"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码创建了一个符号类型的<code>firstName</code>变量，并将它作为<code>person</code>对象的一个属性，而每次访问该属性都要使用这个符号值。为符号变量适当命名是个好主意，这样你就可以很容易地说明它的含义。</p>
-<div class="note info">
-            <p>由于符号值是基本类型的值，因此调用 new Symbol() 将会抛出错误。你可以通过 newObject(yourSymbol) 来创建一个符号实例，但尚不清楚这能有什么作用。</p>
-          </div>
-
-<p>Symbol 函数还可以接受一个额外的参数用于描述符号值，该描述并不能用来访问对应属性，但它能用于调试，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>(<span class="string">"first name"</span>);</span><br><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line">person[firstName] = <span class="string">"Nicholas"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"first name"</span> <span class="keyword">in</span> person); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(firstName); <span class="comment">// "Symbol(first name)"</span></span><br></pre></td></tr></table></figure>
-
-<p>符号的描述信息被存储在内部属性<code>[[Description]]</code>中，当符号的<code>toString()</code>方法被显式或隐式调用时，该属性都会被读取。在本例中，<code>console.log()</code>隐式调用了 <code>firstName</code>变量的<code>toString()</code>方法，于是描述信息就被输出到日志。此外没有任何办法可以从代码中直接访问<code>[[Description]]</code>属性。我建议始终应给符号提供描述信息，以便更好地阅读代码或进行调试。</p>
-<div class="note into">
-            <p>识别符号值<br>由于符号是基本类型的值，因此你可以使用 typeof 运算符来判断一个变量是否为符号。 ES6 扩充了 typeof 的功能以便让它在作用于符号值的时候能够返回 “symbol” ，尽管有其他方法可以判断一个变量是否为符号， typeof 运算符依然是最准确、最优先的判别手段。例如：</p>
-          </div>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> symbol = <span class="built_in">Symbol</span>(<span class="string">"test symbol"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol); <span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用符号值"><a href="#使用符号值" class="headerlink" title="使用符号值"></a>使用符号值</h2><p>可以在任意能使用“需计算属性名”的场合使用符号，此外还可以在<code>Object.defineProperty()</code>或<code>Object.defineProperties()</code>调用中使用它。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="built_in">Symbol</span>(<span class="string">"first name"</span>);</span><br><span class="line"><span class="comment">// 使用一个需计算字面量属性</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    [firstName]: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 让该属性变为只读</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, firstName, &#123; <span class="attr">writable</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"><span class="keyword">let</span> lastName = <span class="built_in">Symbol</span>(<span class="string">"last name"</span>);</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person, &#123;</span><br><span class="line">    [lastName]: &#123;</span><br><span class="line">        value: <span class="string">"Zakas"</span>,</span><br><span class="line">    writable: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(person[firstName]); <span class="comment">// "Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(person[lastName]); <span class="comment">// "Zakas"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="共享符号值"><a href="#共享符号值" class="headerlink" title="共享符号值"></a>共享符号值</h3><p>你或许想在不同的代码段中使用相同的符号值，例如：假设在应用中需要在两个不同的对象类型中使用同一个符号属性，用来表示一个唯一标识符。跨越文件或代码来追踪符号值是很<br>困难并且易错的，为此， <strong>ES6 提供了“全局符号注册表”供你在任意时间点进行访问。</strong><br>若你想创建共享符号值，应使用<code>Symbol.for()方法</code>而不是<code>Symbol()方法</code>。 <strong><code>Symbol.for()</code>方法仅接受单个字符串类型的参数，作为目标符号值的标识符，同时此参数也会成为该符号的描述信息。</strong>例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;&#125;;</span><br><span class="line">object[uid] = <span class="string">"12345"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(object[uid]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
-
-<p><code>Symbol.for()</code> 方法首先会搜索全局符号注册表，看是否存在一个键值为 <code>&quot;uid&quot;</code> 的符号值。若是，该方法会返回这个已存在的符号值；否则，会创建一个新的符号值，并使用该键值将其记录到全局符号注册表中，然后返回这个新的符号值。这就意味着此后使用同一个键值去调用 <code>Symbol.for()</code>方法都将会返回同一个符号值，就像下面这个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">    [uid]: <span class="string">"12345"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(object[uid]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid); <span class="comment">// "Symbol(uid)"</span></span><br><span class="line"><span class="keyword">let</span> uid2 = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(uid === uid2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(object[uid2]); <span class="comment">// "12345"</span></span><br><span class="line"><span class="built_in">console</span>.log(uid2); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
-
-<p>本例中，<code>uid</code>与<code>uid2</code>包含同一个符号值，因此它们可以互换使用。<strong>第一次调用<code>Symbol.for()</code>创建了这个符号值，而第二次调用则从全局符号注册表中将其检索了出来。</strong><br><strong>共享符号值还有另一个独特用法，你可以使用<code>Symbol.keyFor()</code>方法在全局符号注册表中根据符号值检索出对应的键值</strong>，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid)); <span class="comment">// "uid"</span></span><br><span class="line"><span class="keyword">let</span> uid2 = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid2)); <span class="comment">// "uid"</span></span><br><span class="line"><span class="keyword">let</span> uid3 = <span class="built_in">Symbol</span>(<span class="string">"uid"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(uid3)); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：使用符号值<code>uid</code>与<code>uid2</code>都返回了键值<code>&quot;uid&quot;</code>，而符号值<code>uid3</code>在全局符号注册表中并不存在，因此没有关联的键值，<code>Symbol.keyFor()</code>方法只会返回 undefined 。</p>
-<div class="note info">
-            <p>全局符号注册表类似于全局作用域，是一个共享环境，这意味着你不应当假设某些值是否已存在于其中。在使用第三方组件时，为符号的键值使用命名空间能够减少命名冲突<br>的可能性，举个例子：<code>jQuery</code>代码应当为它的所有键值使用 <code>&quot;jquery.&quot;</code> 的前缀，如<code>&quot;jquery.element&quot;</code> 或类似的形式。</p>
-          </div>
-
-<h2 id="符号值的转换"><a href="#符号值的转换" class="headerlink" title="符号值的转换"></a>符号值的转换</h2><p>类型转换是<strong>JS</strong>语言重要的一部分，能够非常灵活地将一种数据类型转换为另一种。然而符号类型在进行转换时非常不灵活，因为其他类型缺乏与符号值的合理等价，尤其是符号值无法被转换为字符串值或数值。因此将符号作为属性所达成的效果，是其他类型所无法替代的。<br>前面例子中使用了<code>console.log()</code>来展示符号值的输出，能这么做是由于自动调用了符号的<code>String()</code>方法来产生输出，也可以直接调用<code>String()</code>方法来获取相同结果，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">    desc = <span class="built_in">String</span>(uid);</span><br><span class="line"><span class="built_in">console</span>.log(desc); <span class="comment">// "Symbol(uid)"</span></span><br></pre></td></tr></table></figure>
-
-<p><code>String()</code>方法调用了<code>uid.toString()</code>来获取符号的字符串描述信息。但若你想直接将符号转换为字符串，则会引发错误：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">    desc = uid + <span class="string">""</span>; <span class="comment">// 引发错误！</span></span><br></pre></td></tr></table></figure>
-
-<p>将 uid 与空字符串相连接，会首先要求把 uid 转换为一个字符串，而这会引发错误，从而阻止了转换行为。相似地，你不能将符号转换为数值，对符号使用所有数学运算符都会引发错误，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>),</span><br><span class="line">sum = uid / <span class="number">1</span>; <span class="comment">// 引发错误！</span></span><br></pre></td></tr></table></figure>
-
-<p>此例试图把符号值除以 1 ，同样引发了错误。无论对符号使用哪种数学运算符都会导致错误，但使用逻辑运算符则不会，因为符号值在逻辑运算中会被认为等价于 true （就像 JS<br>中其他的非空值那样）。</p>
-<h2 id="检索符号属性"><a href="#检索符号属性" class="headerlink" title="检索符号属性"></a>检索符号属性</h2><p><code>Object.keys()</code> 与 <code>Object.getOwnPropertyNames()</code> 方法可以检索对象的所有属性名称，前者返回所有的可枚举属性名称，而后者则返回所有属性名称而无视其是否可枚举。然而两者都不能返回符号类型的属性，以保持它们在<strong>ES5</strong>中的功能不发生变化。而 <strong>ES6</strong> 新增了<code>Object.getOwnPropertySymbols()</code> 方法，以便让你可以检索对象的符号类型属性。<br><code>Object.getOwnPropertySymbols()</code> 方法会返回一个数组，包含了对象自有属性名中的符号值，例如:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uid = <span class="built_in">Symbol</span>.for(<span class="string">"uid"</span>);</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">    [uid]: <span class="string">"12345"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> symbols = <span class="built_in">Object</span>.getOwnPropertySymbols(object);</span><br><span class="line"><span class="built_in">console</span>.log(symbols.length);         <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(symbols[<span class="number">0</span>]);             <span class="comment">// "Symbol(uid)"</span></span><br><span class="line"><span class="built_in">console</span>.log(object[symbols[<span class="number">0</span>]]);    <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用知名符号暴露内部方法"><a href="#使用知名符号暴露内部方法" class="headerlink" title="使用知名符号暴露内部方法"></a>使用知名符号暴露内部方法</h2><p>ES5的中心主题之一是披露并定义了一些魔术般的成分，而这些部分是当时开发者所无法自行模拟的。ES6延续了这些工作，对原先属于语言内部逻辑的部分进行了进一步的暴露，允许使用符号类型的原型属性来定义某些对象的基础行为。</p>
-<p>ES6定义了“知名符号”来代表JS中一些公共行为，而这些行为此前被认为只能是内部操作，每一个知名符号都对应全局<code>Sympol</code>对象的一个属性，例如<code>Sympol.create</code>。<br>这些知名符号是：</p>
-<div class="note info">
-            <ul><li><code>Sympol.hasInstance</code>: 供<code>instanceof</code>运算符使用的一个方法，用于判断对象继承关系。</li><li><code>Symbol.isConcatSpreadable</code>: 一个布尔类型值，在集合对象作为参数传递给<code>Array.prototype.concat()</code>方法时，指示是否要将该集合的元素扁平化。</li><li><code>Symbol.iterator</code>: 返回迭代器的一个方法。</li><li><code>Symbol.match</code>: 供<code>String.prototype.match()</code>函数使用的一个方法，用于比较字符串。</li><li><code>Symbol.replace</code>: 供<code>String.prototype.replace()</code>函数使用的一个方法，用于替换子字符串。</li><li><code>Symbol.search</code>: 供<code>String.prototype.search()</code> 函数使用的一个方法，用于定位子字符串。</li><li><code>Symbol.species</code>: 用于产生派生对象的构造器。</li><li><code>Symbol.split</code>: 供<code>String.prototype.split()</code>函数使用的一个方法，用于分割字符串。</li><li><code>Symbol.toPrimitive</code>: 返回对象所对应的基本类型值的一个方法。</li><li><code>Symbol.toStringTag</code>: 供 <code>String.prototype.toString()</code> 函数使用的一个方法，用于创建对象的描述信息。</li><li><code>Symbol.unscopables</code>: 一个对象，该对象的属性指示了哪些属性名不允许被包含在<code>with</code> 语句中。</li></ul>
-          </div>
-
-<div class="note into">
-            <p>重写知名符号所定义的方法，会把一个普通对象改变成奇异对象，因为它改变了一些默认的内部行为。这并不会对你的代码造成实际影响，它只是改变了规范所描述的对象特征。</p>
-          </div>
-
-<h3 id="Symbol-hasInstance属性"><a href="#Symbol-hasInstance属性" class="headerlink" title="Symbol.hasInstance属性"></a>Symbol.hasInstance属性</h3><p>每个函数都具有一个 <code>Symbol.hasInstance</code> 方法，用于判断指定对象是否为本函数的一个实例。这个方法定义在 <code>Function.prototype</code> 上，因此所有函数都继承了面对<code>instanceof</code>运算符时的默认行为。<code>Symbol.hasInstance</code>属性自身不可写入、不可配置、不可枚举的，从而保证它不会被错误地重写。<br><code>Symbol.hasInstance</code> 方法只接受单个参数，即需要检测的值。如果该值是本函数的一个实例，则方法会返回 <code>true</code> 。为了理解该方法是如何工作的，可研究下述代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj <span class="keyword">instanceof</span> <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这句话等价于：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>[<span class="built_in">Symbol</span>.hasInstance](obj);</span><br></pre></td></tr></table></figure>
-
-<p>ES6从本质上将<code>instanceof</code>运算符重定义为上述方法调用的简写语法，这样使用<code>instanceof</code> 便会触发一次方法调用，实际上允许你改变该运算符的工作。<br>例如:假设你想定义一个函数，使得任意对象都不会被判断为该函数的一个实例，你可以采用硬编码的方式让该函数的<code>Symbol.hasInstance</code>方法始终返回<code>false</code>，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    name: <span class="string">"foo"</span>;</span><br><span class="line">    type: <span class="string">"Indentifier"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(MyObject, <span class="built_in">Symbol</span>.hasInstance,&#123;</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Obj = <span class="keyword">new</span> MyObject();</span><br><span class="line"><span class="built_in">console</span>.log(MyObject[<span class="built_in">Symbol</span>.hasInstance](Obj));  <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(Obj <span class="keyword">instanceof</span> MyObject);        <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-<p>要重写一个不可写入的属性，你必须像这个例子一样使用 <code>Object.defineProperty()</code> 。此代码将 <code>Symbol.hasInstance</code> 方法重写为一个始终返回 <code>false</code> 的函数，所以此后即使传入的对象确实是 <code>MyObject</code> 类的一个实例， <code>instanceof</code> 运算符仍然会返回 <code>false</code>。</p>
-<p>当然，你可以基于各种条件来决定一个值是否应当被判断为某个类的实例。例如，将介于 1到 100 之间的数值认定为一个特殊的数值类型，为此你可以书写如下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SpecialNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// empty</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(SpecialNumber, <span class="built_in">Symbol</span>.hasInstance, &#123;</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (v <span class="keyword">instanceof</span> <span class="built_in">Number</span>) &amp;&amp; (v &gt;= <span class="number">1</span> &amp;&amp; v &lt;= <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> two = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">2</span>);</span><br><span class="line">    zero = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(two <span class="keyword">instanceof</span> SpecialNumber);   <span class="comment">//two</span></span><br><span class="line"><span class="built_in">console</span>.log(zero <span class="keyword">instanceof</span> SpecialNumber);  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码重写了 <code>Symbol.hasInstance</code> 方法，在目标对象是数值对象的实例、并且其值介于 1 到100 之间时，返回 true 。于是， <code>SpecialNumber</code> 类会把变量 <code>two</code>判断为自身的一个实例，即使二者之间并不存在直接的定义关联。需要注意的是： <code>instanceof</code> 的操作数必须是一个对象，以便触发 <code>Symbol.hasInstance</code> 调用；若操作数并非对象， instanceof 只会简单地返回 <code>false</code>。</p>
-<h3 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h3><p>JS在数组上设计了<code>concat()</code> 方法用于将两个数组连接在一起，此处示范了如何使用该方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors1 = [<span class="string">"red"</span>, <span class="string">"green"</span>],</span><br><span class="line">    colors2 = colors1.concat([<span class="string">"blue"</span>, <span class="string">"black"</span>]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(colors2.length);    <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(colors2);       <span class="comment">//[ 'red', 'green', 'blue', 'black' ]</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码将一个新数组连接到 <code>colors1</code> 末尾，并创建了 <code>colors2</code> ，后者包含了前两个数组中所有的项。不过， <code>concat()</code> 方法也可以接受非数组的参数，此时这些参数只是简单地被添加到数组末尾，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colors1 = [ <span class="string">"red"</span>, <span class="string">"green"</span> ],</span><br><span class="line">    colors2 = colors1.concat([ <span class="string">"blue"</span>, <span class="string">"black"</span> ], <span class="string">"brown"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors2.length); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(colors2); <span class="comment">// ["red","green","blue","black","brown"]</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码向 <code>concat()</code> 方法传递了一个额外参数 <code>&quot;brown&quot;</code> ，使得它成为数组 <code>colors2</code> 的第 <strong>5</strong> 项。<strong>为何数组类型的参数与字符串类型的参数会被区别对待？这是因为 <code>JS</code> 规范要求此时数组类型的参数需要被自动分离出各个子项，而其他类型的参数无需如此处理。在 ES6 之前，没有任何手段可以改变这种行为。</strong><br><code>Symbol.isConcatSpreadable</code> 属性是一个布尔类型的属性，它表示目标对象拥有长度属性与数值类型的键、并且数值类型键所对应的属性值在参与 <code>concat()</code> 调用时需要被分离为个体。该符号与其他的知名符号不同，默认情况下并不会作为任意常规对象的属性。它只出现在特定类型的对象上，用来标示该对象在作为 <code>concat()</code> 参数时应如何工作，从而有效改变该对象的默认行为。你可以用它来定义任意类型的对象，让该对象在参与 <code>concat()</code> 调用时能够表现得像数组一样，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> collection = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">"Hello"</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">"world"</span>,</span><br><span class="line">    length: <span class="number">2</span>,</span><br><span class="line">    [<span class="built_in">Symbol</span>.isConcatSpreadable]: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> messages = [ <span class="string">"Hi"</span> ].concat(collection);</span><br><span class="line"><span class="built_in">console</span>.log(messages.length); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(messages); <span class="comment">// ["hi","Hello","world"]</span></span><br></pre></td></tr></table></figure>
-
-<p>本例中的 <code>collection</code> 对象的特征类似于数组：拥有长度属性以及两个数值类型的键，并且<code>Symbol.isConcatSpreadable</code> 属性值被设为 <code>true</code> ，用于指示该对象在被添加到数组时应该使用分离的属性值。当 <code>collection</code> 对象被传递给 <code>concat()</code> 方法时， <code>&quot;Hello&quot;</code> 与 <code>&quot;world&quot;</code>被分离为独立的项，并跟在 <code>&quot;hi&quot;</code> 元素之后。</p>
-<div class="note info">
-            <p>你也可以将数组的子类的 <code>Symbol.isConcatSpreadable</code> 属性值设为 <code>false</code> ，用于在<code>concat()</code> 调用时避免项目被分离。子类的介绍在迭代器与生成器部分介绍。</p>
-          </div>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1772,20 +1996,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
