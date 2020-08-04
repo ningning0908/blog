@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计算机网络主要包括实现资源共享，实现数据信息的快速传递。 OSI七层模型             制定组织：ISO(国际标准化组织)作用：使网络通信工作流程标准化应用层：提供用户服务，具体功能有应用程序实现；表示层：数据的压缩优化加密；会话层：建立用户级的连接，选择适当的传输服务；传输层：提供传输服务；网络层：路由选择，网络互联；链路层：进行数据交换，控制具体数据的发送；物理层：提供数据传输的硬件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程基础">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="计算机网络主要包括实现资源共享，实现数据信息的快速传递。 OSI七层模型             制定组织：ISO(国际标准化组织)作用：使网络通信工作流程标准化应用层：提供用户服务，具体功能有应用程序实现；表示层：数据的压缩优化加密；会话层：建立用户级的连接，选择适当的传输服务；传输层：提供传输服务；网络层：路由选择，网络互联；链路层：进行数据交换，控制具体数据的发送；物理层：提供数据传输的硬件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94">
+<meta property="article:published_time" content="2020-08-04T07:29:12.782Z">
+<meta property="article:modified_time" content="2020-08-04T09:36:35.523Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网络编程基础 | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络编程基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-04 15:29:12 / 修改时间：17:36:35" itemprop="dateCreated datePublished" datetime="2020-08-04T15:29:12+08:00">2020-08-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>计算机网络主要包括实现资源共享，实现数据信息的快速传递。</p>
+<h2 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h2><div class="note info">
+            <p>制定组织：ISO(国际标准化组织)<br>作用：使网络通信工作流程标准化<br>应用层：提供用户服务，具体功能有应用程序实现；<br>表示层：数据的压缩优化加密；<br>会话层：建立用户级的连接，选择适当的传输服务；<br>传输层：提供传输服务；<br>网络层：路由选择，网络互联；<br>链路层：进行数据交换，控制具体数据的发送；<br>物理层：提供数据传输的硬件保证，网卡接口，传输介质。</p><hr><p>优点：</p><ol><li>建立了统一的工作机制；</li><li>分部清晰，各司其职，每个步骤分工明确；</li><li>降低了各个模块之间的耦合度，便于开发。</li></ol>
+          </div>
+
+<h2 id="四层模型（TCP-IP模型）"><a href="#四层模型（TCP-IP模型）" class="headerlink" title="四层模型（TCP/IP模型）"></a>四层模型（TCP/IP模型）</h2><p>背景：实际工作中工程师无法按照七层模型要求操作，逐渐演化为更符合实际的四层模型。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94" alt="attr"></p>
+<h3 id="数据传输过程"><a href="#数据传输过程" class="headerlink" title="数据传输过程"></a>数据传输过程</h3><div class="note info">
+            <ol><li>发送端的应用程序发送消息，逐层添加首部信息，最终再物理层发送消息包；</li><li>发送的消息经过多个节点（交换机，路由器）传输，最终到达目标主机；</li><li>目标主机由物理层逐层解析首部消息包，最终到应用程序呈现消息。</li></ol>
+          </div>
+
+<h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p>在网络数据传输中，都遵循的规定，包括建立什么样的数据结构，什么样的特殊标志等。</p>
+<h2 id="网络基础概念"><a href="#网络基础概念" class="headerlink" title="网络基础概念"></a>网络基础概念</h2><h3 id="网络主机（host）"><a href="#网络主机（host）" class="headerlink" title="网络主机（host）"></a>网络主机（host）</h3><div class="note info">
+            <p>功能：标识一台主机在网络中的位置（地址）<br>本地地址：&#39;localhost’,&#39;127.0.0.1’<br>网络地址(IP地址)：&#39;172.60.50.12’（例子）<br>自动获取地址（自动获取合适网卡IP）：&#39;0.0.0.0’</p>
+          </div>
+
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><div class="note info">
+            <p>功能：确定一台主机的网络路由地址<br>结构：</p><ul><li>IPv4 点分十进制表示172.60.50.12，每部分取值范围0-255</li><li>IPv6 128位 扩大了地址范围<br>特殊IP:</li><li>127.0.0.1 本机测试IP</li><li>0.0.0.0 自动获取本机网卡地址</li><li>172.60.50.0 通常表示一个网段</li><li>172.60.50.1 通常表示一个网关</li><li>172.60.50.12用作广播地址<br>域名：</li><li>定义：给网络服务器地址起的名字</li><li>作用：方便记忆，表达一定的含义</li><li>ping[ip]: 测试和某个主机是否联通<br>端口号：</li><li>作用：端口是网络地址的一部分，用于区分主机上不同的网络应用程序</li><li>特点：一个系统中的应用监听端口不能重复</li><li>取值范围：1-65535  1-1023系统应用或者大众程序监听端口；1024-65535自用端口</li></ul>
+          </div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/03/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%A4%A7%E7%96%86%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/" rel="prev" title="大疆前端笔试汇总（笔试前准备版）">
+      <i class="fa fa-chevron-left"></i> 大疆前端笔试汇总（笔试前准备版）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%A3%E5%88%97/" rel="next" title="散列">
+      散列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI七层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四层模型（TCP-IP模型）"><span class="nav-number">2.</span> <span class="nav-text">四层模型（TCP&#x2F;IP模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输过程"><span class="nav-number">2.1.</span> <span class="nav-text">数据传输过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络协议"><span class="nav-number">2.2.</span> <span class="nav-text">网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础概念"><span class="nav-number">3.</span> <span class="nav-text">网络基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络主机（host）"><span class="nav-number">3.1.</span> <span class="nav-text">网络主机（host）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址"><span class="nav-number">3.2.</span> <span class="nav-text">IP地址</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

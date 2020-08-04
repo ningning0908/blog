@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaScript之防篡改对象（高级技巧）在实际开发中，有时会无意地修改了别人的代码，或者用不兼容的功能重写原生对象，这样会给整个开发带来困扰。使用防篡改方式可以防止别人篡改对象代码。 注：一旦对象定义为防篡改，就无法撤销了。也就是说无法改回来了。 不可扩展对象在默认情况下，所有对象都是可以扩展的，也就是说，无论什么时候都可以向对象中添加属性和方法。例如以下，先定义一个对象，再向其添加一个新属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大疆前端笔试汇总（笔试前准备版）">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/08/03/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%A4%A7%E7%96%86%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="JavaScript之防篡改对象（高级技巧）在实际开发中，有时会无意地修改了别人的代码，或者用不兼容的功能重写原生对象，这样会给整个开发带来困扰。使用防篡改方式可以防止别人篡改对象代码。 注：一旦对象定义为防篡改，就无法撤销了。也就是说无法改回来了。 不可扩展对象在默认情况下，所有对象都是可以扩展的，也就是说，无论什么时候都可以向对象中添加属性和方法。例如以下，先定义一个对象，再向其添加一个新属性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95javascript%E6%8F%8F%E8%BF%B0/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E5%8C%BA%E5%88%AB%E5%AF%B9%E6%AF%94%E8%A1%A8.png">
+<meta property="article:published_time" content="2020-08-03T12:52:44.390Z">
+<meta property="article:modified_time" content="2020-08-04T07:21:28.332Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="前端面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95javascript%E6%8F%8F%E8%BF%B0/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E5%8C%BA%E5%88%AB%E5%AF%B9%E6%AF%94%E8%A1%A8.png">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/08/03/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%A4%A7%E7%96%86%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>大疆前端笔试汇总（笔试前准备版） | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/03/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%A4%A7%E7%96%86%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大疆前端笔试汇总（笔试前准备版）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 20:52:44" itemprop="dateCreated datePublished" datetime="2020-08-03T20:52:44+08:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-04 15:21:28" itemprop="dateModified" datetime="2020-08-04T15:21:28+08:00">2020-08-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="JavaScript之防篡改对象（高级技巧）"><a href="#JavaScript之防篡改对象（高级技巧）" class="headerlink" title="JavaScript之防篡改对象（高级技巧）"></a>JavaScript之防篡改对象（高级技巧）</h2><p>在实际开发中，有时会无意地修改了别人的代码，或者用不兼容的功能重写原生对象，这样会给整个开发带来困扰。使用防篡改方式可以防止别人篡改对象代码。</p>
+<p><strong>注：一旦对象定义为防篡改，就无法撤销了。也就是说无法改回来了。</strong></p>
+<h3 id="不可扩展对象"><a href="#不可扩展对象" class="headerlink" title="不可扩展对象"></a>不可扩展对象</h3><p>在默认情况下，所有对象都是可以扩展的，也就是说，无论什么时候都可以向对象中添加属性和方法。例如以下，先定义一个对象，再向其添加一个新属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line">obj.age = <span class="number">21</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.age)  <span class="comment">// 21</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>即使先定义好一个对象，后面也可以向其新添加属性和方法。</strong></p>
+<h4 id="Object-preventExtensions-方法"><a href="#Object-preventExtensions-方法" class="headerlink" title="Object.preventExtensions()方法"></a>Object.preventExtensions()方法</h4><p>现在使用<code>Object.preventExtensions()</code>方法可以改变这个行为，这样就不能向对象中新添加属性和方法了。<strong>不可扩展量一级保护措施。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(obj);</span><br><span class="line">obj.age = <span class="number">21</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.age);  <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改原有的属性</span></span><br><span class="line">obj.name = <span class="string">"Bob"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">//Bob</span></span><br></pre></td></tr></table></figure>
+<p><strong>可以发现，使用了Object.preventExtensions()方法，就不能向对象中新添加属性和方法了，但是可以修改对象原有的属性和方法。</strong></p>
+<h4 id="Object-isExtensible-方法"><a href="#Object-isExtensible-方法" class="headerlink" title="Object.isExtensible()方法"></a>Object.isExtensible()方法</h4><p>使用这个方法可以确定对象是否为可篡改，如果可篡改，则返回<code>true</code>，相反返回<code>false</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(obj));  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(obj);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(obj));  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="密封的对象"><a href="#密封的对象" class="headerlink" title="密封的对象"></a>密封的对象</h3><p>对象的第二个保护级别就是密封对象，密封对象不可扩展，且其对象的属性特性<code>[[Configurable]]</code>被设置为<code>false</code>，意味着对象的属性和方法不能通过<code>delete</code>操作符删除。<br>该方法用于密封对象。</p>
+<h4 id="Object-seal-方法"><a href="#Object-seal-方法" class="headerlink" title="Object.seal()方法"></a>Object.seal()方法</h4><p>该方法用于密封对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//密封对象</span></span><br><span class="line"><span class="built_in">Object</span>.seal(obj);</span><br><span class="line"> </span><br><span class="line">obj.age = <span class="number">21</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.age); <span class="comment">//undefined 不能新添加属性</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">//Tom 不能删除对象的属性</span></span><br></pre></td></tr></table></figure>
+<p>密封的对象不能新添加属性、不能删除属性。拥有了不可扩展对象的特性。</p>
+<h4 id="Object-isSealed-方法"><a href="#Object-isSealed-方法" class="headerlink" title="Object.isSealed()方法"></a>Object.isSealed()方法</h4><p>该方法用于确定对象是否是密封对象，如果是密封对象返回true，相反返回false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(obj)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(Ojbect.isSealed(obj)); <span class="comment">//false</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">Object</span>.seal(obj);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.isExtensible(obj)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(Ojbect.isSealed(obj)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="冻结对象"><a href="#冻结对象" class="headerlink" title="冻结对象"></a>冻结对象</h3><p>保护对象的最高级防篡改就是冻结对象。冻结的对象，即是不可扩展的，也是密封的，而且其属性的特性<code>[[Writable]]</code>被设置为<code>false</code>，也就是说<strong>属性值也不能修改</strong>。</p>
+<h4 id="Object-freeze-方法"><a href="#Object-freeze-方法" class="headerlink" title="Object.freeze()方法"></a>Object.freeze()方法</h4><p>该方法用于设置对象为冻结对象。冻结对象同时拥有了不可扩展对象、密封对象的特性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.freeze(obj); <span class="comment">//冻结对象</span></span><br><span class="line">obj.age = <span class="number">21</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.age);  <span class="comment">//undefined 不可扩展</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);  <span class="comment">//Tom 不可删除</span></span><br><span class="line">obj.name = <span class="string">"Bob"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name)   <span class="comment">//Tom 不可修改</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Object-isFrozen-方法"><a href="#Object-isFrozen-方法" class="headerlink" title="Object.isFrozen()方法"></a>Object.isFrozen()方法</h4><p>该方法用于确定对象是否是冻结对象。如果是返回true，相反返回false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">"Tom"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//未冻结之前</span></span><br><span class="line"><span class="built_in">console</span>.log(Oject.isExtensible(obj)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(Oject.isSealed(obj)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(Oject.isFrozen(obj)); <span class="comment">//false</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//冻结对象之后</span></span><br><span class="line"><span class="built_in">Object</span>.freeze(obj); <span class="comment">//冻结对象</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(Oject.isExtensible(obj)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(Oject.isSealed(obj)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(Oject.isFrozen(obj)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结： 不可扩展对象、密封对象均可修改属性。不可扩展对象、密封对象、冻结对象均不可扩展。密封对象、冻结对象均不可删除属性。</strong></p>
+<h2 id="CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？"><a href="#CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？" class="headerlink" title="CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？"></a>CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？</h2><h3 id="CSS-选择符有哪些？"><a href="#CSS-选择符有哪些？" class="headerlink" title="CSS 选择符有哪些？"></a>CSS 选择符有哪些？</h3><div class="note info">
+            <p>1.id选择器（#id）<br>2.类选择器（.class）<br>3.标签选择器（div，h1，p）<br>4.相邻选择器（h1 + p）<br>5.子选择器（ul &gt; li）<br>6.后代选择器（li a）<br>7.通配符选择器（ * ）<br>8.属性选择器（a[title]）<br>9.伪类选择器（a:hover，li:nth-child）</p>
+          </div>
+
+<h3 id="可继承的样式"><a href="#可继承的样式" class="headerlink" title="可继承的样式"></a>可继承的样式</h3><div class="note info">
+            <p>1.字体系列属性 font，font-family，font-weight，font-size，font-style，font-variant，font-stretch，font-size-adjust<br>2.文本系列属性 text-indent，text-align，line-height，word-spacing，letter-spacing，text-transform，direction，color<br>3.元素可见性 visibility<br>4.表格布局属性 caption-side，border-collapse，border-spacing，empty-cells，table-layout<br>5.列表布局属性 list-style-type，list-style-image，list-style-position，list-style<br>6.生成内容属性 quotes<br>7.光标属性 cursor<br>8.页面样式属性 page，page-break-inside，windows，orphans<br>9.声音样式属性 speak，speak-punctuation，speak-numeral，speak-header，speech-rate，volume，voice-family，pitch，pitch-range，stress，richness，azimuth，elevation</p>
+          </div>
+
+<h3 id="优先级算法如何计算？"><a href="#优先级算法如何计算？" class="headerlink" title="优先级算法如何计算？"></a>优先级算法如何计算？</h3><div class="note info">
+            <p>1.优先级就近原则，同权重情况下样式定义最近者为准；<br>2.载入样式以最后载入的定位为准；<br>3.!important &gt; id &gt; class &gt; tag；<br>4.important 比 内联优先级高，但内联比id要高。</p>
+          </div>
+
+<h2 id="前端三种存储方式"><a href="#前端三种存储方式" class="headerlink" title="前端三种存储方式"></a>前端三种存储方式</h2><p>参考： <a href="https://blog.csdn.net/qq_40779721/article/details/79196893" target="_blank" rel="noopener">https://blog.csdn.net/qq_40779721/article/details/79196893</a><br>js-cookie使用： <a href="https://www.cnblogs.com/zzz-knight/p/11692362.html" target="_blank" rel="noopener">https://www.cnblogs.com/zzz-knight/p/11692362.html</a></p>
+<h2 id="什么是面向对象？面向对象的特征是什么？"><a href="#什么是面向对象？面向对象的特征是什么？" class="headerlink" title="什么是面向对象？面向对象的特征是什么？"></a>什么是面向对象？面向对象的特征是什么？</h2><p>参考：<a href="https://www.cnblogs.com/zhengyufeng/p/10992972.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhengyufeng/p/10992972.html</a><br>和另一篇博客：<br><a href="http://localhost:4000/blog/2020/04/17/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" target="_blank" rel="noopener">http://localhost:4000/blog/2020/04/17/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</a></p>
+<h2 id="千位分隔符（js实现）"><a href="#千位分隔符（js实现）" class="headerlink" title="千位分隔符（js实现）"></a>千位分隔符（js实现）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//方法一</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 千位分隔符(js 实现)</span></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">thousandBitSeparator</span><span class="params">(str)</span></span>&#123; </span></span><br><span class="line"><span class="javascript">    str = <span class="built_in">String</span>(str);</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span> (str.indexOf(<span class="string">'.'</span>)&gt;=<span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> postfix = str.substring(str.indexOf(<span class="string">'.'</span>));</span></span><br><span class="line"><span class="actionscript">        str = str.substring(<span class="number">0</span>,str.indexOf(<span class="string">'.'</span>));</span></span><br><span class="line"><span class="actionscript">    &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> postfix = <span class="string">''</span>;</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="actionscript">    <span class="comment">// console.log(postfix);</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// .99</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// console.log(str);</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 9999999999999</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> iNum = str.length % <span class="number">3</span>; </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> prev = <span class="string">''</span>; </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> iNow = <span class="number">0</span>; </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> temp = <span class="string">''</span>; </span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> arr = []; </span></span><br><span class="line">    if (iNum != 0)&#123; </span><br><span class="line">        prev = str.substring(0, iNum); </span><br><span class="line">        arr.push(prev); </span><br><span class="line">    &#125; </span><br><span class="line">    str = str.substring(iNum); </span><br><span class="line"><span class="actionscript">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++)&#123; </span></span><br><span class="line">        iNow++; </span><br><span class="line">        temp += str[i]; </span><br><span class="line">        if (iNow == 3 &amp;&amp; temp)&#123; </span><br><span class="line">          arr.push(temp); </span><br><span class="line"><span class="actionscript">          temp = <span class="string">''</span>; </span></span><br><span class="line">          iNow = 0; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line"><span class="actionscript">    <span class="comment">// console.log(arr);</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// ["9", "999", "999", "999", "999"]</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> arr.join(<span class="string">','</span>) + postfix; </span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(thousandBitSeparator(<span class="string">'9999999999999.99222'</span>));</span></span><br><span class="line"><span class="actionscript"><span class="comment">// 9,999,999,999,999.99</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="comment">//方法二，正则表达式</span></span></span><br><span class="line"><span class="actionscript"><span class="comment">// 正则</span></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">thousandBitSeparator</span><span class="params">(num)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> num</span></span><br><span class="line">        .toString()</span><br><span class="line"><span class="javascript">        .replace(<span class="regexp">/(\d)(?=(\d&#123;3&#125;)+\.)/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>, $<span class="number">1</span></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> $<span class="number">1</span> + <span class="string">","</span>;</span></span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(thousandBitSeparator(<span class="number">-1234567.9012</span>));</span></span><br><span class="line"><span class="actionscript"><span class="comment">// -1,234,567.9012</span></span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>参考：<a href="https://www.cnblogs.com/onepixel/articles/7674659.html" target="_blank" rel="noopener">https://www.cnblogs.com/onepixel/articles/7674659.html</a><br>我写过的快排代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">方法一：</span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//待排序的区域至少有两个元素</span></span><br><span class="line">    <span class="keyword">let</span> len = array.length</span><br><span class="line">    left = <span class="keyword">typeof</span> left != <span class="string">'number'</span>? <span class="number">0</span> : left;</span><br><span class="line">    right = <span class="keyword">typeof</span> right != <span class="string">'number'</span>? len - <span class="number">1</span> : right;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        mid = partition(array,left,right)</span><br><span class="line">        quickSort(array,left,mid<span class="number">-1</span>)</span><br><span class="line">        quickSort(array,mid+<span class="number">1</span>,right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//分区操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr, left ,right</span>) </span>&#123;     <span class="comment">// 分区操作</span></span><br><span class="line">    <span class="keyword">let</span> pivot = left,                      <span class="comment">// 设定基准值（pivot）</span></span><br><span class="line">        index = pivot + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = index; i &lt;= right; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i] &lt; arr[pivot]) &#123;</span><br><span class="line">            swap(arr, i, index);</span><br><span class="line">            index++;</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, pivot, index - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> index<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, i, j</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = arr[i];</span><br><span class="line">    arr[i] = arr[j];</span><br><span class="line">    arr[j] = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = quickSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line">--------------------------------------------------------------------</span><br><span class="line">方法二：</span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length</span><br><span class="line">    left = <span class="keyword">typeof</span> left != <span class="string">'number'</span>? <span class="number">0</span> : left;</span><br><span class="line">    right = <span class="keyword">typeof</span> right != <span class="string">'number'</span>? len - <span class="number">1</span> : right;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        mid = partition(array,left,right)</span><br><span class="line">        quickSort(array,left,mid<span class="number">-1</span>)</span><br><span class="line">        quickSort(array,mid+<span class="number">1</span>,right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//分区函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    temp = array[left]</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; array[right] &gt;= temp) &#123;</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        array[left] = array[right]</span><br><span class="line">         <span class="keyword">while</span> (left &lt; right &amp;&amp; array[left] &lt;= temp) &#123;</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">         &#125;</span><br><span class="line">        array[right] = array[left]</span><br><span class="line">    &#125;</span><br><span class="line">    array[left] = temp</span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort(list))</span><br></pre></td></tr></table></figure>
+<h2 id="数组和链表的区别"><a href="#数组和链表的区别" class="headerlink" title="数组和链表的区别"></a>数组和链表的区别</h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95javascript%E6%8F%8F%E8%BF%B0/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8%E5%8C%BA%E5%88%AB%E5%AF%B9%E6%AF%94%E8%A1%A8.png" alt="数组和链表区别对比表"></p>
+<h2 id="强制缓存和协商缓存的区别"><a href="#强制缓存和协商缓存的区别" class="headerlink" title="强制缓存和协商缓存的区别"></a>强制缓存和协商缓存的区别</h2><p>很棒的总结： <a href="https://segmentfault.com/a/1190000016199807" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016199807</a></p>
+<h2 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h2><p>参考博客： <a href="https://www.cnblogs.com/zgq0/p/8780893.html" target="_blank" rel="noopener">https://www.cnblogs.com/zgq0/p/8780893.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" rel="tag"># 前端面经</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%AD%97%E5%85%B8/" rel="prev" title="字典">
+      <i class="fa fa-chevron-left"></i> 字典
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" rel="next" title="网络编程基础">
+      网络编程基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript之防篡改对象（高级技巧）"><span class="nav-number">1.</span> <span class="nav-text">JavaScript之防篡改对象（高级技巧）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不可扩展对象"><span class="nav-number">1.1.</span> <span class="nav-text">不可扩展对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-preventExtensions-方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">Object.preventExtensions()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-isExtensible-方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">Object.isExtensible()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密封的对象"><span class="nav-number">1.2.</span> <span class="nav-text">密封的对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-seal-方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">Object.seal()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-isSealed-方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">Object.isSealed()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冻结对象"><span class="nav-number">1.3.</span> <span class="nav-text">冻结对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-freeze-方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">Object.freeze()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-isFrozen-方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">Object.isFrozen()方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？"><span class="nav-number">2.</span> <span class="nav-text">CSS选择符有哪些？哪些属性可以继承？优先级算法如何计算？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-选择符有哪些？"><span class="nav-number">2.1.</span> <span class="nav-text">CSS 选择符有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可继承的样式"><span class="nav-number">2.2.</span> <span class="nav-text">可继承的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级算法如何计算？"><span class="nav-number">2.3.</span> <span class="nav-text">优先级算法如何计算？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端三种存储方式"><span class="nav-number">3.</span> <span class="nav-text">前端三种存储方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是面向对象？面向对象的特征是什么？"><span class="nav-number">4.</span> <span class="nav-text">什么是面向对象？面向对象的特征是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#千位分隔符（js实现）"><span class="nav-number">5.</span> <span class="nav-text">千位分隔符（js实现）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组和链表的区别"><span class="nav-number">7.</span> <span class="nav-text">数组和链表的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制缓存和协商缓存的区别"><span class="nav-number">8.</span> <span class="nav-text">强制缓存和协商缓存的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间的通信方式"><span class="nav-number">9.</span> <span class="nav-text">进程间的通信方式</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
