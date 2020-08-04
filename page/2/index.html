@@ -185,6 +185,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/07/09/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E6%AE%B5%E9%A1%B5%E9%9D%A2/" class="post-title-link" itemprop="url">剩余时间段页面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-09 17:06:20" itemprop="dateCreated datePublished" datetime="2020-07-09T17:06:20+08:00">2020-07-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-10 21:30:56" itemprop="dateModified" datetime="2020-07-10T21:30:56+08:00">2020-07-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E9%9A%BE%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">项目中的难点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>js 24小时制 给定多个时间段 计算剩下的时间段</strong><br>废话不多说，直接上图，为达到图中的功能，最后一个时间段是由其他几个时间段计算出来的，下图中的平时段是自动计算得到的。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E9%A1%B9%E7%9B%AE%E9%9A%BE%E7%82%B9/1594285891%281%29.png" alt="自定义输入时段个数及每个时段的输入时间，计算出最后一个时段的剩余时间段"><br>代码如下，代码很简单，就是为了满足条件操作时间的时候，逻辑上很恶心，vue代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"peakValleySetting"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"padding: 10px 20px"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 最后一个输入时段之前的时段可以进行自定义 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(item,i) in sourceFirst"</span> <span class="attr">:key</span>=<span class="string">"i"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dateSetting"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.name &#125;&#125;: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-time-picker</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-for</span>=<span class="string">"(res, m) of item.items"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">:key</span>=<span class="string">"m"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-model</span>=<span class="string">"item.items[m]"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">is-range</span></span></span><br><span class="line"><span class="tag">              <span class="attr">format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">range-separator</span>=<span class="string">"-"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">start-placeholder</span>=<span class="string">"开始时间"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">end-placeholder</span>=<span class="string">"结束时间"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">placeholder</span>=<span class="string">"请选择时间范围"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">              <span class="attr">v-if</span>=<span class="string">"item.items.length &gt;= 1"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">type</span>=<span class="string">"danger"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">icon</span>=<span class="string">"el-icon-delete"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">              @<span class="attr">click</span>=<span class="string">"onDelete(item, sourceFirst)"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">              <span class="attr">type</span>=<span class="string">"success"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">icon</span>=<span class="string">"el-icon-circle-plus"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">              <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">              @<span class="attr">click</span>=<span class="string">"onAdd(item.name, sourceFirst)"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dateSetting"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; sourceLast.name &#125;&#125;: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-time-picker</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-for</span>=<span class="string">"(res, m) of sourceLast.items"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:key</span>=<span class="string">"m"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-model</span>=<span class="string">"sourceLast.items[m]"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">is-range</span></span></span><br><span class="line"><span class="tag">            <span class="attr">format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">value-format</span>=<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">range-separator</span>=<span class="string">"-"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">start-placeholder</span>=<span class="string">"开始时间"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">end-placeholder</span>=<span class="string">"结束时间"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">placeholder</span>=<span class="string">"选择时间范围"</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">type</span>=<span class="string">"success"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">icon</span>=<span class="string">"el-icon-circle-plus"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">circle</span></span></span><br><span class="line"><span class="tag">            <span class="attr">size</span>=<span class="string">"mini"</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">click</span>=<span class="string">"lastAdd(sourceLast)"</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      date: <span class="string">''</span>,</span></span><br><span class="line">      sourceFirst: [</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'峰时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'谷时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="actionscript">          name: <span class="string">'缓冲时段'</span>,</span></span><br><span class="line">          items: [],</span><br><span class="line"><span class="actionscript">          radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">          change: <span class="string">''</span></span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      sourceLast: &#123;</span><br><span class="line"><span class="actionscript">        name: <span class="string">'平时段'</span>,</span></span><br><span class="line">        items: [],</span><br><span class="line"><span class="actionscript">        radio: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">        change: <span class="string">''</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onAdd(name, source) &#123;</span><br><span class="line"><span class="javascript">      source.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name == name) &#123;</span><br><span class="line"><span class="actionscript">          item.items.push(<span class="string">' '</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    onDelete(time, source) &#123;</span><br><span class="line"><span class="javascript">      source.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name == time.name &amp;&amp; time.items.length &gt;= 1) &#123;</span><br><span class="line">          item.items.pop()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 获得输入时间段数组</span></span></span><br><span class="line">    getArr() &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arr = []</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.sourceFirst.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line">        if (item.name) &#123;</span><br><span class="line"><span class="javascript">          item.items.map(<span class="function"><span class="params">m</span> =&gt;</span> &#123;</span></span><br><span class="line">            arr.push(m)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> arr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 显示按钮</span></span></span><br><span class="line">    lastAdd(last) &#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">// 获得时间段数组</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arr = <span class="keyword">this</span>.getArr()</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> newArr = []</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 时间格式化为HH:mm形式</span></span></span><br><span class="line"><span class="javascript">      arr.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">if</span> (item != <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="actionscript">          newArr.push([(<span class="string">'0'</span> + item[<span class="number">0</span>].getHours().toString()).slice(<span class="number">-2</span>) + <span class="string">':'</span> + (<span class="string">'0'</span> + item[<span class="number">0</span>].getMinutes().toString()).slice(<span class="number">-2</span>),</span></span><br><span class="line"><span class="actionscript">            (<span class="string">'0'</span> + item[<span class="number">1</span>].getHours().toString()).slice(<span class="number">-2</span>) + <span class="string">':'</span> + (<span class="string">'0'</span> + item[<span class="number">1</span>].getMinutes().toString()).slice(<span class="number">-2</span>)])</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> result = <span class="keyword">this</span>.time(newArr)</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(result)</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sourceLast.items = result</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// time 计算方法</span></span></span><br><span class="line">    time(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> newArr = <span class="keyword">this</span>.formatTime(arr)</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> sortArr = <span class="keyword">this</span>.timeSort(newArr) <span class="comment">// 时间段进行排序</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(sortArr)</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> aaa = <span class="string">'00:00'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> bbb = <span class="string">'23:59'</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> resArr = []</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 开始比较</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span> (sortArr[<span class="number">0</span>] != <span class="literal">undefined</span> &amp;&amp; aaa &lt; sortArr[<span class="number">0</span>][<span class="number">0</span>]) &#123;</span></span><br><span class="line">        resArr.push([aaa, sortArr[0][0]])</span><br><span class="line">      &#125;</span><br><span class="line"><span class="javascript">      sortArr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span></span><br><span class="line">        if (index === sortArr.length - 1) &#123;</span><br><span class="line"><span class="actionscript">          <span class="keyword">return</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> startTime = item[<span class="number">1</span>]</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> endTime = sortArr[index + <span class="number">1</span>][<span class="number">0</span>]</span></span><br><span class="line">        if (startTime &lt; endTime) &#123;</span><br><span class="line">          resArr.push([startTime, endTime])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span> (sortArr[sortArr.length - <span class="number">1</span>] != <span class="literal">undefined</span> &amp;&amp; bbb &gt; sortArr[sortArr.length - <span class="number">1</span>][<span class="number">1</span>]) &#123;</span></span><br><span class="line">        resArr.push([sortArr[sortArr.length - 1][1], bbb])</span><br><span class="line">      &#125;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> resArr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 如果存在 ['22:00','00:10']  这样格式的 转化为['22:00','23:59'] 和['00:00','00:10']</span></span></span><br><span class="line">    formatTime(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">const</span> newArr = [...arr]</span></span><br><span class="line"><span class="javascript">      arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (<span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;item[<span class="number">0</span>]&#125;</span>:00`</span>) &gt; <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;item[<span class="number">1</span>]&#125;</span>:00`</span>)) &#123;</span></span><br><span class="line">          newArr.splice(index, 1)</span><br><span class="line"><span class="actionscript">          newArr.push([item[<span class="number">0</span>], <span class="string">'23:59'</span>])</span></span><br><span class="line"><span class="actionscript">          newArr.push([<span class="string">'00:00'</span>, item[<span class="number">1</span>]])</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> newArr</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    <span class="comment">// 时间  排序</span></span></span><br><span class="line">    timeSort(arr) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> arrSort = arr.sort(<span class="function"><span class="keyword">function</span><span class="params">(a, b)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;a[<span class="number">0</span>]&#125;</span>:00`</span>) - <span class="built_in">Date</span>.parse(<span class="string">`2000/01/01 <span class="subst">$&#123;b[<span class="number">0</span>]&#125;</span>:00`</span>)</span></span><br><span class="line">      &#125;)</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> arrSort</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.peakValleySetting</span> &#123;</span></span><br><span class="line">  position: relative;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 50%;</span><br><span class="line"><span class="css">  <span class="comment">/* padding: 10px; */</span></span></span><br><span class="line">  background-color: white;</span><br><span class="line">  border: 2px solid rgb(141, 137, 79);</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.dateSetting</span> &#123;</span></span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.el-date-editor</span><span class="selector-class">.el-input</span>,</span></span><br><span class="line"><span class="css"><span class="selector-class">.el-date-editor</span><span class="selector-class">.el-input__inner</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">width</span>: 12<span class="selector-class">.105vw</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/06/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/DOM%E6%89%A9%E5%B1%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1636,299 +1710,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/05/15/HTML5+CSS3/HTML5%E6%A0%87%E7%AD%BE(%E4%B8%8B)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/05/15/HTML5+CSS3/HTML5%E6%A0%87%E7%AD%BE(%E4%B8%8B)/" class="post-title-link" itemprop="url">HTML标签(下)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-15 13:04:36" itemprop="dateCreated datePublished" datetime="2020-05-15T13:04:36+08:00">2020-05-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-17 23:44:23" itemprop="dateModified" datetime="2020-05-17T23:44:23+08:00">2020-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/HTML5-CSS3/" itemprop="url" rel="index"><span itemprop="name">HTML5+CSS3</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="表格标签"><a href="#表格标签" class="headerlink" title="表格标签"></a>表格标签</h2><h3 id="表格标签的基本语法"><a href="#表格标签的基本语法" class="headerlink" title="表格标签的基本语法:"></a>表格标签的基本语法:</h3><ul>
-<li><ol>
-<li><code>&lt;table&gt;&lt;/table&gt;</code>是用于定义表格的标签。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li><code>&lt;tr&gt;&lt;/tr&gt;</code>标签用于定义表格中的行，必须嵌套在<code>&lt;table&gt;&lt;/table&gt;</code>标签中。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li><code>&lt;td&gt;&lt;/td&gt;</code>用于定义表格中的单元格，必须嵌套在<code>&lt;tr&gt;&lt;/tr&gt;</code>标签中。</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>字母td指表格数据(table data)，即数据单元格的内容。</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>单元格内的文字<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表头单元格标签"><a href="#表头单元格标签" class="headerlink" title="表头单元格标签"></a>表头单元格标签</h3><p><code>&lt;th&gt;</code>标签表示HTML表格的表头部分(table head)：会加粗居中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span> <span class="tag">&lt;<span class="name">th</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">th</span>&gt;</span> <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>刘德华<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>56<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>张学友<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">td</span>&gt;</span>56<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="表格属性"><a href="#表格属性" class="headerlink" title="表格属性"></a>表格属性</h3><p>表格标签这部分属性在实际开发中不常用，后面用CSS来设置。</p>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>align</td>
-<td>left  center  right</td>
-<td>规定相对周围元素的对齐方式</td>
-</tr>
-<tr>
-<td>border</td>
-<td>1或””</td>
-<td>规定表格单元是否拥有边框，默认为””,表示没有边框</td>
-</tr>
-<tr>
-<td>cellpadding</td>
-<td>像素值</td>
-<td>规定单元边沿其内容之间的空白，默认1像素</td>
-</tr>
-<tr>
-<td>cellspacing</td>
-<td>像素值</td>
-<td>规定单元格之间的空白，默认2像素</td>
-</tr>
-<tr>
-<td>width</td>
-<td>像素值或百分比</td>
-<td>规定表格的宽度</td>
-</tr>
-</tbody></table>
-<h3 id="表格结构标签"><a href="#表格结构标签" class="headerlink" title="表格结构标签"></a>表格结构标签</h3><p>表格分为头部区域与主体区域<br><code>&lt;thead&gt;&lt;/thead&gt;</code>表示表格的头部区域，<code>&lt;tbody&gt;&lt;/tbody&gt;</code>表示表格的主体区域。</p>
-<h3 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h3><ul>
-<li>1.合并单元格的方式：<ul>
-<li>跨行合并：rowspan=”合并单元格的个数”，最上侧为目标单元格，写合并代码；</li>
-<li>跨列合并：colspan=”合并单元格的个数”，最左侧为目标单元格，写合并代码。</li>
-</ul>
-</li>
-<li>2.合并单元格三部曲：<ul>
-<li>先确定是跨行还是跨列</li>
-<li>找到目标单元格，写上合并方式=”合并的单元格数量”，比如：<code>&lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;</code></li>
-<li>删除多余的单元格</li>
-</ul>
-</li>
-</ul>
-<h2 id="列表标签"><a href="#列表标签" class="headerlink" title="列表标签"></a>列表标签</h2><p>表格是用来展示数据的，列表是用来布局的，列表最大的特点就是整洁、有序，它作为布局会更加自由和方便。</p>
-<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p><code>&lt;ul&gt;&lt;/ul&gt;</code>标签表示HTML页面中的无序列表，一般会以项目符号呈现列表项，而列表项使用<code>&lt;li&gt;&lt;/li&gt;</code>标签定义。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.无序列表的各个列表项之间没有顺序级别之分，是并列的。</li>
-<li>2.<code>&lt;ul&gt;&lt;/ul&gt;</code>中只能嵌套<code>&lt;li&gt;&lt;/li&gt;</code>，直接在<code>&lt;ul&gt;&lt;/ul&gt;</code>中输入其它标签或者文字的做法是不被允许的。</li>
-<li>3.<code>&lt;li&gt;&lt;/li&gt;</code>相当于一个容器，可以容纳所有元素。</li>
-<li>4.无序列表会带有自己的样式属性，但在实际应用时，我们使用CSS来设置。</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>在HTML中，<code>&lt;ol&gt;</code>标签用于定义有序列表，列表排序以数字来显示，并且使用<code>&lt;li&gt;</code>标签来定义列表项。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;ol&gt;&lt;/ol&gt;</code>中只能放<code>&lt;li&gt;&lt;/li&gt;</code>，不允许放其他元素。</li>
-<li>2.<code>&lt;li&gt;&lt;/li&gt;</code>相当于一个容器，可以容纳所有元素。</li>
-<li>3.有序列表会带有自己的样式属性，但在实际应用时，我们使用CSS来设置。</li>
-</ul>
-<h3 id="自定义列表"><a href="#自定义列表" class="headerlink" title="自定义列表"></a>自定义列表</h3><p>自定义列表经常用于对术语或者名词进行解释和描述，定义列表的列表项前没有任何项目符号。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>名词1<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释1<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释2<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>名词1解释3<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;dl&gt;</code>里只能出现<code>&lt;dt&gt;</code>与<code>&lt;dd&gt;</code></li>
-<li>2.<code>&lt;dt&gt;</code>与<code>&lt;dd&gt;</code>标签个数无限制</li>
-</ul>
-<h2 id="表单标签"><a href="#表单标签" class="headerlink" title="表单标签"></a>表单标签</h2><p>使用表单标签的目的是为了收集用户信息，在HTML中，一个完整的表单通常由表单域、表单控件(表单元素)和提示信息3个部分组成。</p>
-<h3 id="表单域：是一个包含表单元素的区域。"><a href="#表单域：是一个包含表单元素的区域。" class="headerlink" title="表单域：是一个包含表单元素的区域。"></a>表单域：是一个包含表单元素的区域。</h3><p>在HTML中，<code>&lt;form&gt;&lt;/form&gt;</code>标签用于定义表单域，以实现用户信息的收集和传递。<code>&lt;form&gt;&lt;/form&gt;</code>会把它范围内的表单元素提交给服务器。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"url地址"</span> <span class="attr">method</span>=<span class="string">"提交方式"</span> <span class="attr">name</span>=<span class="string">"表单域名称"</span>&gt;</span>各种表单元素控件<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>常用属性</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>action</td>
-<td>url地址</td>
-<td>用于指定接收并处理表单数据的服务器程序的url地址</td>
-</tr>
-<tr>
-<td>method</td>
-<td>get/post</td>
-<td>用于设置表单数据的提交方式，其取值为get/post</td>
-</tr>
-<tr>
-<td>name</td>
-<td>名称</td>
-<td>用于指定表单的名称，以区分一个页面中的多个表单域</td>
-</tr>
-</tbody></table>
-<h3 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h3><p><strong><code>&lt;input&gt;</code>表单元素：用于手机用户信息。</strong><br>语法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"属性"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>type属性的属性值及其描述如下：</p>
-<table>
-<thead>
-<tr>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>button</td>
-<td>定义可点击按钮</td>
-</tr>
-<tr>
-<td>checkbox</td>
-<td>定义复选框</td>
-</tr>
-<tr>
-<td>file</td>
-<td>定义输入字段和”浏览”按钮，供文件上传</td>
-</tr>
-<tr>
-<td>hidden</td>
-<td>定义隐藏的输入字段</td>
-</tr>
-<tr>
-<td>image</td>
-<td>定义图像形式的提交按钮</td>
-</tr>
-<tr>
-<td>password</td>
-<td>定义密码字段，该字段的字符被掩码</td>
-</tr>
-<tr>
-<td>radio</td>
-<td>定义单选按钮</td>
-</tr>
-<tr>
-<td>reset</td>
-<td>定义重置按钮，重置按钮会清除表单中的所有数据</td>
-</tr>
-<tr>
-<td>submit</td>
-<td>定义提交按钮，提交按钮会把表单数据发送到服务器</td>
-</tr>
-<tr>
-<td>text</td>
-<td>定义单行的输入字段，用户可在其中输入文本，默认宽度20个字符</td>
-</tr>
-</tbody></table>
-<p>除type属性外，还有其他属性，其常用属性如下：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>name</td>
-<td>由用户定义</td>
-<td>定义input元素的名称</td>
-</tr>
-<tr>
-<td>value</td>
-<td>由用户定义</td>
-<td>定义input元素的值</td>
-</tr>
-<tr>
-<td>checked</td>
-<td>checked</td>
-<td>规定此input元素首次加载时应当被选中</td>
-</tr>
-<tr>
-<td>maxlength</td>
-<td>正整数</td>
-<td>规定输入字段的字符的最大长度</td>
-</tr>
-</tbody></table>
-<p>**<code>&lt;label&gt;</code>标签为<code>&lt;input&gt;</code>元素标注（标签）<br><code>&lt;label&gt;</code>标签用于绑定一个表单元素，当点击<code>&lt;label&gt;</code>标签的文本时，浏览器就会自动将焦点（光标）转到或者选择对应的表单元素上，用来增加用户体验。<br>语法如下：<code>&lt;label&gt;</code>标签中的for属性与相应的元素的id属性相同。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"sex"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">id</span>=<span class="string">"sex"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong><code>&lt;select&gt;</code>下拉表单元素</strong><br>在页面中，如果有多个选项让用户选择，并且想要节约页面空间时，我们可以使用<code>&lt;select&gt;</code>标签控件定义下拉列表。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>选项1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>选项2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1.<code>&lt;select&gt;</code>中至少包含一对<code>&lt;option&gt;</code></li>
-<li>2.在<code>&lt;option&gt;</code>中定义selected=”selected”时，当前项即为默认选项。</li>
-</ul>
-<p><strong><code>&lt;textarea&gt;</code>文本域元素</strong><br>当用户输入内容较多的情况下，不能使用文本框表单了，就使用文本域元素。<br>语法如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">"3"</span> <span class="attr">cols</span>=<span class="string">"20"</span>&gt;</span>文本内容<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过<code>&lt;textarea&gt;</code>可以轻松地创建行文本输入框,cols=”每行的字符数”，rows=”显示的行数”(实际开发中不会使用，都是用CSS来改变大小)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1998,7 +1779,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
