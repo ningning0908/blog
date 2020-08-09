@@ -28,8 +28,11 @@
 <meta property="og:description" content="计算机网络主要包括实现资源共享，实现数据信息的快速传递。 OSI七层模型             制定组织：ISO(国际标准化组织)作用：使网络通信工作流程标准化应用层：提供用户服务，具体功能有应用程序实现；表示层：数据的压缩优化加密；会话层：建立用户级的连接，选择适当的传输服务；传输层：提供传输服务；网络层：路由选择，网络互联；链路层：进行数据交换，控制具体数据的发送；物理层：提供数据传输的硬件">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%BF%9E%E6%8E%A5">
 <meta property="article:published_time" content="2020-08-04T07:29:12.782Z">
-<meta property="article:modified_time" content="2020-08-04T09:36:35.523Z">
+<meta property="article:modified_time" content="2020-08-08T08:30:10.523Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -213,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-04 15:29:12 / 修改时间：17:36:35" itemprop="dateCreated datePublished" datetime="2020-08-04T15:29:12+08:00">2020-08-04</time>
+              <time title="创建时间：2020-08-04 15:29:12" itemprop="dateCreated datePublished" datetime="2020-08-04T15:29:12+08:00">2020-08-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 16:30:10" itemprop="dateModified" datetime="2020-08-08T16:30:10+08:00">2020-08-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,7 +254,7 @@
 
 <h2 id="四层模型（TCP-IP模型）"><a href="#四层模型（TCP-IP模型）" class="headerlink" title="四层模型（TCP/IP模型）"></a>四层模型（TCP/IP模型）</h2><p>背景：实际工作中工程师无法按照七层模型要求操作，逐渐演化为更符合实际的四层模型。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94" alt="attr"></p>
 <h3 id="数据传输过程"><a href="#数据传输过程" class="headerlink" title="数据传输过程"></a>数据传输过程</h3><div class="note info">
-            <ol><li>发送端的应用程序发送消息，逐层添加首部信息，最终再物理层发送消息包；</li><li>发送的消息经过多个节点（交换机，路由器）传输，最终到达目标主机；</li><li>目标主机由物理层逐层解析首部消息包，最终到应用程序呈现消息。</li></ol>
+            <ol><li>发送端的应用程序发送消息，逐层添加首部信息，最终再由物理层发送消息包；</li><li>发送的消息经过多个节点（交换机，路由器）传输，最终到达目标主机；</li><li>目标主机由物理层逐层解析首部消息包，最终到应用程序呈现消息。</li></ol>
           </div>
 
 <h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p>在网络数据传输中，都遵循的规定，包括建立什么样的数据结构，什么样的特殊标志等。</p>
@@ -254,7 +263,161 @@
           </div>
 
 <h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><div class="note info">
-            <p>功能：确定一台主机的网络路由地址<br>结构：</p><ul><li>IPv4 点分十进制表示172.60.50.12，每部分取值范围0-255</li><li>IPv6 128位 扩大了地址范围<br>特殊IP:</li><li>127.0.0.1 本机测试IP</li><li>0.0.0.0 自动获取本机网卡地址</li><li>172.60.50.0 通常表示一个网段</li><li>172.60.50.1 通常表示一个网关</li><li>172.60.50.12用作广播地址<br>域名：</li><li>定义：给网络服务器地址起的名字</li><li>作用：方便记忆，表达一定的含义</li><li>ping[ip]: 测试和某个主机是否联通<br>端口号：</li><li>作用：端口是网络地址的一部分，用于区分主机上不同的网络应用程序</li><li>特点：一个系统中的应用监听端口不能重复</li><li>取值范围：1-65535  1-1023系统应用或者大众程序监听端口；1024-65535自用端口</li></ul>
+            <p>功能：确定一台主机的网络路由地址<br>结构：</p><ul><li>IPv4 点分十进制表示172.60.50.12，每部分取值范围0-255</li><li>IPv6 128位 扩大了地址范围</li></ul><p>特殊IP:</p><ul><li>127.0.0.1 本机测试IP</li><li>0.0.0.0 自动获取本机网卡地址</li><li>172.60.50.0 通常表示一个网段</li><li>172.60.50.1 通常表示一个网关</li><li>172.60.50.12用作广播地址</li></ul><p>域名：</p><ul><li>定义：给网络服务器地址起的名字</li><li>作用：方便记忆，表达一定的含义</li><li>ping[ip]: 测试和某个主机是否联通</li></ul><p>端口号：</p><ul><li>作用：端口是网络地址的一部分，用于区分主机上不同的网络应用程序</li><li>特点：一个系统中的应用监听端口不能重复</li><li>取值范围：1-65535  1-1023系统应用或者大众程序监听端口；1024-65535自用端口</li></ul>
+          </div>
+
+<h2 id="传输层服务"><a href="#传输层服务" class="headerlink" title="传输层服务"></a>传输层服务</h2><h3 id="面向连接的传输服务（基于TCP协议的数据传输）"><a href="#面向连接的传输服务（基于TCP协议的数据传输）" class="headerlink" title="面向连接的传输服务（基于TCP协议的数据传输）"></a>面向连接的传输服务（基于TCP协议的数据传输）</h3><div class="note info">
+            <ol><li>传输特征：提供了可靠的数据传输，可靠性指数据传输过程中无丢失、无失序、无差错、无重复。</li><li>实现手段：在通信前需要建立数据连接，通信结束要正常断开连接。</li><li>适用情况：对数据传输准确性有明确要求，传数文件较大，需要确保可靠性的情况，比如：网页获取，文件下载，邮件收发。</li></ol>
+          </div>
+
+<div class="note info">
+            <p>三次握手（建立连接）</p><ul><li>客户端向服务器发送消息报文请求连接；</li><li>服务器收到请求后，回复报文确认可以连接；</li><li>客户端收到回复，发送最终报文连接建立。</li></ul>
+          </div>
+
+<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="三次握手"></p>
+<div class="note info">
+            <p>四次挥手（断开连接）</p><ul><li>主动方发送报文请求断开连接；</li><li>被动方收到请求后，立即回复，表示准备离开；</li><li>被动放准备就绪，再次发送报文表示离开；</li><li>主动方收到确认，发送最终报文完成断开。</li></ul>
+          </div>
+
+<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" alt="四次挥手"></p>
+<h3 id="面向无连接的传输服务（基于UDP协议的数据传输）"><a href="#面向无连接的传输服务（基于UDP协议的数据传输）" class="headerlink" title="面向无连接的传输服务（基于UDP协议的数据传输）"></a>面向无连接的传输服务（基于UDP协议的数据传输）</h3><div class="note info">
+            <ol><li>传输特点：不保证传输的可靠性，传输过程没有连接和断开，数据收发自由随意。</li><li>适用情况：网络较差，对传输可靠性要求不高。比如：网络视频，群聊，广播等。</li></ol>
+          </div>
+
+<h2 id="socket套接字编程"><a href="#socket套接字编程" class="headerlink" title="socket套接字编程"></a>socket套接字编程</h2><h3 id="套接字介绍"><a href="#套接字介绍" class="headerlink" title="套接字介绍"></a>套接字介绍</h3><div class="note info">
+            <ol><li>套接字：实现网络编程进行数据传输的一种技术手段；</li><li>Python实现套接字编程：import socket；</li><li>套接字分类：<ul><li>流式套接字(SOCK_STREAM)：以字节流方式传输数据，实现tcp网络传输方案。（面向连接–tcp协议– 可靠的–流式套接字）；</li><li>数据报套接字(SOCK_DGTAM)：以数据报形式传输数据，实现udp网络传输方案。（无连接–udp协议–不可靠—数据报套接字）</li></ul></li></ol>
+          </div>
+
+<h3 id="tcp套接字编程"><a href="#tcp套接字编程" class="headerlink" title="tcp套接字编程"></a>tcp套接字编程</h3><h4 id="服务端流程"><a href="#服务端流程" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind  —&gt; listen —&gt; accept —&gt; send/recv —&gt; close</p>
+<p>代码实现(python版本)：</p>
+<ol>
+<li><p>创建套接字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd = socket.socket(socket_family=AF_INET, socket_type=SOCK_STREAM,proto=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：创建套接字<br>参数：socket_family  网络地址类型  AF_INET表示ipv4<br>      socket_type   套接字类型SOCK_STREAM（流式） SOCK_DGRAM（数据报）<br>      proto     通常为0  选择子协议<br>返回值： 套接字对象</p>
+          </div></li>
+<li><p>绑定地址</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.bind(addr)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：绑定本机网络地址<br>参数：二元元组(ip,port)  (‘0.0.0.0’,8888)</p>
+          </div>
+</li>
+<li><p>设置监听</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.listen(n)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：将套接字设置为监听套接字，确认监听队列大小<br>参数：监听队列大小</p>
+          </div>
+</li>
+<li><p>等待处理客户端连接请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connfd,addr = sockfd.accept()</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：阻塞等待处理客户端请求<br>返回值：connfd   客户端连接套接字<br>        addr    连接的客户端地址</p>
+          </div>
+</li>
+<li><p>消息收发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = connfd.recv(buffersize)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：接受客户端消息；<br>参数：每次最多接收消息的大小；<br>返回值：接收到的内容。</p>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = connfd.send(data)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：发送消息；<br>参数：data： 要发送的内容  bytes格式<br>返回值：发送的字节数</p>
+          </div>
+</li>
+<li><p>关闭套接字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>TCP套接字服务端代码（python版重点代码）(亲测有效)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="comment"># 创建流式套接字</span></span><br><span class="line">sockfd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址 本地连接</span></span><br><span class="line">sockfd.bind((<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置监听</span></span><br><span class="line">sockfd.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Waiting for connet....."</span>)</span><br><span class="line"><span class="comment">#等待处理客户端连接请求</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  print(<span class="string">"Waiting for connect...."</span>)</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    connfd,addr = sockfd.accept()</span><br><span class="line">  <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    print(<span class="string">"退出服务"</span>)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 收发消息</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">     data = connfd.recv(<span class="number">1024</span>)</span><br><span class="line">     <span class="comment"># 得到空就退出</span></span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">       <span class="keyword">break</span></span><br><span class="line">     print(<span class="string">"接收到的消息："</span>,data.decode())</span><br><span class="line"></span><br><span class="line">     n = connfd.send(<span class="string">b'Receive your message'</span>)</span><br><span class="line">     print(<span class="string">"发送了%d个字节的数据"</span>%n)</span><br><span class="line">  <span class="comment">#关闭客户端套接字</span></span><br><span class="line">  connfd.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务端套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; bind —&gt; connect —&gt; send/recv —&gt; close<br>(bind这个步骤一般不用，所以一般不写)</p>
+<ol>
+<li><p>创建套接字<br>要注意创建相同类型的套接字才能进行通信</p>
+</li>
+<li><p>请求连接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.connect(server_addr)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能： 连接服务器<br>参数：元组  服务器地址</p>
+          </div>
+</li>
+<li><p>收发消息<br>注意：防止两端都阻塞，recv send要配合</p>
+</li>
+<li><p>关闭套接字</p>
+</li>
+</ol>
+<p>TCP套接字客户端代码(Python版重点代码)(亲测有效)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 创建套接字</span></span><br><span class="line">sockfd = socket() <span class="comment">#默认参数为TCP套接字，ipv4</span></span><br><span class="line"><span class="comment"># 发起连接 我写的是本地连接</span></span><br><span class="line">server_addr = (<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>)</span><br><span class="line">sockfd.connect(server_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收发消息(循环发送)</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  data = input(<span class="string">'消息：'</span>)</span><br><span class="line">  <span class="comment"># 得到空就退出</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  sockfd.send(data.encode())</span><br><span class="line">  data = sockfd.recv(<span class="number">1024</span>)</span><br><span class="line">  print(<span class="string">"From server:"</span> , data.decode())</span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="tcp-套接字数据传输特点"><a href="#tcp-套接字数据传输特点" class="headerlink" title="tcp 套接字数据传输特点"></a>tcp 套接字数据传输特点</h4><div class="note info">
+            <ol><li>tcp连接中当一端退出，另一端如果阻塞在recv，此时recv会立即返回一个空字符串；</li><li>tcp连接中如果一端已经不存在，然而试图通过send发送则会产生BrokenPipeError(管道破裂异常)</li><li>一个监听套接字可以同时连接多个客户端，也能够重复被连接</li></ol>
+          </div>
+
+<h4 id="网络收发缓冲区"><a href="#网络收发缓冲区" class="headerlink" title="网络收发缓冲区"></a>网络收发缓冲区</h4><div class="note info">
+            <ol><li>网络缓冲区有效的协调了消息的收发速度</li><li>send和recv实际是向缓冲区发送消息，当缓冲区不为空recv就不会阻塞。</li></ol>
+          </div>
+
+<h4 id="tcp粘包"><a href="#tcp粘包" class="headerlink" title="tcp粘包"></a>tcp粘包</h4><div class="note info">
+            <p>原因：tcp是以字节流的方式传输，没有消息边界。多次发送的消息被一次接收，此时就会形成粘包。<br>影响：如果每次发送内容是一个独立的含义，需要接收端独立解析此时的粘包会有影响。<br>处理方法：</p><ul><li>人为的添加消息边界</li><li>控制发送速度</li></ul>
+          </div>
+
+<h3 id="UDP套接字编程"><a href="#UDP套接字编程" class="headerlink" title="UDP套接字编程"></a>UDP套接字编程</h3><h4 id="服务端流程-1"><a href="#服务端流程-1" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind —&gt; recvfrom/sendto —&gt; close()</p>
+<ol>
+<li><p>创建数据报套接字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd = socket(AF_INET, SOCK_DGRAM)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绑定地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.bind(addr)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消息收发</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data,addr = sockfd.recvfrom(buffersize)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：接收UDP消息；<br>参数：每次最多接收多少字节；<br>返回值：data：接收到的内容<br>       addr：消息发送方地址</p>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = sockfd.sendto(data,addr)</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>功能：发送UDP消息；<br>参数：data: 要发送的内容  bytes格式<br>      addr: 目标地址<br>返回值：发送的字节数</p>
+          </div>
+</li>
+<li><p>关闭套接字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">UDP服务端</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 创建数据报套接字</span></span><br><span class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定地址</span></span><br><span class="line">server_addr = (<span class="string">'0.0.0.0'</span>, <span class="number">8888</span>)</span><br><span class="line">sockfd.bind(server_addr)</span><br><span class="line"><span class="comment"># 收发消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data,addr = sockfd.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">"收到的消息"</span>, data.decode())</span><br><span class="line">    sockfd.sendto(<span class="string">b"Thanks"</span>, addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+<h4 id="客户端流程-1"><a href="#客户端流程-1" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; sendto/recvfrom —&gt; close()</p>
+<ol>
+<li>创建套接字</li>
+<li>收发消息</li>
+<li>关闭套接字<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">udp客户端</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 服务器地址</span></span><br><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">PORT = <span class="number">8888</span></span><br><span class="line">ADDR = (HOST,PORT)</span><br><span class="line"><span class="comment"># 创建套接字</span></span><br><span class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 收发消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = input(<span class="string">"Msg&gt;&gt;"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    sockfd.sendto(data.encode(),ADDR)</span><br><span class="line">    msg,addr = sockfd.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">"From server: "</span>, msg.decode())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>总结：tcp和udp套接字编程区别</p><ol><li>流式套接字是以字节流方式传输数据，数据报套接字以数据报形式传输</li><li>tcp套接字会有粘包，udp套接字有消息边界不会粘包</li><li>tcp套接字保证消息的完整性，udp套接字则不能</li><li>tcp套接字以来listen accept建立连接才能收发消息，udp套接字不需要</li><li>tcp套接字使用send，recv收发消息，udp套接字使用sendto，recvfrom</li></ol>
+          </div>
+
+</li>
+</ol>
+<h3 id="练习，客户端向服务端发送图片（TCP）"><a href="#练习，客户端向服务端发送图片（TCP）" class="headerlink" title="练习，客户端向服务端发送图片（TCP）"></a>练习，客户端向服务端发送图片（TCP）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">s = socket()</span><br><span class="line">s.bind((<span class="string">'0.0.0.0'</span>,<span class="number">8888</span>))</span><br><span class="line">s.listen(<span class="number">5</span>)</span><br><span class="line">c,addr = s.accept()</span><br><span class="line">print(<span class="string">"Connect from"</span>,addr)</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'cxk.gif'</span>,<span class="string">'wb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收内容写入文件</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = c.recv(<span class="number">1024</span>)   <span class="comment">#字节串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    f.write(data)</span><br><span class="line">f.close()</span><br><span class="line">c.close()</span><br><span class="line">s.close()</span><br><span class="line"><span class="comment"># 客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">s= socket()</span><br><span class="line">s.connect((<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>))</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'timg.jfif'</span>,<span class="string">'rb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取内容进行发送</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = f.read(<span class="number">1024</span>) <span class="comment">#字节串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    s.send(data)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="UDP套接字广播"><a href="#UDP套接字广播" class="headerlink" title="UDP套接字广播"></a>UDP套接字广播</h3><div class="note info">
+            <ol><li>广播定义：一端发送多点接收。</li><li>广播地址：每个网络的最大地址为发送广播的地址，向该地址发送，则网段内所有的主机都能接收到。</li></ol>
+          </div>
+
+<h2 id="TCP套接字之HTTP传输"><a href="#TCP套接字之HTTP传输" class="headerlink" title="TCP套接字之HTTP传输"></a>TCP套接字之HTTP传输</h2><h3 id="HTTP协议（超文本传输协议）"><a href="#HTTP协议（超文本传输协议）" class="headerlink" title="HTTP协议（超文本传输协议）"></a>HTTP协议（超文本传输协议）</h3><div class="note info">
+            <ol><li>用途：网页获取，数据传输</li><li>特点：<ul><li>应用层协议，传输层使用tcp传输</li><li>简单，灵活，很多语言都有HTTP专门接口</li><li>无状态，协议不记录传输内容</li><li>http1.1支持持久连接，丰富了请求类型</li></ul></li></ol>
+          </div>
+
+<p><strong>网页请求过程</strong><br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%BF%9E%E6%8E%A5" alt="网页请求过程"></p>
+<div class="note info">
+            <ol><li>客户端（浏览器）通过tcp传输，发送http请求给服务端</li><li>服务端接收到http请求后进行解析</li><li>服务端处理请求内容，组织响应内容</li><li>服务端将响应内容以http响应格式发送给浏览器</li><li>浏览器接收到响应内容，解析展示</li></ol>
+          </div>
+
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><div class="note info">
+            <ol><li>请求行：具体的请求类别和请求内容<ul><li>请求类别：每个请求类别表示要做不同的事情<ul><li>GET: 获取网络资源</li><li>POST: 提交一定的信息，得到反馈</li><li>HEAD: 只获取网络资源的响应头</li><li>PUT: 更新服务器资源</li><li>DELETE: 删除服务器资源</li><li>CONNECT</li><li>TRACE: 测试</li><li>OPTIONS: 获取服务器性能信息</li></ul></li></ul></li><li>请求头： 对请求的进一步解释和描述</li><li>空行</li><li>请求体：请求参数或者提交内容</li></ol>
+          </div>
+
+<h3 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h3><div class="note info">
+            <ol><li>响应格式：响应行，响应头，空行，响应体<ul><li>响应行：反馈基本的响应情况   （版本信息   响应码  附加信息）<br>响应码：<ul><li>1xx 提示信息，表示请求被接收</li><li>2xx 响应成功</li><li>3xx 响应需要进一步操作，重定向</li><li>4xx 客户端错误</li><li>5xx 服务端错误</li></ul></li><li>响应头：对应响应内容的描述  Content-Type:text/html</li><li>空行</li><li>响应体：响应的主体内容信息</li></ul></li></ol>
           </div>
     </div>
 
@@ -277,8 +440,8 @@
       <i class="fa fa-chevron-left"></i> 大疆前端笔试汇总（笔试前准备版）
     </a></div>
       <div class="post-nav-item">
-    <a href="/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%A3%E5%88%97/" rel="next" title="散列">
-      散列 <i class="fa fa-chevron-right"></i>
+    <a href="/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%A3%E5%88%97/" rel="next" title="散列(哈希表)">
+      散列(哈希表) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -338,7 +501,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI七层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四层模型（TCP-IP模型）"><span class="nav-number">2.</span> <span class="nav-text">四层模型（TCP&#x2F;IP模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输过程"><span class="nav-number">2.1.</span> <span class="nav-text">数据传输过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络协议"><span class="nav-number">2.2.</span> <span class="nav-text">网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础概念"><span class="nav-number">3.</span> <span class="nav-text">网络基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络主机（host）"><span class="nav-number">3.1.</span> <span class="nav-text">网络主机（host）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址"><span class="nav-number">3.2.</span> <span class="nav-text">IP地址</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI七层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四层模型（TCP-IP模型）"><span class="nav-number">2.</span> <span class="nav-text">四层模型（TCP&#x2F;IP模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输过程"><span class="nav-number">2.1.</span> <span class="nav-text">数据传输过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络协议"><span class="nav-number">2.2.</span> <span class="nav-text">网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础概念"><span class="nav-number">3.</span> <span class="nav-text">网络基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络主机（host）"><span class="nav-number">3.1.</span> <span class="nav-text">网络主机（host）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址"><span class="nav-number">3.2.</span> <span class="nav-text">IP地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层服务"><span class="nav-number">4.</span> <span class="nav-text">传输层服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向连接的传输服务（基于TCP协议的数据传输）"><span class="nav-number">4.1.</span> <span class="nav-text">面向连接的传输服务（基于TCP协议的数据传输）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向无连接的传输服务（基于UDP协议的数据传输）"><span class="nav-number">4.2.</span> <span class="nav-text">面向无连接的传输服务（基于UDP协议的数据传输）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket套接字编程"><span class="nav-number">5.</span> <span class="nav-text">socket套接字编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字介绍"><span class="nav-number">5.1.</span> <span class="nav-text">套接字介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp套接字编程"><span class="nav-number">5.2.</span> <span class="nav-text">tcp套接字编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端流程"><span class="nav-number">5.2.1.</span> <span class="nav-text">服务端流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端流程"><span class="nav-number">5.2.2.</span> <span class="nav-text">客户端流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcp-套接字数据传输特点"><span class="nav-number">5.2.3.</span> <span class="nav-text">tcp 套接字数据传输特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络收发缓冲区"><span class="nav-number">5.2.4.</span> <span class="nav-text">网络收发缓冲区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcp粘包"><span class="nav-number">5.2.5.</span> <span class="nav-text">tcp粘包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP套接字编程"><span class="nav-number">5.3.</span> <span class="nav-text">UDP套接字编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端流程-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">服务端流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端流程-1"><span class="nav-number">5.3.2.</span> <span class="nav-text">客户端流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习，客户端向服务端发送图片（TCP）"><span class="nav-number">5.4.</span> <span class="nav-text">练习，客户端向服务端发送图片（TCP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP套接字广播"><span class="nav-number">5.5.</span> <span class="nav-text">UDP套接字广播</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP套接字之HTTP传输"><span class="nav-number">6.</span> <span class="nav-text">TCP套接字之HTTP传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议（超文本传输协议）"><span class="nav-number">6.1.</span> <span class="nav-text">HTTP协议（超文本传输协议）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求"><span class="nav-number">6.2.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP响应"><span class="nav-number">6.3.</span> <span class="nav-text">HTTP响应</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -352,20 +515,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
