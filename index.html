@@ -185,6 +185,367 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/18/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E3%80%81%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/18/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E3%80%81%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="post-title-link" itemprop="url">事件代理/事件委托</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-18 20:47:35 / 修改时间：20:52:40" itemprop="dateCreated datePublished" datetime="2020-08-18T20:47:35+08:00">2020-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">'ul1'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> u1 = <span class="built_in">document</span>.getElementById(<span class="string">'ul1'</span>)</span></span><br><span class="line"><span class="actionscript">    u1.onclick = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">let</span> event = event || <span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">let</span> target = event.target || event.srcEvent</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span>(target.nodeName.toLowerCase == <span class="string">'li'</span>) &#123;</span></span><br><span class="line">        alert(target.inerHTML)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" class="post-title-link" itemprop="url">防抖和节流</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-15 11:09:50 / 修改时间：11:34:00" itemprop="dateCreated datePublished" datetime="2020-08-15T11:09:50+08:00">2020-08-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="防抖函数"><a href="#防抖函数" class="headerlink" title="防抖函数"></a>防抖函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func,wait</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//定时器变量</span></span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//清除定时器操作</span></span><br><span class="line">    clearTimeOut(timeout);</span><br><span class="line">    <span class="comment">//指定xxms后真正想进行的操作handler</span></span><br><span class="line">    timeout = setTimeOut(func,wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际想绑定在scroll事件上的handler</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">realFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"success"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//采用了防抖动</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"scroll"</span>,debounce(realFunc,<span class="number">500</span>));</span><br><span class="line"><span class="comment">//没采用防抖动</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"scroll"</span>,realFunc);</span><br></pre></td></tr></table></figure>
+
+<h2 id="节流函数"><a href="#节流函数" class="headerlink" title="节流函数"></a>节流函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单的节流函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func,wait,mustRun</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line">  startTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>,</span><br><span class="line">        args = <span class="built_in">arguments</span>,</span><br><span class="line">        curTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    clearTimeOut(timeout);</span><br><span class="line">    <span class="comment">//如果达到了规定的触发时间间隔，触发handler</span></span><br><span class="line">    <span class="keyword">if</span>(curTime - startTime &gt;= mustRun) &#123;</span><br><span class="line">      func.apply(context,args);</span><br><span class="line">      startTime = curTime;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//没达到时间间隔，重新设定定时器</span></span><br><span class="line">      timeout = setTimeOut(func,wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际想绑定在scroll事件上的handler</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">realFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"success"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//采用了节流函数</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>,throttle(realFunc,<span class="number">500</span>,<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99js%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99js%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">js手写拖拽功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-15 09:20:07" itemprop="dateCreated datePublished" datetime="2020-08-15T09:20:07+08:00">2020-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-18 10:17:39" itemprop="dateModified" datetime="2020-08-18T10:17:39+08:00">2020-08-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="js拖拽插件的原理"><a href="#js拖拽插件的原理" class="headerlink" title="js拖拽插件的原理"></a>js拖拽插件的原理</h2><div class="note info">
+            <p>常见的拖拽操作是什么样的呢？整过过程大概有下面几个步骤：</p><ul><li>1、用鼠标点击被拖拽的元素</li><li>2、按住鼠标不放，移动鼠标</li><li>3、拖拽元素到一定位置，放开鼠标</li></ul><p>这里的过程涉及到三个dom事件：onmousedown,onmousemove,onmouseup。所以拖拽的基本思路就是：</p><ul><li>1、用鼠标点击被拖拽的元素触发onmousedown<ul><li>设置当前元素的可拖拽为true，表示可以拖拽</li><li>记录当前鼠标的坐标x,y</li><li>记录当前元素的坐标x,y</li></ul></li><li>2、移动鼠标触发onmousemove<ul><li>判断元素是否可拖拽，如果是则进入步骤2，否则直接返回</li><li>如果元素可拖拽，则设置元素的坐标<br>  元素的x坐标 = 鼠标移动的横向距离+元素本来的x坐标 = 鼠标现在的x坐标 - 鼠标之前的x坐标 + 元素本来的x坐标<br>  元素的y坐标 = 鼠标移动的横向距离+元素本来的y坐标 = 鼠标现在的y坐标 - 鼠标之前的y坐标 + 元素本来的y坐标</li></ul></li><li>3、放开鼠标触发onmouseup<ul><li>将鼠标的可拖拽状态设置成false</li></ul></li></ul>
+          </div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dragObj = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);</span><br><span class="line">dragObj.style.left = <span class="string">'0px'</span>;</span><br><span class="line">dragObj.style.top = <span class="string">'0px'</span>;</span><br><span class="line"><span class="keyword">var</span> mouseX, mouseY, objX, objY;</span><br><span class="line"><span class="keyword">var</span> dragging = <span class="literal">false</span>;</span><br><span class="line">dragObj.onmousedown = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event = event || <span class="built_in">window</span>.event;</span><br><span class="line">  dragging = <span class="literal">true</span>;</span><br><span class="line">  dragObj.style.position = <span class="string">'relative'</span>;</span><br><span class="line">  mouseX = event.clientX;</span><br><span class="line">  mouseY = event.clientY;</span><br><span class="line">  objX = <span class="built_in">parseInt</span>(dragObj.style.left);</span><br><span class="line">  objY = <span class="built_in">parseInt</span>(dragObj.style.top);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event = event || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="keyword">if</span>(dragging) &#123;</span><br><span class="line">    dragObj.style.left = <span class="built_in">parseInt</span>(event.clientX - mouseX + objX) + <span class="string">"px"</span>;</span><br><span class="line">    dragObj.style.top = <span class="built_in">parseInt</span>(event.clientY - mouseY + objY) + <span class="string">"px"</span>; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onmouseup = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  dragging = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">手写call、apply，bind和reduce函数方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-15 00:07:38" itemprop="dateCreated datePublished" datetime="2020-08-15T00:07:38+08:00">2020-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-19 17:42:34" itemprop="dateModified" datetime="2020-08-19T17:42:34+08:00">2020-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="手写apply，call，bind函数"><a href="#手写apply，call，bind函数" class="headerlink" title="手写apply，call，bind函数"></a>手写apply，call，bind函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.luckyCall = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,...args</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">    ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">    ctx[fn](...args);</span><br><span class="line">    <span class="keyword">delete</span> ctx[fn];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.luckyApply = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,args=[]</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">    ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span>(args &amp;&amp; !(args <span class="keyword">instanceof</span> <span class="built_in">Array</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span>(<span class="string">"luckyApply 需要的是一个数组"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    ctx[fn](args);</span><br><span class="line">    <span class="keyword">delete</span> ctx[fn];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.luckyBind = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,...args1</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args2</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">        ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">        ctx[fn](...args1.concat(...args2));</span><br><span class="line">        <span class="keyword">delete</span> ctx[fn];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(args);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bind = show.luckyBind(&#123;</span><br><span class="line">    name: <span class="string">'luckyBind1'</span></span><br><span class="line">&#125;,<span class="string">'luckyBind2'</span>,<span class="string">'luckyBind3'</span>)</span><br><span class="line"></span><br><span class="line">bind(<span class="string">'luckyBind4'</span>)</span><br><span class="line"></span><br><span class="line">show.luckyCall(&#123;<span class="attr">name</span>: <span class="string">'luckyCall11'</span>&#125;,<span class="string">'luckyCall1'</span>,<span class="string">'luckyCall2'</span>,<span class="string">'luckyCall3'</span>);</span><br><span class="line">show.luckyApply(&#123;<span class="attr">name</span>: <span class="string">'luckyApply12'</span>&#125;,[<span class="string">'luckyApply1'</span>,<span class="string">'luckyApply2'</span>,<span class="string">'luckyApply3'</span>]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="手写reduce函数"><a href="#手写reduce函数" class="headerlink" title="手写reduce函数"></a>手写reduce函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//语法 array.reduce(function(prev, currentValue, currentIndex, arr), initialValue)</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.MyReduce = <span class="function"><span class="keyword">function</span>(<span class="params">fn, initialValue</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//浅拷贝数组  </span></span><br><span class="line">  <span class="keyword">var</span> arr = <span class="built_in">Array</span>.prototype.slice.call(<span class="keyword">this</span>);</span><br><span class="line">  <span class="comment">//注意: reduce() 对于空数组是不会执行回调函数的。</span></span><br><span class="line">  <span class="keyword">if</span>(!arr.length)&#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> res;<span class="comment">//res(是上面的prev) </span></span><br><span class="line">  <span class="comment">//默认初始值  </span></span><br><span class="line">  res = initialValue ? initialValue : arr[<span class="number">0</span>];</span><br><span class="line">  <span class="comment">//遍历数组的每一个值  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">//每一个值都会在该方法中被（加工处理），  </span></span><br><span class="line">    res = fn.call(<span class="literal">null</span>, res, arr[i], i, <span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//最后的返回值</span></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/11/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/11/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" class="post-title-link" itemprop="url">前端模块化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-11 21:33:34" itemprop="dateCreated datePublished" datetime="2020-08-11T21:33:34+08:00">2020-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-15 13:15:36" itemprop="dateModified" datetime="2020-08-15T13:15:36+08:00">2020-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%9D%82%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">杂碎知识点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,10 +738,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-09 15:47:15 / 修改时间：16:20:16" itemprop="dateCreated datePublished" datetime="2020-08-09T15:47:15+08:00">2020-08-09</time>
+              <time title="创建时间：2020-08-09 15:47:15" itemprop="dateCreated datePublished" datetime="2020-08-09T15:47:15+08:00">2020-08-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-11 16:31:13" itemprop="dateModified" datetime="2020-08-11T16:31:13+08:00">2020-08-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -402,8 +769,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数组中的第K个最大元素"><a href="#数组中的第K个最大元素" class="headerlink" title="数组中的第K个最大元素"></a>数组中的第K个最大元素</h2><p>题目地址：<a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/kth-largest-element-in-an-array/description/</a><br>在未排序的数组中找到第k个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第k个不同的元素。</p>
+          <h2 id="数组中的第K个最大元素"><a href="#数组中的第K个最大元素" class="headerlink" title="数组中的第K个最大元素"></a>数组中的第K个最大元素</h2><p>题目地址：<a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/kth-largest-element-in-an-array/description/</a><br>在未排序的数组中找到第k个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第k个不同的元素。<br><strong>暴力解法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; k</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findKthLargest = <span class="function"><span class="keyword">function</span>(<span class="params">nums, k</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newArr = nums.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a&lt;b) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a&gt;b) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> newArr[k<span class="number">-1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<p><strong>快速排序</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; k</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findKthLargest = <span class="function"><span class="keyword">function</span>(<span class="params">nums, k</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len = nums.length;</span><br><span class="line">    <span class="keyword">let</span> newArr = quickSort(nums);</span><br><span class="line">    <span class="keyword">return</span> newArr[len-k]</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr,left,right</span>) </span>&#123;</span><br><span class="line">        left = <span class="keyword">typeof</span> left != <span class="string">'number'</span> ? <span class="number">0</span> : left;</span><br><span class="line">        right = <span class="keyword">typeof</span> right != <span class="string">'number'</span> ? len<span class="number">-1</span> : right;</span><br><span class="line">        <span class="keyword">if</span>(left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">let</span> mid = partition(arr,left,right);</span><br><span class="line">            quickSort(arr,left,mid<span class="number">-1</span>);</span><br><span class="line">            quickSort(arr,mid+<span class="number">1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//分区</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr,left,right</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> pivot = left;</span><br><span class="line">        <span class="keyword">let</span> index = pivot + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=index;i&lt;=right;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] &lt; arr[pivot]) &#123;</span><br><span class="line">                swap(arr,i,index);</span><br><span class="line">                index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr,pivot,index<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> index<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交换</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr,i,j</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -583,444 +953,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" class="post-title-link" itemprop="url">二叉树和二叉查找树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-08 16:41:32 / 修改时间：19:18:08" itemprop="dateCreated datePublished" datetime="2020-08-08T16:41:32+08:00">2020-08-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>树是计算机科学中经常用到的一种数据结构，树是一种非线性的数据机构，以分层的方式存储数据。树被用来存储具有层级关系的数据，比如文件系统中的文件；树还被用来存储有序列表。</p>
-<h2 id="二叉树和二叉查找树的关系"><a href="#二叉树和二叉查找树的关系" class="headerlink" title="二叉树和二叉查找树的关系"></a>二叉树和二叉查找树的关系</h2><p>二叉查找树是一种特殊的二叉树，相对较小的值保存在左节点，较大的值保存在右节点。</p>
-<h2 id="实现二叉查找树"><a href="#实现二叉查找树" class="headerlink" title="实现二叉查找树"></a>实现二叉查找树</h2><p>二叉查找树由节点组成，所以我们第一个要定义的对象就是Node，该对象和链表的对象类似，Node类的定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data,left,right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.data = data;</span><br><span class="line">  <span class="keyword">this</span>.left = left;</span><br><span class="line">  <span class="keyword">this</span>.right = right;</span><br><span class="line">  <span class="keyword">this</span>.show = show;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Node对象既保存数据，也保存和其他节点的链接（left和right），show()方法用来显示保存在节点中的数据。</p>
-<div class="note info">
-            <p>查找正确插入点的算法如下。</p><ol><li>设根节点为当前节点。</li><li>如果待插入节点保存的数据小于当前节点， 则设新的当前节点为原节点的左节点； 反之， 执行第 4 步。</li><li>如果当前节点的左节点为 null， 就将新的节点插入这个位置， 退出循环； 反之， 继续执行下一次循环。</li><li>设新的当前节点为原节点的右节点。</li><li>如果当前节点的右节点为 null， 就将新的节点插入这个位置， 退出循环； 反之， 继续执行下一次循环。</li></ol>
-          </div>
-<p>代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data,left,right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.data = data;</span><br><span class="line">  <span class="keyword">this</span>.left = left;</span><br><span class="line">  <span class="keyword">this</span>.right = right;</span><br><span class="line">  <span class="keyword">this</span>.show = show;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BST</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.root = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">this</span>.insert = insert;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> n = <span class="keyword">new</span> Node(data,<span class="literal">null</span>,<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">    <span class="keyword">var</span> parent;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">      parent = current;</span><br><span class="line">      <span class="keyword">if</span> (data &lt; current.data) &#123;</span><br><span class="line">        current = current.left;</span><br><span class="line">        <span class="keyword">if</span>(current == <span class="literal">null</span>) &#123;</span><br><span class="line">          parent.left = n;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        current = current.right;</span><br><span class="line">        <span class="keyword">if</span>(current == <span class="literal">null</span>) &#123;</span><br><span class="line">          parent.right = n;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="遍历二叉查找树"><a href="#遍历二叉查找树" class="headerlink" title="遍历二叉查找树"></a>遍历二叉查找树</h2><div class="note info">
-            <p>三种遍历BST的方式：</p><ul><li>中序：中序遍历按照节点上的键值，以升序访问BST上的所有节点；</li><li>先序：先序遍历先访问根节点，然后以同样的方式访问左子树和右子树；</li><li>后序：后序遍历先访问叶子节点，从左子树到右子树，再到根节点。</li></ul>
-          </div>
-
-<p>中序遍历的代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inOrder</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!(node == <span class="literal">null</span>)) &#123;</span><br><span class="line">    inOrder(node.left);</span><br><span class="line">    putstr(node.show()+<span class="string">" "</span>);</span><br><span class="line">    inOrder(node.right);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先序遍历的定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preOrder</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!(node == <span class="literal">null</span>)) &#123;</span><br><span class="line">    putstr(node.show() + <span class="string">" "</span>);</span><br><span class="line">    preOrder(node.left);</span><br><span class="line">    preOrder(node.right);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>后序遍历的定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">postOrder</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!(node == <span class="literal">null</span>)) &#123;</span><br><span class="line">    postOrder(node.left);</span><br><span class="line">    postOrder(node.right);</span><br><span class="line">    putstr(node.show() + <span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="在二叉查找树上进行查找"><a href="#在二叉查找树上进行查找" class="headerlink" title="在二叉查找树上进行查找"></a>在二叉查找树上进行查找</h2><div class="note info">
-            <p>对BST通常有下列三种类型的查找：</p><ol><li>查找最大值；</li><li>查找最小值；</li><li>查找给定值。</li></ol>
-          </div>
-
-<h3 id="查找最小值和最大值"><a href="#查找最小值和最大值" class="headerlink" title="查找最小值和最大值"></a>查找最小值和最大值</h3><p><strong>查找BST上的最小值和最大值非常简单。因为较小的值总是在左子节点上，在BST上查找最小值，只需要遍历左子树，直到找到最后一个节点。</strong></p>
-<p>getMin()方法查找BST上的最小值，该方法的定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMin</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">  <span class="keyword">while</span>(!(current.left == <span class="literal">null</span>)) &#123;</span><br><span class="line">    current = current.left;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>getMax()方法查找BST上的最小值，该方法的定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMax</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">  <span class="keyword">while</span>(!(current.right == <span class="literal">null</span>)) &#123;</span><br><span class="line">    current = current.right;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查找给定值的代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> current = <span class="keyword">this</span>.root;</span><br><span class="line">  <span class="keyword">while</span>(!(node == <span class="literal">null</span>)) &#123;</span><br><span class="line">    <span class="keyword">if</span>(current.data == data) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(data &lt; current.data) &#123;</span><br><span class="line">      current = current.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      current = current.right;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="从二叉查找树上删除节点"><a href="#从二叉查找树上删除节点" class="headerlink" title="从二叉查找树上删除节点"></a>从二叉查找树上删除节点</h3><p>从 BST 上删除节点的操作最复杂， 其复杂程度取决于删除哪个节点。 如果删除没有子节点的节点， 那么非常简单。 如果节点只有一个子节点， 不管是左子节点还是右子节点， 就变得稍微有点复杂了。 删除包含两个子节点的节点最复杂。为了管理删除操作的复杂度， 我们使用递归操作， 同时定义两个方法： <code>remove()</code> 和<code>removeNode()</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  root = removeNode(<span class="keyword">this</span>.root,data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeNode</span>(<span class="params">node,data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (data == node.data) &#123;</span><br><span class="line">    <span class="comment">//没有子节点的节点</span></span><br><span class="line">    <span class="keyword">if</span> (node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//没有左子节点的节点</span></span><br><span class="line">    <span class="keyword">if</span>(node.left == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> node.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//没有右子节点的节点</span></span><br><span class="line">    <span class="keyword">if</span>(node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> node.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有两个子节点的节点</span></span><br><span class="line">    <span class="keyword">var</span> tempNode = node.right;</span><br><span class="line">    node.data = tempNode.data;</span><br><span class="line">    node.right = removeNode(node.right,tempNode.data);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(data&lt;node.data) &#123;</span><br><span class="line">    node.left = removeNode(node.left,data);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    node.right = removeNode(node.right,data);</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>BST 的一个用途是记录一组数据集中数据出现的次数。 比如， 可以使用 BST 记录考试成绩的分布。 给定一组考试成绩， 可以写一段程序将它们加入一个 BST， 如果某成绩尚未在<br>BST 中出现， 就将其加入 BST； 如果已经出现， 就将出现的次数加 1。<br>为了解决该问题， 我们来修改 Node 对象， 为其增加一个记录成绩出现频次的成员， 同时我们还需要一个方法， 当在 BST 中发现某成绩时， 需要将出现的次数加 1， 并且更新该节点。<br>先修改 Node 对象的定义， 为其增加记录成绩出现次数的成员：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data,left,right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.data = data;</span><br><span class="line">  <span class="keyword">this</span>.count = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">this</span>.left = left;</span><br><span class="line">  <span class="keyword">this</span>.right = right;</span><br><span class="line">  <span class="keyword">this</span>.show = show;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当向 BST 插入一条成绩（Node 对象） 时， 将出现频次设为 1。 此时 BST 的 <code>insert()</code> 方法还能正常工作， 但是， 当次数增加时， 我们就需要一个新方法来更新 BST 中的节点。 这个方法就是 <code>update()</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> grade = <span class="keyword">this</span>.find(data);</span><br><span class="line">  grade.count++;</span><br><span class="line">  <span class="keyword">return</span> grade;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>BST 类的其他方法不需要修改， 只需要再增加一些随机产生成绩及显示它们的函数。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/07/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/07/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/%E6%A0%91/" class="post-title-link" itemprop="url">树题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-07 18:57:35" itemprop="dateCreated datePublished" datetime="2020-08-07T18:57:35+08:00">2020-08-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-09 13:44:57" itemprop="dateModified" datetime="2020-08-09T13:44:57+08:00">2020-08-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>一棵树要么是空树，要么有两个指针，每个指针指向一棵树。树是一种递归结构，很多树的问题可以使用递归来处理。</p>
-<h3 id="树的高度"><a href="#树的高度" class="headerlink" title="树的高度"></a>树的高度</h3><p>给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。<br>题目地址：<a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> maxDepth = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(root) &#123;</span><br><span class="line">            <span class="keyword">let</span> left = maxDepth(root.left);</span><br><span class="line">            <span class="keyword">let</span> right = maxDepth(root.right);</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right)+<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="平衡树"><a href="#平衡树" class="headerlink" title="平衡树"></a>平衡树</h3><p>给定一个二叉树，判断它是否是高度平衡的二叉树。本题中，一棵高度平衡二叉树定义为：一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。<br>题目地址：<a href="https://leetcode-cn.com/problems/balanced-binary-tree/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree/description/</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//递归是要保证每个节点的左右两个子树的高度差的绝对值不超过1</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(height(root.left)-height(root.right))&lt;=<span class="number">1</span> &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//计算高度差</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">height</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> left = height(node.left);</span><br><span class="line">        <span class="keyword">let</span> right = height(node.right);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="两节点的最长路径"><a href="#两节点的最长路径" class="headerlink" title="两节点的最长路径"></a>两节点的最长路径</h3><p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。<br>题目地址：<a href="https://leetcode-cn.com/problems/diameter-of-binary-tree/submissions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/diameter-of-binary-tree/submissions/</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;TreeNode&#125;</span> <span class="variable">root</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> diameterOfBinaryTree = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> temp = height(root.left) + height(root.right);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(temp,diameterOfBinaryTree(root.left),diameterOfBinaryTree(root.right));</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">height</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> left = height(node.left);</span><br><span class="line">        <span class="keyword">let</span> right = height(node.right);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-05 14:02:55 / 修改时间：14:03:09" itemprop="dateCreated datePublished" datetime="2020-08-05T14:02:55+08:00">2020-08-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/04/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-04 22:28:31" itemprop="dateCreated datePublished" datetime="2020-08-04T22:28:31+08:00">2020-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-05 16:53:24" itemprop="dateModified" datetime="2020-08-05T16:53:24+08:00">2020-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>试题链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md</a></p>
-<h2 id="找出两个链表的交点"><a href="#找出两个链表的交点" class="headerlink" title="找出两个链表的交点"></a>找出两个链表的交点</h2><p>编写一个程序，找到两个单链表相交的起始节点。<br>题目： <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a><br>解法如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴力解法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(headA) &#123;</span><br><span class="line">        headA.flag = <span class="literal">true</span>;</span><br><span class="line">        headA = headA.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(headB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(headB.flag) &#123;</span><br><span class="line">            <span class="keyword">return</span> headB</span><br><span class="line">        &#125;</span><br><span class="line">        headB = headB.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"> <span class="comment">//同步遍历</span></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pA = headA,</span><br><span class="line">        pB = headB;</span><br><span class="line">    <span class="keyword">while</span>(pA || pB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(pA === pB) &#123;</span><br><span class="line">            <span class="keyword">return</span> pA</span><br><span class="line">        &#125;</span><br><span class="line">        pA = pA === <span class="literal">null</span> ? headB : pA.next;</span><br><span class="line">        pB = pB === <span class="literal">null</span> ? headA : pB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="链表反转"><a href="#链表反转" class="headerlink" title="链表反转"></a>链表反转</h2><p>反转一个单链表。<br>题目：<a href="https://leetcode-cn.com/problems/reverse-linked-list/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-linked-list/description/</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseList = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="literal">null</span>,</span><br><span class="line">    curr = head;</span><br><span class="line">  <span class="keyword">while</span>(curr) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = curr.next;</span><br><span class="line">    curr.next = prev;</span><br><span class="line">    prev = curr;</span><br><span class="line">    curr = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> prev;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="归并两个有序的链表"><a href="#归并两个有序的链表" class="headerlink" title="归并两个有序的链表"></a>归并两个有序的链表</h2><p>将两个升序链表合并为一个新的 <code>升序</code> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//归并排序</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> mergeTwoLists = <span class="function"><span class="keyword">function</span>(<span class="params">l1, l2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> l3 = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">var</span> c3 = l3;</span><br><span class="line">    <span class="keyword">while</span>(!(l1 === <span class="literal">null</span>) &amp;&amp; !(l2 === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(l1.val &lt;= l2.val) &#123;</span><br><span class="line">            c3.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c3.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        c3 = c3.next</span><br><span class="line">    &#125;</span><br><span class="line">    c3.next = (l1===<span class="literal">null</span>) ? l2 : l1;</span><br><span class="line">    <span class="keyword">return</span> l3.next  <span class="comment">//去除-1头部</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="从有序链表中删除重复节点"><a href="#从有序链表中删除重复节点" class="headerlink" title="从有序链表中删除重复节点"></a>从有序链表中删除重复节点</h2><p>给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> deleteDuplicates = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = head;</span><br><span class="line">    <span class="keyword">while</span>((curr != <span class="literal">null</span>) &amp;&amp; !(curr.next === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(curr.val === curr.next.val) &#123;</span><br><span class="line">            curr.next = curr.next.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="删除链表的倒数第-n-个节点"><a href="#删除链表的倒数第-n-个节点" class="headerlink" title="删除链表的倒数第 n 个节点"></a>删除链表的倒数第 n 个节点</h2><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> removeNthFromEnd = <span class="function"><span class="keyword">function</span>(<span class="params">head, n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//快慢指针</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    node.next = head;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || !head) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> fast = node;</span><br><span class="line">    <span class="comment">//快指针先走n部</span></span><br><span class="line">    <span class="keyword">while</span>(count &lt; n) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//慢指针开始走</span></span><br><span class="line">    <span class="keyword">let</span> prev = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> slow = node;</span><br><span class="line">    <span class="keyword">while</span>(fast) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        prev = slow;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    prev.next = slow.next;</span><br><span class="line">    <span class="keyword">return</span> node.next</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">查找与排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-04 20:11:39" itemprop="dateCreated datePublished" datetime="2020-08-04T20:11:39+08:00">2020-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-11 13:47:04" itemprop="dateModified" datetime="2020-08-11T13:47:04+08:00">2020-08-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考十大排序算法：<br><a href="https://www.cnblogs.com/onepixel/articles/7674659.html" target="_blank" rel="noopener">https://www.cnblogs.com/onepixel/articles/7674659.html</a></p>
-<h2 id="二分查找方法"><a href="#二分查找方法" class="headerlink" title="二分查找方法"></a>二分查找方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">方法一</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BinarySearch</span>(<span class="params">arr,item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> left = <span class="number">0</span>,</span><br><span class="line">      right = arr.length<span class="number">-1</span></span><br><span class="line">  <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">      <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor((left+right)/<span class="number">2</span>)</span><br><span class="line">      <span class="keyword">if</span>(arr[mid] == item)&#123;</span><br><span class="line">          <span class="keyword">return</span> mid</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;item)&#123;</span><br><span class="line">          right = mid<span class="number">-1</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">          left = mid+<span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">方法二</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BinarySearch</span>(<span class="params">arr,item,start,end</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor((start+end)/<span class="number">2</span>)</span><br><span class="line">  <span class="keyword">if</span>(item === arr[mid])&#123;</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(item&lt;arr[mid])&#123;</span><br><span class="line">      <span class="keyword">return</span> BinarySearch(arr,item,start,mid<span class="number">-1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> BinarySearch(arr,item,mid+<span class="number">1</span>,end)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">let</span> len = array.length</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>; j&lt;len-i<span class="number">-1</span>;j++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(array[j]&gt;array[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        [array[j],array[j+<span class="number">1</span>]] = [array[j+<span class="number">1</span>],array[j]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> array</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = bubbleSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//桶排序</span></span><br><span class="line"><span class="comment">/*实现步骤（从小到大排序）：</span></span><br><span class="line"><span class="comment">假设元素列中的元素均处于 [0,1） 区间内。</span></span><br><span class="line"><span class="comment">准备一个长度为 10 的数组 temp。</span></span><br><span class="line"><span class="comment">假设元素的值为 x，则将它放入 temp 数组索引为 ⌊10x⌋ 的位置。</span></span><br><span class="line"><span class="comment">对数组 temp 下的每个“桶”进行排序，然后将排序后的“桶”拼接在一起。</span></span><br><span class="line"><span class="comment">时间复杂度：需要考虑每个桶内排序所消耗的时间</span></span><br><span class="line"><span class="comment">空间复杂度：O(n+k)</span></span><br><span class="line"><span class="comment">稳定性：稳定*/</span></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">0.78</span>, <span class="number">0.17</span>, <span class="number">0.39</span>, <span class="number">0.26</span>, <span class="number">0.72</span>, <span class="number">0.94</span>, <span class="number">0.21</span>, <span class="number">0.12</span>, <span class="number">0.23</span>, <span class="number">0.68</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> (<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>(<span class="number">10</span>), () =&gt; []);</span><br><span class="line"></span><br><span class="line">    array.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(item * <span class="number">10</span>);</span><br><span class="line">        temp[index].push(item);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    temp = temp.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (temp.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            insertionSort(item)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [].concat(...temp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span> (<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> unsortValue = array[i]</span><br><span class="line">        <span class="keyword">let</span> currentIndex = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> ((currentIndex &gt;= <span class="number">0</span>) &amp;&amp; (array[currentIndex] &gt; unsortValue)) &#123;</span><br><span class="line">            array[currentIndex + <span class="number">1</span>] = array[currentIndex]</span><br><span class="line">            currentIndex--</span><br><span class="line">        &#125;</span><br><span class="line">        array[currentIndex + <span class="number">1</span>] = unsortValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bucketSort(list))       <span class="comment">// [ 0.12, 0.17, 0.21, 0.23, 0.26, 0.39, 0.68, 0.72, 0.78, 0.94 ]</span></span><br></pre></td></tr></table></figure>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计数排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">let</span> temp = []</span><br><span class="line">   array.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(temp[item]) &#123;</span><br><span class="line">         temp[item] = temp[item] + <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         temp[item] = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">   <span class="keyword">let</span> res = []</span><br><span class="line">   <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;temp.length;i++) &#123;</span><br><span class="line">      <span class="keyword">while</span>(temp[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         res[index++] = i</span><br><span class="line">         temp[i] --</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;temp.length;j++) &#123;</span><br><span class="line">      <span class="keyword">let</span> cur = <span class="keyword">typeof</span> temp[j] === <span class="string">'number'</span> ? temp[j] :<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(j===<span class="number">0</span>) &#123;</span><br><span class="line">         temp[j] = cur</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         temp[j] = temp[j<span class="number">-1</span>] + cur</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(temp)</span><br><span class="line">&#125;</span><br><span class="line">countSort(list)</span><br></pre></td></tr></table></figure>
-
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计数排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> temp = []</span><br><span class="line">  array.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(temp[item]) &#123;</span><br><span class="line">        temp[item] = temp[item] + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        temp[item] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;temp.length;i++) &#123;</span><br><span class="line">    <span class="keyword">while</span>(temp[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        res[index++] = i</span><br><span class="line">        temp[i] --</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;temp.length;j++) &#123;</span><br><span class="line">    <span class="keyword">let</span> cur = <span class="keyword">typeof</span> temp[j] === <span class="string">'number'</span> ? temp[j] :<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(j===<span class="number">0</span>) &#123;</span><br><span class="line">        temp[j] = cur</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        temp[j] = temp[j<span class="number">-1</span>] + cur</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(temp)</span><br><span class="line">&#125;</span><br><span class="line">countSort(list)</span><br></pre></td></tr></table></figure>
-
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;len;i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> unsortValue = array[i]</span><br><span class="line">    <span class="keyword">let</span> currentIndex = i<span class="number">-1</span></span><br><span class="line">  <span class="keyword">while</span>((currentIndex &gt;= <span class="number">0</span>) &amp;&amp; (array[currentIndex] &gt; unsortValue)) &#123;</span><br><span class="line">        array[currentIndex + <span class="number">1</span>] = array[currentIndex]</span><br><span class="line">        currentIndex --</span><br><span class="line">    &#125;</span><br><span class="line">    array[currentIndex + <span class="number">1</span>] = unsortValue</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = insertSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 归并排序</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">实现步骤（从小到大排序）：</span></span><br><span class="line"><span class="comment">不断地将元素列分成两个部分，然后对这两个部分递归执行归并排序。</span></span><br><span class="line"><span class="comment">当元素列只有1个元素时，停止递归。</span></span><br><span class="line"><span class="comment">对于被划分的两个部分，需要按照顺序将它们合并为一个整体。</span></span><br><span class="line"><span class="comment">最坏时间复杂度：O(nlogn)</span></span><br><span class="line"><span class="comment">平均时间复杂度：O(nlogn)</span></span><br><span class="line"><span class="comment">最好时间复杂度：O(nlogn)</span></span><br><span class="line"><span class="comment">空间复杂度：O(n)</span></span><br><span class="line"><span class="comment">稳定性：稳定</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span> (<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (len &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>),</span><br><span class="line">      left = array.slice(<span class="number">0</span>, middle),</span><br><span class="line">      right = array.slice(middle)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> merge(mergeSort(left), mergeSort(right))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> ((left.length &gt; <span class="number">0</span>) &amp;&amp; (right.length &gt; <span class="number">0</span>)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (left[<span class="number">0</span>] &lt;= right[<span class="number">0</span>]) &#123;</span><br><span class="line">          result.push(left.shift())</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          result.push(right.shift())</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (left.length) &#123;</span><br><span class="line">      result.push(left.shift())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (right.length) &#123;</span><br><span class="line">      result.push(right.shift())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = mergeSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速排序</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">实现步骤（从小到大排序）：</span></span><br><span class="line"><span class="comment">通过三数中值分割法，从元素列中选出最左侧，中间和最右侧的三个元素，并排序。</span></span><br><span class="line"><span class="comment">从步骤1中排序后的三个元素中选择中间元素作为枢纽元素，并交换枢纽元素和元素列倒数第二个元素的位置。</span></span><br><span class="line"><span class="comment">选择i = left + 1, j = right - 1。</span></span><br><span class="line"><span class="comment">不断执行i++操作，直到i所处元素大于等于枢纽元素为止。</span></span><br><span class="line"><span class="comment">不断执行j--操作，直到j所处元素小于等于枢纽元素为止。</span></span><br><span class="line"><span class="comment">如果i &lt; j，那么交换这两个位置上的元素，然后重复执行步骤4、5。</span></span><br><span class="line"><span class="comment">如果i &gt;= j，那么此刻位置i上的元素一定是大于等于枢纽元素的，此时交换位置i上的元素和枢纽元素的位置。交换之后，枢纽元素左侧的元素均小于等于它，而它右侧的元素均大于等于它。</span></span><br><span class="line"><span class="comment">不断对被枢纽元素分割开来的两个子元素列执行步骤1至步骤7，直到排序完成。</span></span><br><span class="line"><span class="comment">最坏时间复杂度：O(n2)</span></span><br><span class="line"><span class="comment">平均时间复杂度：O(nlgn)</span></span><br><span class="line"><span class="comment">最好时间复杂度：O(nlgn)</span></span><br><span class="line"><span class="comment">空间复杂度：O(lgn) 至 O(n) 之间</span></span><br><span class="line"><span class="comment">稳定性：不稳定</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//方法一</span></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//待排序的区域至少有两个元素</span></span><br><span class="line">    <span class="keyword">let</span> len = array.length</span><br><span class="line">    left = <span class="keyword">typeof</span> left != <span class="string">'number'</span>? <span class="number">0</span> : left;</span><br><span class="line">    right = <span class="keyword">typeof</span> right != <span class="string">'number'</span>? len - <span class="number">1</span> : right;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        mid = partition(array,left,right)</span><br><span class="line">        quickSort(array,left,mid<span class="number">-1</span>)</span><br><span class="line">        quickSort(array,mid+<span class="number">1</span>,right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//分区操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr, left ,right</span>) </span>&#123;     <span class="comment">// 分区操作</span></span><br><span class="line">    <span class="keyword">let</span> pivot = left,                      <span class="comment">// 设定基准值（pivot）</span></span><br><span class="line">        index = pivot + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = index; i &lt;= right; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i] &lt; arr[pivot]) &#123;</span><br><span class="line">            swap(arr, i, index);</span><br><span class="line">            index++;</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, pivot, index - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> index<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, i, j</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = arr[i];</span><br><span class="line">    arr[i] = arr[j];</span><br><span class="line">    arr[j] = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = quickSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line"><span class="comment">//方法二</span></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length</span><br><span class="line">    left = <span class="keyword">typeof</span> left != <span class="string">'number'</span>? <span class="number">0</span> : left;</span><br><span class="line">    right = <span class="keyword">typeof</span> right != <span class="string">'number'</span>? len - <span class="number">1</span> : right;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        mid = partition(array,left,right)</span><br><span class="line">        quickSort(array,left,mid<span class="number">-1</span>)</span><br><span class="line">        quickSort(array,mid+<span class="number">1</span>,right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//分区函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array,left,right</span>) </span>&#123;</span><br><span class="line">    temp = array[left]</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; array[right] &gt;= temp) &#123;</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        array[left] = array[right]</span><br><span class="line">         <span class="keyword">while</span> (left &lt; right &amp;&amp; array[left] &lt;= temp) &#123;</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">         &#125;</span><br><span class="line">        array[right] = array[left]</span><br><span class="line">    &#125;</span><br><span class="line">    array[left] = temp</span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort(list))</span><br></pre></td></tr></table></figure>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基数排序</span></span><br><span class="line"><span class="comment">/*多关键字排序：先按照低要求排序，再到最高要求排序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*实现步骤（从小到大排序）：</span></span><br><span class="line"><span class="comment">从最低有效位开始，依次根据当前位的关键字对元素列使用稳定排序算法进行排序。</span></span><br><span class="line"><span class="comment">时间复杂度：</span></span><br><span class="line"><span class="comment">给定 n 个 d 位数，其中每一个数位有 k 个可能的取值。如果使用的稳定排序方法耗时 Θ(n+k)，那么它就可以在 Θ(d(n+k)) 时间内将这些数排好序。</span></span><br><span class="line"><span class="comment">给定一个 b 位数和任何正整数 r≤b，如果使用稳定排序算法对数据取值区间为 [0,k] 的输入进行排序耗时 Θ(n+k)，那么它就可以在 Θ((b/r)(n+2r)) 时间内将这些数排好序。</span></span><br><span class="line"><span class="comment">空间复杂度：由过程中使用的稳定排序算法决定</span></span><br><span class="line"><span class="comment">稳定性：稳定</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">329</span>, <span class="number">457</span>, <span class="number">657</span>, <span class="number">839</span>, <span class="number">436</span>, <span class="number">720</span>, <span class="number">355</span>, <span class="number">11</span>, <span class="number">20</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">radixSort</span> (<span class="params">array, d</span>) </span>&#123;</span><br><span class="line">    array = array.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> str = <span class="built_in">String</span>(item),</span><br><span class="line">            len = str.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'0'</span>.repeat(d - len) + str</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = d - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = [];</span><br><span class="line"></span><br><span class="line">        array.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> temp[item[i]] === <span class="string">'number'</span>) &#123;</span><br><span class="line">                temp[item[i]] = temp[item[i]] + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                temp[item[i]] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">// console.log(temp)</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; temp.length; j++) &#123;</span><br><span class="line">            <span class="keyword">let</span> cur = <span class="keyword">typeof</span> temp[j] === <span class="string">'number'</span> ? temp[j] : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (j === <span class="number">0</span>) &#123;</span><br><span class="line">                temp[j] = cur;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                temp[j] = cur + temp[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// console.log(temp)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> res = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = array.length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">let</span> value = array[j],</span><br><span class="line">                singleValue = array[j][i];</span><br><span class="line">            res[temp[singleValue] - <span class="number">1</span>] = value;</span><br><span class="line">            temp[singleValue] = temp[singleValue] - <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(res)</span><br><span class="line">        &#125;</span><br><span class="line">        array = res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">parseInt</span>(item))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">radixSort(list, <span class="number">3</span>);        <span class="comment">// [ 4, 11, 20, 329, 355, 436, 457, 657, 720, 839 ]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> minIndex = i</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j=i+<span class="number">1</span>;j&lt;len; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(array[j] &lt; array[minIndex]) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = array[j]</span><br><span class="line">      array[j] = array[minIndex]</span><br><span class="line">      array[minIndex] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = selectSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 希尔排序：第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> gap=<span class="built_in">Math</span>.floor(len/<span class="number">2</span>); gap&gt;<span class="number">0</span>; gap=<span class="built_in">Math</span>.floor(gap/<span class="number">2</span>)) &#123;</span><br><span class="line">    <span class="comment">//内部是插入排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=gap; i&lt;len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> unsortValue = array[i]</span><br><span class="line">        <span class="keyword">let</span> currentIndex = i-gap</span><br><span class="line">        <span class="keyword">while</span>((currentIndex &gt;= <span class="number">0</span>) &amp;&amp; (array[currentIndex] &gt; unsortValue)) &#123;</span><br><span class="line">          array[currentIndex + gap] = array[currentIndex]</span><br><span class="line">          currentIndex = currentIndex - gap</span><br><span class="line">        &#125;</span><br><span class="line">        array[currentIndex + gap] = unsortValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = shellSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1090,20 +1022,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
