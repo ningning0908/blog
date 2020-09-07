@@ -185,6 +185,153 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/07/%E7%AE%97%E6%B3%95/%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/07/%E7%AE%97%E6%B3%95/%E6%A0%91/" class="post-title-link" itemprop="url">树题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-07 18:57:35" itemprop="dateCreated datePublished" datetime="2020-08-07T18:57:35+08:00">2020-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-09 13:44:57" itemprop="dateModified" datetime="2020-08-09T13:44:57+08:00">2020-08-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>一棵树要么是空树，要么有两个指针，每个指针指向一棵树。树是一种递归结构，很多树的问题可以使用递归来处理。</p>
+<h3 id="树的高度"><a href="#树的高度" class="headerlink" title="树的高度"></a>树的高度</h3><p>给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。<br>题目地址：<a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> maxDepth = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(root) &#123;</span><br><span class="line">            <span class="keyword">let</span> left = maxDepth(root.left);</span><br><span class="line">            <span class="keyword">let</span> right = maxDepth(root.right);</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right)+<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="平衡树"><a href="#平衡树" class="headerlink" title="平衡树"></a>平衡树</h3><p>给定一个二叉树，判断它是否是高度平衡的二叉树。本题中，一棵高度平衡二叉树定义为：一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。<br>题目地址：<a href="https://leetcode-cn.com/problems/balanced-binary-tree/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree/description/</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//递归是要保证每个节点的左右两个子树的高度差的绝对值不超过1</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(height(root.left)-height(root.right))&lt;=<span class="number">1</span> &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//计算高度差</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">height</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> left = height(node.left);</span><br><span class="line">        <span class="keyword">let</span> right = height(node.right);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="两节点的最长路径"><a href="#两节点的最长路径" class="headerlink" title="两节点的最长路径"></a>两节点的最长路径</h3><p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。<br>题目地址：<a href="https://leetcode-cn.com/problems/diameter-of-binary-tree/submissions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/diameter-of-binary-tree/submissions/</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;TreeNode&#125;</span> <span class="variable">root</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> diameterOfBinaryTree = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> temp = height(root.left) + height(root.right);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(temp,diameterOfBinaryTree(root.left),diameterOfBinaryTree(root.right));</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">height</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> left = height(node.left);</span><br><span class="line">        <span class="keyword">let</span> right = height(node.right);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(left,right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">集合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-05 14:02:55 / 修改时间：14:03:09" itemprop="dateCreated datePublished" datetime="2020-08-05T14:02:55+08:00">2020-08-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -305,7 +452,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-16 18:36:04" itemprop="dateModified" datetime="2020-08-16T18:36:04+08:00">2020-08-16</time>
+                <time title="修改时间：2020-09-07 13:39:19" itemprop="dateModified" datetime="2020-09-07T13:39:19+08:00">2020-09-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -346,6 +493,7 @@
 
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> minIndex = i</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j=i+<span class="number">1</span>;j&lt;len; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(array[j] &lt; array[minIndex]) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = array[j]</span><br><span class="line">      array[j] = array[minIndex]</span><br><span class="line">      array[minIndex] = temp</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = selectSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
 <h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 希尔排序：第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = array.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> gap=<span class="built_in">Math</span>.floor(len/<span class="number">2</span>); gap&gt;<span class="number">0</span>; gap=<span class="built_in">Math</span>.floor(gap/<span class="number">2</span>)) &#123;</span><br><span class="line">    <span class="comment">//内部是插入排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=gap; i&lt;len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> unsortValue = array[i]</span><br><span class="line">        <span class="keyword">let</span> currentIndex = i-gap</span><br><span class="line">        <span class="keyword">while</span>((currentIndex &gt;= <span class="number">0</span>) &amp;&amp; (array[currentIndex] &gt; unsortValue)) &#123;</span><br><span class="line">          array[currentIndex + gap] = array[currentIndex]</span><br><span class="line">          currentIndex = currentIndex - gap</span><br><span class="line">        &#125;</span><br><span class="line">        array[currentIndex + gap] = unsortValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = shellSort(list)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def toposort(graph):</span><br><span class="line">    in_degrees = dict((u,0) for u in graph) #初始化所有顶点入度为0</span><br><span class="line">    vertex_num = len(in_degrees)</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> graph[u]:</span><br><span class="line">            in_degrees[v] += 1    #计算每个顶点的入度</span><br><span class="line">    Q = [u <span class="keyword">for</span> u <span class="keyword">in</span> in_degrees <span class="keyword">if</span> in_degrees[u] == <span class="number">0</span>]</span><br><span class="line">    seq = []</span><br><span class="line">    <span class="keyword">while</span> Q:</span><br><span class="line">        u = Q.pop()   #默认从最后一个删除</span><br><span class="line">        seq.append(u)</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> graph[u]:</span><br><span class="line">            in_degrees[v] -= 1  #移除其所有指向</span><br><span class="line">            <span class="keyword">if</span> in_degrees[v] == <span class="number">0</span>:</span><br><span class="line">                Q.append(v)  #再次筛选入度为0的顶点</span><br><span class="line">        <span class="keyword">if</span> len(seq) == vertex_num:</span><br><span class="line">            <span class="keyword">return</span> seq</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"there is a circle"</span>)</span><br><span class="line">G = &#123;</span><br><span class="line">    <span class="string">'a'</span>: <span class="string">'bce'</span>,</span><br><span class="line">    <span class="string">'b'</span>: <span class="string">'d'</span>,</span><br><span class="line">    <span class="string">'c'</span>: <span class="string">'d'</span>,</span><br><span class="line">    <span class="string">'d'</span>: <span class="string">''</span>,</span><br><span class="line">    <span class="string">'e'</span>: <span class="string">'cd'</span></span><br><span class="line">&#125;</span><br><span class="line">print(toposort(G))</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1118,159 +1266,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/24/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/07/24/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" class="post-title-link" itemprop="url">HTTP常用状态码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-24 22:31:53" itemprop="dateCreated datePublished" datetime="2020-07-24T22:31:53+08:00">2020-07-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 22:38:26" itemprop="dateModified" datetime="2020-08-21T22:38:26+08:00">2020-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <div class="note info">
-            <p>下面是常见的HTTP状态码：</p><ul><li>200 - 请求成功</li><li>301 - 资源（网页等）被永久转移到其它URL</li><li>404 - 请求的资源（网页等）不存在</li><li>500 - 内部服务器错误</li><li>504 - （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</li></ul>
-          </div>
-
-<p><strong>具体见下面博客</strong>：<a href="https://www.cnblogs.com/xflonga/p/9368993.html" target="_blank" rel="noopener">https://www.cnblogs.com/xflonga/p/9368993.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/07/24/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%8E%9F%E7%94%9FAjax%E4%B8%8EPromise%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/07/24/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%8E%9F%E7%94%9FAjax%E4%B8%8EPromise%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">原生Ajax与Promise的结合使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-24 21:55:25" itemprop="dateCreated datePublished" datetime="2020-07-24T21:55:25+08:00">2020-07-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-25 13:39:39" itemprop="dateModified" datetime="2020-07-25T13:39:39+08:00">2020-07-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在面试京东提前批一面的时候，面试官让手写一个原生js写Ajax请求与Promise相结合的使用，保证执行顺序，在第一个请求正确返回后再发送第二个请求。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原生js写Ajax请求对象ajaxPromise(使用Promise的ajax请求)</span></span><br><span class="line"><span class="keyword">const</span> ajaxPromise = <span class="function"><span class="params">param</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//在这里不考虑IE7以下的浏览器兼容问题</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    xhr.open(param.type || <span class="string">"get"</span>, param.url, <span class="literal">true</span>);</span><br><span class="line">    xhr.send(param.data || <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> DONE = <span class="number">4</span>;   <span class="comment">//readyState 4 代表已经向服务器发送请求，并接收到全部数据</span></span><br><span class="line">      <span class="keyword">var</span> OK = <span class="number">200</span>;   <span class="comment">// status 200 代表服务器返回成功</span></span><br><span class="line">      <span class="keyword">if</span> (xhr.readyState === DONE) &#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status === OK) &#123;</span><br><span class="line">          resolve(<span class="built_in">JSON</span>.parse(xhr.responseText));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          reject(<span class="built_in">JSON</span>.parse(xhr.responseText));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个请求</span></span><br><span class="line"><span class="keyword">let</span> step1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ajaxPromise(&#123;</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">""</span>,</span><br><span class="line">  &#125;).then( <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一个请求正确返回==&gt;"</span> + res);</span><br><span class="line">    step2(res)</span><br><span class="line">  &#125;).catch( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一个请求失败"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二个请求</span></span><br><span class="line"><span class="keyword">let</span> step2 = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  ajaxPromise(&#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"get"</span>,</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"data"</span>: &#123;<span class="string">"name"</span>: res&#125;</span><br><span class="line">  &#125;).then( <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二个请求正确返回==&gt;"</span> + res);</span><br><span class="line">  &#125;).catch( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二个请求失败"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1340,20 +1335,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
