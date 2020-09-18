@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%8E%9F%E5%9E%8B%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AE%9E%E4%BE%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
 <meta property="article:published_time" content="2020-04-17T12:38:59.819Z">
-<meta property="article:modified_time" content="2019-11-17T11:46:59.250Z">
+<meta property="article:modified_time" content="2020-09-16T01:54:17.947Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 19:46:59" itemprop="dateModified" datetime="2019-11-17T19:46:59+08:00">2019-11-17</time>
+                <time title="修改时间：2020-09-16 09:54:17" itemprop="dateModified" datetime="2020-09-16T09:54:17+08:00">2020-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -378,14 +378,14 @@
 
 <p>当SubType通过原型链继承了Supertype之后，SubType.prototype就变成了Supertype的一个实例，因此它也拥有了一个它自己的colors属性，就跟专门创建了一个SubType.prototype.colors属性一样，结果是<strong>SubType的所有实例都会共享这一个colors属性。</strong><br>原型链的第二个问题是在创建子类型的实例时，不能向超类型的构造函数中传递参数。<br><strong>基于以上两个问题，实践中很少单独使用原型链。</strong></p>
 <h3 id="借用构造函数"><a href="#借用构造函数" class="headerlink" title="借用构造函数"></a>借用构造函数</h3><p>在解决原型中包含引用类型值所带来问题的过程中，开发人员开始使用一种叫做<strong>借用构造函数</strong>的技术（有时也叫做伪造函数或经典继承）。这种技术的基本思想相当简单，即在子类型构造函数的内部调用超类型构造函数。**而且函数只不过是在特定环境中执行代码的对象，因此通过使用apply()和call()方法也可以在新创建的对象上执行构造函数，如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Supertype</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 继承了Supertype</span></span><br><span class="line">    Supertype.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance1 = <span class="keyword">new</span> SubType();</span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance2 = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Supertype</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 继承了Supertype</span></span><br><span class="line">    Supertype.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance1 = <span class="keyword">new</span> SubType();</span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors);  <span class="comment">//["red", "blue", "green", "black"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance2 = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors)  <span class="comment">// ["red", "blue", "green"]</span></span><br></pre></td></tr></table></figure>
 
 <p>代码中Supertype.call(this)“借调”了超类型的构造函数，通过使用call()方法（或apply()方法），我们实际上是在（未来将要）新创建的SubType实例的环境下调用了Supertype构造函数，这样在新SubType对象上执行SubType()函数中定义的所有对象初始化代码，结果SubType的每个实例就会有自己的colors属性的副本了。</p>
 <p><strong>传递参数：</strong>相对于原型链而言，借用构造函数有一个很大的优势，即可以在子类型构造函数中向超类型构造函数传递参数。如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Supertype</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    Supertype.call(<span class="keyword">this</span>, <span class="string">"Nicholas"</span>);</span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">29</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.name);     <span class="comment">//"Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(instance.age);      <span class="comment">//29</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>借用构造函数的问题：</strong>如果仅仅是借用构造函数，那么也将无法避免构造函数模式存在的问题————方法都在构造函数中定义，因此函数复用就无从谈起了，而且在超类型的原型中定义的方法对于类型而言也是不可见的，结果所有类型都只能使用构造函数模式，考虑到这些，<strong>借用构造函数的技术也是很少单独使用的。</strong></p>
-<h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><p>组合继承有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式，主要思想<strong>是使用原型链是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承</strong>，这样既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。</p>
+<h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><p>组合继承有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式，主要思想<strong>是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承</strong>，这样既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。</p>
 
     </div>
 
@@ -483,7 +483,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
