@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/Set%E4%B8%8EMap(%E6%9C%AA%E5%AE%8C)/">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/ES6%E5%85%BC%E5%AE%B9%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -199,7 +199,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/Set%E4%B8%8EMap(%E6%9C%AA%E5%AE%8C)/" class="post-title-link" itemprop="url">Set与Map</a>
+            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/ES6%E5%85%BC%E5%AE%B9%E6%80%A7/" class="post-title-link" itemprop="url">ES6兼容性</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-28 21:54:03" itemprop="dateModified" datetime="2019-12-28T21:54:03+08:00">2019-12-28</time>
+                <time title="修改时间：2019-11-18 09:33:15" itemprop="dateModified" datetime="2019-11-18T09:33:15+08:00">2019-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,143 +239,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>JS的大部分历史时期都只存在一种集合类型，也就是数组类型（尽管有人会争论说，所有非数组的对象都是键值对的集合，它们曾被用于与数组完全不同的用途）。数组在JS 中的使用正如其他语言的数组一样，但缺少更多类型的集合导致数组也经常被当作队列和栈来使用。数组只使用了数值型的索引，而如果非数值型的索引是有必要的，开发者便会使用非数组的对象，这种技巧引出了非数组对象的定制实现。即Set与Map。<br><strong>Set是不包含重复值的列表。</strong>你一般不会像对待数组那样来访问Set中的某个项；相反更常见的是，只在<code>Set</code>中检查某个值是否存在。<strong>Map则是键与相对应的值的集合</strong>。因此<code>Map</code>中的每个项都存储了两块数据，通过读取所需读取的键即可检索对应的值。<code>Map</code>常被用做缓存，存储数据以便以后快速检索。由于<code>Set</code>与<code>Map</code>并不正式存在于ES5中，开发者就只能使用非数组的对象。</p>
-<h2 id="ES5中的Set与Map"><a href="#ES5中的Set与Map" class="headerlink" title="ES5中的Set与Map"></a>ES5中的Set与Map</h2><p>在ES5中，开发者使用对象属性来模拟Set与Map，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = Object.create(null);</span><br><span class="line"><span class="keyword">set</span>.foo = true;</span><br><span class="line">// 检查属性的存在性</span><br><span class="line">if (<span class="keyword">set</span>.foo) &#123;</span><br><span class="line">    <span class="comment">// 一些操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>本例中的 set 变量是一个原型为 null 的对象，确保在此对象上没有继承属性。使用对象的属性作为需要检查的唯一值在 ES5 中是很常用的方法。当一个属性被添加到 set 对象<br>时，它的值也被设为 true ，因此条件判断语句（例如本例中的 if 语句）就可以简单判断出该值是否存在。</p>
-<p>使用对象模拟 Set 与模拟 Map 之间唯一真正的区别是所存储的值。例如，以下例子将对象作为 <code>Map</code> 使用：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">map.foo = <span class="string">"bar"</span>;</span><br><span class="line"><span class="comment">// 提取一个值</span></span><br><span class="line"><span class="keyword">let</span> value = map.foo;</span><br><span class="line"><span class="built_in">console</span>.log(value); <span class="comment">// "bar"</span></span><br></pre></td></tr></table></figure>
-
-<p>此代码将字符串值 “bar” 存储在 foo 键上。与 Set 不同， Map 多数被用来提取数据，不是仅检查键的存在性。</p>
-<h2 id="变通方法的问题"><a href="#变通方法的问题" class="headerlink" title="变通方法的问题"></a>变通方法的问题</h2><p>尽管在简单情况下将对象作为Set与Map来使用都是可行的，但一旦接触到对象属性的局限性，此方式就会遇到更多麻烦。例如：由于对象属性的类型必须为字符串，你就必须保证任意两个键不能被转换为相同的字符串，研究如下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">map[<span class="number">5</span>] = <span class="string">"foo"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(map[<span class="string">"5"</span>]); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
-
-<p>本例将字符串值 “foo” 赋值到数值类型的键 5 上，而数值类型的键会在内部被转换为字符串，因此 map[“5”] 与 map[5] 实际上引用了同一个属性。当你想将数值与字符串都作为键来使用时，这种内部转换会引起问题。而若使用对象作为键，就会出现另一个问题，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>),</span><br><span class="line">    key1 = &#123;&#125;,</span><br><span class="line">    key2 = &#123;&#125;;</span><br><span class="line">map[key1] = <span class="string">"foo"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(map[key2]); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
-
-<p>此处的 map[key2] 与 map[key1] 引用了同一个值。由于对象的属性只能是字符串， key1与 key2 对象就均被转换为字符串；又因为对象默认的字符串类型表达形式是 “[object<br>Object]” ， key1 与 key2 就被转换为了同一个字符串。这种行为导致的错误可能不太显眼，因为貌似合乎逻辑的假设是：键如果使用了不同对象，它们就应当是不同的键。<br>将对象转换为默认的字符串表现形式，使得对象很难被当作 Map 的键来使用（此问题同样存在于将对象作为 Set 来使用的尝试上）。</p>
-<p>当键的值为假值时， Map 也遇到了自身的特殊问题。在需要布尔值的位置（例如在 if 语句内），任何假值都会被自动转换为 false 。这种转换单独说来并不是问题——只要对如何使用值的问题足够小心。例如，查看以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">    map.count = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 是想检查 "count" 属性的存在性，还是想检查非零值？</span></span><br><span class="line"><span class="keyword">if</span> (map.count) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="note into">
-            <p>此例中 map.count 的用法存在歧义。此处的 if 语句是想检查 map.count 属性的存在性，还是想检查非零值？该 if 语句内的代码会被执行是因为 1 是真值。然而若 map.count 的值为 0 ，或者该属性不存在，则 if 语句内的代码都将不会被执行。在大型应用中，这类问题都是难以确认、难以调试的，这也是 ES6 新增 Set 与 Map 类型的<br>首要原因。</p>
-          </div>
-
-<h2 id="ES6的Set"><a href="#ES6的Set" class="headerlink" title="ES6的Set"></a>ES6的Set</h2><p><strong>ES6新增了 <code>Set</code> 类型，这是一种无重复值的有序列表，Set允许对它包含的数据进行快速访问，从而增加了一个追踪离散值的更有效方式。</strong></p>
-<h3 id="创建Set并添加项目"><a href="#创建Set并添加项目" class="headerlink" title="创建Set并添加项目"></a>创建Set并添加项目</h3><p>Set使用 <code>new Set()</code> 来创建，而调用 <code>add()</code>方法就能向Set中添加项目，检查<code>size</code>属性还能查看其中包含有多少项：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set();</span><br><span class="line"><span class="keyword">set</span>.add(5);</span><br><span class="line"><span class="keyword">set</span>.add("5");</span><br><span class="line">console.log(<span class="keyword">set</span>.size);  //2</span><br></pre></td></tr></table></figure>
-
-<p><strong>Set不会使用强制类型转换来判断值是否重复。</strong>同时在Set内部的比较使用了之前介绍的Object.js()方法，来判断两个值是否相等，唯一的例外是 <strong>+0</strong> 与 <strong>-0</strong> 在Set中被判断为是相等的。<br>向<strong>Set</strong>添加多个对象，它们不会被合并为同一项：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set(),</span><br><span class="line">    key1 = &#123;&#125;,</span><br><span class="line">    key2 = &#123;&#125;;</span><br><span class="line"><span class="keyword">set</span>.add(key1);</span><br><span class="line"><span class="keyword">set</span>.add(key2);</span><br><span class="line">console.log(<span class="keyword">set</span>.size);    //2</span><br></pre></td></tr></table></figure>
-
-<p>由于 <code>key1</code> 与 <code>key2</code> 并不会被转换为字符串，所以它们在这个 <code>Set</code> 内部被认为是两个不同的项（记住：如果它们被转换为字符串，那么都会等于 “[object Object]” ）</p>
-<p>可以使用数组来初始化一个Set，并且 <code>Set</code> 构造器会确保不重复地使用这些值。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1,2,3,5,4,5,5,5]);</span><br><span class="line">console.log(<span class="keyword">set</span>.size);    //5</span><br></pre></td></tr></table></figure>
-
+          <h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>提供两个关于 ES5 与 ES6 兼容的浏览器等的表。</p>
 <div class="note info">
-            <p><code>set</code> 构造器实际上可以接收任意可迭代对象作为参数。能使用数组是因为它们默认就是可迭代的，<code>Set</code> 与 <code>Map</code> 也是一样。<code>Set</code> 构造器会使用迭代器来提取参数中的值。</p>
+            <p><a href="http://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es6/</a><br><a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es5/</a></p>
           </div>
-<p>可以使用 <code>has()</code> 方法来测试某个值是否存在于 Set 中：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set();</span><br><span class="line"><span class="keyword">set</span>.add(5);</span><br><span class="line"><span class="keyword">set</span>.add("5");</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">set</span>.has(5));   //true</span><br><span class="line">console.log(<span class="keyword">set</span>.has(6));   //false</span><br></pre></td></tr></table></figure>
 
-<h3 id="移除值"><a href="#移除值" class="headerlink" title="移除值"></a>移除值</h3><p>可以使用 <code>delete()</code> 方法移除 Set 中的单个值，也可以使用 <code>clear()</code>方法来将所有的值从Set中移除。以下代码展示了二者的作用：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set();</span><br><span class="line"><span class="keyword">set</span>.add(5);</span><br><span class="line"><span class="keyword">set</span>.add("5");</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">set</span>.has(5)); // true</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>.delete(5);</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">set</span>.has(5)); // false</span><br><span class="line">console.log(<span class="keyword">set</span>.size); // 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>.clear();</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">set</span>.has("5")); // false</span><br><span class="line">console.log(<span class="keyword">set</span>.size); // 0</span><br></pre></td></tr></table></figure>
-
-<h3 id="Set上的-forEach-方法"><a href="#Set上的-forEach-方法" class="headerlink" title="Set上的 forEach()方法"></a>Set上的 forEach()方法</h3><p><code>forEach()</code> 方法会被传递一个回调函数，该回调接受三个参数：</p>
-<ol>
-<li>Set中下一个位置的值；</li>
-<li>与第一个参数相同的值；</li>
-<li>目标Set本身。</li>
-</ol>
-<p>Set版本的 <code>forEach()</code> 方法与数组版本有个奇怪差异：前者传给回调函数的第一个与第二个参数是相同的。<br>具有 <code>forEach()</code> 方法的其他对象（即数组与Map）都会给回调函数传递三个参数，前两个参数都分别是下个位置的值与键（给数组使用的键是数值索引）。<br>然而Set中没有键，所以为了让Set的 <code>forEach()</code> 方法与数组及Map版本的保持一致，该回调函数的前两个参数就始终相同了。<br>示例代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2]);</span><br><span class="line"><span class="keyword">set</span>.forEach(function(value,key,ownerSet) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" "</span> + value);  </span><br><span class="line">    <span class="built_in">console</span>.log(ownerSet === <span class="keyword">set</span>);</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此代码在 Set 的每一项上进行迭代，并对传递给 <code>forEach()</code> 的回调函数的值进行了输出。回调函数每次执行时， <code>key</code> 与 <code>value</code> 总是相同的，同时 <code>ownerSet</code> 也始终等于 set 。此代码输出：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>与使用数组相同，如果想在回调函数中使用 <code>this</code>，你可以给 <code>forEach()</code> 传入一个 <code>this</code> 值作为第二个参数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1,2]);</span><br><span class="line">let processor = &#123;</span><br><span class="line">    output(value) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value);</span><br><span class="line">    &#125;,</span><br><span class="line">    process(dataSet) &#123;</span><br><span class="line">        dataSet.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.output(value);</span><br><span class="line">        &#125;, <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">processor.process(<span class="keyword">set</span>);</span><br></pre></td></tr></table></figure>
-
-<p>本例中 <code>processor.process()</code> 方法在Set上调用了 <code>forEach()</code>, 并传递了当前 <code>this</code> 作为回调函数的 <code>this</code> 值。这个传递非常必要，这样 <code>this.output()</code> 就能正确地解析到 <code>processor.output()</code> 方法。此处的 <code>forEach()</code> 的回调函数仅使用了第一个参数 <code>value</code>， 其余参数被省略了。也可以使用箭头函数来达到相同效果，而无须传入第二个参数，就像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1,2]);</span><br><span class="line">let processor = &#123;</span><br><span class="line">    output(value) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value);</span><br><span class="line">    &#125;,</span><br><span class="line">    process(dataSet) &#123;</span><br><span class="line">        dataSet.forEach(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.output(value);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">processor.process(<span class="keyword">set</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>要记住，虽然 Set 能非常好地追踪值，并且 forEach() 可以让你按顺序处理每一项，但是却无法像数组那样用索引来直接访问某个值。如果你想这么做，最好的选择是将 Set 转换为数组。</strong></p>
-<h3 id="将Set转换为数组"><a href="#将Set转换为数组" class="headerlink" title="将Set转换为数组"></a>将Set转换为数组</h3><p>使用扩展运算符用于将可迭代对象（例如Set）转换为数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2, 3, 3, 3, 4, 5]),</span><br><span class="line">array = [...<span class="keyword">set</span>];</span><br><span class="line">console.log(array); // [1,2,3,4,5]</span><br><span class="line">console.log(<span class="keyword">set</span>);   //Set &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当存在一个数组，想用它创建一个无重复值的新数组时，可以使用这种方法，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eliminateDuplicates</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [...new <span class="built_in">Set</span>(items)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">noDuplicates = eliminateDuplicates(numbers);</span><br><span class="line"><span class="built_in">console</span>.log(noDuplicates); <span class="comment">// [1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Weak-Set"><a href="#Weak-Set" class="headerlink" title="Weak Set"></a>Weak Set</h3><p>由于 Set 类型存储对象引用的方式，它也可以被称为 Strong Set 。对象存储在 Set 的一个实例中时，实际上相当于把对象存储在变量中。只要对于 Set 实例的引用仍然存在，所存储的对象就无法被垃圾回收机制回收，从而无法释放内存。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set(),</span><br><span class="line">key = &#123;&#125;;</span><br><span class="line"><span class="keyword">set</span>.add(key);</span><br><span class="line">console.log(<span class="keyword">set</span>.size); // 1</span><br><span class="line">// 取消原始引用</span><br><span class="line">key = null;</span><br><span class="line">console.log(<span class="keyword">set</span>.size); // 1</span><br><span class="line">// 重新获得原始引用</span><br><span class="line">key = [...<span class="keyword">set</span>][0];</span><br><span class="line">console.log(key);   //&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在本例中，将 <code>key</code> 设置为 <code>null</code> 清除了对 key 对象的一个引用，但是另一个引用还存于<code>set</code> 内部。你仍然可以使用扩展运算符将 <code>Set</code> 转换为数组，然后访问数组的第一项， <code>key</code>变量就取回了原先的对象。这种结果在大部分程序中是没问题的，但有时，当其他引用消失之后若 <code>Set</code> 内部的引用也能消失，那就更好。例如，当 <code>JS</code> 代码在网页中运行，同时你想保持与 <code>DOM</code> 元素的联系，在该元素可能被其他脚本移除的情况下，你应当不希望自己的代码保留对该 <code>DOM</code> 元素的最后一个引用（这种情况被称为内存泄漏）。为了缓解这个问题， <code>ES6</code> 也包含了 <code>Weak Set</code> ，该类型只允许存储对象弱引用，而不能存储基本类型的值。对象的弱引用在它自己成为该对象的唯一引用时，不会阻止垃圾回收。</p>
+<p><strong>ES6也叫ES2015,目前支持的浏览器版本有IE10+、Chrome、FireFox、移动端、NodeJS。</strong><br>对于更早版本的浏览器若想实现兼容性问题，需要进行编译或者转换，有以下两种方式。</p>
 <ul>
-<li>创建 Weak Set</li>
+<li><strong>在线编译</strong>：容易造成用户刷新页面时出现卡顿现象，用户体验不太好</li>
+<li><strong>提前转换</strong>：用的较多</li>
 </ul>
-<p><code>Weak Set</code> 使用 <code>WeakSet</code> 构造器来创建，并包含 <code>add()</code> 方法、 <code>has()</code> 方法以及 <code>delete()</code>方法。以下例子使用了这三个方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new WeakSet(),</span><br><span class="line">    key = &#123;&#125;;</span><br><span class="line"><span class="comment">// 将对象加入 set</span></span><br><span class="line"><span class="keyword">set</span>.add(key);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key)); // true</span><br><span class="line"><span class="keyword">set</span>.delete(key);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key)); // false</span><br></pre></td></tr></table></figure>
+<p>目前使用较多的提前转换方式是使用<code>babel</code>库，<code>babel</code>是一个<code>Javascript编译器</code>，是目前前端开发最常用的工具之一，主要用于将 <code>ECMAScript 2015+</code> 版本的代码转换为向后兼容的 <code>JavaScript</code> 语法，以便能够运行在当前和旧版本的浏览器或其他环境。比如在代码中使用了ES6的箭头函数，这种写法在IE里面是会报错的，为了让代码能在IE中运行，就需要将代码编译成IE支持的写法，这就是<code>babel</code>的工作。</p>
 
-<p>使用<code>WeakSet</code>很像在使用正规的<code>Set</code>。可以在<code>WeakSet</code>上添加、移除或检查引用，也可以给构造器传入一个可迭代对象来初始化<code>WeakSet</code>的值：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> key1 = &#123;&#125;,</span><br><span class="line">    key2 = &#123;&#125;,</span><br><span class="line">    <span class="keyword">set</span> = new WeakSet([key1, key2]);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key1)); // true</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key2)); // true</span><br></pre></td></tr></table></figure>
-
-<p>在本例中，一个数组被传给了<code>WeakSet</code>构造器。由于该数组包含了两个对象，这些对象就被添加到了<code>WeakSet</code>中。<strong>记住：若数组中包含了非对象的值，就会抛出错误，因为<code>WeakSet</code>构造器不接受基本类型的值。</strong></p>
-<p><strong><code>Set</code>类型与正规<code>Set</code>之间最大的区别是对象的弱引用。</strong>如下例所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new WeakSet();</span><br><span class="line">    key = &#123;&#125;;</span><br><span class="line"><span class="keyword">set</span>.add(key);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key));  //true</span><br><span class="line">key = null;</span><br><span class="line">console.log(<span class="keyword">set</span>.has(key));  //false</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，他们还有一些关键差异。即：</p>
-<div class="note info">
-            <ol><li>对于<code>WeakSet</code>的实例，若调用<code>add()</code>方法时传入了非对象的参数，就会抛出错误（<code>has()</code>或<code>delete()</code>则会在传入了非对象的参数时返回<code>false</code>）;</li><li><code>WeakSet</code>不可迭代，因此不能用在<code>for-of</code>循环中；</li><li><code>WeakSet</code>无法暴露处任何迭代器（例如<code>key()</code>与<code>values()</code>方法），因此没有任何编程手段可用于判断<code>WeakSet</code>的内容；</li><li><code>WeakSet</code>没有<code>forEach()</code>方法；</li><li><code>WeakSet</code>没有<code>size</code>属性。</li></ol>
-          </div>
-
-<p>**<code>WeakSet</code>看起来功能有限，而这对于正确管理内存而言是必要的，一般来说，若只想追踪对象的引用，应当使用<code>WeakSet</code>而不是正规的<code>Set</code>。</p>
-<h2 id="ES6中的Map"><a href="#ES6中的Map" class="headerlink" title="ES6中的Map"></a>ES6中的Map</h2><p>ES6中的<code>Map</code>类型是键值对的有序列表，而键和值都可以是任意类型。键的比较使用的是<code>Object.is()</code>，因此你能将<code>5</code>与<code>&quot;5&quot;</code>同时作为键，因为它们类型不同。这与使用对象属性作为键的方式（指的是用对象模拟Map）截然不同，因为对象的属性会被强制转换为字符串。<br>你可以调用<code>set()</code>方法并给它传递一个键与一个关联的值，来给Map添加项；此后使用键名来调用<code>get()</code>方法便能提取对应的值。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">"title"</span>, <span class="string">"Understanding ES6"</span>);</span><br><span class="line">map.set(<span class="string">"year"</span>, <span class="string">"2016"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(map.get(<span class="string">"title"</span>));   <span class="comment">//Understanding ES6</span></span><br><span class="line"><span class="built_in">console</span>.log(map.get(<span class="string">"year"</span>));    <span class="comment">//2016</span></span><br></pre></td></tr></table></figure>
-
-<p>同时也可以将对象作为键，这也是从前使用对象属性来创建Map的变通方法所无法做到的。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    key1 = &#123;&#125;;</span><br><span class="line">    key2 = &#123;&#125;;</span><br><span class="line">map.set(key1, <span class="number">5</span>);</span><br><span class="line">map.set(key2, <span class="number">42</span>);</span><br><span class="line"><span class="built_in">console</span>.log(map.get(key1));  <span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(map.get(key2));  <span class="comment">//42</span></span><br></pre></td></tr></table></figure>
-
-<p>此处代码使用了对象<code>key1</code>与<code>key2</code>作为<code>Map</code>的键，并存储了两个不同的值。由于这些键不会被强制转换成其他形式，每个对象都被认为是唯一的。这允许你给对象关联额外数据，而无须修改对象自身。</p>
-<h3 id="Map的方法"><a href="#Map的方法" class="headerlink" title="Map的方法"></a>Map的方法</h3><p>Map与Set共享了几个方法，这是有意的，允许你使用相似的方式来与Map及Set进行交互。以下三个方法在Map与Set上都存在：</p>
-<div class="note info">
-            <ul><li>has(key): 判断指定的键是否存在于Map中；</li><li>delete(key): 移除Map中的键以及对应的值；</li><li>clear(): 移除Map中所有的键与值。</li></ul>
-          </div>
-
-<p>Map同样拥有<code>size</code>属性，用于指明包含了多少个键值对。</p>
-<h3 id="Map的初始化"><a href="#Map的初始化" class="headerlink" title="Map的初始化"></a>Map的初始化</h3><p><strong>与<code>Set</code>类似，将数组传递给<code>Map</code>构造器，以便使用数据来初始化一个<code>Map</code>。该数组中的每一项必须为数组，内部数组的首个项会作为键，第二项则为对应值。因此<code>Map</code>就被这些双项数组所填充。</strong>例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">"name"</span>, <span class="string">"Nicholas"</span>], [<span class="string">"age"</span>, <span class="number">25</span>]]);</span><br><span class="line"><span class="built_in">console</span>.log(map.has(<span class="string">"name"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(map.get(<span class="string">"name"</span>)); <span class="comment">// "Nicholas"</span></span><br><span class="line"><span class="built_in">console</span>.log(map.has(<span class="string">"age"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(map.get(<span class="string">"age"</span>)); <span class="comment">// 25</span></span><br><span class="line"><span class="built_in">console</span>.log(map.size); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-<p>通过构造器中的初始化，<code>&quot;name&quot;</code>与<code>&quot;age&quot;</code>这两个键就被添加到<code>map</code>变量中。虽然由数组构成的数组看起来有点奇怪，这对于准确表示键来说却是必要的：因为键允许是任意数据类型，将键存储在数组中，是确保它们在添加到Map之前不会被强制转换为其他类型的唯一方法。</p>
-<h3 id="Map上的forEach方法"><a href="#Map上的forEach方法" class="headerlink" title="Map上的forEach方法"></a>Map上的forEach方法</h3><p><code>Map</code>的<code>forEach()</code>方法类似于<code>Set</code>与数组的同名方法，它接受一个能接收三个参数的回调函数：</p>
-<ul>
-<li><ol>
-<li>Map中下个位置的值；</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>该值所对应的键；</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>目标Map自身。<br>回调函数的这些参数更紧密契合了数组<code>forEach()</code>方法的行为，即：第一个参数是值、第二个参数则是键（数组中的键是数值索引）。示例如下：</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">"name"</span>,<span class="string">"Nicholas"</span>], [<span class="string">"age"</span>, <span class="number">25</span>]]);</span><br><span class="line">map.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, key, ownerMap</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" "</span> + value);</span><br><span class="line">    <span class="built_in">console</span>.log(ownerMap === map);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>结果如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name Nicholas</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">age <span class="number">25</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<div class="note into">
-            <p>也可以给<code>forEach()</code>提供第二个参数来指定回调函数中的<code>this</code>值，其行为与<code>Set</code>版本的<code>forEach()</code>一致。</p>
-          </div>
-
-<h3 id="Weak-Map"><a href="#Weak-Map" class="headerlink" title="Weak Map"></a>Weak Map</h3><p>Weak Map对Map而言，就像Weak Set对Set一样：Weak版本都是存储对象弱引用的方式。在<code>Weak Map</code>中，所有的键都必须是对象（尝试使用非对象的键会抛出错误），而且这<br>些对象都是弱引用，不会干扰垃圾回收。当<code>Weak Map</code>中的键在<code>Weak Map</code>之外不存在引用时，该键值对会被移除。</p>
-<div class="note into">
-            <p>必须注意的是，Weak Map的键才是弱引用，而值不是，在Weak Map的值中存储对象会阻止垃圾回收，即使该对象的其他引用已全部被移除。</p>
-          </div>
-
-<h3 id="使用Weak-Map"><a href="#使用Weak-Map" class="headerlink" title="使用Weak Map"></a>使用Weak Map</h3><p>ES6的<code>Weak Map</code>类型是键值对的无序列表，其中键必须是非空的对象，值则允许是任意类型。<code>Weak Map</code>的接口与<code>Map</code>非常相似，都使用<code>set()</code>与<code>get()</code>方法来分别添加与提取数据：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
