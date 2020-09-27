@@ -745,108 +745,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">字符串与正则表达式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-09 12:09:13" itemprop="dateModified" datetime="2020-06-09T12:09:13+08:00">2020-06-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>关于字符串与正则表达式，这里不介绍太多细致内容，本章整理的不是很全面。</strong></p>
-<h2 id="识别子字符串的方法"><a href="#识别子字符串的方法" class="headerlink" title="识别子字符串的方法"></a>识别子字符串的方法</h2><p>自从 JS 引入了 indexOf() 方法，开发者们就使用它来识别字符串是否存在于其它字符串中。ES6 包含了以下三个方法来满足这类需求：</p>
-<div class="note info">
-            <ul><li><strong>includes()方法</strong>：在给定文本存在于字符串中的任意位置时会返回 true，否则返回false；</li><li><strong>startsWith()方法</strong>：在给定文本出现在字符串起始处时返回 true ，否则返回 false；</li><li><strong>endsWith()方法</strong>：在给定文本出现在字符串结尾处时返回 true，否则返回 false。</li></ul>
-          </div>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="string">"Hello world!"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"Hello"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"!"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"o"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"o"</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"world!"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"x"</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"o"</span>, <span class="number">4</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"o"</span>, <span class="number">8</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"o"</span>, <span class="number">8</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="repeat-方法"><a href="#repeat-方法" class="headerlink" title="repeat()方法"></a>repeat()方法</h2><p>ES6 还为字符串添加了一个 repeat() 方法，它接受一个参数作为字符串的重复次数，返回一个将初始字符串重复指定次数的新字符串。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"x"</span>.repeat(<span class="number">3</span>));  <span class="comment">// "xxx"</span></span><br></pre></td></tr></table></figure>
-
-<p>此方法比相同目的的其余方法更加方便，在操纵文本时特别有用，尤其是在需要产生缩进的代码格式化工具中，像这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// indent 使用了一定数量的空格</span></span><br><span class="line"><span class="keyword">var</span> indent = <span class="string">" "</span>.repeat(<span class="number">4</span>),</span><br><span class="line">indentLevel = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 每当你增加缩进</span></span><br><span class="line"><span class="keyword">var</span> newIndent = indent.repeat(++indentLevel);</span><br></pre></td></tr></table></figure>
-
-<p><strong>上面的代码在第一次调用<code>repeat()</code>创建了一个包含四个空格的字符串，而<code>indentLevel</code>变量会持续追踪缩进的级别，此后，你可以通过增加<code>indentLevel</code>的值来调用`repeat()方法，便可以改变空格数量。</strong></p>
-<h2 id="正则表达式的其他改动"><a href="#正则表达式的其他改动" class="headerlink" title="正则表达式的其他改动"></a>正则表达式的其他改动</h2><p>正则表达式是在JS中操作字符串的重要方面之一，与该语言的其他方面相似，它在以往的版本中并未有太多改变。不过，为了配合字符串的更新，ES6也对正则表达式进行了一些改进。</p>
-<h3 id="正则表达式-y-标志"><a href="#正则表达式-y-标志" class="headerlink" title="正则表达式 y 标志"></a>正则表达式 y 标志</h3><p><code>y</code>标志影响正则表达式搜索时的粘连（<code>sticky</code>）属性，它表示从正则表达式的<code>lastIndex</code>属性值的位置开始检索字符串中的匹配字符，如果在该位置没有匹配成功，那么正则表达式将停止检索。看下面的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"hello1 hello2 hello3"</span>,</span><br><span class="line">pattern = <span class="regexp">/hello\d\s?/</span>,</span><br><span class="line">result = pattern.exec(text),</span><br><span class="line">globalPattern = <span class="regexp">/hello\d\s?/g</span>,</span><br><span class="line">globalResult = globalPattern.exec(text),</span><br><span class="line">stickyPattern = <span class="regexp">/hello\d\s?/y</span>,</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line">pattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">globalPattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">stickyPattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">result = pattern.exec(text);</span><br><span class="line">globalResult = globalPattern.exec(text);</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// Error! stickyResult is null</span></span><br></pre></td></tr></table></figure>
-
-<p>此例中有三个正则表达式： pattern 中的表达式没有使用任何标志， globalPattern 使用了<code>g</code> 标志， stickyPattern 则使用了 <code>y</code> 标志。对 console.log() 的第一次调用，三个正则表达式分别都返回了 “hello1 “ ，此字符串尾部有个空格。<br>此后，三个模式的 lastIndex 属性全部被更改为 1 ，表示三个模式的正则表达式都应当从第二个字符开始尝试匹配。不使用任何标志的正则表达式完全忽略了对于 lastIndex 的更改，仍然毫无意外地匹配了 “hello1 “ ；而使用 g 标志的正则表达式继续匹配了 “hello2 “ ，因为它从第二个字符（ “e” ）开始，持续向着字符串尾部方向搜索；粘连的正则表达式则在第二个字符处没有匹配成功，因此 stickyResult 的值是 null 。<br>一旦匹配操作成功，粘连标志就会将匹配结果之后的那个字符的索引值保存在 lastIndex中；若匹配未成功，那么 lastIndex 的值将重置为 0 。全局标志的行为与其相同，如下所<br>示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"hello1 hello2 hello3"</span>,</span><br><span class="line">pattern = <span class="regexp">/hello\d\s?/</span>,</span><br><span class="line">result = pattern.exec(text),</span><br><span class="line">globalPattern = <span class="regexp">/hello\d\s?/g</span>,</span><br><span class="line">globalResult = globalPattern.exec(text),</span><br><span class="line">stickyPattern = <span class="regexp">/hello\d\s?/y</span>,</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern.lastIndex); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(globalPattern.lastIndex); <span class="comment">// 7</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyPattern.lastIndex); <span class="comment">// 7</span></span><br><span class="line">result = pattern.exec(text);</span><br><span class="line">globalResult = globalPattern.exec(text);</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern.lastIndex); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(globalPattern.lastIndex); <span class="comment">// 14</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyPattern.lastIndex); <span class="comment">// 14</span></span><br></pre></td></tr></table></figure>
-
-<p>对于 stickyPattern 和 globalPattern 模式变量来说，第一次调用之后 lastIndex 的值均被更改为 7 ，而第二次则均被改为 14 。</p>
-<div class="note info">
-            <p><strong>有两个关于粘连标志的微妙细节需要牢记：</strong></p><ul><li>只有调用正则表达式对象上的方法（例如 exec() 与 test() 方法）， lastIndex 属性才会生效。而将正则表达式作为参数传递给字符串上的方法（例如 match() ），并不会<br>体现粘连特性。</li><li>当使用 ^ 字符来匹配字符串的起始处时，粘连的正则表达式只会匹配字符串的起始处（或者在多行模式下匹配行首）。当 lastIndex 为 0 时， ^ 不会让粘连的正则表达式<br>与非粘连的有任何区别；而当 lastIndex 在单行模式下不对应整个字符串起始处，或者当它在多行模式下不对应行首时，粘连的正则表达式永远不会匹配成功。</li></ul>
-          </div>
-
-<p><strong>和正则表达式其他标志相同，你可以根据一个属性来检测 y 标志是否存在。此时你需要检查的是 sticky 属性，如下：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/hello\d/y</span>;</span><br><span class="line"><span class="built_in">console</span>.log(pattern.sticky); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1158,6 +1056,108 @@
 
 <p><strong>const 变量在 for-in 或 for-of 循环中使用时，与 let 变量效果相同。</strong>const 能够在 for-in 与 for-of 循环内工作，是因为循环为每次迭<br>代创建了一个新的变量绑定，而不是试图去修改已绑定的变量的值</p>
 <h2 id="全局块级绑定"><a href="#全局块级绑定" class="headerlink" title="全局块级绑定"></a>全局块级绑定</h2><p>在全局作用域上使用var时，会创建一个新的全局变量，并成为全局对象（在浏览器中是window）的一个属性，即使用var可能会无意覆盖一个已有的全局属性。<br>在全局作用域上使用let或const时，虽然在全局作用域上会创建新的绑定，但不会有任何属性被添加到全局对象上。即不能使用let或const来覆盖一个全局变量，只能将其屏蔽。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">字符串与正则表达式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-09 12:09:13" itemprop="dateModified" datetime="2020-06-09T12:09:13+08:00">2020-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" itemprop="url" rel="index"><span itemprop="name">深入理解ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>关于字符串与正则表达式，这里不介绍太多细致内容，本章整理的不是很全面。</strong></p>
+<h2 id="识别子字符串的方法"><a href="#识别子字符串的方法" class="headerlink" title="识别子字符串的方法"></a>识别子字符串的方法</h2><p>自从 JS 引入了 indexOf() 方法，开发者们就使用它来识别字符串是否存在于其它字符串中。ES6 包含了以下三个方法来满足这类需求：</p>
+<div class="note info">
+            <ul><li><strong>includes()方法</strong>：在给定文本存在于字符串中的任意位置时会返回 true，否则返回false；</li><li><strong>startsWith()方法</strong>：在给定文本出现在字符串起始处时返回 true ，否则返回 false；</li><li><strong>endsWith()方法</strong>：在给定文本出现在字符串结尾处时返回 true，否则返回 false。</li></ul>
+          </div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="string">"Hello world!"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"Hello"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"!"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"o"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"o"</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"world!"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"x"</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">"o"</span>, <span class="number">4</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.endsWith(<span class="string">"o"</span>, <span class="number">8</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(msg.includes(<span class="string">"o"</span>, <span class="number">8</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="repeat-方法"><a href="#repeat-方法" class="headerlink" title="repeat()方法"></a>repeat()方法</h2><p>ES6 还为字符串添加了一个 repeat() 方法，它接受一个参数作为字符串的重复次数，返回一个将初始字符串重复指定次数的新字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"x"</span>.repeat(<span class="number">3</span>));  <span class="comment">// "xxx"</span></span><br></pre></td></tr></table></figure>
+
+<p>此方法比相同目的的其余方法更加方便，在操纵文本时特别有用，尤其是在需要产生缩进的代码格式化工具中，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// indent 使用了一定数量的空格</span></span><br><span class="line"><span class="keyword">var</span> indent = <span class="string">" "</span>.repeat(<span class="number">4</span>),</span><br><span class="line">indentLevel = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 每当你增加缩进</span></span><br><span class="line"><span class="keyword">var</span> newIndent = indent.repeat(++indentLevel);</span><br></pre></td></tr></table></figure>
+
+<p><strong>上面的代码在第一次调用<code>repeat()</code>创建了一个包含四个空格的字符串，而<code>indentLevel</code>变量会持续追踪缩进的级别，此后，你可以通过增加<code>indentLevel</code>的值来调用`repeat()方法，便可以改变空格数量。</strong></p>
+<h2 id="正则表达式的其他改动"><a href="#正则表达式的其他改动" class="headerlink" title="正则表达式的其他改动"></a>正则表达式的其他改动</h2><p>正则表达式是在JS中操作字符串的重要方面之一，与该语言的其他方面相似，它在以往的版本中并未有太多改变。不过，为了配合字符串的更新，ES6也对正则表达式进行了一些改进。</p>
+<h3 id="正则表达式-y-标志"><a href="#正则表达式-y-标志" class="headerlink" title="正则表达式 y 标志"></a>正则表达式 y 标志</h3><p><code>y</code>标志影响正则表达式搜索时的粘连（<code>sticky</code>）属性，它表示从正则表达式的<code>lastIndex</code>属性值的位置开始检索字符串中的匹配字符，如果在该位置没有匹配成功，那么正则表达式将停止检索。看下面的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"hello1 hello2 hello3"</span>,</span><br><span class="line">pattern = <span class="regexp">/hello\d\s?/</span>,</span><br><span class="line">result = pattern.exec(text),</span><br><span class="line">globalPattern = <span class="regexp">/hello\d\s?/g</span>,</span><br><span class="line">globalResult = globalPattern.exec(text),</span><br><span class="line">stickyPattern = <span class="regexp">/hello\d\s?/y</span>,</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line">pattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">globalPattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">stickyPattern.lastIndex = <span class="number">1</span>;</span><br><span class="line">result = pattern.exec(text);</span><br><span class="line">globalResult = globalPattern.exec(text);</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// Error! stickyResult is null</span></span><br></pre></td></tr></table></figure>
+
+<p>此例中有三个正则表达式： pattern 中的表达式没有使用任何标志， globalPattern 使用了<code>g</code> 标志， stickyPattern 则使用了 <code>y</code> 标志。对 console.log() 的第一次调用，三个正则表达式分别都返回了 “hello1 “ ，此字符串尾部有个空格。<br>此后，三个模式的 lastIndex 属性全部被更改为 1 ，表示三个模式的正则表达式都应当从第二个字符开始尝试匹配。不使用任何标志的正则表达式完全忽略了对于 lastIndex 的更改，仍然毫无意外地匹配了 “hello1 “ ；而使用 g 标志的正则表达式继续匹配了 “hello2 “ ，因为它从第二个字符（ “e” ）开始，持续向着字符串尾部方向搜索；粘连的正则表达式则在第二个字符处没有匹配成功，因此 stickyResult 的值是 null 。<br>一旦匹配操作成功，粘连标志就会将匹配结果之后的那个字符的索引值保存在 lastIndex中；若匹配未成功，那么 lastIndex 的值将重置为 0 。全局标志的行为与其相同，如下所<br>示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"hello1 hello2 hello3"</span>,</span><br><span class="line">pattern = <span class="regexp">/hello\d\s?/</span>,</span><br><span class="line">result = pattern.exec(text),</span><br><span class="line">globalPattern = <span class="regexp">/hello\d\s?/g</span>,</span><br><span class="line">globalResult = globalPattern.exec(text),</span><br><span class="line">stickyPattern = <span class="regexp">/hello\d\s?/y</span>,</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern.lastIndex); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(globalPattern.lastIndex); <span class="comment">// 7</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyPattern.lastIndex); <span class="comment">// 7</span></span><br><span class="line">result = pattern.exec(text);</span><br><span class="line">globalResult = globalPattern.exec(text);</span><br><span class="line">stickyResult = stickyPattern.exec(text);</span><br><span class="line"><span class="built_in">console</span>.log(result[<span class="number">0</span>]); <span class="comment">// "hello1 "</span></span><br><span class="line"><span class="built_in">console</span>.log(globalResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyResult[<span class="number">0</span>]); <span class="comment">// "hello2 "</span></span><br><span class="line"><span class="built_in">console</span>.log(pattern.lastIndex); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(globalPattern.lastIndex); <span class="comment">// 14</span></span><br><span class="line"><span class="built_in">console</span>.log(stickyPattern.lastIndex); <span class="comment">// 14</span></span><br></pre></td></tr></table></figure>
+
+<p>对于 stickyPattern 和 globalPattern 模式变量来说，第一次调用之后 lastIndex 的值均被更改为 7 ，而第二次则均被改为 14 。</p>
+<div class="note info">
+            <p><strong>有两个关于粘连标志的微妙细节需要牢记：</strong></p><ul><li>只有调用正则表达式对象上的方法（例如 exec() 与 test() 方法）， lastIndex 属性才会生效。而将正则表达式作为参数传递给字符串上的方法（例如 match() ），并不会<br>体现粘连特性。</li><li>当使用 ^ 字符来匹配字符串的起始处时，粘连的正则表达式只会匹配字符串的起始处（或者在多行模式下匹配行首）。当 lastIndex 为 0 时， ^ 不会让粘连的正则表达式<br>与非粘连的有任何区别；而当 lastIndex 在单行模式下不对应整个字符串起始处，或者当它在多行模式下不对应行首时，粘连的正则表达式永远不会匹配成功。</li></ul>
+          </div>
+
+<p><strong>和正则表达式其他标志相同，你可以根据一个属性来检测 y 标志是否存在。此时你需要检查的是 sticky 属性，如下：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/hello\d/y</span>;</span><br><span class="line"><span class="built_in">console</span>.log(pattern.sticky); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
