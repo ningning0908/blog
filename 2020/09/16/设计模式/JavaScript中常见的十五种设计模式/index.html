@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="光、温暖、温柔">
+  <meta name="description" content="在程序设计中有很多实用的设计模式，而其中大部分语言的实现都是基于“类”。在JavaScript中并没有类这种概念，JS中的函数属于一等对象，在JS中定义一个对象非常简单（var obj &#x3D; {}），而基于JS中闭包与弱类型等特性，在实现一些设计模式的方式上与众不同。 设计原则单一职责原则（SRP）一个对象或方法只做一件事情。如果一个方法承担了过多的职责，那么在需求的变迁过程中，需要改写这个方法的可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中常见的十五种设计模式">
+<meta property="og:title" content="JavaScript中常见的设计模式">
 <meta property="og:url" content="https://ningning0908.github.io/blog/2020/09/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%81%E4%BA%94%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="光、温暖、温柔">
+<meta property="og:description" content="在程序设计中有很多实用的设计模式，而其中大部分语言的实现都是基于“类”。在JavaScript中并没有类这种概念，JS中的函数属于一等对象，在JS中定义一个对象非常简单（var obj &#x3D; {}），而基于JS中闭包与弱类型等特性，在实现一些设计模式的方式上与众不同。 设计原则单一职责原则（SRP）一个对象或方法只做一件事情。如果一个方法承担了过多的职责，那么在需求的变迁过程中，需要改写这个方法的可">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-16T08:57:31.967Z">
-<meta property="article:modified_time" content="2020-09-16T08:58:22.875Z">
+<meta property="article:modified_time" content="2020-10-15T06:39:35.518Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>JavaScript中常见的十五种设计模式 | 学习笔记</title>
+  <title>JavaScript中常见的设计模式 | 学习笔记</title>
   
 
 
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript中常见的十五种设计模式
+          JavaScript中常见的设计模式
         </h1>
 
         <div class="post-meta">
@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-16 16:57:31 / 修改时间：16:58:22" itemprop="dateCreated datePublished" datetime="2020-09-16T16:57:31+08:00">2020-09-16</time>
+              <time title="创建时间：2020-09-16 16:57:31" itemprop="dateCreated datePublished" datetime="2020-09-16T16:57:31+08:00">2020-09-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-15 14:39:35" itemprop="dateModified" datetime="2020-10-15T14:39:35+08:00">2020-10-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -236,7 +242,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>在程序设计中有很多实用的设计模式，而其中大部分语言的实现都是基于“类”。在JavaScript中并没有类这种概念，JS中的函数属于一等对象，在JS中定义一个对象非常简单（var obj = {}），而基于JS中闭包与弱类型等特性，在实现一些设计模式的方式上与众不同。</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><h3 id="单一职责原则（SRP）"><a href="#单一职责原则（SRP）" class="headerlink" title="单一职责原则（SRP）"></a>单一职责原则（SRP）</h3><p>一个对象或方法只做一件事情。如果一个方法承担了过多的职责，那么在需求的变迁过程中，需要改写这个方法的可能性就越大。应该把对象或方法划分为较小的粒度。</p>
+<h3 id="最少知识原则（LKP）"><a href="#最少知识原则（LKP）" class="headerlink" title="最少知识原则（LKP）"></a>最少知识原则（LKP）</h3><p>一个软件实体应当尽可能地与其实体发生相互作用。应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么这两个对象就不要发生直接的相互关系，可以转交给第三方进行处理。</p>
+<h3 id="开放-封闭原则（OCP）"><a href="#开放-封闭原则（OCP）" class="headerlink" title="开放-封闭原则（OCP）"></a>开放-封闭原则（OCP）</h3><p>软件实体（类、模块、函数）等应该是可以扩展的，但是不可修改。当需要改变一个程序的功能或者给这个程序增加新功能的时候，可以使用增加代码的方式，尽量避免改动程序的源代码，防止影响原系统的稳定。</p>
+<h2 id="什么是设计模式"><a href="#什么是设计模式" class="headerlink" title="什么是设计模式"></a>什么是设计模式</h2><p>设计模式是命名、抽象和识别对可重用的面向对象设计有用的通用设计结构。设计模式确定类和他们的实体、他们的角色和协作、还有他们的责任分配。每一个设计模式都聚焦于一个面向对象的设计难题或问题。她描述了在其它设计的约束下它能否使用，使用它后的后果和得失。设计模式可以被分为几个不同的种类，主要是以下三个种类。</p>
+<h3 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a>创建型设计模式</h3><p>创建型设计模式关注于对象创建的机制方法，通过该方法，对象以适应工作环境的方式被创建。基本的对象创建方法可能会给项目增加额外的复杂性，而这些模式的目的就是为了控制创建过程解决这个问题。属于这一类的一些模式是：构造器模式、工厂模式、抽象工厂模式、原型模式、单例模式以及建造者模式等。</p>
+<h3 id="结构设计模式"><a href="#结构设计模式" class="headerlink" title="结构设计模式"></a>结构设计模式</h3><p>结构模式关注于对象组成和通常识别的方式实现不同对象之间的关系。该模式有助于在系统的某一部分发生改变的时候，整个系统结构不需要改变。该模式同样有助于对系统中某部分没有达到某一目的的部分进行重组。在该分类下的模式有：装饰模式、外观模式、享元模式、适配器模式和代理模式等。</p>
+<h3 id="行为设计模式"><a href="#行为设计模式" class="headerlink" title="行为设计模式"></a>行为设计模式</h3><p>行为设计模式关注改善和精简在系统中对不同对象间通信。行为模式包括：迭代模式、中介者模式、观察者模式和访问者模式等。</p>
+<h2 id="JavaScript构造器模式"><a href="#JavaScript构造器模式" class="headerlink" title="JavaScript构造器模式"></a>JavaScript构造器模式</h2><h3 id="构造器模式"><a href="#构造器模式" class="headerlink" title="构造器模式"></a>构造器模式</h3><p>在面向对象编程中，构造器是一个当新建对象的内存被分配后，用来初始化该对象的一个特殊函数。在JavaScript中几乎所有的东西都是对象，我们经常会对对象的构造器十分感兴趣。<br>对象构造器是被用来创建特殊类型的对象的，首先它要准备使用的对象，其次在对象初次被创建时，通过接收参数，构造器要用来对成员的属性和方法进行赋值。</p>
+<h3 id="对象创建"><a href="#对象创建" class="headerlink" title="对象创建"></a>对象创建</h3><p><strong>创建对象的三种基本方式</strong>，每一种都会创建一个新的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种方式</span></span><br><span class="line"><span class="keyword">var</span> newObject = &#123;&#125;;</span><br><span class="line"><span class="comment">//第二种方式</span></span><br><span class="line"><span class="keyword">var</span> newObject = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//第三种方式</span></span><br><span class="line"><span class="keyword">var</span> newObject = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>给对象赋值的四种方法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. "点号"法</span></span><br><span class="line">newObject.someKey = <span class="string">"Hello World"</span>;   <span class="comment">//设置属性</span></span><br><span class="line"><span class="keyword">var</span> key = newObject.someKey         <span class="comment">//获取属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. "方括号"法</span></span><br><span class="line">newObject[<span class="string">"someKey"</span>] = <span class="string">"Hello World"</span>;  <span class="comment">//设置属性</span></span><br><span class="line"><span class="keyword">var</span> key = newObject[<span class="string">"someKey"</span>]         <span class="comment">//获取属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. Object.defineProperty方式  设置属性</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(newObject,<span class="string">"someKey"</span>,&#123;</span><br><span class="line">  value: <span class="string">"for more control of the property's behavior"</span>,</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. Object.defineProperties方式 设置属性</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperties( newObject, &#123;</span><br><span class="line"></span><br><span class="line">  <span class="string">"someKey"</span>: &#123; </span><br><span class="line">    value: <span class="string">"Hello World"</span>, </span><br><span class="line">    writable: <span class="literal">true</span> </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="string">"anotherKey"</span>: &#123; </span><br><span class="line">    value: <span class="string">"Foo bar"</span>, </span><br><span class="line">    writable: <span class="literal">false</span> </span><br><span class="line">  &#125; </span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3和4中的读取属行可用1和2中的任意一种</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="基础构造器"><a href="#基础构造器" class="headerlink" title="基础构造器"></a>基础构造器</h3><p>正如我们先前所看到的，JavaScript不支持类的概念，但它有一种与对象一起工作的构造器函数。使用new关键字来调用该函数，我们可以告诉JavaScript把这个函数当作一个构造器来用，它可以用自己所定义的成员来初始化一个对象。在这个构造器内部，关键字this引用到刚被创建的对象。一个基本的构造函数看起来像下面这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.model = model;</span><br><span class="line">  <span class="keyword">this</span>.year = year;</span><br><span class="line">  <span class="keyword">this</span>.miles = miles;</span><br><span class="line">  <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.model + <span class="string">" has done "</span> + <span class="keyword">this</span>.miles + <span class="string">" miles"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="comment">//我们可以示例化一个Car</span></span><br><span class="line"><span class="keyword">var</span> civic = <span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>, <span class="number">2009</span>, <span class="number">20000</span>);</span><br><span class="line"><span class="keyword">var</span> mondeo = <span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>, <span class="number">2010</span>, <span class="number">5000</span>);</span><br><span class="line"><span class="comment">//打开浏览器控制台查看这些对象toString()方法的输出值</span></span><br><span class="line"><span class="built_in">console</span>.log(civic.toString());  <span class="comment">//Honda Civic has done 20000 miles</span></span><br><span class="line"><span class="built_in">console</span>.log(mondeo.toString()); <span class="comment">//Ford Mondeo has done 5000 miles</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的构造器模式是一个简单版本的，但它还是有些问题。一个是难以继承，另一个是每个Car构造函数创建的对象中，toString()之类的函数都被重新定义。这不是非常好，理想的情况是所有Car类型的对象都应该引用同一个函数，可以使用下面的形式。</p>
+<h3 id="使用”原型”的构造器"><a href="#使用”原型”的构造器" class="headerlink" title="使用”原型”的构造器"></a>使用”原型”的构造器</h3><p>在JavaScript中函数有一个prototype的属性，当我们调用JavaScript的构造器创建一个对象时，构造函数prototype上的属性对于所创建的对象来说都可见。这样，就可以创建多个访问相同prototype的Car对象了。如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.model = model;</span><br><span class="line">  <span class="keyword">this</span>.year = year;</span><br><span class="line">  <span class="keyword">this</span>.miles = miles;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意这里我们使用Object.prototype.newMethod 而不是Object.prototype ，以避免我们重新定义原型对象</span></span><br><span class="line">Car.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.model + <span class="string">" has done "</span> + <span class="keyword">this</span>.miles + <span class="string">" miles"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="keyword">var</span> civic = <span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>, <span class="number">2009</span>, <span class="number">20000</span>);</span><br><span class="line"><span class="keyword">var</span> mondeo = <span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>, <span class="number">2010</span>, <span class="number">5000</span>);</span><br><span class="line"><span class="comment">//打开浏览器控制台查看这些对象toString()方法的输出值</span></span><br><span class="line"><span class="built_in">console</span>.log(civic.toString());  <span class="comment">//Honda Civic has done 20000 miles</span></span><br><span class="line"><span class="built_in">console</span>.log(mondeo.toString());  <span class="comment">//Ford Mondeo has done 5000 miles</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>通过上面代码，单个toString()实例被所有的Car对象所共享了。</strong></p>
+<h2 id="JavaScript-模块化模式"><a href="#JavaScript-模块化模式" class="headerlink" title="JavaScript 模块化模式"></a>JavaScript 模块化模式</h2><p>模块化模式最初被定义为一种对传统软件工程的类提供私有和公共封装的方法。在JavaScript</p>
+
     </div>
 
     
@@ -250,7 +280,7 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/blog/images/wechatpay.jpg" alt="Ning Ning 微信支付">
+        <img src="/blog/images/wechatpay.png" alt="Ning Ning 微信支付">
         <p>微信支付</p>
       </div>
       
@@ -339,6 +369,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">1.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一职责原则（SRP）"><span class="nav-number">1.1.</span> <span class="nav-text">单一职责原则（SRP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最少知识原则（LKP）"><span class="nav-number">1.2.</span> <span class="nav-text">最少知识原则（LKP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放-封闭原则（OCP）"><span class="nav-number">1.3.</span> <span class="nav-text">开放-封闭原则（OCP）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是设计模式"><span class="nav-number">2.</span> <span class="nav-text">什么是设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建型设计模式"><span class="nav-number">2.1.</span> <span class="nav-text">创建型设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构设计模式"><span class="nav-number">2.2.</span> <span class="nav-text">结构设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为设计模式"><span class="nav-number">2.3.</span> <span class="nav-text">行为设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript构造器模式"><span class="nav-number">3.</span> <span class="nav-text">JavaScript构造器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器模式"><span class="nav-number">3.1.</span> <span class="nav-text">构造器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建"><span class="nav-number">3.2.</span> <span class="nav-text">对象创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础构造器"><span class="nav-number">3.3.</span> <span class="nav-text">基础构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用”原型”的构造器"><span class="nav-number">3.4.</span> <span class="nav-text">使用”原型”的构造器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-模块化模式"><span class="nav-number">4.</span> <span class="nav-text">JavaScript 模块化模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -352,7 +383,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

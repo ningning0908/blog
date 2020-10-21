@@ -185,6 +185,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/09/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/09/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-09 19:20:43" itemprop="dateCreated datePublished" datetime="2020-08-09T19:20:43+08:00">2020-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-10 20:56:15" itemprop="dateModified" datetime="2020-09-10T20:56:15+08:00">2020-09-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><h3 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h3><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dp = [];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        dp[i] = dp[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="强盗抢劫"><a href="#强盗抢劫" class="headerlink" title="强盗抢劫"></a>强盗抢劫</h3><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。<br>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rob = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> dp = [];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="built_in">Math</span>.max(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">        dp[i] = <span class="built_in">Math</span>.max(dp[i<span class="number">-1</span>],dp[i<span class="number">-2</span>]+nums[i])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length<span class="number">-1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="强盗在环形街区抢劫"><a href="#强盗在环形街区抢劫" class="headerlink" title="强盗在环形街区抢劫"></a>强盗在环形街区抢劫</h3><p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都围成一圈，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rob = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> nums1 = nums.slice(<span class="number">1</span>,nums.length);</span><br><span class="line">    <span class="keyword">let</span> nums2 = nums.slice(<span class="number">0</span>,nums.length<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">let</span> p1 = getDp(nums1);</span><br><span class="line">    <span class="keyword">let</span> p2 = getDp(nums2);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(p1,p2);</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDp</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = [];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="built_in">Math</span>.max(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">        dp[i] = <span class="built_in">Math</span>.max(dp[i<span class="number">-1</span>],dp[i<span class="number">-2</span>]+nums[i])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length<span class="number">-1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="信件错排-母牛生产"><a href="#信件错排-母牛生产" class="headerlink" title="信件错排 母牛生产"></a>信件错排 母牛生产</h3><p>参考：<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md#5-%E6%AF%8D%E7%89%9B%E7%94%9F%E4%BA%A7" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md#5-%E6%AF%8D%E7%89%9B%E7%94%9F%E4%BA%A7</a></p>
+<h2 id="矩阵路径"><a href="#矩阵路径" class="headerlink" title="矩阵路径"></a>矩阵路径</h2><h3 id="矩阵的最小路径和"><a href="#矩阵的最小路径和" class="headerlink" title="矩阵的最小路径和"></a>矩阵的最小路径和</h3><p>给定一个包含非负整数的 <code>m x n</code> 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。<br><strong>说明</strong>：每次只能向下或者向右移动一步。</p>
+<h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h2><p>请实现一个函数用来匹配包括’.’和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">match</span>(<span class="params">s, p</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//s = null || p = null</span></span><br><span class="line">    <span class="keyword">if</span>(s == <span class="literal">null</span> || p == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> len1=s.length;</span><br><span class="line">    <span class="keyword">let</span> len2=p.length;</span><br><span class="line">    <span class="keyword">let</span> dp=<span class="keyword">new</span> <span class="built_in">Array</span>(len1+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;dp.length;i++)&#123;</span><br><span class="line">        dp[i]=<span class="keyword">new</span> <span class="built_in">Array</span>(len2+<span class="number">1</span>).fill(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span></span><br><span class="line">    <span class="comment">//进行一步初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;p.length;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(p.charAt(i) == <span class="string">'*'</span> &amp;&amp; dp[<span class="number">0</span>][i<span class="number">-1</span>]) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][i+<span class="number">1</span>] = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">1</span>;j&lt;len2+<span class="number">1</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pattern[j<span class="number">-1</span>]==<span class="string">'*'</span>)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][j]=dp[<span class="number">0</span>][j<span class="number">-2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;s.length;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;p.length;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == s.charAt(i)) &#123;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == <span class="string">'.'</span>) &#123;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == <span class="string">'*'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(p.charAt(j<span class="number">-1</span>) != s.charAt(i) &amp;&amp; p.charAt(j<span class="number">-1</span>) != <span class="string">'.'</span>) &#123;</span><br><span class="line">                     dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i+<span class="number">1</span>][j<span class="number">-1</span>]</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j] || dp[i][j+<span class="number">1</span>] || dp[i+<span class="number">1</span>][j<span class="number">-1</span>]</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length][p.length]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/09/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -954,250 +1040,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">网络编程基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-04 15:29:12" itemprop="dateCreated datePublished" datetime="2020-08-04T15:29:12+08:00">2020-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-08 16:30:10" itemprop="dateModified" datetime="2020-08-08T16:30:10+08:00">2020-08-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>计算机网络主要包括实现资源共享，实现数据信息的快速传递。</p>
-<h2 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h2><div class="note info">
-            <p>制定组织：ISO(国际标准化组织)<br>作用：使网络通信工作流程标准化<br>应用层：提供用户服务，具体功能有应用程序实现；<br>表示层：数据的压缩优化加密；<br>会话层：建立用户级的连接，选择适当的传输服务；<br>传输层：提供传输服务；<br>网络层：路由选择，网络互联；<br>链路层：进行数据交换，控制具体数据的发送；<br>物理层：提供数据传输的硬件保证，网卡接口，传输介质。</p><hr><p>优点：</p><ol><li>建立了统一的工作机制；</li><li>分部清晰，各司其职，每个步骤分工明确；</li><li>降低了各个模块之间的耦合度，便于开发。</li></ol>
-          </div>
-
-<h2 id="四层模型（TCP-IP模型）"><a href="#四层模型（TCP-IP模型）" class="headerlink" title="四层模型（TCP/IP模型）"></a>四层模型（TCP/IP模型）</h2><p>背景：实际工作中工程师无法按照七层模型要求操作，逐渐演化为更符合实际的四层模型。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94" alt="attr"></p>
-<h3 id="数据传输过程"><a href="#数据传输过程" class="headerlink" title="数据传输过程"></a>数据传输过程</h3><div class="note info">
-            <ol><li>发送端的应用程序发送消息，逐层添加首部信息，最终再由物理层发送消息包；</li><li>发送的消息经过多个节点（交换机，路由器）传输，最终到达目标主机；</li><li>目标主机由物理层逐层解析首部消息包，最终到应用程序呈现消息。</li></ol>
-          </div>
-
-<h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p>在网络数据传输中，都遵循的规定，包括建立什么样的数据结构，什么样的特殊标志等。</p>
-<h2 id="网络基础概念"><a href="#网络基础概念" class="headerlink" title="网络基础概念"></a>网络基础概念</h2><h3 id="网络主机（host）"><a href="#网络主机（host）" class="headerlink" title="网络主机（host）"></a>网络主机（host）</h3><div class="note info">
-            <p>功能：标识一台主机在网络中的位置（地址）<br>本地地址：&#39;localhost’,&#39;127.0.0.1’<br>网络地址(IP地址)：&#39;172.60.50.12’（例子）<br>自动获取地址（自动获取合适网卡IP）：&#39;0.0.0.0’</p>
-          </div>
-
-<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><div class="note info">
-            <p>功能：确定一台主机的网络路由地址<br>结构：</p><ul><li>IPv4 点分十进制表示172.60.50.12，每部分取值范围0-255</li><li>IPv6 128位 扩大了地址范围</li></ul><p>特殊IP:</p><ul><li>127.0.0.1 本机测试IP</li><li>0.0.0.0 自动获取本机网卡地址</li><li>172.60.50.0 通常表示一个网段</li><li>172.60.50.1 通常表示一个网关</li><li>172.60.50.12用作广播地址</li></ul><p>域名：</p><ul><li>定义：给网络服务器地址起的名字</li><li>作用：方便记忆，表达一定的含义</li><li>ping[ip]: 测试和某个主机是否联通</li></ul><p>端口号：</p><ul><li>作用：端口是网络地址的一部分，用于区分主机上不同的网络应用程序</li><li>特点：一个系统中的应用监听端口不能重复</li><li>取值范围：1-65535  1-1023系统应用或者大众程序监听端口；1024-65535自用端口</li></ul>
-          </div>
-
-<h2 id="传输层服务"><a href="#传输层服务" class="headerlink" title="传输层服务"></a>传输层服务</h2><h3 id="面向连接的传输服务（基于TCP协议的数据传输）"><a href="#面向连接的传输服务（基于TCP协议的数据传输）" class="headerlink" title="面向连接的传输服务（基于TCP协议的数据传输）"></a>面向连接的传输服务（基于TCP协议的数据传输）</h3><div class="note info">
-            <ol><li>传输特征：提供了可靠的数据传输，可靠性指数据传输过程中无丢失、无失序、无差错、无重复。</li><li>实现手段：在通信前需要建立数据连接，通信结束要正常断开连接。</li><li>适用情况：对数据传输准确性有明确要求，传数文件较大，需要确保可靠性的情况，比如：网页获取，文件下载，邮件收发。</li></ol>
-          </div>
-
-<div class="note info">
-            <p>三次握手（建立连接）</p><ul><li>客户端向服务器发送消息报文请求连接；</li><li>服务器收到请求后，回复报文确认可以连接；</li><li>客户端收到回复，发送最终报文连接建立。</li></ul>
-          </div>
-
-<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="三次握手"></p>
-<div class="note info">
-            <p>四次挥手（断开连接）</p><ul><li>主动方发送报文请求断开连接；</li><li>被动方收到请求后，立即回复，表示准备离开；</li><li>被动放准备就绪，再次发送报文表示离开；</li><li>主动方收到确认，发送最终报文完成断开。</li></ul>
-          </div>
-
-<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" alt="四次挥手"></p>
-<h3 id="面向无连接的传输服务（基于UDP协议的数据传输）"><a href="#面向无连接的传输服务（基于UDP协议的数据传输）" class="headerlink" title="面向无连接的传输服务（基于UDP协议的数据传输）"></a>面向无连接的传输服务（基于UDP协议的数据传输）</h3><div class="note info">
-            <ol><li>传输特点：不保证传输的可靠性，传输过程没有连接和断开，数据收发自由随意。</li><li>适用情况：网络较差，对传输可靠性要求不高。比如：网络视频，群聊，广播等。</li></ol>
-          </div>
-
-<h2 id="socket套接字编程"><a href="#socket套接字编程" class="headerlink" title="socket套接字编程"></a>socket套接字编程</h2><h3 id="套接字介绍"><a href="#套接字介绍" class="headerlink" title="套接字介绍"></a>套接字介绍</h3><div class="note info">
-            <ol><li>套接字：实现网络编程进行数据传输的一种技术手段；</li><li>Python实现套接字编程：import socket；</li><li>套接字分类：<ul><li>流式套接字(SOCK_STREAM)：以字节流方式传输数据，实现tcp网络传输方案。（面向连接–tcp协议– 可靠的–流式套接字）；</li><li>数据报套接字(SOCK_DGTAM)：以数据报形式传输数据，实现udp网络传输方案。（无连接–udp协议–不可靠—数据报套接字）</li></ul></li></ol>
-          </div>
-
-<h3 id="tcp套接字编程"><a href="#tcp套接字编程" class="headerlink" title="tcp套接字编程"></a>tcp套接字编程</h3><h4 id="服务端流程"><a href="#服务端流程" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind  —&gt; listen —&gt; accept —&gt; send/recv —&gt; close</p>
-<p>代码实现(python版本)：</p>
-<ol>
-<li><p>创建套接字</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd = socket.socket(socket_family=AF_INET, socket_type=SOCK_STREAM,proto=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：创建套接字<br>参数：socket_family  网络地址类型  AF_INET表示ipv4<br>      socket_type   套接字类型SOCK_STREAM（流式） SOCK_DGRAM（数据报）<br>      proto     通常为0  选择子协议<br>返回值： 套接字对象</p>
-          </div></li>
-<li><p>绑定地址</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.bind(addr)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：绑定本机网络地址<br>参数：二元元组(ip,port)  (‘0.0.0.0’,8888)</p>
-          </div>
-</li>
-<li><p>设置监听</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.listen(n)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：将套接字设置为监听套接字，确认监听队列大小<br>参数：监听队列大小</p>
-          </div>
-</li>
-<li><p>等待处理客户端连接请求</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connfd,addr = sockfd.accept()</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：阻塞等待处理客户端请求<br>返回值：connfd   客户端连接套接字<br>        addr    连接的客户端地址</p>
-          </div>
-</li>
-<li><p>消息收发</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = connfd.recv(buffersize)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：接受客户端消息；<br>参数：每次最多接收消息的大小；<br>返回值：接收到的内容。</p>
-          </div>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = connfd.send(data)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：发送消息；<br>参数：data： 要发送的内容  bytes格式<br>返回值：发送的字节数</p>
-          </div>
-</li>
-<li><p>关闭套接字</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>TCP套接字服务端代码（python版重点代码）(亲测有效)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="comment"># 创建流式套接字</span></span><br><span class="line">sockfd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址 本地连接</span></span><br><span class="line">sockfd.bind((<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置监听</span></span><br><span class="line">sockfd.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Waiting for connet....."</span>)</span><br><span class="line"><span class="comment">#等待处理客户端连接请求</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  print(<span class="string">"Waiting for connect...."</span>)</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    connfd,addr = sockfd.accept()</span><br><span class="line">  <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    print(<span class="string">"退出服务"</span>)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 收发消息</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">     data = connfd.recv(<span class="number">1024</span>)</span><br><span class="line">     <span class="comment"># 得到空就退出</span></span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">       <span class="keyword">break</span></span><br><span class="line">     print(<span class="string">"接收到的消息："</span>,data.decode())</span><br><span class="line"></span><br><span class="line">     n = connfd.send(<span class="string">b'Receive your message'</span>)</span><br><span class="line">     print(<span class="string">"发送了%d个字节的数据"</span>%n)</span><br><span class="line">  <span class="comment">#关闭客户端套接字</span></span><br><span class="line">  connfd.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务端套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-
-<h4 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; bind —&gt; connect —&gt; send/recv —&gt; close<br>(bind这个步骤一般不用，所以一般不写)</p>
-<ol>
-<li><p>创建套接字<br>要注意创建相同类型的套接字才能进行通信</p>
-</li>
-<li><p>请求连接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.connect(server_addr)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能： 连接服务器<br>参数：元组  服务器地址</p>
-          </div>
-</li>
-<li><p>收发消息<br>注意：防止两端都阻塞，recv send要配合</p>
-</li>
-<li><p>关闭套接字</p>
-</li>
-</ol>
-<p>TCP套接字客户端代码(Python版重点代码)(亲测有效)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 创建套接字</span></span><br><span class="line">sockfd = socket() <span class="comment">#默认参数为TCP套接字，ipv4</span></span><br><span class="line"><span class="comment"># 发起连接 我写的是本地连接</span></span><br><span class="line">server_addr = (<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>)</span><br><span class="line">sockfd.connect(server_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收发消息(循环发送)</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  data = input(<span class="string">'消息：'</span>)</span><br><span class="line">  <span class="comment"># 得到空就退出</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  sockfd.send(data.encode())</span><br><span class="line">  data = sockfd.recv(<span class="number">1024</span>)</span><br><span class="line">  print(<span class="string">"From server:"</span> , data.decode())</span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-
-<h4 id="tcp-套接字数据传输特点"><a href="#tcp-套接字数据传输特点" class="headerlink" title="tcp 套接字数据传输特点"></a>tcp 套接字数据传输特点</h4><div class="note info">
-            <ol><li>tcp连接中当一端退出，另一端如果阻塞在recv，此时recv会立即返回一个空字符串；</li><li>tcp连接中如果一端已经不存在，然而试图通过send发送则会产生BrokenPipeError(管道破裂异常)</li><li>一个监听套接字可以同时连接多个客户端，也能够重复被连接</li></ol>
-          </div>
-
-<h4 id="网络收发缓冲区"><a href="#网络收发缓冲区" class="headerlink" title="网络收发缓冲区"></a>网络收发缓冲区</h4><div class="note info">
-            <ol><li>网络缓冲区有效的协调了消息的收发速度</li><li>send和recv实际是向缓冲区发送消息，当缓冲区不为空recv就不会阻塞。</li></ol>
-          </div>
-
-<h4 id="tcp粘包"><a href="#tcp粘包" class="headerlink" title="tcp粘包"></a>tcp粘包</h4><div class="note info">
-            <p>原因：tcp是以字节流的方式传输，没有消息边界。多次发送的消息被一次接收，此时就会形成粘包。<br>影响：如果每次发送内容是一个独立的含义，需要接收端独立解析此时的粘包会有影响。<br>处理方法：</p><ul><li>人为的添加消息边界</li><li>控制发送速度</li></ul>
-          </div>
-
-<h3 id="UDP套接字编程"><a href="#UDP套接字编程" class="headerlink" title="UDP套接字编程"></a>UDP套接字编程</h3><h4 id="服务端流程-1"><a href="#服务端流程-1" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind —&gt; recvfrom/sendto —&gt; close()</p>
-<ol>
-<li><p>创建数据报套接字</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd = socket(AF_INET, SOCK_DGRAM)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>绑定地址</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.bind(addr)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>消息收发</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data,addr = sockfd.recvfrom(buffersize)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：接收UDP消息；<br>参数：每次最多接收多少字节；<br>返回值：data：接收到的内容<br>       addr：消息发送方地址</p>
-          </div>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = sockfd.sendto(data,addr)</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>功能：发送UDP消息；<br>参数：data: 要发送的内容  bytes格式<br>      addr: 目标地址<br>返回值：发送的字节数</p>
-          </div>
-</li>
-<li><p>关闭套接字</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">UDP服务端</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 创建数据报套接字</span></span><br><span class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定地址</span></span><br><span class="line">server_addr = (<span class="string">'0.0.0.0'</span>, <span class="number">8888</span>)</span><br><span class="line">sockfd.bind(server_addr)</span><br><span class="line"><span class="comment"># 收发消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data,addr = sockfd.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">"收到的消息"</span>, data.decode())</span><br><span class="line">    sockfd.sendto(<span class="string">b"Thanks"</span>, addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-<h4 id="客户端流程-1"><a href="#客户端流程-1" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; sendto/recvfrom —&gt; close()</p>
-<ol>
-<li>创建套接字</li>
-<li>收发消息</li>
-<li>关闭套接字<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">udp客户端</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 服务器地址</span></span><br><span class="line">HOST = <span class="string">'127.0.0.1'</span></span><br><span class="line">PORT = <span class="number">8888</span></span><br><span class="line">ADDR = (HOST,PORT)</span><br><span class="line"><span class="comment"># 创建套接字</span></span><br><span class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 收发消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = input(<span class="string">"Msg&gt;&gt;"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    sockfd.sendto(data.encode(),ADDR)</span><br><span class="line">    msg,addr = sockfd.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">"From server: "</span>, msg.decode())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>总结：tcp和udp套接字编程区别</p><ol><li>流式套接字是以字节流方式传输数据，数据报套接字以数据报形式传输</li><li>tcp套接字会有粘包，udp套接字有消息边界不会粘包</li><li>tcp套接字保证消息的完整性，udp套接字则不能</li><li>tcp套接字以来listen accept建立连接才能收发消息，udp套接字不需要</li><li>tcp套接字使用send，recv收发消息，udp套接字使用sendto，recvfrom</li></ol>
-          </div>
-
-</li>
-</ol>
-<h3 id="练习，客户端向服务端发送图片（TCP）"><a href="#练习，客户端向服务端发送图片（TCP）" class="headerlink" title="练习，客户端向服务端发送图片（TCP）"></a>练习，客户端向服务端发送图片（TCP）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">s = socket()</span><br><span class="line">s.bind((<span class="string">'0.0.0.0'</span>,<span class="number">8888</span>))</span><br><span class="line">s.listen(<span class="number">5</span>)</span><br><span class="line">c,addr = s.accept()</span><br><span class="line">print(<span class="string">"Connect from"</span>,addr)</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'cxk.gif'</span>,<span class="string">'wb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收内容写入文件</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = c.recv(<span class="number">1024</span>)   <span class="comment">#字节串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    f.write(data)</span><br><span class="line">f.close()</span><br><span class="line">c.close()</span><br><span class="line">s.close()</span><br><span class="line"><span class="comment"># 客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">s= socket()</span><br><span class="line">s.connect((<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>))</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'timg.jfif'</span>,<span class="string">'rb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取内容进行发送</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = f.read(<span class="number">1024</span>) <span class="comment">#字节串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    s.send(data)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
-
-<h3 id="UDP套接字广播"><a href="#UDP套接字广播" class="headerlink" title="UDP套接字广播"></a>UDP套接字广播</h3><div class="note info">
-            <ol><li>广播定义：一端发送多点接收。</li><li>广播地址：每个网络的最大地址为发送广播的地址，向该地址发送，则网段内所有的主机都能接收到。</li></ol>
-          </div>
-
-<h2 id="TCP套接字之HTTP传输"><a href="#TCP套接字之HTTP传输" class="headerlink" title="TCP套接字之HTTP传输"></a>TCP套接字之HTTP传输</h2><h3 id="HTTP协议（超文本传输协议）"><a href="#HTTP协议（超文本传输协议）" class="headerlink" title="HTTP协议（超文本传输协议）"></a>HTTP协议（超文本传输协议）</h3><div class="note info">
-            <ol><li>用途：网页获取，数据传输</li><li>特点：<ul><li>应用层协议，传输层使用tcp传输</li><li>简单，灵活，很多语言都有HTTP专门接口</li><li>无状态，协议不记录传输内容</li><li>http1.1支持持久连接，丰富了请求类型</li></ul></li></ol>
-          </div>
-
-<p><strong>网页请求过程</strong><br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%BF%9E%E6%8E%A5" alt="网页请求过程"></p>
-<div class="note info">
-            <ol><li>客户端（浏览器）通过tcp传输，发送http请求给服务端</li><li>服务端接收到http请求后进行解析</li><li>服务端处理请求内容，组织响应内容</li><li>服务端将响应内容以http响应格式发送给浏览器</li><li>浏览器接收到响应内容，解析展示</li></ol>
-          </div>
-
-<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><div class="note info">
-            <ol><li>请求行：具体的请求类别和请求内容<ul><li>请求类别：每个请求类别表示要做不同的事情<ul><li>GET: 获取网络资源</li><li>POST: 提交一定的信息，得到反馈</li><li>HEAD: 只获取网络资源的响应头</li><li>PUT: 更新服务器资源</li><li>DELETE: 删除服务器资源</li><li>CONNECT</li><li>TRACE: 测试</li><li>OPTIONS: 获取服务器性能信息</li></ul></li></ul></li><li>请求头： 对请求的进一步解释和描述</li><li>空行</li><li>请求体：请求参数或者提交内容</li></ol>
-          </div>
-
-<h3 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h3><div class="note info">
-            <ol><li>响应格式：响应行，响应头，空行，响应体<ul><li>响应行：反馈基本的响应情况   （版本信息   响应码  附加信息）<br>响应码：<ul><li>1xx 提示信息，表示请求被接收</li><li>2xx 响应成功</li><li>3xx 响应需要进一步操作，重定向</li><li>4xx 客户端错误</li><li>5xx 服务端错误</li></ul></li><li>响应头：对应响应内容的描述  Content-Type:text/html</li><li>空行</li><li>响应体：响应的主体内容信息</li></ul></li></ol>
-          </div>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1267,7 +1109,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
