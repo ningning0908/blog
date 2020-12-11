@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="移动端基础             移动端浏览器我们主要对webkit内核进行兼容我们现在开发的移动端主要针对手机端开发现在移动端碎片化比较严重，分辨率和屏幕尺寸大小不一学会用谷歌浏览器模拟手机界面以及调试             视口视口（viewport）就是浏览器页面内容的屏幕区域，视口可以分为布局视口、视觉视口和理想视口。 布局视口（layout viewport）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端之流式布局">
+<meta property="og:url" content="https://ningning0908.github.io/blog/2020/10/30/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8B%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="移动端基础             移动端浏览器我们主要对webkit内核进行兼容我们现在开发的移动端主要针对手机端开发现在移动端碎片化比较严重，分辨率和屏幕尺寸大小不一学会用谷歌浏览器模拟手机界面以及调试             视口视口（viewport）就是浏览器页面内容的屏幕区域，视口可以分为布局视口、视觉视口和理想视口。 布局视口（layout viewport）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E4%BA%AC%E4%B8%9C%E5%95%86%E5%9F%8E.png">
+<meta property="article:published_time" content="2020-10-30T09:07:06.283Z">
+<meta property="article:modified_time" content="2020-11-16T13:54:27.593Z">
+<meta property="article:author" content="Ning Ning">
+<meta property="article:tag" content="移动端开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E4%BA%AC%E4%B8%9C%E5%95%86%E5%9F%8E.png">
+
+<link rel="canonical" href="https://ningning0908.github.io/blog/2020/10/30/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8B%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>移动端之流式布局 | 学习笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">学习笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/10/30/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8B%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          移动端之流式布局
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-30 17:07:06" itemprop="dateCreated datePublished" datetime="2020-10-30T17:07:06+08:00">2020-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-16 21:54:27" itemprop="dateModified" datetime="2020-11-16T21:54:27+08:00">2020-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">移动端开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="移动端基础"><a href="#移动端基础" class="headerlink" title="移动端基础"></a>移动端基础</h2><div class="note info">
+            <ul><li>移动端浏览器我们主要对webkit内核进行兼容</li><li>我们现在开发的移动端主要针对手机端开发</li><li>现在移动端碎片化比较严重，分辨率和屏幕尺寸大小不一</li><li>学会用谷歌浏览器模拟手机界面以及调试</li></ul>
+          </div>
+
+<h2 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h2><p>视口（viewport）就是浏览器页面内容的屏幕区域，视口可以分为布局视口、视觉视口和理想视口。</p>
+<h3 id="布局视口（layout-viewport）"><a href="#布局视口（layout-viewport）" class="headerlink" title="布局视口（layout viewport）"></a>布局视口（layout viewport）</h3><div class="note info">
+            <ul><li>一般移动设备的浏览器都默认设置了一个布局视口，用于解决早期的PC端页面在手机上显示的问题</li><li>iOS，Android基本都将这个视口分辨率设置为980px，所以PC上的页面大多都能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页</li></ul>
+          </div>
+
+<h3 id="视觉视口（visual-viewport）"><a href="#视觉视口（visual-viewport）" class="headerlink" title="视觉视口（visual viewport）"></a>视觉视口（visual viewport）</h3><div class="note info">
+            <ul><li>字面意思，它是用户正在看到的网站的区域。<strong>注意：是网站的区域</strong></li><li>我们可以通过缩放去操作视觉视口，但不会影响布局视口，布局视口仍保持原来的宽度</li></ul>
+          </div>
+
+<h3 id="理想视口"><a href="#理想视口" class="headerlink" title="理想视口"></a>理想视口</h3><div class="note info">
+            <ul><li>为了使网站在移动端有最理想的浏览和阅读宽度而设定</li><li>理想视口，对设备来说，是最理想的视口尺寸</li><li>需要手动添加meta视口标签通知浏览器操作</li><li>meta视口标签的主要目的：布局视口的宽度应该与理想视口的宽度一致，简单理解就是设备有多款，我们布局的视口就多宽</li></ul>
+          </div>
+
+<h3 id="meta视口标签"><a href="#meta视口标签" class="headerlink" title="meta视口标签"></a>meta视口标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>width</td>
+<td>宽度设置的是<code>viewport</code>宽度，可以设置<code>device-width</code>特殊值</td>
+</tr>
+<tr>
+<td>initial-scale</td>
+<td>初始缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td>最大缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>最小缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>用户是否可以缩放，yes或no（1或0）</td>
+</tr>
+</tbody></table>
+<div class="note info">
+            <p><strong>标准的<code>viewport</code> 设置</strong></p><ul><li>视口宽度和设备保持一致</li><li>视口的默认缩放比例1.0</li><li>不允许用户自行缩放</li><li>最大允许的缩放比例为1.0</li><li>最小允许的缩放比例1.0</li></ul>
+          </div>
+
+<h2 id="二倍图"><a href="#二倍图" class="headerlink" title="二倍图"></a>二倍图</h2><h3 id="物理像素-amp-物理像素比"><a href="#物理像素-amp-物理像素比" class="headerlink" title="物理像素&amp;物理像素比"></a>物理像素&amp;物理像素比</h3><div class="note info">
+            <ul><li>物理像素点指的是屏幕显示的最小颗粒，是物理真实存在的，这是厂商在出厂就设置好了的，比如苹果6\7\8是750*1334</li><li>我们开发时候的1px不是一定等于1个物理像素的</li><li>PC端页面，1个px等于1个物理像素的，但是移动端不尽相同（iphone8中，1px等于2个物理像素，其他自己尝试）</li><li>1个px的能显示的物理像素点的个数，称为物理像素比或屏幕像素比</li><li>PC端和早前的手机屏幕/普通手机屏幕：1CSS像素=1物理像素</li><li>Retina（视网膜屏幕）是一种显示技术，可以将更多的物理像素压缩至一块屏幕内，从而达到更高的分辨率，并提高屏幕显示的细腻程度</li></ul>
+          </div>
+
+<h3 id="二倍精灵图做法（案例：京东移动端首页放大镜）"><a href="#二倍精灵图做法（案例：京东移动端首页放大镜）" class="headerlink" title="二倍精灵图做法（案例：京东移动端首页放大镜）"></a>二倍精灵图做法（案例：京东移动端首页放大镜）</h3><div class="note info">
+            <ul><li>在firework里面把精灵图等比例缩放为原来的一半</li><li>之后根据大小测量坐标</li><li>注意代码里面background-size也要写：精灵图原来宽度的一半</li></ul>
+          </div>
+<h3 id="背景缩放"><a href="#背景缩放" class="headerlink" title="背景缩放"></a>背景缩放</h3><p><code>background-size</code>属性规定背景图像的尺寸，只写一个参数时，肯定是宽度，高度等比例缩放</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-size: 背景图片宽度 背景图片高度；</span><br><span class="line">background-size: cover;     <span class="comment">// 等比例拉伸，完全覆盖，可能有部分背景图片显示不全</span></span><br><span class="line">background-size: contain;   <span class="comment">//高度和宽度等比例拉伸，当宽度或高度铺满，就不再拉伸了，可能有部分空白区域</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="移动端开发选择"><a href="#移动端开发选择" class="headerlink" title="移动端开发选择"></a>移动端开发选择</h2><h3 id="移动端主流方案"><a href="#移动端主流方案" class="headerlink" title="移动端主流方案"></a>移动端主流方案</h3><div class="note info">
+            <ul><li><ol><li>单独制作移动端页面（主流）</li></ol></li><li><ol start="2"><li>响应式页面兼容PC移动端（其次）</li></ol></li></ul>
+          </div>
+
+<h2 id="移动端技术解决方案"><a href="#移动端技术解决方案" class="headerlink" title="移动端技术解决方案"></a>移动端技术解决方案</h2><h3 id="移动端浏览器"><a href="#移动端浏览器" class="headerlink" title="移动端浏览器"></a>移动端浏览器</h3><div class="note info">
+            <ul><li>移动端浏览器基本以webkit内核为主，因此我们就考虑webkit兼容性问题</li><li>我们可以放心使用H5标签和CSS3样式</li><li>同时我们浏览器的私有前缀只需要考虑webkit内核即可</li><li></li></ul>
+          </div>
+
+<h3 id="CSS初始化（normalize-css）"><a href="#CSS初始化（normalize-css）" class="headerlink" title="CSS初始化（normalize.css）"></a>CSS初始化（normalize.css）</h3><p>移动端CSS初始化推荐使用normalize.css</p>
+<ul>
+<li>normalize.css： 保护了有价值的默认值</li>
+<li>normalize.css： 修复了浏览器的bug</li>
+<li>normalize.css： 是模块化的</li>
+<li>normalize.css： 拥有详细的文档<br>官网地址：<a href="http://necolas.github.io/normalize.css/" target="_blank" rel="noopener">http://necolas.github.io/normalize.css/</a></li>
+</ul>
+<h3 id="CSS3盒子模型（box-sizing）"><a href="#CSS3盒子模型（box-sizing）" class="headerlink" title="CSS3盒子模型（box-sizing）"></a>CSS3盒子模型（box-sizing）</h3><div class="note info">
+            <ul><li>传统模式宽度计算：盒子的宽度 = CSS中设置的width + border + padding</li><li>CSS3盒子模型： 盒子的宽度 = CSS中设置的宽度width 里面包含了border和padding，也就是说，我们的CSS3中的盒子模型，padding和border不会撑大盒子了</li></ul>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* CSS3盒子模型 */</span></span><br><span class="line">box-sizing: border-box;</span><br><span class="line"><span class="comment">/* 传统盒子模型 */</span></span><br><span class="line">box-sizing: content-box;</span><br></pre></td></tr></table></figure>
+
+<p><strong>传统orCSS3盒子模型？</strong></p>
+<ul>
+<li>移动端可以全部用CSS3盒子模型</li>
+<li>PC端如果完全需要兼容，我们就用传统模式，如果不考虑兼容性问题，选择CSS3盒子模型</li>
+</ul>
+<h2 id="移动端常见布局"><a href="#移动端常见布局" class="headerlink" title="移动端常见布局"></a>移动端常见布局</h2><div class="note info">
+            <ul><li><ol><li>单独制作移动端页面（主流）的布局方式</li></ol><ul><li>流式布局（百分比布局）</li><li>flex弹性布局（强烈推荐）</li><li>less + rem + 媒体查询布局</li><li>混合布局</li></ul></li><li><ol start="2"><li>响应式页面兼容移动端（其次）</li></ol><ul><li>媒体查询</li><li>bootstrap</li></ul></li></ul>
+          </div>
+
+<h2 id="流式布局（百分比布局）"><a href="#流式布局（百分比布局）" class="headerlink" title="流式布局（百分比布局）"></a>流式布局（百分比布局）</h2><div class="note info">
+            <ul><li><ol><li>流式布局，就是百分比布局，也称非固定像素布局</li></ol></li><li><ol start="2"><li>通过盒子的宽度设置成百分比来根据屏幕的宽度进行伸缩，不受固定像素的限制，内容向两侧填充</li></ol></li><li><ol start="3"><li>流式布局方式是移动web开发使用的比较常见的布局方式</li></ol></li><li><ol start="4"><li>max-width: 最大宽度（max-height: 最大高度）</li></ol></li><li><ol start="5"><li>min-width: 最小宽度（min-height: 最小高度）</li></ol></li></ul>
+          </div>
+
+<h2 id="采用流式布局的京东商城部分示例"><a href="#采用流式布局的京东商城部分示例" class="headerlink" title="采用流式布局的京东商城部分示例"></a>采用流式布局的京东商城部分示例</h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E4%BA%AC%E4%B8%9C%E5%95%86%E5%9F%8E.png" alt="attr"></p>
+<p>代码如下所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入我们的css初始化文件 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/normalize.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入我们首页的css --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/index.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 搜索 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jd-icon"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sou"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-login"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 主体内容部分 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main-content"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 滑动图 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slider"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/banner.dpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 双十一品牌日 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand_one"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/one_11.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand_one_content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand_two"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/two_11.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand_three"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/three_11.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"brand_three_content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- nav部分 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav1.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>京东超市<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav2.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>数码家电<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav3.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>京东服饰<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav4.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>京东生鲜<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav5.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>京东到家<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav6.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>充值缴费<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav7.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>9.9元拼<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav8.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>领券<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav9.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>借钱<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"upload/nav10.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>PLUS会员<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">320px</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">640px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: -apple-system,Helvetica,sans-serif;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: white;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">vertical-align</span>: top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 搜索 */</span></span><br><span class="line"><span class="selector-class">.search-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">44px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">320px</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">640px</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-btn</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">44px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-btn</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(../images/s-btn.png) no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>: <span class="number">20px</span> <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">14px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-login</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">44px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">44px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>:<span class="number">7px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.jd-icon</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">13px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(../images/jd.png);</span><br><span class="line">  <span class="attribute">background-size</span>: <span class="number">20px</span> <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jd-icon</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: -<span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sou</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="comment">/* background-color: pink; */</span></span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(../images/jd-sprites.png) no-repeat -<span class="number">82px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-size</span>: <span class="number">200px</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slider</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 双十一品牌日 */</span></span><br><span class="line"><span class="selector-class">.brand</span> &#123;</span><br><span class="line">  <span class="comment">/* height: 115px; */</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.brand_one</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.brand_one_content</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">69px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">67px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(../images/one_11_content.jpg) no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>:contain;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.brand_two</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.brand_three</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.brand_three_content</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">67px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">67px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(../images/three_11_content.jpg) no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>:contain;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.brand</span> <span class="selector-tag">div</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* nav部分 */</span></span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>只想买包辣条</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/blog/images/wechatpay.png" alt="Ning Ning 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/blog/images/alipay.png" alt="Ning Ning 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag"># 移动端开发</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC1%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" rel="prev" title="第1章 计算机网络和因特网">
+      <i class="fa fa-chevron-left"></i> 第1章 计算机网络和因特网
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/10/31/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Bflex%E5%B8%83%E5%B1%80/" rel="next" title="移动端之flex布局">
+      移动端之flex布局 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端基础"><span class="nav-number">1.</span> <span class="nav-text">移动端基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视口"><span class="nav-number">2.</span> <span class="nav-text">视口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布局视口（layout-viewport）"><span class="nav-number">2.1.</span> <span class="nav-text">布局视口（layout viewport）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视觉视口（visual-viewport）"><span class="nav-number">2.2.</span> <span class="nav-text">视觉视口（visual viewport）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理想视口"><span class="nav-number">2.3.</span> <span class="nav-text">理想视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta视口标签"><span class="nav-number">2.4.</span> <span class="nav-text">meta视口标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二倍图"><span class="nav-number">3.</span> <span class="nav-text">二倍图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理像素-amp-物理像素比"><span class="nav-number">3.1.</span> <span class="nav-text">物理像素&amp;物理像素比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二倍精灵图做法（案例：京东移动端首页放大镜）"><span class="nav-number">3.2.</span> <span class="nav-text">二倍精灵图做法（案例：京东移动端首页放大镜）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景缩放"><span class="nav-number">3.3.</span> <span class="nav-text">背景缩放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端开发选择"><span class="nav-number">4.</span> <span class="nav-text">移动端开发选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端主流方案"><span class="nav-number">4.1.</span> <span class="nav-text">移动端主流方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端技术解决方案"><span class="nav-number">5.</span> <span class="nav-text">移动端技术解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端浏览器"><span class="nav-number">5.1.</span> <span class="nav-text">移动端浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS初始化（normalize-css）"><span class="nav-number">5.2.</span> <span class="nav-text">CSS初始化（normalize.css）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3盒子模型（box-sizing）"><span class="nav-number">5.3.</span> <span class="nav-text">CSS3盒子模型（box-sizing）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端常见布局"><span class="nav-number">6.</span> <span class="nav-text">移动端常见布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流式布局（百分比布局）"><span class="nav-number">7.</span> <span class="nav-text">流式布局（百分比布局）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#采用流式布局的京东商城部分示例"><span class="nav-number">8.</span> <span class="nav-text">采用流式布局的京东商城部分示例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ning Ning</p>
+  <div class="site-description" itemprop="description">光、温暖、温柔</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ning Ning</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
