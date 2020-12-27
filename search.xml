@@ -5641,18 +5641,6 @@
       </tags>
   </entry>
   <entry>
-    <title>安卓环境的基本指令</title>
-    <url>/blog/2020/12/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%AE%89%E5%8D%93%E7%8E%AF%E5%A2%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="安卓环境下的window基本指令"><a href="#安卓环境下的window基本指令" class="headerlink" title="安卓环境下的window基本指令"></a>安卓环境下的window基本指令</h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E5%AE%89%E5%8D%93%E7%8E%AF%E5%A2%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4.png" alt="attr"></p>
-]]></content>
-      <categories>
-        <category>深入浅出node.js</category>
-      </categories>
-      <tags>
-        <tag>深入浅出node.js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>移动Web开发之rem+less适配布局</title>
     <url>/blog/2020/11/16/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Brem%E9%80%82%E9%85%8D%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<h2 id="rem基础"><a href="#rem基础" class="headerlink" title="rem基础"></a>rem基础</h2><div class="note info">
@@ -6518,6 +6506,28 @@
       </categories>
       <tags>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React Native 开发环境搭建</title>
+    <url>/blog/2020/12/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/React%20Native%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><p>本文介绍的是采用window开发平台搭建Android目标平台。</p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>必须安装的依赖有Node、JDK 和 Android Studio。<br>在这里不详细介绍了，参考<a href="https://reactnative.cn/docs/environment-setup" target="_blank" rel="noopener">https://reactnative.cn/docs/environment-setup</a></p>
+<h2 id="创建新项目"><a href="#创建新项目" class="headerlink" title="创建新项目"></a>创建新项目</h2><p>在想要创建文件的目录下打开命令行，输入以下命令。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npx react-native init myApp</span><br></pre></td></tr></table></figure>
+<p>如下图所示为成功。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E5%88%9B%E5%BB%BAapp.png" alt="创建app"></p>
+<h2 id="准备Android-设备"><a href="#准备Android-设备" class="headerlink" title="准备Android 设备"></a>准备Android 设备</h2><h3 id="使用-Android-真机"><a href="#使用-Android-真机" class="headerlink" title="使用 Android 真机"></a>使用 Android 真机</h3><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E6%89%8B%E6%9C%BA%E8%B0%83%E8%AF%95%E6%AD%A5%E9%AA%A4.png" alt="手机调试步骤"></p>
+<h3 id="使用-Android-模拟器"><a href="#使用-Android-模拟器" class="headerlink" title="使用 Android 模拟器"></a>使用 Android 模拟器</h3><p>你可以使用 Android Studio 打开项目下的”android”目录，然后可以使用”AVD Manager”来查看可用的虚拟设备</p>
+<h2 id="编译并运行-React-Native-应用"><a href="#编译并运行-React-Native-应用" class="headerlink" title="编译并运行 React Native 应用"></a>编译并运行 React Native 应用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">cd myApp</span><br><span class="line">npx react-native run-android</span><br></pre></td></tr></table></figure>
+<p>操作成功，如下图所示<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/1609070526%281%29.png" alt="attr"><br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/1609070546%281%29.png" alt="attr"></p>
+<h2 id="屏幕投影工具scrcpy"><a href="#屏幕投影工具scrcpy" class="headerlink" title="屏幕投影工具scrcpy"></a>屏幕投影工具scrcpy</h2><p>下载地址：<a href="https://github.com/Genymobile/scrcpy/releases/tag/v1.16" target="_blank" rel="noopener">https://github.com/Genymobile/scrcpy/releases/tag/v1.16</a></p>
+<h2 id="安卓环境下的window基本指令"><a href="#安卓环境下的window基本指令" class="headerlink" title="安卓环境下的window基本指令"></a>安卓环境下的window基本指令</h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/%E5%AE%89%E5%8D%93%E7%8E%AF%E5%A2%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4.png" alt="attr"></p>
+]]></content>
+      <categories>
+        <category>移动端开发</category>
+      </categories>
+      <tags>
+        <tag>移动端开发</tag>
       </tags>
   </entry>
 </search>
