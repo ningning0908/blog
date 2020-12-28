@@ -20,23 +20,23 @@
     var CONFIG = {"hostname":"ningning0908.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="React Native 介绍 文件目录结构1234567│  App.js           ---   项目的根组件│  index.js         ---   项目的入口文件     │  package.json     ---   项目的描述文件         │  .eslintrc.js     ---   eslint的配置文件            │  .pretti">
+  <meta name="description" content="React-native - 基础主要讲解以下React的基础知识,方便同学们更好的学习项目的知识。  React Native 介绍 文件目录结构 JSX RN样式 基本标签 插值表达式 调试 事件 生命周期 mobx  React Native 介绍 文件目录结构1234567│  App.js           ---   项目的根组件│  index.js         ---   项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React Native基础">
+<meta property="og:title" content="React Native基础(网课老师的讲义)">
 <meta property="og:url" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="学习笔记">
-<meta property="og:description" content="React Native 介绍 文件目录结构1234567│  App.js           ---   项目的根组件│  index.js         ---   项目的入口文件     │  package.json     ---   项目的描述文件         │  .eslintrc.js     ---   eslint的配置文件            │  .pretti">
+<meta property="og:description" content="React-native - 基础主要讲解以下React的基础知识,方便同学们更好的学习项目的知识。  React Native 介绍 文件目录结构 JSX RN样式 基本标签 插值表达式 调试 事件 生命周期 mobx  React Native 介绍 文件目录结构1234567│  App.js           ---   项目的根组件│  index.js         ---   项">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/medias/image-20200526120559183.png">
-<meta property="og:image" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/medias/image-20200526173035552.png">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/image-20200526120559183.png">
+<meta property="og:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/image-20200526173035552.png">
 <meta property="og:image" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/medias/image-20200528103625667.png">
 <meta property="og:image" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/medias/flow.png">
 <meta property="article:published_time" content="2020-12-28T08:47:09.939Z">
-<meta property="article:modified_time" content="2020-12-28T08:57:19.494Z">
+<meta property="article:modified_time" content="2020-12-28T09:06:37.344Z">
 <meta property="article:author" content="Ning Ning">
 <meta property="article:tag" content="移动端开发">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/medias/image-20200526120559183.png">
+<meta name="twitter:image" content="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/image-20200526120559183.png">
 
 <link rel="canonical" href="https://ningning0908.github.io/blog/2020/12/28/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/ReactNative%E5%9F%BA%E7%A1%80/">
 
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>React Native基础 | 学习笔记</title>
+  <title>React Native基础(网课老师的讲义) | 学习笔记</title>
   
 
 
@@ -207,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          React Native基础
+          React Native基础(网课老师的讲义)
         </h1>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-12-28 16:47:09 / 修改时间：16:57:19" itemprop="dateCreated datePublished" datetime="2020-12-28T16:47:09+08:00">2020-12-28</time>
+              <time title="创建时间：2020-12-28 16:47:09 / 修改时间：17:06:37" itemprop="dateCreated datePublished" datetime="2020-12-28T16:47:09+08:00">2020-12-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,10 +241,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="React-Native-介绍"><a href="#React-Native-介绍" class="headerlink" title="React Native 介绍"></a><a href="https://baike.baidu.com/item/react%20native/20307162?fr=aladdin" target="_blank" rel="noopener">React Native 介绍</a></h2><p><img src="./medias/image-20200526120559183.png" alt="image-20200526120559183"></p>
+        <h1 id="React-native-基础"><a href="#React-native-基础" class="headerlink" title="React-native - 基础"></a><a href="https://reactnative.cn" target="_blank" rel="noopener">React-native - 基础</a></h1><p>主要讲解以下React的基础知识,方便同学们更好的学习项目的知识。</p>
+<ul>
+<li>React Native 介绍</li>
+<li>文件目录结构</li>
+<li>JSX</li>
+<li>RN样式</li>
+<li>基本标签</li>
+<li>插值表达式</li>
+<li>调试</li>
+<li>事件</li>
+<li>生命周期</li>
+<li>mobx</li>
+</ul>
+<h2 id="React-Native-介绍"><a href="#React-Native-介绍" class="headerlink" title="React Native 介绍"></a><a href="https://baike.baidu.com/item/react%20native/20307162?fr=aladdin" target="_blank" rel="noopener">React Native 介绍</a></h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/image-20200526120559183.png" alt="image-20200526120559183"></p>
 <h2 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">│  App.js           ---   项目的根组件</span><br><span class="line">│  index.js         ---   项目的入口文件     </span><br><span class="line">│  package.json     ---   项目的描述文件         </span><br><span class="line">│  .eslintrc.js     ---   eslint的配置文件            </span><br><span class="line">│  .prettierrc.js   ---   格式化配置文件             </span><br><span class="line">│  android          ---   编译安卓相关       </span><br><span class="line">│  ios              ---   编译ios相关</span><br></pre></td></tr></table></figure>
 
-<h3 id="老师的vs-code的插件"><a href="#老师的vs-code的插件" class="headerlink" title="老师的vs code的插件"></a>老师的vs code的插件</h3><p><img src="./medias/image-20200526173035552.png" alt="image-20200526173035552"></p>
+<h3 id="老师的vs-code的插件"><a href="#老师的vs-code的插件" class="headerlink" title="老师的vs code的插件"></a>老师的vs code的插件</h3><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E7%A7%BB%E5%8A%A8%E7%AB%AF/image-20200526173035552.png" alt="image-20200526173035552"></p>
 <h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><blockquote>
 <p>React中写组件的代码格式 全称是 <code>JavaScript xml</code></p>
 </blockquote>
@@ -597,7 +610,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-介绍"><span class="nav-number">1.</span> <span class="nav-text">React Native 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录结构"><span class="nav-number">2.</span> <span class="nav-text">文件目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#老师的vs-code的插件"><span class="nav-number">2.1.</span> <span class="nav-text">老师的vs code的插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX"><span class="nav-number">3.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RN样式"><span class="nav-number">4.</span> <span class="nav-text">RN样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex布局"><span class="nav-number">4.1.</span> <span class="nav-text">flex布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式继承"><span class="nav-number">4.2.</span> <span class="nav-text">样式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单位"><span class="nav-number">4.3.</span> <span class="nav-text">单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕宽度和高度"><span class="nav-number">4.4.</span> <span class="nav-text">屏幕宽度和高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变换"><span class="nav-number">4.5.</span> <span class="nav-text">变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签"><span class="nav-number">5.</span> <span class="nav-text">标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">5.1.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">5.2.</span> <span class="nav-text">Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TouchableOpacity"><span class="nav-number">5.3.</span> <span class="nav-text">TouchableOpacity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image"><span class="nav-number">5.4.</span> <span class="nav-text">Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImageBackground"><span class="nav-number">5.5.</span> <span class="nav-text">ImageBackground</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TextInput"><span class="nav-number">5.6.</span> <span class="nav-text">TextInput</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">6.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插值表达式"><span class="nav-number">6.1.</span> <span class="nav-text">插值表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">6.2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数组件"><span class="nav-number">6.2.1.</span> <span class="nav-text">函数组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类组件"><span class="nav-number">6.2.2.</span> <span class="nav-text">类组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态-state"><span class="nav-number">6.3.</span> <span class="nav-text">状态 state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性-props"><span class="nav-number">6.4.</span> <span class="nav-text">属性 props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">6.5.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">6.6.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">6.7.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要的生命周期"><span class="nav-number">6.7.1.</span> <span class="nav-text">主要的生命周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mobx"><span class="nav-number">7.</span> <span class="nav-text">mobx </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用步骤"><span class="nav-number">7.1.</span> <span class="nav-text">使用步骤</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-native-基础"><span class="nav-number">1.</span> <span class="nav-text">React-native - 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">React Native 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录结构"><span class="nav-number">1.2.</span> <span class="nav-text">文件目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#老师的vs-code的插件"><span class="nav-number">1.2.1.</span> <span class="nav-text">老师的vs code的插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX"><span class="nav-number">1.3.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RN样式"><span class="nav-number">1.4.</span> <span class="nav-text">RN样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex布局"><span class="nav-number">1.4.1.</span> <span class="nav-text">flex布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式继承"><span class="nav-number">1.4.2.</span> <span class="nav-text">样式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单位"><span class="nav-number">1.4.3.</span> <span class="nav-text">单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕宽度和高度"><span class="nav-number">1.4.4.</span> <span class="nav-text">屏幕宽度和高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变换"><span class="nav-number">1.4.5.</span> <span class="nav-text">变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签"><span class="nav-number">1.5.</span> <span class="nav-text">标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">1.5.1.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">1.5.2.</span> <span class="nav-text">Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TouchableOpacity"><span class="nav-number">1.5.3.</span> <span class="nav-text">TouchableOpacity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image"><span class="nav-number">1.5.4.</span> <span class="nav-text">Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImageBackground"><span class="nav-number">1.5.5.</span> <span class="nav-text">ImageBackground</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TextInput"><span class="nav-number">1.5.6.</span> <span class="nav-text">TextInput</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.6.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插值表达式"><span class="nav-number">1.6.1.</span> <span class="nav-text">插值表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">1.6.2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数组件"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">函数组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类组件"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">类组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态-state"><span class="nav-number">1.6.3.</span> <span class="nav-text">状态 state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性-props"><span class="nav-number">1.6.4.</span> <span class="nav-text">属性 props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">1.6.5.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">1.6.6.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">1.6.7.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要的生命周期"><span class="nav-number">1.6.7.1.</span> <span class="nav-text">主要的生命周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mobx"><span class="nav-number">1.7.</span> <span class="nav-text">mobx </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用步骤"><span class="nav-number">1.7.1.</span> <span class="nav-text">使用步骤</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
