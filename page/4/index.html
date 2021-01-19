@@ -185,6 +185,208 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/09/25/AJAX/AJAX%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/09/25/AJAX/AJAX%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">AJAX学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-25 14:25:37" itemprop="dateCreated datePublished" datetime="2020-09-25T14:25:37+08:00">2020-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-27 17:46:33" itemprop="dateModified" datetime="2020-09-27T17:46:33+08:00">2020-09-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/AJAX/" itemprop="url" rel="index"><span itemprop="name">AJAX</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="AJAX介绍"><a href="#AJAX介绍" class="headerlink" title="AJAX介绍"></a>AJAX介绍</h2><div class="note info">
+            <p>AJAX = Asynchronous JavaScript and XML(异步的JavaScript和XML)<br>AJAX是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<br>Ajax不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的web应用程序的技术。<br>AJAX 是一种用于创建快速动态网页的技术。<br>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。<br>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</p>
+          </div>
+
+<h2 id="AJAX-工作原理"><a href="#AJAX-工作原理" class="headerlink" title="AJAX 工作原理"></a>AJAX 工作原理</h2><p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/AJAX%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="AJAX工作原理"></p>
+<h3 id="AJAX-创建XMLHttpRequest对象"><a href="#AJAX-创建XMLHttpRequest对象" class="headerlink" title="AJAX - 创建XMLHttpRequest对象"></a>AJAX - 创建XMLHttpRequest对象</h3><p>XMLHttpRequest 是 AJAX 的基础。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">  <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">  xmlhttp = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">  xmlhttp = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AJAX-向服务器发送请求请求"><a href="#AJAX-向服务器发送请求请求" class="headerlink" title="AJAX - 向服务器发送请求请求"></a>AJAX - 向服务器发送请求请求</h3><p>如需将请求发送到服务器，我们使用 <code>XMLHttpRequest</code> 对象的 <code>open()</code> 和 <code>send()</code> 方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>open(method,url,async)</td>
+<td>规定请求的类型、URL 以及是否异步处理请求。</td>
+</tr>
+<tr>
+<td></td>
+<td>method：请求的类型；GET 或 POST</td>
+</tr>
+<tr>
+<td></td>
+<td>url：文件在服务器上的位置</td>
+</tr>
+<tr>
+<td></td>
+<td>async：true（异步）或 false（同步）</td>
+</tr>
+<tr>
+<td>send(string)</td>
+<td>将请求发送到服务器。</td>
+</tr>
+<tr>
+<td></td>
+<td>string：仅用于 POST 请求</td>
+</tr>
+</tbody></table>
+<p><strong>GET请求</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>, <span class="string">"ajax_info.txt"</span>, <span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p><strong>POST请求</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"post"</span>,<span class="string">"/try/ajax/demo_post2.php"</span>,<span class="literal">true</span>)</span><br><span class="line">xmlhttp.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">xmlhttp.send(<span class="string">"fname=Henry&amp;lname=Ford"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="异步-True-或-False？"><a href="#异步-True-或-False？" class="headerlink" title="异步 - True 或 False？"></a>异步 - True 或 False？</h3><p>AJAX 指的是异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。<br>XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_test.html"</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>对于 web 开发人员来说，发送异步请求是一个巨大的进步。很多在服务器执行的任务都相当费时。AJAX 出现之前，这可能会引起应用程序挂起或停止。<br>通过 AJAX，JavaScript 无需等待服务器的响应，而是：</p><ul><li>在等待服务器响应时执行其他脚本</li><li>当响应就绪后对响应进行处理</li></ul>
+          </div>
+
+<p><strong>Async=true</strong><br>当使用 async=true 时，请规定在响应处于 onreadystatechange 事件中的就绪状态时执行的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(xmlhttp.readyState == <span class="number">4</span> &amp;&amp; xmlhttp.status == <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML = xmlhttp.responseText;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p><strong>Async = false</strong><br>如需使用 async=false，请将 open() 方法中的第三个参数改为 false。<br>我们不推荐使用 async=false，但是对于一些小型的请求，也是可以的。<br>请记住，JavaScript 会等到服务器响应就绪才继续执行。如果服务器繁忙或缓慢，应用程序会挂起或停止。<br>注意：当您使用 async=false 时，请不要编写 onreadystatechange 函数 - 把代码放到 send() 语句后面即可：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="literal">false</span>);</span><br><span class="line">xmlhttp.send();</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AJAX-服务器响应"><a href="#AJAX-服务器响应" class="headerlink" title="AJAX - 服务器响应"></a>AJAX - 服务器响应</h2><p>如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>responseText</td>
+<td>获得字符串形式的响应数据</td>
+</tr>
+<tr>
+<td>responseXML</td>
+<td>获得XML形式的响应数据</td>
+</tr>
+</tbody></table>
+<p><strong>responseText 属性</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML = xmlHttpRequest.responseText</span><br></pre></td></tr></table></figure>
+
+<p><strong>responseXML 属性</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML = xmlHttpRequest.responseXML</span><br></pre></td></tr></table></figure>
+
+<h2 id="AJAX-onreadystatechange-事件"><a href="#AJAX-onreadystatechange-事件" class="headerlink" title="AJAX - onreadystatechange 事件"></a>AJAX - onreadystatechange 事件</h2><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 <code>readyState</code> 改变时，就会触发 <code>onreadystatechange</code> 事件。<code>readyState</code> 属性存有 <code>XMLHttpRequest</code> 的状态信息。下面是 <code>XMLHttpRequest</code> 对象的三个重要的属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onreadystatechange</td>
+<td>存储函数（或函数名），每当readyState属性改变时，就会调用该函数</td>
+</tr>
+<tr>
+<td>readyState</td>
+<td>存有XMLHttpRequest 的状态，从0到4发生改变</td>
+</tr>
+<tr>
+<td></td>
+<td>0：请求未初始化</td>
+</tr>
+<tr>
+<td></td>
+<td>1：服务器连接已建立</td>
+</tr>
+<tr>
+<td></td>
+<td>2：请求已接受</td>
+</tr>
+<tr>
+<td></td>
+<td>3：请求处理中</td>
+</tr>
+<tr>
+<td></td>
+<td>4：请求已完成，且响应已就绪</td>
+</tr>
+<tr>
+<td>status</td>
+<td>200：”OK”，404：”未找到页面”</td>
+</tr>
+</tbody></table>
+<p>在 <code>onreadystatechange</code> 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。<br>当 <code>readyState</code> 等于 <code>4</code> 且状态为 <code>200</code> 时，表示响应已就绪：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用回调函数</strong></p>
+<p>回调函数是一种以参数形式传递给另一个函数的函数。<br>如果您的网站上存在多个 <code>AJAX</code> 任务，那么您应该为创建 <code>XMLHttpRequest</code> 对象编写一个标准的函数，并为每个 <code>AJAX</code> 任务调用该函数。<br>该函数调用应该包含 <code>URL</code> 以及发生 <code>onreadystatechange</code> 事件时执行的任务（每次调用可能不尽相同）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    loadXMLDoc(<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/09/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%81%E4%BA%94%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -970,99 +1172,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/04/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-04 22:28:31" itemprop="dateCreated datePublished" datetime="2020-08-04T22:28:31+08:00">2020-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-05 16:53:24" itemprop="dateModified" datetime="2020-08-05T16:53:24+08:00">2020-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>试题链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md</a></p>
-<h2 id="找出两个链表的交点"><a href="#找出两个链表的交点" class="headerlink" title="找出两个链表的交点"></a>找出两个链表的交点</h2><p>编写一个程序，找到两个单链表相交的起始节点。<br>题目： <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a><br>解法如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴力解法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(headA) &#123;</span><br><span class="line">        headA.flag = <span class="literal">true</span>;</span><br><span class="line">        headA = headA.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(headB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(headB.flag) &#123;</span><br><span class="line">            <span class="keyword">return</span> headB</span><br><span class="line">        &#125;</span><br><span class="line">        headB = headB.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"> <span class="comment">//同步遍历</span></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pA = headA,</span><br><span class="line">        pB = headB;</span><br><span class="line">    <span class="keyword">while</span>(pA || pB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(pA === pB) &#123;</span><br><span class="line">            <span class="keyword">return</span> pA</span><br><span class="line">        &#125;</span><br><span class="line">        pA = pA === <span class="literal">null</span> ? headB : pA.next;</span><br><span class="line">        pB = pB === <span class="literal">null</span> ? headA : pB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="链表反转"><a href="#链表反转" class="headerlink" title="链表反转"></a>链表反转</h2><p>反转一个单链表。<br>题目：<a href="https://leetcode-cn.com/problems/reverse-linked-list/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-linked-list/description/</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseList = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="literal">null</span>,</span><br><span class="line">    curr = head;</span><br><span class="line">  <span class="keyword">while</span>(curr) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = curr.next;</span><br><span class="line">    curr.next = prev;</span><br><span class="line">    prev = curr;</span><br><span class="line">    curr = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> prev;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="归并两个有序的链表"><a href="#归并两个有序的链表" class="headerlink" title="归并两个有序的链表"></a>归并两个有序的链表</h2><p>将两个升序链表合并为一个新的 <code>升序</code> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//归并排序</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> mergeTwoLists = <span class="function"><span class="keyword">function</span>(<span class="params">l1, l2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> l3 = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">var</span> c3 = l3;</span><br><span class="line">    <span class="keyword">while</span>(!(l1 === <span class="literal">null</span>) &amp;&amp; !(l2 === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(l1.val &lt;= l2.val) &#123;</span><br><span class="line">            c3.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c3.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        c3 = c3.next</span><br><span class="line">    &#125;</span><br><span class="line">    c3.next = (l1===<span class="literal">null</span>) ? l2 : l1;</span><br><span class="line">    <span class="keyword">return</span> l3.next  <span class="comment">//去除-1头部</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="从有序链表中删除重复节点"><a href="#从有序链表中删除重复节点" class="headerlink" title="从有序链表中删除重复节点"></a>从有序链表中删除重复节点</h2><p>给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> deleteDuplicates = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = head;</span><br><span class="line">    <span class="keyword">while</span>((curr != <span class="literal">null</span>) &amp;&amp; !(curr.next === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(curr.val === curr.next.val) &#123;</span><br><span class="line">            curr.next = curr.next.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="删除链表的倒数第-n-个节点"><a href="#删除链表的倒数第-n-个节点" class="headerlink" title="删除链表的倒数第 n 个节点"></a>删除链表的倒数第 n 个节点</h2><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> removeNthFromEnd = <span class="function"><span class="keyword">function</span>(<span class="params">head, n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//快慢指针</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    node.next = head;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || !head) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> fast = node;</span><br><span class="line">    <span class="comment">//快指针先走n部</span></span><br><span class="line">    <span class="keyword">while</span>(count &lt; n) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//慢指针开始走</span></span><br><span class="line">    <span class="keyword">let</span> prev = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> slow = node;</span><br><span class="line">    <span class="keyword">while</span>(fast) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        prev = slow;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    prev.next = slow.next;</span><br><span class="line">    <span class="keyword">return</span> node.next</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/9/">9</a><a class="extend next" rel="next" href="/blog/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1128,7 +1241,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1168,7 +1281,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

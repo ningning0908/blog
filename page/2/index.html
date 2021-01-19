@@ -185,6 +185,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">手写call、apply，bind和reduce函数方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-15 12:45:25" itemprop="dateCreated datePublished" datetime="2020-12-15T12:45:25+08:00">2020-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-19 17:42:34" itemprop="dateModified" datetime="2020-08-19T17:42:34+08:00">2020-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="手写apply，call，bind函数"><a href="#手写apply，call，bind函数" class="headerlink" title="手写apply，call，bind函数"></a>手写apply，call，bind函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.luckyCall = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,...args</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">    ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">    ctx[fn](...args);</span><br><span class="line">    <span class="keyword">delete</span> ctx[fn];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.luckyApply = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,args=[]</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">    ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span>(args &amp;&amp; !(args <span class="keyword">instanceof</span> <span class="built_in">Array</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span>(<span class="string">"luckyApply 需要的是一个数组"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    ctx[fn](args);</span><br><span class="line">    <span class="keyword">delete</span> ctx[fn];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.luckyBind = <span class="function"><span class="keyword">function</span>(<span class="params">ctx,...args1</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//1. 将方法挂载到传入的ctx上</span></span><br><span class="line">    <span class="comment">//2. 将挂载以后的方法调用</span></span><br><span class="line">    <span class="comment">//3. 将我们添加的属性删除</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args2</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> fn = <span class="built_in">Symbol</span>(<span class="number">1</span>)</span><br><span class="line">        ctx[fn] = <span class="keyword">this</span>;</span><br><span class="line">        ctx[fn](...args1.concat(...args2));</span><br><span class="line">        <span class="keyword">delete</span> ctx[fn];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(args);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bind = show.luckyBind(&#123;</span><br><span class="line">    name: <span class="string">'luckyBind1'</span></span><br><span class="line">&#125;,<span class="string">'luckyBind2'</span>,<span class="string">'luckyBind3'</span>)</span><br><span class="line"></span><br><span class="line">bind(<span class="string">'luckyBind4'</span>)</span><br><span class="line"></span><br><span class="line">show.luckyCall(&#123;<span class="attr">name</span>: <span class="string">'luckyCall11'</span>&#125;,<span class="string">'luckyCall1'</span>,<span class="string">'luckyCall2'</span>,<span class="string">'luckyCall3'</span>);</span><br><span class="line">show.luckyApply(&#123;<span class="attr">name</span>: <span class="string">'luckyApply12'</span>&#125;,[<span class="string">'luckyApply1'</span>,<span class="string">'luckyApply2'</span>,<span class="string">'luckyApply3'</span>]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="手写reduce函数"><a href="#手写reduce函数" class="headerlink" title="手写reduce函数"></a>手写reduce函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//语法 array.reduce(function(prev, currentValue, currentIndex, arr), initialValue)</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.MyReduce = <span class="function"><span class="keyword">function</span>(<span class="params">fn, initialValue</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//浅拷贝数组  </span></span><br><span class="line">  <span class="keyword">var</span> arr = <span class="built_in">Array</span>.prototype.slice.call(<span class="keyword">this</span>);</span><br><span class="line">  <span class="comment">//注意: reduce() 对于空数组是不会执行回调函数的。</span></span><br><span class="line">  <span class="keyword">if</span>(!arr.length)&#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> res;<span class="comment">//res(是上面的prev) </span></span><br><span class="line">  <span class="comment">//默认初始值  </span></span><br><span class="line">  res = initialValue ? initialValue : arr[<span class="number">0</span>];</span><br><span class="line">  <span class="comment">//遍历数组的每一个值  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">//每一个值都会在该方法中被（加工处理），  </span></span><br><span class="line">    res = fn.call(<span class="literal">null</span>, res, arr[i], i, <span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//最后的返回值</span></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/%E5%B7%A6%E5%8F%B3%E5%90%84200px%E5%AE%BD%E5%BA%A6%EF%BC%8C%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84%E5%B8%83%E5%B1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -956,494 +1031,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/html5%20%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acss3%E6%96%B0%E7%89%B9%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/12/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/html5%20%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acss3%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">html5 新增元素以及css3新特性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-15 12:45:25" itemprop="dateCreated datePublished" datetime="2020-12-15T12:45:25+08:00">2020-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-09 07:51:34" itemprop="dateModified" datetime="2020-08-09T07:51:34+08:00">2020-08-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">前端面经</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h3 id="HTML5-新元素"><a href="#HTML5-新元素" class="headerlink" title="HTML5 新元素"></a>HTML5 新元素</h3><p>HTML5提供了新的元素来创建更好的页面结构：</p>
-<table>
-<thead>
-<tr>
-<th>HTML5元素</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>&lt;article&gt;</code></td>
-<td>定义页面独立的内容区域</td>
-</tr>
-<tr>
-<td><code>&lt;aside&gt;</code></td>
-<td>定义页面的侧边栏内容</td>
-</tr>
-<tr>
-<td><code>&lt;bdi&gt;</code></td>
-<td>允许您设置一段文本，使其脱离父元素的文本方向设置（目前只有 Firefox 和 Chrome 浏览器支持 bdi 标签）</td>
-</tr>
-<tr>
-<td><code>&lt;command&gt;</code></td>
-<td>定义命令按钮，比如单选按钮、复选框或按钮</td>
-</tr>
-<tr>
-<td><code>&lt;details&gt;</code></td>
-<td>用于描述文档或文档某个部分的细节</td>
-</tr>
-<tr>
-<td><code>&lt;dialog&gt;</code></td>
-<td>定义对话框，比如提示框</td>
-</tr>
-<tr>
-<td><code>&lt;summary&gt;</code></td>
-<td>标签包含 <code>&lt;details&gt;</code> 元素的标题</td>
-</tr>
-<tr>
-<td><code>&lt;figure&gt;</code></td>
-<td>规定独立的流内容（图像、图表、照片、代码等等）</td>
-</tr>
-<tr>
-<td><code>&lt;figcaption&gt;</code></td>
-<td>定义 <code>&lt;figure&gt;</code> 元素的标题</td>
-</tr>
-<tr>
-<td><code>&lt;footer&gt;</code></td>
-<td>定义 section 或 document 的页脚</td>
-</tr>
-<tr>
-<td><code>&lt;header&gt;</code></td>
-<td>定义了文档的头部区域</td>
-</tr>
-<tr>
-<td><code>&lt;mark&gt;</code></td>
-<td>定义带有记号的文本。</td>
-</tr>
-<tr>
-<td><code>&lt;meter&gt;</code></td>
-<td>定义度量衡。仅用于已知最大和最小值的度量</td>
-</tr>
-<tr>
-<td><code>&lt;nav&gt;</code></td>
-<td>定义导航链接的部分</td>
-</tr>
-<tr>
-<td><code>&lt;progress&gt;</code></td>
-<td>定义任何类型的任务的进度</td>
-</tr>
-<tr>
-<td><code>&lt;ruby&gt;</code></td>
-<td>定义 <code>ruby</code> 注释（中文注音或字符）</td>
-</tr>
-<tr>
-<td><code>&lt;rt&gt;</code></td>
-<td>定义字符（中文注音或字符）的解释或发音</td>
-</tr>
-<tr>
-<td><code>&lt;rp&gt;</code></td>
-<td>在 <code>ruby</code> 注释中使用，定义不支持 <code>ruby</code> 元素的浏览器所显示的内容</td>
-</tr>
-<tr>
-<td><code>&lt;section&gt;</code></td>
-<td>定义文档中的节（section、区段）</td>
-</tr>
-<tr>
-<td><code>&lt;time&gt;</code></td>
-<td>定义日期或时间</td>
-</tr>
-<tr>
-<td><code>&lt;wbr&gt;</code></td>
-<td>规定在文本中的何处适合添加换行符</td>
-</tr>
-</tbody></table>
-<h3 id="HTML5-Canvas"><a href="#HTML5-Canvas" class="headerlink" title="HTML5 Canvas"></a>HTML5 Canvas</h3><div class="note info">
-            <p>HTML5 <code>&lt;canvas&gt;</code> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.</p><ul><li><code>&lt;canvas&gt;</code>标签只是图形容器，您必须使用脚本来绘制图形。</li><li>使用 <code>JavaScript</code> 来绘制图像, <code>canvas</code> 元素本身是没有绘图能力的。所有的绘制工作必须在 <code>JavaScript</code> 内部完成</li></ul>
-          </div>
-<p><code>&lt;canvas&gt;</code>简单实例如下:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span><span class="attr">width</span>=<span class="string">"200"</span><span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">  ctx.fillStyle=<span class="string">"#FF0000"</span>;</span></span><br><span class="line">  ctx.fillRect(0,0,150,75);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="HTML5-拖放"><a href="#HTML5-拖放" class="headerlink" title="HTML5 拖放"></a>HTML5 拖放</h3><p><strong>拖放（<code>Drag</code> 和 <code>drop</code>）是 <code>HTML5</code> 标准的组成部分。</strong></p>
-<p>拖放是一种常见的特性，即抓取对象以后拖到另一个位置。在 <code>HTML5</code> 中，拖放是标准的一部分，任何元素都能够拖放。</p>
-<h4 id="HTML5-拖放实例"><a href="#HTML5-拖放实例" class="headerlink" title="HTML5 拖放实例"></a>HTML5 拖放实例</h4><p>下面的例子是一个简单的拖放实例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">allowDrop</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line">        ev.preventDefault();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">drag</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line"><span class="actionscript">        ev.dataTransfer.setData(<span class="string">"Text"</span>,ev.target.id);</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">      <span class="function"><span class="keyword">function</span> <span class="title">drop</span><span class="params">(ev)</span></span></span></span><br><span class="line">      &#123;</span><br><span class="line">        ev.preventDefault();</span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> data=ev.dataTransfer.getData(<span class="string">"Text"</span>);</span></span><br><span class="line"><span class="javascript">        ev.target.appendChild(<span class="built_in">document</span>.getElementById(data));</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">ondragover</span>=<span class="string">"allowDrop(event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"drag1"</span> <span class="attr">src</span>=<span class="string">"img_logo.gif"</span> <span class="attr">draggable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> <span class="attr">width</span>=<span class="string">"336"</span> <span class="attr">height</span>=<span class="string">"69"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="设置元素为可拖放"><a href="#设置元素为可拖放" class="headerlink" title="设置元素为可拖放"></a>设置元素为可拖放</h4><p>首先，为了使元素可拖动，把 draggable 属性设置为 true </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="拖动什么-ondragstart-和-setData"><a href="#拖动什么-ondragstart-和-setData" class="headerlink" title="拖动什么 - ondragstart 和 setData()"></a>拖动什么 - ondragstart 和 setData()</h4><p>然后，规定当元素被拖动时，会发生什么。</p>
-<p>在上面的例子中，<code>ondragstart</code> 属性调用了一个函数，<code>drag(event)</code>，它规定了被拖动的数据。</p>
-<p><code>dataTransfer.setData()</code> 方法设置被拖数据的数据类型和值：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">  ev.dataTransfer.setData(<span class="string">"Text"</span>,ev.target.id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，数据类型是 <code>&quot;Text&quot;</code>，值是可拖动元素的 <code>id (&quot;drag1&quot;)</code>。</p>
-<h4 id="放到何处-ondragover"><a href="#放到何处-ondragover" class="headerlink" title="放到何处 - ondragover"></a>放到何处 - ondragover</h4><p><code>ondragover</code> 事件规定在何处放置被拖动的数据。</p>
-<p><strong>默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。</strong></p>
-<p>这要通过调用 <code>ondragover</code> 事件的 <code>event.preventDefault()</code> 方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event.preventDefault()</span><br></pre></td></tr></table></figure>
-
-<h4 id="进行放置-ondrop"><a href="#进行放置-ondrop" class="headerlink" title="进行放置 - ondrop"></a>进行放置 - ondrop</h4><p>当放置被拖数据时，会发生 <code>drop</code> 事件。</p>
-<p>在上面的例子中，ondrop 属性调用了一个函数，<code>drop(event)</code>：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">  ev.preventDefault();</span><br><span class="line">  <span class="keyword">var</span> data = ev.dataTransfer.getData(<span class="string">"Text"</span>);</span><br><span class="line">  ev.target.appendChild(<span class="built_in">document</span>.getElementById(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>代码解释：</p><ul><li>调用 <code>preventDefault()</code> 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）;</li><li>通过 <code>dataTransfer.getData(&quot;Text&quot;)</code> 方法获得被拖的数据。该方法将返回在 <code>setData()</code> 方法中设置为相同类型的任何数据;</li><li>被拖数据是被拖元素的 <code>id (&quot;drag1&quot;)</code>;</li><li>把被拖元素追加到放置元素（目标元素）中。</li></ul>
-          </div>
-
-<h4 id="HTML-5-Canvas（画布）"><a href="#HTML-5-Canvas（画布）" class="headerlink" title="HTML 5 Canvas（画布）"></a>HTML 5 Canvas（画布）</h4><p><code>canvas</code> 元素用于在网页上绘制图形。</p>
-<h4 id="什么是-Canvas？"><a href="#什么是-Canvas？" class="headerlink" title="什么是 Canvas？"></a>什么是 Canvas？</h4><div class="note info">
-            <ul><li>HTML5 的 <code>canvas</code> 元素使用 JavaScript 在网页上绘制图像。</li><li>画布是一个矩形区域，您可以控制其每一像素。</li><li><code>canvas</code> 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li></ul>
-          </div>
-
-<h4 id="创建-Canvas-元素"><a href="#创建-Canvas-元素" class="headerlink" title="创建 Canvas 元素"></a>创建 Canvas 元素</h4><p>向 HTML5 页面添加 <code>canvas</code> 元素。规定元素的 id、宽度和高度：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="通过-JavaScript-来绘制"><a href="#通过-JavaScript-来绘制" class="headerlink" title="通过 JavaScript 来绘制"></a>通过 JavaScript 来绘制</h4><p><strong>canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//JavaScript 使用 id 来寻找 canvas 元素：</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c = <span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//创建 context 对象,getContext("2d") 对象是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> cxt = c.getContext(<span class="string">"2d"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//下面的两行代码绘制一个红色的矩形,fillStyle 方法将其染成红色，fillRect 方法规定了形状、位置和尺寸</span></span></span><br><span class="line"><span class="actionscript">  cxt.fillStyle = <span class="string">"#FF0000"</span>;</span></span><br><span class="line">  cxt.fillRect(0,0,150,75);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的 <code>fillRect</code> 方法拥有参数 <code>(0,0,150,75)</code>。意思是：在画布上绘制 <code>150x75</code> 的矩形，从左上角开始 <code>(0,0)</code>。如下图所示，画布的 X 和 Y 坐标用于在画布上对绘画进行定位。</p>
-<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/canvas%E7%BB%98%E5%9B%BE%E7%9A%84fillRect.gif" alt="attr"></p>
-<h3 id="HTML5-内联-SVG"><a href="#HTML5-内联-SVG" class="headerlink" title="HTML5 内联 SVG"></a>HTML5 内联 SVG</h3><p><strong>HTML5 支持内联 SVG。</strong></p>
-<div class="note info">
-            <p>什么是SVG？</p><ul><li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li><li>SVG 用于定义用于网络的基于矢量的图形</li><li>SVG 使用 XML 格式定义图形</li><li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失</li><li>SVG 是万维网联盟的标准</li></ul>
-          </div>
-<div class="note info">
-            <p>SVG 的优势</p><ul><li>与其他图像格式相比（比如 JPEG 和 GIF），使用 SVG 的优势在于：</li><li>SVG 图像可通过文本编辑器来创建和修改</li><li>SVG 图像可被搜索、索引、脚本化或压缩</li><li>SVG 是可伸缩的</li><li>SVG 图像可在任何的分辨率下被高质量地打印</li><li>SVG 可在图像质量不下降的情况下被放大</li></ul>
-          </div>
-
-<h4 id="把-SVG-直接嵌入-HTML-页面"><a href="#把-SVG-直接嵌入-HTML-页面" class="headerlink" title="把 SVG 直接嵌入 HTML 页面"></a>把 SVG 直接嵌入 HTML 页面</h4><p>在 HTML5 中，您能够将 SVG 元素直接嵌入 HTML 页面中：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">height</span>=<span class="string">"190"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">"100,10 40,180 190,60 10,60 160,180"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">style</span>=<span class="string">"fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML5/HTML5%20SVG%E5%86%85%E8%81%94.png" alt="attr"></p>
-<h3 id="Canvas-与-SVG-的比较"><a href="#Canvas-与-SVG-的比较" class="headerlink" title="Canvas 与 SVG 的比较"></a>Canvas 与 SVG 的比较</h3><div class="note info">
-            <p>Canvas</p><ul><li>依赖分辨率</li><li>不支持事件处理器</li><li>弱的文本渲染能力</li><li>能够以 .png 或 .jpg 格式保存结果图像</li><li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li></ul><p>SVG</p><ul><li>不依赖分辨率</li><li>支持事件处理器</li><li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li><li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li><li>不适合游戏应用</li></ul>
-          </div>
-
-<h3 id="HTML5-地理定位"><a href="#HTML5-地理定位" class="headerlink" title="HTML5 地理定位"></a>HTML5 地理定位</h3><p><strong>HTML5 Geolocation（地理定位）用于定位用户的位置。</strong></p>
-<h4 id="定位用户的位置"><a href="#定位用户的位置" class="headerlink" title="定位用户的位置"></a>定位用户的位置</h4><p>HTML5 Geolocation API 用于获得用户的地理位置。<br>鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。</p>
-<h4 id="HTML5-使用地理定位"><a href="#HTML5-使用地理定位" class="headerlink" title="HTML5 - 使用地理定位"></a>HTML5 - 使用地理定位</h4><p>请使用 <code>getCurrentPosition()</code> 方法来获得用户的位置。下例是一个简单的地理定位实例，可返回用户位置的经度和纬度。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">()</span></span></span></span><br><span class="line">    &#123;</span><br><span class="line">    if (navigator.geolocation)</span><br><span class="line">      &#123;</span><br><span class="line">      navigator.geolocation.getCurrentPosition(showPosition);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">else</span>&#123;x.innerHTML=<span class="string">"Geolocation is not supported by this browser."</span>;&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">showPosition</span><span class="params">(position)</span></span></span></span><br><span class="line">    &#123;</span><br><span class="line"><span class="actionscript">    x.innerHTML=<span class="string">"Latitude: "</span> + position.coords.latitude +</span></span><br><span class="line"><span class="actionscript">    <span class="string">"&lt;br /&gt;Longitude: "</span> + position.coords.longitude;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<div class="note info">
-            <p>例子解释：</p><ul><li>检测是否支持地理定位</li><li>如果支持，则运行 getCurrentPosition() 方法。如果不支持，则向用户显示一段消息。</li><li>如果getCurrentPosition()运行成功，则向参数showPosition中规定的函数返回一个coordinates对象</li><li>showPosition() 函数获得并显示经度和纬度</li></ul>
-          </div>
-
-<h4 id="处理错误和拒绝"><a href="#处理错误和拒绝" class="headerlink" title="处理错误和拒绝"></a>处理错误和拒绝</h4><p><code>getCurrentPosition()</code> 方法的第二个参数用于处理错误。它规定当获取用户位置失败时运行的函数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">error</span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span>(error.code)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> error.PERMISSION_DENIED:</span><br><span class="line">      x.innerHTML=<span class="string">"User denied the request for Geolocation."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.POSITION_UNAVAILABLE:</span><br><span class="line">      x.innerHTML=<span class="string">"Location information is unavailable."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.TIMEOUT:</span><br><span class="line">      x.innerHTML=<span class="string">"The request to get user location timed out."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> error.UNKNOWN_ERROR:</span><br><span class="line">      x.innerHTML=<span class="string">"An unknown error occurred."</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>错误代码：</p><ul><li>Permission denied - 用户不允许地理定位</li><li>Position unavailable - 无法获取当前位置</li><li>Timeout - 操作超时</li></ul>
-          </div>
-
-<h4 id="在地图中显示结果"><a href="#在地图中显示结果" class="headerlink" title="在地图中显示结果"></a>在地图中显示结果</h4><p>如需在地图中显示结果，您需要访问可使用经纬度的地图服务，比如谷歌地图或百度地图：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span>(<span class="params">position</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> latlon=position.coords.latitude+<span class="string">","</span>+position.coords.longitude;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> img_url=<span class="string">"http://maps.googleapis.com/maps/api/staticmap?center="</span></span><br><span class="line">              +latlon+<span class="string">"&amp;zoom=14&amp;size=400x300&amp;sensor=false"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"mapholder"</span>).innerHTML=<span class="string">"&lt;img src='"</span>+img_url+<span class="string">"' /&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="getCurrentPosition-方法-返回数据"><a href="#getCurrentPosition-方法-返回数据" class="headerlink" title="getCurrentPosition() 方法 - 返回数据"></a>getCurrentPosition() 方法 - 返回数据</h4><p>若成功，则 <code>getCurrentPosition()</code> 方法返回对象。始终会返回 <code>latitude</code>、<code>longitude</code> 以及 <code>accuracy</code> 属性。如果可用，则会返回其他下面的属性。<br>属性             |    描述<br>—————–|—————————–<br>coords.latitude  | 十进制数的纬度<br>coords.longitude | 十进制数的经度<br>coords.accuracy  |     位置精度<br>coords.altitude  | 海拔，海平面以上以米计<br>coords.altitudeAccuracy | 位置的海拔精度<br>coords.heading   | 方向，从正北开始以度计<br>coords.speed     | 速度，以米/每秒计<br>timestamp        | 响应的日期/时间</p>
-<h4 id="Geolocation-对象-其他有趣的方法"><a href="#Geolocation-对象-其他有趣的方法" class="headerlink" title="Geolocation 对象 - 其他有趣的方法"></a>Geolocation 对象 - 其他有趣的方法</h4><p><code>watchPosition()</code> - 返回用户的当前位置，并继续返回用户移动时的更新位置（就像汽车上的 GPS）。<br><code>clearWatch()</code> - 停止 <code>watchPosition()</code> 方法<br>下面的例子展示 <code>watchPosition()</code> 方法。您需要一台精确的 <code>GPS</code> 设备来测试该例（比如 iPhone）：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">()</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line">  if (navigator.geolocation)</span><br><span class="line">    &#123;</span><br><span class="line">    navigator.geolocation.watchPosition(showPosition);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">else</span>&#123;x.innerHTML=<span class="string">"Geolocation is not supported by this browser."</span>;&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span><span class="params">(position)</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line"><span class="actionscript">  x.innerHTML=<span class="string">"Latitude: "</span> + position.coords.latitude +</span></span><br><span class="line"><span class="actionscript">  <span class="string">"&lt;br /&gt;Longitude: "</span> + position.coords.longitude;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="HTML5-Audio-音频-、Video-视频"><a href="#HTML5-Audio-音频-、Video-视频" class="headerlink" title="HTML5  Audio(音频)、Video(视频)"></a>HTML5  Audio(音频)、Video(视频)</h3><p>HTML5 规定了一种通过 <code>video</code> 元素来包含视频的标准方法。</p>
-<h4 id="lt-video-gt-标签的属性如下："><a href="#lt-video-gt-标签的属性如下：" class="headerlink" title="&lt;video&gt; 标签的属性如下："></a><code>&lt;video&gt;</code> 标签的属性如下：</h4><table>
-<thead>
-<tr>
-<th>属性</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>autoplay</td>
-<td>autoplay</td>
-<td>如果出现该属性，则视频在就绪后马上播放</td>
-</tr>
-<tr>
-<td>controls</td>
-<td>controls</td>
-<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
-</tr>
-<tr>
-<td>height</td>
-<td>pixels</td>
-<td>设置视频播放器的高度</td>
-</tr>
-<tr>
-<td>loop</td>
-<td>loop</td>
-<td>如果出现该属性，则当媒介文件完成播放后再次开始播放</td>
-</tr>
-<tr>
-<td>preload</td>
-<td>preload</td>
-<td>如果出现该属性，则视频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
-</tr>
-<tr>
-<td>src</td>
-<td>url</td>
-<td>要播放的视频的 URL</td>
-</tr>
-<tr>
-<td>width</td>
-<td>pixels</td>
-<td>设置视频播放器的宽度</td>
-</tr>
-</tbody></table>
-<p>例子如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogg"</span> <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">Your browser does not support the video tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="HTML5-lt-video-gt-方法、属性以及事件"><a href="#HTML5-lt-video-gt-方法、属性以及事件" class="headerlink" title="HTML5 &lt;video&gt; - 方法、属性以及事件"></a>HTML5 <code>&lt;video&gt;</code> - 方法、属性以及事件</h4><p>下面列出了大多数浏览器支持的视频方法、属性和事件：</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>属性</th>
-<th>事件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>play()</td>
-<td>currentSrc</td>
-<td>play</td>
-</tr>
-<tr>
-<td>pause()</td>
-<td>currentTime</td>
-<td>pause</td>
-</tr>
-<tr>
-<td>load()</td>
-<td>videoWidth</td>
-<td>progress</td>
-</tr>
-<tr>
-<td>canPlayType</td>
-<td>videoHeight</td>
-<td>error</td>
-</tr>
-<tr>
-<td></td>
-<td>duration</td>
-<td>timeupdate</td>
-</tr>
-<tr>
-<td></td>
-<td>ended</td>
-<td>ended</td>
-</tr>
-<tr>
-<td></td>
-<td>error</td>
-<td>abort</td>
-</tr>
-<tr>
-<td></td>
-<td>paused</td>
-<td>empty</td>
-</tr>
-<tr>
-<td></td>
-<td>muted</td>
-<td>emptied</td>
-</tr>
-<tr>
-<td></td>
-<td>seeking</td>
-<td>waiting</td>
-</tr>
-<tr>
-<td></td>
-<td>volume</td>
-<td>loadedmetadata</td>
-</tr>
-<tr>
-<td></td>
-<td>height</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>width</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="HTML5-音频"><a href="#HTML5-音频" class="headerlink" title="HTML5 音频"></a>HTML5 音频</h3><p>HTML5 规定了在网页上嵌入音频元素的标准，即使用 <code>&lt;audio&gt;</code> 元素</p>
-<h4 id="lt-audio-gt-标签的属性"><a href="#lt-audio-gt-标签的属性" class="headerlink" title="&lt;audio&gt; 标签的属性"></a><code>&lt;audio&gt;</code> 标签的属性</h4><table>
-<thead>
-<tr>
-<th>属性</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>autoplay</td>
-<td>autoplay</td>
-<td>如果出现该属性，则音频在就绪后马上播放</td>
-</tr>
-<tr>
-<td>controls</td>
-<td>controls</td>
-<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
-</tr>
-<tr>
-<td>loop</td>
-<td>loop</td>
-<td>如果出现该属性，则当媒介文件完成播放后再次开始播放</td>
-</tr>
-<tr>
-<td>preload</td>
-<td>preload</td>
-<td>如果出现该属性，则音频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
-</tr>
-<tr>
-<td>src</td>
-<td>url</td>
-<td>要播放的音频的 URL</td>
-</tr>
-</tbody></table>
-<h3 id="HTML-5-Web-存储"><a href="#HTML-5-Web-存储" class="headerlink" title="HTML 5 Web 存储"></a>HTML 5 Web 存储</h3><h4 id="在客户端存储数据"><a href="#在客户端存储数据" class="headerlink" title="在客户端存储数据"></a>在客户端存储数据</h4><div class="note info">
-            <p>HTML5 提供了两种在客户端存储数据的新方法：</p><ul><li>localStorage: 没有时间限制的数据存储</li><li>sessionStorage: 针对一个session的数据存储</li></ul>
-          </div>
-<p><strong>HTML5 使用 JavaScript 来存储和访问数据。</strong><br>之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。</p>
-<p>在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。</p>
-<h4 id="localStorage-方法"><a href="#localStorage-方法" class="headerlink" title="localStorage 方法"></a>localStorage 方法</h4><p><code>localStorage</code> 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。<br>如何创建和访问 localStorage：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// Check browser support</span></span></span><br><span class="line"><span class="actionscript"><span class="keyword">if</span> (<span class="keyword">typeof</span>(Storage) !== <span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// Store</span></span></span><br><span class="line"><span class="actionscript">    localStorage.setItem(<span class="string">"lastname"</span>, <span class="string">"Gates"</span>);</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// Retrieve</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = localStorage.getItem(<span class="string">"lastname"</span>);</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = <span class="string">"抱歉！您的浏览器不支持 Web Storage ..."</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>下面的例子对用户访问页面的次数进行计数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">if (localStorage.pagecount) &#123;</span><br><span class="line"><span class="javascript">  localStorage.pagecount=<span class="built_in">Number</span>(localStorage.pagecount) +<span class="number">1</span>;</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">  localStorage.pagecount=1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.write(<span class="string">"Visits "</span>+ localStorage.pagecount + <span class="string">" time(s)."</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="sessionStorage-方法"><a href="#sessionStorage-方法" class="headerlink" title="sessionStorage 方法"></a>sessionStorage 方法</h4><p><code>sessionStorage</code> 方法针对一个 <code>session</code> 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。<br>如何创建并访问一个 sessionStorage：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">  sessionStorage.lastname=<span class="string">"Smith"</span>;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.write(sessionStorage.lastname);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>下面的例子对用户在当前 session 中访问页面的次数进行计数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">if (sessionStorage.pagecount) &#123;</span><br><span class="line"><span class="javascript">  sessionStorage.pagecount=<span class="built_in">Number</span>(sessionStorage.pagecount) +<span class="number">1</span>;</span></span><br><span class="line"><span class="actionscript">&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">  sessionStorage.pagecount=1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.write(<span class="string">"Visits "</span>+sessionStorage.pagecount+<span class="string">" time(s) this session."</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="HTML-5-应用程序缓存"><a href="#HTML-5-应用程序缓存" class="headerlink" title="HTML 5 应用程序缓存"></a>HTML 5 应用程序缓存</h3><p><strong>使用 HTML5，通过创建 cache manifest 文件，可以轻松地创建 web 应用的离线版本</strong></p>
-<div class="note info">
-            <p>HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。应用程序缓存为应用带来三个优势：</p><ul><li>离线浏览 - 用户可在应用离线时使用它们</li><li>速度 - 已缓存资源加载得更快</li><li>减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。</li></ul>
-          </div>
-
-<p>下面的例子展示了带有 cache manifest 的 HTML 文档（供离线浏览）：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    The content of the document......</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Cache-Manifest-基础"><a href="#Cache-Manifest-基础" class="headerlink" title="Cache Manifest 基础"></a>Cache Manifest 基础</h4><p>如需启用应用程序缓存，请在文档的 <code>&lt;html&gt;</code> 标签中包含 <code>manifest</code> 属性：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>每个指定了 manifest 的页面在用户对其访问时都会被缓存。如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。</p>
-<p>manifest 文件的建议的文件扩展名是：<code>&quot;.appcache&quot;</code>。</p>
-<p><strong>请注意，manifest 文件需要配置正确的 MIME-type，即 “text/cache-manifest”。必须在 web 服务器上进行配置。</strong></p>
-<h4 id="Manifest-文件"><a href="#Manifest-文件" class="headerlink" title="Manifest 文件"></a>Manifest 文件</h4><p>manifest 文件是简单的文本文件，它告知浏览器被缓存的内容（以及不缓存的内容）。</p>
-<div class="note info">
-            <p>manifest 文件可分为三个部分：</p><ul><li>CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</li><li>NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</li><li>FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</li></ul>
-          </div>
-<h5 id="CACHE-MANIFEST"><a href="#CACHE-MANIFEST" class="headerlink" title="CACHE MANIFEST"></a>CACHE MANIFEST</h5><p><strong>第一行，CACHE MANIFEST，是必需的：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br></pre></td></tr></table></figure>
-<h5 id="NETWORK"><a href="#NETWORK" class="headerlink" title="NETWORK"></a>NETWORK</h5><p><strong>下面的 NETWORK 小节规定文件 “login.asp” 永远不会被缓存，且离线时是不可用的：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br></pre></td></tr></table></figure>
-
-<p><strong>可以使用星号来指示所有其他资源/文件都需要因特网连接：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-<h5 id="FALLBACK"><a href="#FALLBACK" class="headerlink" title="FALLBACK"></a>FALLBACK</h5><p><strong>下面的 FALLBACK 小节规定如果无法建立因特网连接，则用 “offline.html” 替代 /html5/ 目录中的所有文件：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FALLBACK:</span><br><span class="line">/html5/ <span class="regexp">/404.html</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h4><div class="note info">
-            <p>一旦应用被缓存，它就会保持缓存直到发生下列情况：</p><ul><li>用户清空浏览器缓存</li><li>manifest 文件被修改（参阅下面的提示）</li><li>由程序来更新应用缓存</li></ul>
-          </div>
-
-<h4 id="实例-完整的-Manifest-文件"><a href="#实例-完整的-Manifest-文件" class="headerlink" title="实例 - 完整的 Manifest 文件"></a>实例 - 完整的 Manifest 文件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"># 2012-02-21 v1.0.0</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">/html5/ <span class="regexp">/404.html</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="HTML-5-Web-Workers"><a href="#HTML-5-Web-Workers" class="headerlink" title="HTML 5 Web Workers"></a>HTML 5 Web Workers</h3><p>web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。</p>
-<h4 id="HTML5-Web-Workers-实例"><a href="#HTML5-Web-Workers-实例" class="headerlink" title="HTML5 Web Workers 实例"></a>HTML5 Web Workers 实例</h4><p>下面的例子创建了一个简单的 web worker，在后台计数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>计数: <span class="tag">&lt;<span class="name">output</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">output</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"startWorker()"</span>&gt;</span>开始 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"stopWorker()"</span>&gt;</span>停止 Worker<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> w;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">startWorker</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span>(<span class="keyword">typeof</span>(w)==<span class="string">"undefined"</span>) &#123;</span></span><br><span class="line"><span class="actionscript">      w=<span class="keyword">new</span> Worker(<span class="string">"/example/html5/demo_workers.js"</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    w.onmessage = <span class="function"><span class="keyword">function</span> <span class="params">(event)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="actionscript">  &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"Sorry, your browser does not support Web Workers..."</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">stopWorker</span><span class="params">()</span> </span>&#123; </span></span><br><span class="line">  w.terminate();</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="检测-Web-Worker-支持"><a href="#检测-Web-Worker-支持" class="headerlink" title="检测 Web Worker 支持"></a>检测 Web Worker 支持</h4><p>在创建 web worker 之前，请检测用户的浏览器是否支持它：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  <span class="comment">// Yes! Web worker support!</span></span><br><span class="line">  <span class="comment">// Some code.....</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Sorry! No Web Worker support..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建-web-worker-文件"><a href="#创建-web-worker-文件" class="headerlink" title="创建 web worker 文件"></a>创建 web worker 文件</h4><p>现在，让我们在一个外部 JavaScript 中创建我们的 web worker。在这里，我们创建了计数脚本。该脚本存储于 “demo_workers.js” 文件中：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">i=i+<span class="number">1</span>;</span><br><span class="line">postMessage(i);</span><br><span class="line">setTimeout(<span class="string">"timedCount()"</span>,<span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timedCount();</span><br></pre></td></tr></table></figure>
-<p><strong>以上代码中重要的部分是 postMessage() 方法 - 它用于向 HTML 页面传回一段消息。</strong></p>
-<p><strong>注释：web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务。</strong></p>
-<h4 id="创建-Web-Worker-对象"><a href="#创建-Web-Worker-对象" class="headerlink" title="创建 Web Worker 对象"></a>创建 Web Worker 对象</h4><p>我们已经有了 web worker 文件，现在我们需要从 HTML 页面调用它。</p>
-<p>下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象，然后运行 “demo_workers.js” 中的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(w)==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  w=<span class="keyword">new</span> Worker(<span class="string">"demo_workers.js"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后我们就可以从 web worker 发生和接收消息了。</p>
-<p>向 web worker 添加一个 “onmessage” 事件监听器：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当 web worker 传递消息时，会执行事件监听器中的代码。event.data 中存有来自 event.data 的数据。</p>
-<h4 id="终止-Web-Worker"><a href="#终止-Web-Worker" class="headerlink" title="终止 Web Worker"></a>终止 Web Worker</h4><p>当我们创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止。</p>
-<p>如需终止 web worker，并释放浏览器/计算机资源，请使用 <code>terminate()</code> 方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w.terminate();</span><br></pre></td></tr></table></figure>
-<h4 id="Web-Workers-和-DOM"><a href="#Web-Workers-和-DOM" class="headerlink" title="Web Workers 和 DOM"></a>Web Workers 和 DOM</h4><div class="note info">
-            <p>由于 web worker 位于外部文件中，它们无法访问下例 JavaScript 对象：</p><ul><li>window 对象</li><li>document 对象</li><li>parent 对象</li></ul>
-          </div>
-
-<h3 id="HTML-5-服务器发送事件"><a href="#HTML-5-服务器发送事件" class="headerlink" title="HTML 5 服务器发送事件"></a>HTML 5 服务器发送事件</h3><p><strong>HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。</strong></p>
-<h3 id="Server-Sent-事件-单向消息传递"><a href="#Server-Sent-事件-单向消息传递" class="headerlink" title="Server-Sent 事件 - 单向消息传递"></a>Server-Sent 事件 - 单向消息传递</h3><p>Server-Sent事件指的是网页自动获取来自服务器的更新。</p>
-<h3 id="接收-Server-Sent-事件通知"><a href="#接收-Server-Sent-事件通知" class="headerlink" title="接收 Server-Sent 事件通知"></a>接收 Server-Sent 事件通知</h3><p>EventSource 对象用于接收服务器发送事件通知：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> source=<span class="keyword">new</span> EventSource(<span class="string">"demo_sse.php"</span>);</span><br><span class="line">source.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML+=event.data + <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>例子解释：</p><ul><li>创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 “demo_sse.php”）</li><li>每接收到一次更新，就会发生 onmessage 事件</li><li>当 onmessage 事件发生时，把已接收的数据推入 id 为 “result” 的元素中</li></ul>
-          </div>
-
-<h3 id="HTML5表单"><a href="#HTML5表单" class="headerlink" title="HTML5表单"></a>HTML5表单</h3><p><a href="https://www.w3school.com.cn/html5/html_5_form_input_types.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/html5/html_5_form_input_types.asp</a></p>
-<h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><p><a href="https://www.w3school.com.cn/css3/index.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/css3/index.asp</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/9/">9</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1509,7 +1100,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1549,7 +1140,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

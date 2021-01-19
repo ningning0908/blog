@@ -185,6 +185,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/08/04/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-04 22:28:31" itemprop="dateCreated datePublished" datetime="2020-08-04T22:28:31+08:00">2020-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-05 16:53:24" itemprop="dateModified" datetime="2020-08-05T16:53:24+08:00">2020-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/leetcode%E5%88%B7%E9%A2%98%E7%BB%8F%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题经典</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>试题链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md</a></p>
+<h2 id="找出两个链表的交点"><a href="#找出两个链表的交点" class="headerlink" title="找出两个链表的交点"></a>找出两个链表的交点</h2><p>编写一个程序，找到两个单链表相交的起始节点。<br>题目： <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-linked-lists/</a><br>解法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴力解法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(headA) &#123;</span><br><span class="line">        headA.flag = <span class="literal">true</span>;</span><br><span class="line">        headA = headA.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(headB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(headB.flag) &#123;</span><br><span class="line">            <span class="keyword">return</span> headB</span><br><span class="line">        &#125;</span><br><span class="line">        headB = headB.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"> <span class="comment">//同步遍历</span></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">var</span> getIntersectionNode = <span class="function"><span class="keyword">function</span>(<span class="params">headA, headB</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pA = headA,</span><br><span class="line">        pB = headB;</span><br><span class="line">    <span class="keyword">while</span>(pA || pB) &#123;</span><br><span class="line">        <span class="keyword">if</span>(pA === pB) &#123;</span><br><span class="line">            <span class="keyword">return</span> pA</span><br><span class="line">        &#125;</span><br><span class="line">        pA = pA === <span class="literal">null</span> ? headB : pA.next;</span><br><span class="line">        pB = pB === <span class="literal">null</span> ? headA : pB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="链表反转"><a href="#链表反转" class="headerlink" title="链表反转"></a>链表反转</h2><p>反转一个单链表。<br>题目：<a href="https://leetcode-cn.com/problems/reverse-linked-list/description/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-linked-list/description/</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseList = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="literal">null</span>,</span><br><span class="line">    curr = head;</span><br><span class="line">  <span class="keyword">while</span>(curr) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = curr.next;</span><br><span class="line">    curr.next = prev;</span><br><span class="line">    prev = curr;</span><br><span class="line">    curr = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> prev;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="归并两个有序的链表"><a href="#归并两个有序的链表" class="headerlink" title="归并两个有序的链表"></a>归并两个有序的链表</h2><p>将两个升序链表合并为一个新的 <code>升序</code> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//归并排序</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> mergeTwoLists = <span class="function"><span class="keyword">function</span>(<span class="params">l1, l2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> l3 = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">var</span> c3 = l3;</span><br><span class="line">    <span class="keyword">while</span>(!(l1 === <span class="literal">null</span>) &amp;&amp; !(l2 === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(l1.val &lt;= l2.val) &#123;</span><br><span class="line">            c3.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c3.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        c3 = c3.next</span><br><span class="line">    &#125;</span><br><span class="line">    c3.next = (l1===<span class="literal">null</span>) ? l2 : l1;</span><br><span class="line">    <span class="keyword">return</span> l3.next  <span class="comment">//去除-1头部</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="从有序链表中删除重复节点"><a href="#从有序链表中删除重复节点" class="headerlink" title="从有序链表中删除重复节点"></a>从有序链表中删除重复节点</h2><p>给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> deleteDuplicates = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = head;</span><br><span class="line">    <span class="keyword">while</span>((curr != <span class="literal">null</span>) &amp;&amp; !(curr.next === <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(curr.val === curr.next.val) &#123;</span><br><span class="line">            curr.next = curr.next.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="删除链表的倒数第-n-个节点"><a href="#删除链表的倒数第-n-个节点" class="headerlink" title="删除链表的倒数第 n 个节点"></a>删除链表的倒数第 n 个节点</h2><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;ListNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> removeNthFromEnd = <span class="function"><span class="keyword">function</span>(<span class="params">head, n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//快慢指针</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">    node.next = head;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || !head) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> fast = node;</span><br><span class="line">    <span class="comment">//快指针先走n部</span></span><br><span class="line">    <span class="keyword">while</span>(count &lt; n) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//慢指针开始走</span></span><br><span class="line">    <span class="keyword">let</span> prev = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> slow = node;</span><br><span class="line">    <span class="keyword">while</span>(fast) &#123;</span><br><span class="line">        fast = fast.next;</span><br><span class="line">        prev = slow;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    prev.next = slow.next;</span><br><span class="line">    <span class="keyword">return</span> node.next</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1364,110 +1453,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/06/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95python/%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/06/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95python/%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">查找与排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-08 13:35:07" itemprop="dateCreated datePublished" datetime="2020-06-08T13:35:07+08:00">2020-06-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-10 10:35:29" itemprop="dateModified" datetime="2020-06-10T10:35:29+08:00">2020-06-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95python/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="列表查找"><a href="#列表查找" class="headerlink" title="列表查找"></a>列表查找</h2><p>列表查找：从列表中查找指定元素</p>
-<ul>
-<li><ol>
-<li>输入：列表、待查找元素</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>输出：元素下标或未查找到元素<h3 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h3></li>
-</ol>
-</li>
-<li><ol>
-<li>从列表第一个元素开始，顺序进行搜索，直到找到为止<br>时间复杂度为O(n)<br><strong>顺序查找就是for循环</strong><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3></li>
-</ol>
-</li>
-<li><ol>
-<li>从有序列表的<strong>候选区data[0:n]</strong>开始，通过对待查找的值与候选区中间值的比较，可以使候选区减少一半。<br>时间复杂度为O(logn)，二分查找较快</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">li = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span><span class="params">(li,val)</span>:</span></span><br><span class="line">    low = <span class="number">0</span></span><br><span class="line">    high = len(li)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> li[mid] == val:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> li[mid] &lt; val:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            high = mid <span class="number">-1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">print(bin_search(li,<span class="number">5</span>))   <span class="comment">#2</span></span><br></pre></td></tr></table></figure>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>思路：列表每两个相邻的数，如果前边的比后边的大，那么交换这两个数……<br>冒泡排序稳定<br>时间复杂度O(n^2)   最好情况（已经有序）时间复杂度O(n)  最坏情况和平均情况时间复杂度O(n^2)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(li)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)<span class="number">-1</span>):    <span class="comment">#i表示第n趟，一共n趟或n-1趟</span></span><br><span class="line">        exchange = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(li)-i<span class="number">-1</span>): <span class="comment">#第i趟  无序区[0,n-i-1] j表示箭头 0~n-i-2</span></span><br><span class="line">            <span class="keyword">if</span> li[j] &gt; li[j+<span class="number">1</span>]:</span><br><span class="line">                li[j],li[j+<span class="number">1</span>] = li[j+<span class="number">1</span>],li[j]</span><br><span class="line">                exchange = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exchange:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line"></span><br><span class="line">print(bubble_sort([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">52</span>,<span class="number">4</span>,<span class="number">34</span>]))    <span class="comment">#[1, 3, 4, 4, 34, 52]</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/1591701599%281%29.png" alt="attr"></p>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>思路：一趟遍历记录最小的数，放到第一个位置；再一趟遍历记录剩余列表中最小的数，继续放置，以此类推<br>选择排序不稳定<br>时间复杂度O(n^2)（比冒牌排序块）<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(li)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)<span class="number">-1</span>):   <span class="comment">#n或者n-1趟</span></span><br><span class="line">        <span class="comment"># 第i趟无序区范围i~最后</span></span><br><span class="line">        min_pos = i    <span class="comment"># min_pos更新为无序区最小值的位置</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(li)):</span><br><span class="line">            <span class="keyword">if</span> li[j] &lt; li[min_pos]:</span><br><span class="line">                min_pos = j</span><br><span class="line">        li[min_pos],li[i] = li[i],li[min_pos]</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line">li = [<span class="number">2</span>,<span class="number">435</span>,<span class="number">23</span>,<span class="number">45</span>,<span class="number">2</span>,<span class="number">35</span>]</span><br><span class="line">print(select_sort(li))</span><br></pre></td></tr></table></figure>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>思路：列表被分为有序区和无序区两个部分。最初有序区只有一个元素。每次从无序区选择一个元素，插入到有序区的位置，直到无序区变空。<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/1591755246%281%29.png" alt="attr"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(li)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(li)):  <span class="comment"># i表示摸到牌的下标</span></span><br><span class="line">        tmp = li[i]   <span class="comment"># 摸到的牌存起来</span></span><br><span class="line">        j = i<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> j&gt;= <span class="number">0</span> <span class="keyword">and</span> li[j] &gt; tmp:   <span class="comment">#只要往后挪就循环</span></span><br><span class="line">            <span class="comment"># 如果j等于-1或者 li[j]小了 停止挪</span></span><br><span class="line">            li[j+<span class="number">1</span>] = li[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="comment"># j位置在循环结束的时候要么是-1要么是一个比tmp小的值</span></span><br><span class="line">        li[j+<span class="number">1</span>] = tmp</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line">print(insert_sort([<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">34</span>,<span class="number">6</span>,<span class="number">34</span>,<span class="number">54</span>]))   <span class="comment">#[1, 2, 5, 6, 34, 34, 54]</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/9/">9</a><a class="extend next" rel="next" href="/blog/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1533,7 +1522,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1573,7 +1562,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
