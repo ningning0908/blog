@@ -250,14 +250,14 @@
 <p>使用对象模拟 Set 与模拟 Map 之间唯一真正的区别是所存储的值。例如，以下例子将对象作为 <code>Map</code> 使用：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">map.foo = <span class="string">"bar"</span>;</span><br><span class="line"><span class="comment">// 提取一个值</span></span><br><span class="line"><span class="keyword">let</span> value = map.foo;</span><br><span class="line"><span class="built_in">console</span>.log(value); <span class="comment">// "bar"</span></span><br></pre></td></tr></table></figure>
 
-<p>此代码将字符串值 “bar” 存储在 foo 键上。与 Set 不同， Map 多数被用来提取数据，不是仅检查键的存在性。</p>
+<p>此代码将字符串值 &quot;bar&quot; 存储在 foo 键上。与 Set 不同， Map 多数被用来提取数据，不是仅检查键的存在性。</p>
 <h2 id="变通方法的问题"><a href="#变通方法的问题" class="headerlink" title="变通方法的问题"></a>变通方法的问题</h2><p>尽管在简单情况下将对象作为Set与Map来使用都是可行的，但一旦接触到对象属性的局限性，此方式就会遇到更多麻烦。例如：由于对象属性的类型必须为字符串，你就必须保证任意两个键不能被转换为相同的字符串，研究如下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">map[<span class="number">5</span>] = <span class="string">"foo"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(map[<span class="string">"5"</span>]); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
 
-<p>本例将字符串值 “foo” 赋值到数值类型的键 5 上，而数值类型的键会在内部被转换为字符串，因此 map[“5”] 与 map[5] 实际上引用了同一个属性。当你想将数值与字符串都作为键来使用时，这种内部转换会引起问题。而若使用对象作为键，就会出现另一个问题，例如：</p>
+<p>本例将字符串值 &quot;foo&quot; 赋值到数值类型的键 5 上，而数值类型的键会在内部被转换为字符串，因此 map[&quot;5&quot;] 与 map[5] 实际上引用了同一个属性。当你想将数值与字符串都作为键来使用时，这种内部转换会引起问题。而若使用对象作为键，就会出现另一个问题，例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>),</span><br><span class="line">    key1 = &#123;&#125;,</span><br><span class="line">    key2 = &#123;&#125;;</span><br><span class="line">map[key1] = <span class="string">"foo"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(map[key2]); <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
 
-<p>此处的 map[key2] 与 map[key1] 引用了同一个值。由于对象的属性只能是字符串， key1与 key2 对象就均被转换为字符串；又因为对象默认的字符串类型表达形式是 “[object<br>Object]” ， key1 与 key2 就被转换为了同一个字符串。这种行为导致的错误可能不太显眼，因为貌似合乎逻辑的假设是：键如果使用了不同对象，它们就应当是不同的键。<br>将对象转换为默认的字符串表现形式，使得对象很难被当作 Map 的键来使用（此问题同样存在于将对象作为 Set 来使用的尝试上）。</p>
+<p>此处的 map[key2] 与 map[key1] 引用了同一个值。由于对象的属性只能是字符串， key1与 key2 对象就均被转换为字符串；又因为对象默认的字符串类型表达形式是 &quot;[object<br>Object]&quot; ， key1 与 key2 就被转换为了同一个字符串。这种行为导致的错误可能不太显眼，因为貌似合乎逻辑的假设是：键如果使用了不同对象，它们就应当是不同的键。<br>将对象转换为默认的字符串表现形式，使得对象很难被当作 Map 的键来使用（此问题同样存在于将对象作为 Set 来使用的尝试上）。</p>
 <p>当键的值为假值时， Map 也遇到了自身的特殊问题。在需要布尔值的位置（例如在 if 语句内），任何假值都会被自动转换为 false 。这种转换单独说来并不是问题——只要对如何使用值的问题足够小心。例如，查看以下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">    map.count = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 是想检查 "count" 属性的存在性，还是想检查非零值？</span></span><br><span class="line"><span class="keyword">if</span> (map.count) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -272,7 +272,7 @@
 <p><strong>Set不会使用强制类型转换来判断值是否重复。</strong>同时在Set内部的比较使用了之前介绍的Object.js()方法，来判断两个值是否相等，唯一的例外是 <strong>+0</strong> 与 <strong>-0</strong> 在Set中被判断为是相等的。<br>向<strong>Set</strong>添加多个对象，它们不会被合并为同一项：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set(),</span><br><span class="line">    key1 = &#123;&#125;,</span><br><span class="line">    key2 = &#123;&#125;;</span><br><span class="line"><span class="keyword">set</span>.add(key1);</span><br><span class="line"><span class="keyword">set</span>.add(key2);</span><br><span class="line">console.log(<span class="keyword">set</span>.size);    //2</span><br></pre></td></tr></table></figure>
 
-<p>由于 <code>key1</code> 与 <code>key2</code> 并不会被转换为字符串，所以它们在这个 <code>Set</code> 内部被认为是两个不同的项（记住：如果它们被转换为字符串，那么都会等于 “[object Object]” ）</p>
+<p>由于 <code>key1</code> 与 <code>key2</code> 并不会被转换为字符串，所以它们在这个 <code>Set</code> 内部被认为是两个不同的项（记住：如果它们被转换为字符串，那么都会等于 &quot;[object Object]&quot; ）</p>
 <p>可以使用数组来初始化一个Set，并且 <code>Set</code> 构造器会确保不重复地使用这些值。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1,2,3,5,4,5,5,5]);</span><br><span class="line">console.log(<span class="keyword">set</span>.size);    //5</span><br></pre></td></tr></table></figure>
 
@@ -495,7 +495,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

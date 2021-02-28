@@ -414,7 +414,7 @@
 
 <h4 id="在地图中显示结果"><a href="#在地图中显示结果" class="headerlink" title="在地图中显示结果"></a>在地图中显示结果</h4><p>如需在地图中显示结果，您需要访问可使用经纬度的地图服务，比如谷歌地图或百度地图：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span>(<span class="params">position</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> latlon=position.coords.latitude+<span class="string">","</span>+position.coords.longitude;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> img_url=<span class="string">"http://maps.googleapis.com/maps/api/staticmap?center="</span></span><br><span class="line">              +latlon+<span class="string">"&amp;zoom=14&amp;size=400x300&amp;sensor=false"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"mapholder"</span>).innerHTML=<span class="string">"&lt;img src='"</span>+img_url+<span class="string">"' /&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="getCurrentPosition-方法-返回数据"><a href="#getCurrentPosition-方法-返回数据" class="headerlink" title="getCurrentPosition() 方法 - 返回数据"></a>getCurrentPosition() 方法 - 返回数据</h4><p>若成功，则 <code>getCurrentPosition()</code> 方法返回对象。始终会返回 <code>latitude</code>、<code>longitude</code> 以及 <code>accuracy</code> 属性。如果可用，则会返回其他下面的属性。<br>属性             |    描述<br>—————–|—————————–<br>coords.latitude  | 十进制数的纬度<br>coords.longitude | 十进制数的经度<br>coords.accuracy  |     位置精度<br>coords.altitude  | 海拔，海平面以上以米计<br>coords.altitudeAccuracy | 位置的海拔精度<br>coords.heading   | 方向，从正北开始以度计<br>coords.speed     | 速度，以米/每秒计<br>timestamp        | 响应的日期/时间</p>
+<h4 id="getCurrentPosition-方法-返回数据"><a href="#getCurrentPosition-方法-返回数据" class="headerlink" title="getCurrentPosition() 方法 - 返回数据"></a>getCurrentPosition() 方法 - 返回数据</h4><p>若成功，则 <code>getCurrentPosition()</code> 方法返回对象。始终会返回 <code>latitude</code>、<code>longitude</code> 以及 <code>accuracy</code> 属性。如果可用，则会返回其他下面的属性。<br>属性             |    描述<br>-----------------|-----------------------------<br>coords.latitude  | 十进制数的纬度<br>coords.longitude | 十进制数的经度<br>coords.accuracy  |     位置精度<br>coords.altitude  | 海拔，海平面以上以米计<br>coords.altitudeAccuracy | 位置的海拔精度<br>coords.heading   | 方向，从正北开始以度计<br>coords.speed     | 速度，以米/每秒计<br>timestamp        | 响应的日期/时间</p>
 <h4 id="Geolocation-对象-其他有趣的方法"><a href="#Geolocation-对象-其他有趣的方法" class="headerlink" title="Geolocation 对象 - 其他有趣的方法"></a>Geolocation 对象 - 其他有趣的方法</h4><p><code>watchPosition()</code> - 返回用户的当前位置，并继续返回用户移动时的更新位置（就像汽车上的 GPS）。<br><code>clearWatch()</code> - 停止 <code>watchPosition()</code> 方法<br>下面的例子展示 <code>watchPosition()</code> 方法。您需要一台精确的 <code>GPS</code> 设备来测试该例（比如 iPhone）：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>);</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">getLocation</span><span class="params">()</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line">  if (navigator.geolocation)</span><br><span class="line">    &#123;</span><br><span class="line">    navigator.geolocation.watchPosition(showPosition);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">else</span>&#123;x.innerHTML=<span class="string">"Geolocation is not supported by this browser."</span>;&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">showPosition</span><span class="params">(position)</span></span></span></span><br><span class="line">  &#123;</span><br><span class="line"><span class="actionscript">  x.innerHTML=<span class="string">"Latitude: "</span> + position.coords.latitude +</span></span><br><span class="line"><span class="actionscript">  <span class="string">"&lt;br /&gt;Longitude: "</span> + position.coords.longitude;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="HTML5-Audio-音频-、Video-视频"><a href="#HTML5-Audio-音频-、Video-视频" class="headerlink" title="HTML5  Audio(音频)、Video(视频)"></a>HTML5  Audio(音频)、Video(视频)</h3><p>HTML5 规定了一种通过 <code>video</code> 元素来包含视频的标准方法。</p>
@@ -449,7 +449,7 @@
 <tr>
 <td>preload</td>
 <td>preload</td>
-<td>如果出现该属性，则视频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
+<td>如果出现该属性，则视频在页面加载时进行加载，并预备播放,如果使用 &quot;autoplay&quot;，则忽略该属性。</td>
 </tr>
 <tr>
 <td>src</td>
@@ -567,7 +567,7 @@
 <tr>
 <td>preload</td>
 <td>preload</td>
-<td>如果出现该属性，则音频在页面加载时进行加载，并预备播放,如果使用 “autoplay”，则忽略该属性。</td>
+<td>如果出现该属性，则音频在页面加载时进行加载，并预备播放,如果使用 &quot;autoplay&quot;，则忽略该属性。</td>
 </tr>
 <tr>
 <td>src</td>
@@ -601,19 +601,19 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"demo.appcache"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>每个指定了 manifest 的页面在用户对其访问时都会被缓存。如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。</p>
 <p>manifest 文件的建议的文件扩展名是：<code>&quot;.appcache&quot;</code>。</p>
-<p><strong>请注意，manifest 文件需要配置正确的 MIME-type，即 “text/cache-manifest”。必须在 web 服务器上进行配置。</strong></p>
+<p><strong>请注意，manifest 文件需要配置正确的 MIME-type，即 &quot;text/cache-manifest&quot;。必须在 web 服务器上进行配置。</strong></p>
 <h4 id="Manifest-文件"><a href="#Manifest-文件" class="headerlink" title="Manifest 文件"></a>Manifest 文件</h4><p>manifest 文件是简单的文本文件，它告知浏览器被缓存的内容（以及不缓存的内容）。</p>
 <div class="note info">
             <p>manifest 文件可分为三个部分：</p><ul><li>CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</li><li>NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</li><li>FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</li></ul>
           </div>
 <h5 id="CACHE-MANIFEST"><a href="#CACHE-MANIFEST" class="headerlink" title="CACHE MANIFEST"></a>CACHE MANIFEST</h5><p><strong>第一行，CACHE MANIFEST，是必需的：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br></pre></td></tr></table></figure>
-<h5 id="NETWORK"><a href="#NETWORK" class="headerlink" title="NETWORK"></a>NETWORK</h5><p><strong>下面的 NETWORK 小节规定文件 “login.asp” 永远不会被缓存，且离线时是不可用的：</strong></p>
+<h5 id="NETWORK"><a href="#NETWORK" class="headerlink" title="NETWORK"></a>NETWORK</h5><p><strong>下面的 NETWORK 小节规定文件 &quot;login.asp&quot; 永远不会被缓存，且离线时是不可用的：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">login.asp</span><br></pre></td></tr></table></figure>
 
 <p><strong>可以使用星号来指示所有其他资源/文件都需要因特网连接：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORK:</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-<h5 id="FALLBACK"><a href="#FALLBACK" class="headerlink" title="FALLBACK"></a>FALLBACK</h5><p><strong>下面的 FALLBACK 小节规定如果无法建立因特网连接，则用 “offline.html” 替代 /html5/ 目录中的所有文件：</strong></p>
+<h5 id="FALLBACK"><a href="#FALLBACK" class="headerlink" title="FALLBACK"></a>FALLBACK</h5><p><strong>下面的 FALLBACK 小节规定如果无法建立因特网连接，则用 &quot;offline.html&quot; 替代 /html5/ 目录中的所有文件：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FALLBACK:</span><br><span class="line">/html5/ <span class="regexp">/404.html</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h4><div class="note info">
@@ -628,15 +628,15 @@
 <h4 id="检测-Web-Worker-支持"><a href="#检测-Web-Worker-支持" class="headerlink" title="检测 Web Worker 支持"></a>检测 Web Worker 支持</h4><p>在创建 web worker 之前，请检测用户的浏览器是否支持它：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(Worker)!==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  <span class="comment">// Yes! Web worker support!</span></span><br><span class="line">  <span class="comment">// Some code.....</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Sorry! No Web Worker support..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="创建-web-worker-文件"><a href="#创建-web-worker-文件" class="headerlink" title="创建 web worker 文件"></a>创建 web worker 文件</h4><p>现在，让我们在一个外部 JavaScript 中创建我们的 web worker。在这里，我们创建了计数脚本。该脚本存储于 “demo_workers.js” 文件中：</p>
+<h4 id="创建-web-worker-文件"><a href="#创建-web-worker-文件" class="headerlink" title="创建 web worker 文件"></a>创建 web worker 文件</h4><p>现在，让我们在一个外部 JavaScript 中创建我们的 web worker。在这里，我们创建了计数脚本。该脚本存储于 &quot;demo_workers.js&quot; 文件中：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">i=i+<span class="number">1</span>;</span><br><span class="line">postMessage(i);</span><br><span class="line">setTimeout(<span class="string">"timedCount()"</span>,<span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timedCount();</span><br></pre></td></tr></table></figure>
 <p><strong>以上代码中重要的部分是 postMessage() 方法 - 它用于向 HTML 页面传回一段消息。</strong></p>
 <p><strong>注释：web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务。</strong></p>
 <h4 id="创建-Web-Worker-对象"><a href="#创建-Web-Worker-对象" class="headerlink" title="创建 Web Worker 对象"></a>创建 Web Worker 对象</h4><p>我们已经有了 web worker 文件，现在我们需要从 HTML 页面调用它。</p>
-<p>下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象，然后运行 “demo_workers.js” 中的代码：</p>
+<p>下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象，然后运行 &quot;demo_workers.js&quot; 中的代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span>(w)==<span class="string">"undefined"</span>) &#123;</span><br><span class="line">  w=<span class="keyword">new</span> Worker(<span class="string">"demo_workers.js"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们就可以从 web worker 发生和接收消息了。</p>
-<p>向 web worker 添加一个 “onmessage” 事件监听器：</p>
+<p>向 web worker 添加一个 &quot;onmessage&quot; 事件监听器：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>当 web worker 传递消息时，会执行事件监听器中的代码。event.data 中存有来自 event.data 的数据。</p>
 <h4 id="终止-Web-Worker"><a href="#终止-Web-Worker" class="headerlink" title="终止 Web Worker"></a>终止 Web Worker</h4><p>当我们创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止。</p>
@@ -651,7 +651,7 @@
 <h3 id="接收-Server-Sent-事件通知"><a href="#接收-Server-Sent-事件通知" class="headerlink" title="接收 Server-Sent 事件通知"></a>接收 Server-Sent 事件通知</h3><p>EventSource 对象用于接收服务器发送事件通知：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> source=<span class="keyword">new</span> EventSource(<span class="string">"demo_sse.php"</span>);</span><br><span class="line">source.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML+=event.data + <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <p>例子解释：</p><ul><li>创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 “demo_sse.php”）</li><li>每接收到一次更新，就会发生 onmessage 事件</li><li>当 onmessage 事件发生时，把已接收的数据推入 id 为 “result” 的元素中</li></ul>
+            <p>例子解释：</p><ul><li>创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 &quot;demo_sse.php&quot;）</li><li>每接收到一次更新，就会发生 onmessage 事件</li><li>当 onmessage 事件发生时，把已接收的数据推入 id 为 &quot;result&quot; 的元素中</li></ul>
           </div>
 
 <h3 id="HTML5表单"><a href="#HTML5表单" class="headerlink" title="HTML5表单"></a>HTML5表单</h3><p><a href="https://www.w3school.com.cn/html5/html_5_form_input_types.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/html5/html_5_form_input_types.asp</a></p>
@@ -773,7 +773,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

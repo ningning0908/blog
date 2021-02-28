@@ -185,6 +185,79 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC1%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC1%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="post-title-link" itemprop="url">第1章 计算机网络和因特网</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-29 16:46:28" itemprop="dateCreated datePublished" datetime="2020-10-29T16:46:28+08:00">2020-10-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-30 17:40:52" itemprop="dateModified" datetime="2020-10-30T17:40:52+08:00">2020-10-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%B3%95%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">计算机网络（自顶向下法）</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/09/25/AJAX/AJAX%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +433,7 @@
 </tr>
 <tr>
 <td>status</td>
-<td>200：”OK”，404：”未找到页面”</td>
+<td>200：&quot;OK&quot;，404：&quot;未找到页面&quot;</td>
 </tr>
 </tbody></table>
 <p>在 <code>onreadystatechange</code> 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。<br>当 <code>readyState</code> 等于 <code>4</code> 且状态为 <code>200</code> 时，表示响应已就绪：</p>
@@ -460,7 +533,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.model = model;</span><br><span class="line">  <span class="keyword">this</span>.year = year;</span><br><span class="line">  <span class="keyword">this</span>.miles = miles;</span><br><span class="line">  <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.model + <span class="string">" has done "</span> + <span class="keyword">this</span>.miles + <span class="string">" miles"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="comment">//我们可以示例化一个Car</span></span><br><span class="line"><span class="keyword">var</span> civic = <span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>, <span class="number">2009</span>, <span class="number">20000</span>);</span><br><span class="line"><span class="keyword">var</span> mondeo = <span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>, <span class="number">2010</span>, <span class="number">5000</span>);</span><br><span class="line"><span class="comment">//打开浏览器控制台查看这些对象toString()方法的输出值</span></span><br><span class="line"><span class="built_in">console</span>.log(civic.toString());  <span class="comment">//Honda Civic has done 20000 miles</span></span><br><span class="line"><span class="built_in">console</span>.log(mondeo.toString()); <span class="comment">//Ford Mondeo has done 5000 miles</span></span><br></pre></td></tr></table></figure>
 
 <p>上面的构造器模式是一个简单版本的，但它还是有些问题。一个是难以继承，另一个是每个Car构造函数创建的对象中，toString()之类的函数都被重新定义。这不是非常好，理想的情况是所有Car类型的对象都应该引用同一个函数，可以使用下面的形式。</p>
-<h3 id="使用”原型”的构造器"><a href="#使用”原型”的构造器" class="headerlink" title="使用”原型”的构造器"></a>使用”原型”的构造器</h3><p>在JavaScript中函数有一个prototype的属性，当我们调用JavaScript的构造器创建一个对象时，构造函数prototype上的属性对于所创建的对象来说都可见。这样，就可以创建多个访问相同prototype的Car对象了。如下所示：</p>
+<h3 id="使用-quot-原型-quot-的构造器"><a href="#使用-quot-原型-quot-的构造器" class="headerlink" title="使用&quot;原型&quot;的构造器"></a>使用&quot;原型&quot;的构造器</h3><p>在JavaScript中函数有一个prototype的属性，当我们调用JavaScript的构造器创建一个对象时，构造函数prototype上的属性对于所创建的对象来说都可见。这样，就可以创建多个访问相同prototype的Car对象了。如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.model = model;</span><br><span class="line">  <span class="keyword">this</span>.year = year;</span><br><span class="line">  <span class="keyword">this</span>.miles = miles;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意这里我们使用Object.prototype.newMethod 而不是Object.prototype ，以避免我们重新定义原型对象</span></span><br><span class="line">Car.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.model + <span class="string">" has done "</span> + <span class="keyword">this</span>.miles + <span class="string">" miles"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="keyword">var</span> civic = <span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>, <span class="number">2009</span>, <span class="number">20000</span>);</span><br><span class="line"><span class="keyword">var</span> mondeo = <span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>, <span class="number">2010</span>, <span class="number">5000</span>);</span><br><span class="line"><span class="comment">//打开浏览器控制台查看这些对象toString()方法的输出值</span></span><br><span class="line"><span class="built_in">console</span>.log(civic.toString());  <span class="comment">//Honda Civic has done 20000 miles</span></span><br><span class="line"><span class="built_in">console</span>.log(mondeo.toString());  <span class="comment">//Ford Mondeo has done 5000 miles</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>通过上面代码，单个toString()实例被所有的Car对象所共享了。</strong></p>
@@ -736,7 +809,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rob = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> nums1 = nums.slice(<span class="number">1</span>,nums.length);</span><br><span class="line">    <span class="keyword">let</span> nums2 = nums.slice(<span class="number">0</span>,nums.length<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">let</span> p1 = getDp(nums1);</span><br><span class="line">    <span class="keyword">let</span> p2 = getDp(nums2);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(p1,p2);</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDp</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = [];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="built_in">Math</span>.max(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">        dp[i] = <span class="built_in">Math</span>.max(dp[i<span class="number">-1</span>],dp[i<span class="number">-2</span>]+nums[i])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length<span class="number">-1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="信件错排-母牛生产"><a href="#信件错排-母牛生产" class="headerlink" title="信件错排 母牛生产"></a>信件错排 母牛生产</h3><p>参考：<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md#5-%E6%AF%8D%E7%89%9B%E7%94%9F%E4%BA%A7" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md#5-%E6%AF%8D%E7%89%9B%E7%94%9F%E4%BA%A7</a></p>
 <h2 id="矩阵路径"><a href="#矩阵路径" class="headerlink" title="矩阵路径"></a>矩阵路径</h2><h3 id="矩阵的最小路径和"><a href="#矩阵的最小路径和" class="headerlink" title="矩阵的最小路径和"></a>矩阵的最小路径和</h3><p>给定一个包含非负整数的 <code>m x n</code> 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。<br><strong>说明</strong>：每次只能向下或者向右移动一步。</p>
-<h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h2><p>请实现一个函数用来匹配包括’.’和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配</p>
+<h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h2><p>请实现一个函数用来匹配包括&#39;.&#39;和&#39;<em>&#39;的正则表达式。模式中的字符&#39;.&#39;表示任意一个字符，而&#39;</em>&#39;表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串&quot;aaa&quot;与模式&quot;a.a&quot;和&quot;ab<em>ac</em>a&quot;匹配，但是与&quot;aa.a&quot;和&quot;ab*a&quot;均不匹配</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">match</span>(<span class="params">s, p</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//s = null || p = null</span></span><br><span class="line">    <span class="keyword">if</span>(s == <span class="literal">null</span> || p == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> len1=s.length;</span><br><span class="line">    <span class="keyword">let</span> len2=p.length;</span><br><span class="line">    <span class="keyword">let</span> dp=<span class="keyword">new</span> <span class="built_in">Array</span>(len1+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;dp.length;i++)&#123;</span><br><span class="line">        dp[i]=<span class="keyword">new</span> <span class="built_in">Array</span>(len2+<span class="number">1</span>).fill(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span></span><br><span class="line">    <span class="comment">//进行一步初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;p.length;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(p.charAt(i) == <span class="string">'*'</span> &amp;&amp; dp[<span class="number">0</span>][i<span class="number">-1</span>]) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][i+<span class="number">1</span>] = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">1</span>;j&lt;len2+<span class="number">1</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pattern[j<span class="number">-1</span>]==<span class="string">'*'</span>)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][j]=dp[<span class="number">0</span>][j<span class="number">-2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;s.length;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;p.length;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == s.charAt(i)) &#123;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == <span class="string">'.'</span>) &#123;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.charAt(j) == <span class="string">'*'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(p.charAt(j<span class="number">-1</span>) != s.charAt(i) &amp;&amp; p.charAt(j<span class="number">-1</span>) != <span class="string">'.'</span>) &#123;</span><br><span class="line">                     dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i+<span class="number">1</span>][j<span class="number">-1</span>]</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j] || dp[i][j+<span class="number">1</span>] || dp[i+<span class="number">1</span>][j<span class="number">-1</span>]</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length][p.length]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -886,7 +959,7 @@
           <h2 id="求开方"><a href="#求开方" class="headerlink" title="求开方"></a>求开方</h2><p>实现 <code>int sqrt(int x)</code> 函数。计算并返回 <code>x</code> 的平方根，其中 <code>x</code> 是非负整数。由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。<br>题目地址：<a href="https://leetcode-cn.com/problems/sqrtx/submissions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/sqrtx/submissions/</a><br>采用二分逼近方法：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; x</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> mySqrt = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> high = x;</span><br><span class="line">    <span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">        <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor(low + (high-low)/<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">let</span> qr = mid * mid;</span><br><span class="line">        <span class="keyword">if</span>(qr == x) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(qr &lt; x &amp;&amp; (mid+<span class="number">1</span>)*(mid+<span class="number">1</span>)&gt;x) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(qr &gt; x) &#123;</span><br><span class="line">                high = mid <span class="number">-1</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> low</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="寻找比目标字母大的最小字母"><a href="#寻找比目标字母大的最小字母" class="headerlink" title="寻找比目标字母大的最小字母"></a>寻找比目标字母大的最小字母</h2><p>给你一个排序后的字符列表 letters ，列表中只包含小写英文字母。另给出一个目标字母 target，请你寻找在这一有序列表里比目标字母大的最小字母。<br>在比较时，字母是<code>依序循环出现</code>的。举个例子：<br>如果目标字母 target = ‘z’ 并且字符列表为 letters = [‘a’, ‘b’]，则答案返回 ‘a’</p>
+<h2 id="寻找比目标字母大的最小字母"><a href="#寻找比目标字母大的最小字母" class="headerlink" title="寻找比目标字母大的最小字母"></a>寻找比目标字母大的最小字母</h2><p>给你一个排序后的字符列表 letters ，列表中只包含小写英文字母。另给出一个目标字母 target，请你寻找在这一有序列表里比目标字母大的最小字母。<br>在比较时，字母是<code>依序循环出现</code>的。举个例子：<br>如果目标字母 target = &#39;z&#39; 并且字符列表为 letters = [&#39;a&#39;, &#39;b&#39;]，则答案返回 &#39;a&#39;</p>
 <p>题目地址：<a href="https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/</a></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个题本人没有用二分查找，直接比较即可。网上有二分查找方法，读者可自行查找。</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @param &#123;character[]&#125; letters</span></span><br><span class="line"><span class="comment"> * @param &#123;character&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;character&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> nextGreatestLetter = <span class="function"><span class="keyword">function</span>(<span class="params">letters, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> letters) &#123;</span><br><span class="line">        <span class="keyword">if</span>(item &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> item;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> letters[<span class="number">0</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="有序数组的-Single-Element"><a href="#有序数组的-Single-Element" class="headerlink" title="有序数组的 Single Element"></a>有序数组的 Single Element</h2><p>题目地址：<a href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/single-element-in-a-sorted-array/</a></p>
@@ -1105,73 +1178,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-05 14:02:55 / 修改时间：14:03:09" itemprop="dateCreated datePublished" datetime="2020-08-05T14:02:55+08:00">2020-08-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1241,7 +1247,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

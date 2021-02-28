@@ -270,7 +270,7 @@
 <h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2><p>列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。<br>举个例子，要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]可以用list(range(1, 11))：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(range(<span class="number">1</span>, <span class="number">11</span>))</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
 
-<p>但如果要生成[1x1, 2x2, 3x3, …, 10x10]怎么做？方法一是循环：</p>
+<p>但如果要生成[1x1, 2x2, 3x3, ..., 10x10]怎么做？方法一是循环：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = []</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line"><span class="meta">... </span>   L.append(x * x)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>, <span class="number">100</span>]</span><br></pre></td></tr></table></figure>
 
 <p>但是循环太繁琐，而列表生成式则可以用一行语句代替循环生成上面的list：</p>
@@ -288,7 +288,7 @@
 <p>输出结果如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'y=B'</span>, <span class="string">'x=A'</span>, <span class="string">'z=C'</span>]</span><br></pre></td></tr></table></figure>
 
-<p>练习题： L1为 [‘Hello’, ‘World’, 18, ‘Apple’, None]，输出 L2为 [‘hello’, ‘world’, ‘apple’]<br>代码如下：</p>
+<p>练习题： L1为 [&#39;Hello&#39;, &#39;World&#39;, 18, &#39;Apple&#39;, None]，输出 L2为 [&#39;hello&#39;, &#39;world&#39;, &#39;apple&#39;]<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L2 = [i.lower() <span class="keyword">for</span> i <span class="keyword">in</span> L1 <span class="keyword">if</span> isinstance(i, str)==<span class="literal">True</span>]</span><br></pre></td></tr></table></figure>
 
 <h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p>通过列表生成式，我们可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含100万个元素的列表，不仅占用很大的存储空间，如果我们仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了。<br>所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。<br>要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：</p>
@@ -349,12 +349,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="prev" title="函数式编程">
-      <i class="fa fa-chevron-left"></i> 函数式编程
+    <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0/" rel="prev" title="递归函数">
+      <i class="fa fa-chevron-left"></i> 递归函数
     </a></div>
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/" rel="next" title="面向对象高级编程">
-      面向对象高级编程 <i class="fa fa-chevron-right"></i>
+    <a href="/blog/2020/04/17/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="next" title="函数式编程">
+      函数式编程 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -428,7 +428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

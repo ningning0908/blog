@@ -259,7 +259,7 @@
 
 <h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p>在网络数据传输中，都遵循的规定，包括建立什么样的数据结构，什么样的特殊标志等。</p>
 <h2 id="网络基础概念"><a href="#网络基础概念" class="headerlink" title="网络基础概念"></a>网络基础概念</h2><h3 id="网络主机（host）"><a href="#网络主机（host）" class="headerlink" title="网络主机（host）"></a>网络主机（host）</h3><div class="note info">
-            <p>功能：标识一台主机在网络中的位置（地址）<br>本地地址：&#39;localhost’,&#39;127.0.0.1’<br>网络地址(IP地址)：&#39;172.60.50.12’（例子）<br>自动获取地址（自动获取合适网卡IP）：&#39;0.0.0.0’</p>
+            <p>功能：标识一台主机在网络中的位置（地址）<br>本地地址：&#39;localhost&#39;,&#39;127.0.0.1&#39;<br>网络地址(IP地址)：&#39;172.60.50.12&#39;（例子）<br>自动获取地址（自动获取合适网卡IP）：&#39;0.0.0.0&#39;</p>
           </div>
 
 <h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><div class="note info">
@@ -285,10 +285,10 @@
           </div>
 
 <h2 id="socket套接字编程"><a href="#socket套接字编程" class="headerlink" title="socket套接字编程"></a>socket套接字编程</h2><h3 id="套接字介绍"><a href="#套接字介绍" class="headerlink" title="套接字介绍"></a>套接字介绍</h3><div class="note info">
-            <ol><li>套接字：实现网络编程进行数据传输的一种技术手段；</li><li>Python实现套接字编程：import socket；</li><li>套接字分类：<ul><li>流式套接字(SOCK_STREAM)：以字节流方式传输数据，实现tcp网络传输方案。（面向连接–tcp协议– 可靠的–流式套接字）；</li><li>数据报套接字(SOCK_DGTAM)：以数据报形式传输数据，实现udp网络传输方案。（无连接–udp协议–不可靠—数据报套接字）</li></ul></li></ol>
+            <ol><li>套接字：实现网络编程进行数据传输的一种技术手段；</li><li>Python实现套接字编程：import socket；</li><li>套接字分类：<ul><li>流式套接字(SOCK_STREAM)：以字节流方式传输数据，实现tcp网络传输方案。（面向连接--tcp协议-- 可靠的--流式套接字）；</li><li>数据报套接字(SOCK_DGTAM)：以数据报形式传输数据，实现udp网络传输方案。（无连接--udp协议--不可靠---数据报套接字）</li></ul></li></ol>
           </div>
 
-<h3 id="tcp套接字编程"><a href="#tcp套接字编程" class="headerlink" title="tcp套接字编程"></a>tcp套接字编程</h3><h4 id="服务端流程"><a href="#服务端流程" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind  —&gt; listen —&gt; accept —&gt; send/recv —&gt; close</p>
+<h3 id="tcp套接字编程"><a href="#tcp套接字编程" class="headerlink" title="tcp套接字编程"></a>tcp套接字编程</h3><h4 id="服务端流程"><a href="#服务端流程" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>---&gt;socket ---&gt; bind  ---&gt; listen ---&gt; accept ---&gt; send/recv ---&gt; close</p>
 <p>代码实现(python版本)：</p>
 <ol>
 <li><p>创建套接字</p>
@@ -299,7 +299,7 @@
 <li><p>绑定地址</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd.bind(addr)</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <p>功能：绑定本机网络地址<br>参数：二元元组(ip,port)  (‘0.0.0.0’,8888)</p>
+            <p>功能：绑定本机网络地址<br>参数：二元元组(ip,port)  (&#39;0.0.0.0&#39;,8888)</p>
           </div>
 </li>
 <li><p>设置监听</p>
@@ -332,7 +332,7 @@
 <p>TCP套接字服务端代码（python版重点代码）(亲测有效)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="comment"># 创建流式套接字</span></span><br><span class="line">sockfd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址 本地连接</span></span><br><span class="line">sockfd.bind((<span class="string">'127.0.0.1'</span>,<span class="number">8888</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置监听</span></span><br><span class="line">sockfd.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Waiting for connet....."</span>)</span><br><span class="line"><span class="comment">#等待处理客户端连接请求</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  print(<span class="string">"Waiting for connect...."</span>)</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    connfd,addr = sockfd.accept()</span><br><span class="line">  <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    print(<span class="string">"退出服务"</span>)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 收发消息</span></span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">     data = connfd.recv(<span class="number">1024</span>)</span><br><span class="line">     <span class="comment"># 得到空就退出</span></span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">       <span class="keyword">break</span></span><br><span class="line">     print(<span class="string">"接收到的消息："</span>,data.decode())</span><br><span class="line"></span><br><span class="line">     n = connfd.send(<span class="string">b'Receive your message'</span>)</span><br><span class="line">     print(<span class="string">"发送了%d个字节的数据"</span>%n)</span><br><span class="line">  <span class="comment">#关闭客户端套接字</span></span><br><span class="line">  connfd.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务端套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
 
-<h4 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; bind —&gt; connect —&gt; send/recv —&gt; close<br>(bind这个步骤一般不用，所以一般不写)</p>
+<h4 id="客户端流程"><a href="#客户端流程" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>---&gt;socket ---&gt; bind ---&gt; connect ---&gt; send/recv ---&gt; close<br>(bind这个步骤一般不用，所以一般不写)</p>
 <ol>
 <li><p>创建套接字<br>要注意创建相同类型的套接字才能进行通信</p>
 </li>
@@ -362,7 +362,7 @@
             <p>原因：tcp是以字节流的方式传输，没有消息边界。多次发送的消息被一次接收，此时就会形成粘包。<br>影响：如果每次发送内容是一个独立的含义，需要接收端独立解析此时的粘包会有影响。<br>处理方法：</p><ul><li>人为的添加消息边界</li><li>控制发送速度</li></ul>
           </div>
 
-<h3 id="UDP套接字编程"><a href="#UDP套接字编程" class="headerlink" title="UDP套接字编程"></a>UDP套接字编程</h3><h4 id="服务端流程-1"><a href="#服务端流程-1" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>—&gt;socket —&gt; bind —&gt; recvfrom/sendto —&gt; close()</p>
+<h3 id="UDP套接字编程"><a href="#UDP套接字编程" class="headerlink" title="UDP套接字编程"></a>UDP套接字编程</h3><h4 id="服务端流程-1"><a href="#服务端流程-1" class="headerlink" title="服务端流程"></a>服务端流程</h4><p>---&gt;socket ---&gt; bind ---&gt; recvfrom/sendto ---&gt; close()</p>
 <ol>
 <li><p>创建数据报套接字</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sockfd = socket(AF_INET, SOCK_DGRAM)</span><br></pre></td></tr></table></figure>
@@ -386,7 +386,7 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">UDP服务端</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 创建数据报套接字</span></span><br><span class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定地址</span></span><br><span class="line">server_addr = (<span class="string">'0.0.0.0'</span>, <span class="number">8888</span>)</span><br><span class="line">sockfd.bind(server_addr)</span><br><span class="line"><span class="comment"># 收发消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data,addr = sockfd.recvfrom(<span class="number">1024</span>)</span><br><span class="line">    print(<span class="string">"收到的消息"</span>, data.decode())</span><br><span class="line">    sockfd.sendto(<span class="string">b"Thanks"</span>, addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭套接字</span></span><br><span class="line">sockfd.close()</span><br></pre></td></tr></table></figure>
-<h4 id="客户端流程-1"><a href="#客户端流程-1" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>—&gt;socket —&gt; sendto/recvfrom —&gt; close()</p>
+<h4 id="客户端流程-1"><a href="#客户端流程-1" class="headerlink" title="客户端流程"></a>客户端流程</h4><p>---&gt;socket ---&gt; sendto/recvfrom ---&gt; close()</p>
 <ol>
 <li>创建套接字</li>
 <li>收发消息</li>
@@ -535,7 +535,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -256,7 +256,7 @@
 
 <p>符号的描述信息被存储在内部属性<code>[[Description]]</code>中，当符号的<code>toString()</code>方法被显式或隐式调用时，该属性都会被读取。在本例中，<code>console.log()</code>隐式调用了 <code>firstName</code>变量的<code>toString()</code>方法，于是描述信息就被输出到日志。此外没有任何办法可以从代码中直接访问<code>[[Description]]</code>属性。我建议始终应给符号提供描述信息，以便更好地阅读代码或进行调试。</p>
 <div class="note into">
-            <p>识别符号值<br>由于符号是基本类型的值，因此你可以使用 typeof 运算符来判断一个变量是否为符号。 ES6 扩充了 typeof 的功能以便让它在作用于符号值的时候能够返回 “symbol” ，尽管有其他方法可以判断一个变量是否为符号， typeof 运算符依然是最准确、最优先的判别手段。例如：</p>
+            <p>识别符号值<br>由于符号是基本类型的值，因此你可以使用 typeof 运算符来判断一个变量是否为符号。 ES6 扩充了 typeof 的功能以便让它在作用于符号值的时候能够返回 &quot;symbol&quot; ，尽管有其他方法可以判断一个变量是否为符号， typeof 运算符依然是最准确、最优先的判别手段。例如：</p>
           </div>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> symbol = <span class="built_in">Symbol</span>(<span class="string">"test symbol"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol); <span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
@@ -366,8 +366,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%BB%91%E5%AE%9A/" rel="prev" title="块级作用域绑定">
-      <i class="fa fa-chevron-left"></i> 块级作用域绑定
+    <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%A7%A3%E6%9E%84/" rel="prev" title="解构：更方便的数据访问">
+      <i class="fa fa-chevron-left"></i> 解构：更方便的数据访问
     </a></div>
       <div class="post-nav-item">
     <a href="/blog/2020/04/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8/" rel="next" title="迭代器与生成器">
@@ -445,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

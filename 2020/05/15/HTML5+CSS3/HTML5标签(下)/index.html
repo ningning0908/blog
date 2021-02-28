@@ -281,8 +281,8 @@
 </tr>
 <tr>
 <td>border</td>
-<td>1或””</td>
-<td>规定表格单元是否拥有边框，默认为””,表示没有边框</td>
+<td>1或&quot;&quot;</td>
+<td>规定表格单元是否拥有边框，默认为&quot;&quot;,表示没有边框</td>
 </tr>
 <tr>
 <td>cellpadding</td>
@@ -303,13 +303,13 @@
 <h3 id="表格结构标签"><a href="#表格结构标签" class="headerlink" title="表格结构标签"></a>表格结构标签</h3><p>表格分为头部区域与主体区域<br><code>&lt;thead&gt;&lt;/thead&gt;</code>表示表格的头部区域，<code>&lt;tbody&gt;&lt;/tbody&gt;</code>表示表格的主体区域。</p>
 <h3 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h3><ul>
 <li>1.合并单元格的方式：<ul>
-<li>跨行合并：rowspan=”合并单元格的个数”，最上侧为目标单元格，写合并代码；</li>
-<li>跨列合并：colspan=”合并单元格的个数”，最左侧为目标单元格，写合并代码。</li>
+<li>跨行合并：rowspan=&quot;合并单元格的个数&quot;，最上侧为目标单元格，写合并代码；</li>
+<li>跨列合并：colspan=&quot;合并单元格的个数&quot;，最左侧为目标单元格，写合并代码。</li>
 </ul>
 </li>
 <li>2.合并单元格三部曲：<ul>
 <li>先确定是跨行还是跨列</li>
-<li>找到目标单元格，写上合并方式=”合并的单元格数量”，比如：<code>&lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;</code></li>
+<li>找到目标单元格，写上合并方式=&quot;合并的单元格数量&quot;，比如：<code>&lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;</code></li>
 <li>删除多余的单元格</li>
 </ul>
 </li>
@@ -387,7 +387,7 @@
 </tr>
 <tr>
 <td>file</td>
-<td>定义输入字段和”浏览”按钮，供文件上传</td>
+<td>定义输入字段和&quot;浏览&quot;按钮，供文件上传</td>
 </tr>
 <tr>
 <td>hidden</td>
@@ -456,12 +456,12 @@
 
 <ul>
 <li>1.<code>&lt;select&gt;</code>中至少包含一对<code>&lt;option&gt;</code></li>
-<li>2.在<code>&lt;option&gt;</code>中定义selected=”selected”时，当前项即为默认选项。</li>
+<li>2.在<code>&lt;option&gt;</code>中定义selected=&quot;selected&quot;时，当前项即为默认选项。</li>
 </ul>
 <p><strong><code>&lt;textarea&gt;</code>文本域元素</strong><br>当用户输入内容较多的情况下，不能使用文本框表单了，就使用文本域元素。<br>语法如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">"3"</span> <span class="attr">cols</span>=<span class="string">"20"</span>&gt;</span>文本内容<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>通过<code>&lt;textarea&gt;</code>可以轻松地创建行文本输入框,cols=”每行的字符数”，rows=”显示的行数”(实际开发中不会使用，都是用CSS来改变大小)</p>
+<p>通过<code>&lt;textarea&gt;</code>可以轻松地创建行文本输入框,cols=&quot;每行的字符数&quot;，rows=&quot;显示的行数&quot;(实际开发中不会使用，都是用CSS来改变大小)</p>
 
     </div>
 
@@ -579,7 +579,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

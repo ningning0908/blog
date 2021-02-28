@@ -259,14 +259,14 @@
 <li>关键字and not only；</li>
 <li>media feature 媒体特性必须有小括号包含</li>
 </ul>
-<p><strong>mediatype查询类型</strong><br>将不同的终端设备划分为不同的类型，称为媒体类型。<br>值           |   解释说明<br>————-|————————-<br>all          | 用于所有设备<br>print        | 用于打印机和打印预览<br>screen       | 用于电脑屏幕、平板电脑、智能手机等</p>
+<p><strong>mediatype查询类型</strong><br>将不同的终端设备划分为不同的类型，称为媒体类型。<br>值           |   解释说明<br>-------------|-------------------------<br>all          | 用于所有设备<br>print        | 用于打印机和打印预览<br>screen       | 用于电脑屏幕、平板电脑、智能手机等</p>
 <p><strong>关键字</strong><br>关键字将多媒体类型或多个多媒体特性连接到一起作为媒体查询的条件。</p>
 <ul>
 <li>and： 可以将多个媒体特性连接到一起，相当于“且”的意思。</li>
 <li>not： 排除某个媒体类型，相当于“非”的意思，可以省略。</li>
 <li>only：指定某个特定的媒体类型，可以省略。</li>
 </ul>
-<p><strong>媒体特性</strong><br>每种媒体类型都具有各自不同的特性，根据不同媒体类型的媒体特性设置不同的展示风格，暂且了解三个。注意它们要加小括号包含。<br>值        |  解释说明<br>———-|—————————–<br>width     | 定义输出设备中页面可见区域的宽度<br>min-width | 定义输出设备中页面最小可见区域宽度<br>max-width | 定义输出设备中页面最大可见区域宽度</p>
+<p><strong>媒体特性</strong><br>每种媒体类型都具有各自不同的特性，根据不同媒体类型的媒体特性设置不同的展示风格，暂且了解三个。注意它们要加小括号包含。<br>值        |  解释说明<br>----------|-----------------------------<br>width     | 定义输出设备中页面可见区域的宽度<br>min-width | 定义输出设备中页面最小可见区域宽度<br>max-width | 定义输出设备中页面最大可见区域宽度</p>
 <p><strong>媒体查询：引入资源</strong><br>当样式比较繁多的时候，我们可以针对不同的媒体使用不同的stylesheets（样式表）<br>原理：直接在link中判断设备的尺寸，然后引入不同的css文件<br>语法规范如下所示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">ref</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"mediatype and|not|only (media feature)"</span> <span class="attr">href</span>=<span class="string">"mystylesheet.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -390,7 +390,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -185,6 +185,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%88/" class="post-title-link" itemprop="url">栈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-15 12:49:00" itemprop="dateModified" datetime="2020-05-15T12:49:00+08:00">2020-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法JavaScript描述</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>栈是一种高效的数据结构，因为数据只能在栈顶添加或删除，所以这样的操作很快，而且容易实现。</p>
+<h2 id="对栈的操作"><a href="#对栈的操作" class="headerlink" title="对栈的操作"></a>对栈的操作</h2><p>栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端称为栈顶。<strong>栈被称为一种后入先出的数据结构。</strong><br><strong>栈的两种操作：入栈 push() 方法，出栈 pop() 方法。</strong><br>另一个常用的操作是预览栈顶的元素。pop() 方法虽然可以访问栈顶的元素，但是调用该方法后，栈顶元素也从栈中被永久性地删除了。<strong>peek() 方法则只返回栈顶元素，而不删除它。</strong><br>其它属性与方法： clear() 方法清除栈内所有元素；length 属性记录栈内元素的个数；empty 属性表示栈内是否含有元素。</p>
+<h2 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h2><p>实现一个栈，当务之急是决定存储数据的底层数据结构。这里采用的是数组。<br>定义一个Stack类的构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.push = push;</span><br><span class="line">    <span class="keyword">this</span>.pop = pop;</span><br><span class="line">    <span class="keyword">this</span>.peek = peek;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="push-方法"><a href="#push-方法" class="headerlink" title="push()方法"></a>push()方法</h3><p>当向栈中压入一个新元素时，需要将其保存在数组中变量top所对应的位置，然后将top值加1，让其指向数组中下一个空位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top++] = element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="pop-方法"><a href="#pop-方法" class="headerlink" title="pop()方法"></a>pop()方法</h3><p>出栈，与push()方法相反，返回栈顶元素，同时将变量top的值减1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[--<span class="keyword">this</span>.top];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="peek-方法"><a href="#peek-方法" class="headerlink" title="peek()方法"></a>peek()方法</h3><p>返回栈顶元素（即第top-1个位置的元素）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">peek</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="length"><a href="#length" class="headerlink" title="length()"></a>length()</h3><p>栈内存储了多少个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">length</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="clear-方法"><a href="#clear-方法" class="headerlink" title="clear()方法"></a>clear()方法</h3><p>清空栈元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clear</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Stack类"><a href="#使用Stack类" class="headerlink" title="使用Stack类"></a>使用Stack类</h2><h3 id="栈结构面试题"><a href="#栈结构面试题" class="headerlink" title="栈结构面试题"></a>栈结构面试题</h3><p>有六个元素6，5，4，3，2，1，按照顺序进栈，下面哪一个不是合法的出栈序列？（C）<br>A 5 4 3 6 1 2  B 4 5 3 2 1 6  C 3 4 6 5 2 1   D 2 3 4 1 56</p>
+<h3 id="数制间的相互转换"><a href="#数制间的相互转换" class="headerlink" title="数制间的相互转换"></a>数制间的相互转换</h3><p>可以利用栈将一个数字从一种数制转换为另一种数制。假设想将数字n转换为以b为基数的数字，实现转换的算法如下：</p>
+<div class="note info">
+            <p>(1) 最高位为n%b，将此位压入栈。<br>(2) 使用n/b代替n。<br>(3) 重复步骤1和2， 直到n等于0，且没有余数。<br>(4) 持续将栈内元素弹出，直到栈为空，依次将这些元素排列，就得到转换后数字的字符串形式。</p>
+          </div>
+<p><strong>注意：此算法只针对基数为2~9的情况。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.push = push;</span><br><span class="line">    <span class="keyword">this</span>.pop = pop;</span><br><span class="line">    <span class="keyword">this</span>.peek = peek;</span><br><span class="line">    <span class="keyword">this</span>.length = length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top++] = element;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[--<span class="keyword">this</span>.top];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">peek</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">length</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mulBase</span>(<span class="params">num,base</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        s.push(num % base);</span><br><span class="line">        num = <span class="built_in">Math</span>.floor(num/base);</span><br><span class="line">    &#125; <span class="keyword">while</span> (num &gt; <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">var</span> converted = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        converted += s.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> converted;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> num = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> base = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> newNum = mulBase(num,base);</span><br><span class="line"><span class="built_in">console</span>.log(newNum);   <span class="comment">//1000</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="回文"><a href="#回文" class="headerlink" title="回文"></a>回文</h3><p>回文是指这样一种现象：一个单词、短语或数字，从前往后写和从后往前写都是一样的。<br>使用栈，可以轻松地判断一个字符串是否是回文，我们将拿到的字符串的每个字符按从左到右的顺序压入栈。当字符串中的字符都入栈后，栈内就保存了一个反转后的字符串，最后的字符在栈顶，第一个字符在栈底。字符串完整压入栈内后，通过持续弹出栈中的每个字母就可以得到一个新字符串，该字符串刚好与原来的字符串顺序相反，我们只需要比较这两个字符串即可，如果他们相等，就是一个回文。<br>示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.push = push;</span><br><span class="line">    <span class="keyword">this</span>.pop = pop;</span><br><span class="line">    <span class="keyword">this</span>.peek = peek;</span><br><span class="line">    <span class="keyword">this</span>.length = length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top++] = element;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[--<span class="keyword">this</span>.top];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">peek</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">length</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义回文函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrome</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;word.length; i++) &#123;</span><br><span class="line">        s.push(word[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> rword = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        rword += s.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (word == rword) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> word =<span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(isPalindrome(word));  <span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> ses = <span class="string">"ses"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(isPalindrome(ses));   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="递归演示"><a href="#递归演示" class="headerlink" title="递归演示"></a>递归演示</h3><p>可以用栈来模拟递归过程。下面是一个递归函数，可以计算任意数字的阶乘，分别用寻常递归函数与栈模拟递归过程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 寻常递归函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n * factorial(n<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">5</span>));   <span class="comment">//120</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用栈模拟递归过程</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fact</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        s.push(n--);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> product = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(s.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        product *= s.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> product;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fact(<span class="number">5</span>));     <span class="comment">//120</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>1、栈可以用来判断一个算术表达式中的括号是否匹配。编写一个函数，该函数接受一个算术表达式作为参数，返回括号缺失的位置，下面是一个括号不匹配的算术表达式的例子：2.3+23/12+(3.14159*0.24。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 练习1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkBracket</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;str.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str[i]==<span class="string">'('</span>) &#123;</span><br><span class="line">            arr.push(i);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str[i] == <span class="string">')'</span>) &#123;</span><br><span class="line">            arr.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.peek();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(checkBracket(<span class="string">'2.3 + 23 / 12 + (3.14159*0.24'</span>));  <span class="comment">//16</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%88%97%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,10 +1026,10 @@
 <h3 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h3><p>实现这一操作的方法有两组：<br>从数组末端添加项，从数组前端取得项：push()与shift()方法<br>从数组前端添加项，从数组末端取得项：unshift()与pop()方法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count = colors.push(<span class="string">"red"</span>, <span class="string">"green"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(count);  <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line">count = colors.push(<span class="string">"black"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(count);  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> item = colors.shift();</span><br><span class="line"><span class="built_in">console</span>.log(item); <span class="comment">//"red"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 
-<p>这个例子创建了一个数组并使用push()方法先后推入了3个值，首先是”red”和”green”，然后是”black”，数组中各项的顺序为”red”,”green”,”black”，在调用shift()方法时，移除并返回的是第一项，即”red”。</p>
+<p>这个例子创建了一个数组并使用push()方法先后推入了3个值，首先是&quot;red&quot;和&quot;green&quot;，然后是&quot;black&quot;，数组中各项的顺序为&quot;red&quot;,&quot;green&quot;,&quot;black&quot;，在调用shift()方法时，移除并返回的是第一项，即&quot;red&quot;。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count = colors.unshift(<span class="string">"red"</span>, <span class="string">"green"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(count);  <span class="comment">//2</span></span><br><span class="line"></span><br><span class="line">count = colors.unshift(<span class="string">"black"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(count);  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> item = colors.pop();</span><br><span class="line"><span class="built_in">console</span>.log(item); <span class="comment">//"green"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.length); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 
-<p>这个例子创建了一个数组并使用unshift()方法先后推入了3个值，首先是”red”和”green”，然后是”black”，数组中各项的顺序为”black”,”red”,”green”，在调用pop()方法时，移除并返回的是最后一项，即”green”。</p>
+<p>这个例子创建了一个数组并使用unshift()方法先后推入了3个值，首先是&quot;red&quot;和&quot;green&quot;，然后是&quot;black&quot;，数组中各项的顺序为&quot;black&quot;,&quot;red&quot;,&quot;green&quot;，在调用pop()方法时，移除并返回的是最后一项，即&quot;green&quot;。</p>
 <h3 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h3><p>reverse()方法：反转数组项的顺序。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">values.reverse();</span><br><span class="line"><span class="built_in">console</span>.log(values);  <span class="comment">//5,4,3,2,1</span></span><br></pre></td></tr></table></figure>
 
@@ -1007,7 +1115,7 @@
 <p>使用正则表达式字面量和使用RegExp构造函数创建的正则表达式不一样，在ECMAScript3 中，正则表达式字面量始终会共享一个RegExp实例，而使用构造函数创建的每一个新RegExp实例都是一个新实例。<br>如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="literal">null</span>,i;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    re = <span class="regexp">/cat/g</span>;</span><br><span class="line">    <span class="built_in">console</span>.log((re.test(<span class="string">"catastrophe"</span>)));   <span class="comment">//true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">    re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"cat"</span>, <span class="string">"g"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(re.test(<span class="string">"catastrophe"</span>));    <span class="comment">//true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在第一个循环中，即使是循环体指定的，但实际上只为/cat/创建了一个RegExp实例，由于实例属性不会重置，所以在循环中再次调用text()方法会失败，这是因为第一次调用test()找到了”cat”，但第二次调用是从索引为3的字符（上一次匹配的末尾）开始的，所以就找不到它了，由于会测试到字符串末尾，所以下一次再调用test()就又从开头开始了。<br>第二个循环使用RegExp构造函数在每次循环中创建正则表达式，因为每次迭代都会创建一个新的RegExp构造函数一样，每次创建新的RegExp实例。</p>
+<p>在第一个循环中，即使是循环体指定的，但实际上只为/cat/创建了一个RegExp实例，由于实例属性不会重置，所以在循环中再次调用text()方法会失败，这是因为第一次调用test()找到了&quot;cat&quot;，但第二次调用是从索引为3的字符（上一次匹配的末尾）开始的，所以就找不到它了，由于会测试到字符串末尾，所以下一次再调用test()就又从开头开始了。<br>第二个循环使用RegExp构造函数在每次循环中创建正则表达式，因为每次迭代都会创建一个新的RegExp构造函数一样，每次创建新的RegExp实例。</p>
 <h3 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h3><p>RegExp的每个实例都具有下列属性，通过这些属性可以取得有关模式的各种信息。</p>
 <ul>
 <li>global: 布尔值，表示是否设置了g标志；</li>
@@ -1063,7 +1171,7 @@
 </tr>
 <tr>
 <td>rightContext</td>
-<td>$’</td>
+<td>$&#39;</td>
 <td>input字符串中lastMatch之后的文本</td>
 </tr>
 </tbody></table>
@@ -1071,7 +1179,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"this has been a short summer"</span>;</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/(.)hort/g</span>;</span><br><span class="line"><span class="keyword">if</span>(pattern.test(text))&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.input);        <span class="comment">// this has been a short summer</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.lastMatch);    <span class="comment">//short</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.leftContext);  <span class="comment">//this has been a</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.rightContext); <span class="comment">//summer</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.mulitiline);   <span class="comment">//false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>还可以通过短属性来访问它们，这里就不介绍了，与长属性用法相同</p>
-<p>除了上面介绍的几个属性之外，还有多达9个用于存储捕获组的构造函数属性，访问这些属性的方法是RegExp.$1、RegExp.$2 … RegExp.$9，分别用于存储第一、第二……第九个匹配的捕获组，在调用exec()或test()方法时，这些属性会被自动填充，如下所示：</p>
+<p>除了上面介绍的几个属性之外，还有多达9个用于存储捕获组的构造函数属性，访问这些属性的方法是RegExp.$1、RegExp.$2 ... RegExp.$9，分别用于存储第一、第二......第九个匹配的捕获组，在调用exec()或test()方法时，这些属性会被自动填充，如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"this has been a short summer"</span></span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/(..)or(.)/g</span>;</span><br><span class="line"><span class="keyword">if</span>(pattern.test(text))&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.$<span class="number">1</span>);   <span class="comment">//sh</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.$<span class="number">2</span>);   <span class="comment">//t</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Function-类型"><a href="#Function-类型" class="headerlink" title="Function 类型"></a>Function 类型</h2><p>函数是对象，函数名是一个指向函数对象的指针，不会与某个函数绑定，函数声明定义形式如下：</p>
@@ -1093,7 +1201,7 @@
 <p>this引用的是函数执行的环境对象，在全局作用域中，this对象引用的是window。比如下面的例子：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;<span class="attr">color</span>: <span class="string">"blue"</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.color);</span><br><span class="line">&#125;</span><br><span class="line">sayColor();    <span class="comment">//"red"</span></span><br><span class="line">o.sayColor = sayColor;</span><br><span class="line">o.sayColor();  <span class="comment">//"blue"</span></span><br></pre></td></tr></table></figure>
 
-<p>第一次调用sayColor()是在全局作用域中定义的，this引用的对象是window，所以输出为”red”, 第二次this引用的对象是0，所以this.color= o.color, 返回为”blue”<br>caller属性保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，会为null。示例如下：</p>
+<p>第一次调用sayColor()是在全局作用域中定义的，this引用的对象是window，所以输出为&quot;red&quot;, 第二次this引用的对象是0，所以this.color= o.color, 返回为&quot;blue&quot;<br>caller属性保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，会为null。示例如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    inner();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.callee.caller);   <span class="comment">//Function: outer</span></span><br><span class="line">&#125;</span><br><span class="line">outer();</span><br></pre></td></tr></table></figure>
 
 <h3 id="函数属性和方法"><a href="#函数属性和方法" class="headerlink" title="函数属性和方法"></a>函数属性和方法</h3><p>由于ECMAScript中的函数是对象，所以函数也有属性和方法，每个函数有两个属性：length和prototype<br>length表示函数希望接收的命名参数的个数，prototype指的函数的原型方法，toString()、valueOf()等都属于prototype内。<br>每个函数也会包含两个非继承而来的方法：apply()和call(),这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。<br>apply()方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组，其中，第二个参数可以是Array的实例，也可以是arguments对象。<br>如下面的例子所示：</p>
@@ -1141,7 +1249,7 @@
 <p>结果如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c12,b12,s12,f12</span><br></pre></td></tr></table></figure>
 
-<p>replace()方法的第二个参数也可以是一个函数，在只有一个匹配项的情况下，会向这个函数传递3个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。在正则表达式中定义了多个捕获组的情况下，传递给函数的参数依次是模式的匹配项、第一个捕获组的匹配项、第二个捕获组的匹配项……，但最后两个参数仍然分别是模式的匹配项在字符串中的位置和原始字符串。如下所示：</p>
+<p>replace()方法的第二个参数也可以是一个函数，在只有一个匹配项的情况下，会向这个函数传递3个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。在正则表达式中定义了多个捕获组的情况下，传递给函数的参数依次是模式的匹配项、第一个捕获组的匹配项、第二个捕获组的匹配项......，但最后两个参数仍然分别是模式的匹配项在字符串中的位置和原始字符串。如下所示：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlEscape</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/[&lt;&gt;"&amp;]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match,pos,originalText</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(match) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"&lt;"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"&amp;lt;"</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"&gt;"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"&amp;gt;"</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"&amp;"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"&amp;amp;"</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"\""</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"&amp;quot"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(htmlEscape("&lt;p class=\"greeting\"&gt;Hello World!&lt;/p&gt;"));  #&amp;lt;p class=&amp;quotgreeting&amp;quot&amp;gt;Hello World!&amp;lt;/p&amp;gt;</span><br></pre></td></tr></table></figure>
 
 <p>split()方法：这个方法可以基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中。分隔符可以是字符串，也可以是一个RegExp对象（这个方法不会将字符串看成正则表达式），split()方法可以接受可选的第二个参数，用于指定数组的大小，以便确保返回的数组不会超过既定大小。如下例所示：</p>
@@ -1566,6 +1674,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Ning Ning">
+      <meta itemprop="description" content="光、温暖、温柔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">HTML标记与文档结构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-17 19:08:46" itemprop="dateModified" datetime="2019-11-17T19:08:46+08:00">2019-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">CSS权威指南</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>CSS的用途就是为HTML标记添加样式，所以，我们首先要先知道怎么编写和构造HTML标记，才能让CSS更方便地为它添加样式。用HTML标记内容的目的是为了赋予网页语义，我们平常用的浏览器、给视障用户朗读网页的屏幕阅读器，以及搜索引擎放出的Web爬虫都是用户代理，它们需要显示、朗读和分析网页。HTML规定了一组标签，用来给内容打上不同的标记，每个标签都是对所包含内容的一种描述，最常用的HTML标签描述的是标题、段落、链接和图片。目前，HTML一共有114个标签，但按照80/20的原则，使用其中25个左右的标签就可以满足80%的标记需要。<br>在给内容都打上标记之后，就可以使用CSS来给标签添加样式了，添加样式的依据有标签名、标签属性（如id和class）、以及标签与其他标签在标记中的相对位置关系，等等。HTML标签也会构成一个层次化的文档，从而可以通过CSS来设置网页的布局，为每个元素应用你想要的样式。</p>
+<h2 id="HTML标记基础"><a href="#HTML标记基础" class="headerlink" title="HTML标记基础"></a>HTML标记基础</h2><h3 id="文本用闭合标签格式如下"><a href="#文本用闭合标签格式如下" class="headerlink" title="文本用闭合标签格式如下"></a>文本用闭合标签格式如下</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名&gt;文本内容&lt;<span class="regexp">/标签名&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>标题、段落等文本元素都要求闭合标签，也就是要有一个开标签和一个闭标签</p>
+<h3 id="引用内容用自闭合标签格式如下"><a href="#引用内容用自闭合标签格式如下" class="headerlink" title="引用内容用自闭合标签格式如下"></a>引用内容用自闭合标签格式如下</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名 属性_1=<span class="string">"属性值"</span> 属性_n=<span class="string">"属性值"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>非文本内容是通过自闭合标签显示的，比如图片等，闭合标签与自闭合标签的区别在于闭合标签包含的是会显示的实际内容，而自闭合标签只是给浏览器提供一个对要显示内容的引用。浏览器会在HTML页面加载的时候，额外想服务器发送请求，以取得自闭合标签引用的内容。下面就是使用自闭合标签标记的一张图片。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"images/cisco.jpg"</span> alt=<span class="string">"My dog Cisco"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>属性负责为浏览器提供有关标签的额外信息，比如说，前面例子中的<code>&lt;img&gt;</code>标签有两个属性，一个属性是src(source，来源)，属性值是cisco.jpg，这个属性定义了图片的来源是一个名为cisco.jpg的文件，另一个属性是alt(alternative，替代内容)，定义的是在图片因故未能加载成功时在屏幕上显示的文本。</p>
+<p><strong>视障用户使用的屏幕阅读器会大声读出alt属性的内容，因此一定要给<code>&lt;img&gt;</code>标签的这个alt属性添加让人一听（或一看）就能明白的内容。</strong></p>
+<h3 id="标题与段落"><a href="#标题与段落" class="headerlink" title="标题与段落"></a>标题与段落</h3><p>一般来说，网页都会以一个<code>&lt;h1&gt;</code>标签开头，其中的文本用于告诉读者这个网页是干什么的，然后用<code>&lt;h2&gt;</code>标记下一级内容，或许是一个副标题，然后才是<code>&lt;h3&gt;</code>，以此类推。<br><code>&lt;h1&gt;</code>不仅是最大最突出的标题（除非你用CSS缩小它的字号），搜索引擎也会将其视为仅次于<code>&lt;title&gt;</code>标签的另一个搜索关键词的来源。<br>段落用于标记主要的文本内容，是所有文本元素中出场率最高的一个，简言之，只要有不适合放在其他文本标签中的文本，都可以把它放在一个段落里。</p>
+<h3 id="复合元素"><a href="#复合元素" class="headerlink" title="复合元素"></a>复合元素</h3><p>HTML不仅规定了标题、图片和段落等基本的内容标记，还规定了用于创建列表、表格和表单等复杂用户界面组件的标记，这些就是所谓的复合元素，即它们是由多个标签共同完成的。比如，<code>&lt;li&gt;</code>是一个列表项，它只在<code>&lt;ol&gt;</code>(有序列表)和<code>&lt;ul&gt;</code>(无序列表)中才有效，在<code>&lt;dl&gt;</code>(定义列表)中则无效。如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ol&gt;</span><br><span class="line">    &lt;li&gt;Save HTML file&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;Move file to Web server via FTP&lt;/</span>li&gt;</span><br><span class="line">    &lt;li&gt;Preview <span class="keyword">in</span> browser&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>ol&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下图所示：<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML%E5%A4%8D%E5%90%88%E5%85%83%E7%B4%A0.png" alt="attr"></p>
+<h3 id="嵌套标签"><a href="#嵌套标签" class="headerlink" title="嵌套标签"></a>嵌套标签</h3><p>在上面的例子中，基于<code>&lt;li&gt;</code>标签与<code>&lt;ol&gt;</code>标签的嵌套关系，可以说<code>&lt;li&gt;</code>标签是<code>&lt;ol&gt;</code>标签的子标签（或子元素），或者说<code>&lt;ol&gt;</code>标签是<code>&lt;li&gt;</code>标签的夫标签（父元素）。<br>**注意：在一个标签里嵌套另一个标签必须先关闭后一个标签再关闭前一个标签，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;That car is &lt;em&gt;fast&lt;<span class="regexp">/em&gt;.&lt;/</span>p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>HTML文档的结构正是通过类似这样的标签嵌套，以及就此建立起来标签间的“父——子”关系形成的。</p>
+<h2 id="HTML文档剖析"><a href="#HTML文档剖析" class="headerlink" title="HTML文档剖析"></a>HTML文档剖析</h2><h3 id="HTML模板"><a href="#HTML模板" class="headerlink" title="HTML模板"></a>HTML模板</h3><p>按照HTML5语法编写的最简单的HTML页面的模板可以写成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>/&gt;</span><br><span class="line">    &lt;title&gt;An HTML Template&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;!-- 这里是网页内容--&gt;</span><br><span class="line">    &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>模板的第一行代码是一种新语法，或者说是一种简化的DOCTYPE，这一行就是为了声明： “以下是一个HTML文档。”<strong>这个标签不用关闭。</strong><br><code>&lt;html&gt;</code>标签是根级标签，页面中所有的其他标签都嵌套在这个标签内部，而且它的闭标签也是整个页面中的最后一个闭标签，<code>&lt;html&gt;</code>标签只有两个直接的子标签：<code>&lt;head&gt;</code>和<br><code>&lt;body&gt;</code>。<br>帮助浏览器理解页面的信息都包含在<code>&lt;head&gt;</code>标签中，在上面的例子中，<code>&lt;head&gt;</code>标签里只包含<code>&lt;meta&gt;</code>和<code>&lt;title&gt;</code>两个标签，其中<code>&lt;meta&gt;</code>标签中有一个charset属性，它是在告诉浏览器这个页面使用的是UTF-8编码，<code>&lt;title&gt;</code>标签的文本会在页面显示时，作为整个页面的标题出现在浏览器窗口顶部的标题栏中。<br><code>&lt;body&gt;</code>标签则包含着标记所有内容的HTML元素。</p>
+<h3 id="块级元素和行内元素"><a href="#块级元素和行内元素" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3><p><strong>下面介绍一些块级标签和行内标签：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">块级标签</span><br><span class="line">&lt;h1&gt;-&lt;h6&gt;: 6级标签，&lt;h1&gt;表示最重要</span><br><span class="line">&lt;p&gt;: 段落</span><br><span class="line">&lt;lo&gt;: 有序列表</span><br><span class="line">&lt;li&gt;：列表项</span><br><span class="line">&lt;blockquote&gt;: 独立引用</span><br><span class="line">行内标签</span><br><span class="line">&lt;a&gt;：链接（anchor，锚）</span><br><span class="line">&lt;img&gt;: 图片</span><br><span class="line">&lt;em&gt;：斜体</span><br><span class="line">&lt;strong&gt;：重要</span><br><span class="line">&lt;abbr&gt;：简写</span><br><span class="line">&lt;cite&gt;: 引证</span><br><span class="line">&lt;q&gt;: 文本内引用</span><br></pre></td></tr></table></figure>
+
+<p>几乎所有HTML元素的display属性值要么是block，要么是inline。最明显的一个例外是table元素，它有自己的display属性值。<br>块级元素（比如标题和段落）会相互堆叠在一起沿页面向下排列，每个元素分别占一行，而行内元素（比如链接和图片）则会相互并列，只有在空间不足以并列的情况下才会折到下一行显示。</p>
+<p><strong>使用块级元素和行内元素构建页面：</strong> 示例如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">    &lt;title&gt;Block and Inline Elements&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Types <span class="keyword">of</span> Guitars&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Guitars come in two main types: electric and acoustic.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h2&gt;Acoustic Guitars&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Acoustic guitars have a large hollow body that projects the sound of the strings.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h3&gt;Nylon <span class="built_in">String</span> Acoustic Guitars&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Descendants of the gut-strung instruments pf yore,nylon string guitars have a mellow tone.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h2&gt;Electric Guitars&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img src="images/</span>acoustic_nylon.jpg<span class="string">" alt="</span>nylon string acoustic guitar<span class="string">" /&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;Electric guitars have a solid or hollow body with pickups that capture the string vibration so it can be amplified.&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E4%BD%BF%E7%94%A8%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%95%E9%A1%B5%E9%9D%A2.png" alt="attr"></p>
+<h3 id="嵌套的元素"><a href="#嵌套的元素" class="headerlink" title="嵌套的元素"></a>嵌套的元素</h3><p>嵌套标记实际上就是嵌套盒子，在后面CSS盒模型重点介绍</p>
+<h2 id="文档对象模型"><a href="#文档对象模型" class="headerlink" title="文档对象模型"></a>文档对象模型</h2><p>HTML结构所对应的文档对象模型（以下简称&quot;DOM&quot;）,DOM是从浏览器的视角观察页面中的元素以及每个元素的属性，由此得出这些元素的一个家族树，通过DOM可以确定元素之间的相互关系，在CSS中引用DOM中特定的位置，就可以选中响应的HTML元素，并修改其样式属性。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;h1&gt;The Document <span class="built_in">Object</span> Model&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &lt;p&gt;The page's HTMLmarkup structure defines the DOM.&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对于这个例子中的DOM层次，我们可以做如下表述。</p>
+<ul>
+<li>section是h1和p的父元素，也是直接祖先元素；</li>
+<li>h1和p是section的子元素，也是直接后代元素；</li>
+<li>h1和p是同胞元素，它们有共同的父元素section;</li>
+<li>section、h1和p是body的后代元素，或者下面的元素（嵌套在后者的内部）；</li>
+<li>section和body是h1和p的祖先元素，或者上面的元素（在某一层次上包含后者）。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1799,236 +2024,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/HTML%E6%A0%87%E8%AE%B0%E4%B8%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">HTML标记与文档结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 19:08:46" itemprop="dateModified" datetime="2019-11-17T19:08:46+08:00">2019-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">CSS权威指南</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>CSS的用途就是为HTML标记添加样式，所以，我们首先要先知道怎么编写和构造HTML标记，才能让CSS更方便地为它添加样式。用HTML标记内容的目的是为了赋予网页语义，我们平常用的浏览器、给视障用户朗读网页的屏幕阅读器，以及搜索引擎放出的Web爬虫都是用户代理，它们需要显示、朗读和分析网页。HTML规定了一组标签，用来给内容打上不同的标记，每个标签都是对所包含内容的一种描述，最常用的HTML标签描述的是标题、段落、链接和图片。目前，HTML一共有114个标签，但按照80/20的原则，使用其中25个左右的标签就可以满足80%的标记需要。<br>在给内容都打上标记之后，就可以使用CSS来给标签添加样式了，添加样式的依据有标签名、标签属性（如id和class）、以及标签与其他标签在标记中的相对位置关系，等等。HTML标签也会构成一个层次化的文档，从而可以通过CSS来设置网页的布局，为每个元素应用你想要的样式。</p>
-<h2 id="HTML标记基础"><a href="#HTML标记基础" class="headerlink" title="HTML标记基础"></a>HTML标记基础</h2><h3 id="文本用闭合标签格式如下"><a href="#文本用闭合标签格式如下" class="headerlink" title="文本用闭合标签格式如下"></a>文本用闭合标签格式如下</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名&gt;文本内容&lt;<span class="regexp">/标签名&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>标题、段落等文本元素都要求闭合标签，也就是要有一个开标签和一个闭标签</p>
-<h3 id="引用内容用自闭合标签格式如下"><a href="#引用内容用自闭合标签格式如下" class="headerlink" title="引用内容用自闭合标签格式如下"></a>引用内容用自闭合标签格式如下</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名 属性_1=<span class="string">"属性值"</span> 属性_n=<span class="string">"属性值"</span> /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>非文本内容是通过自闭合标签显示的，比如图片等，闭合标签与自闭合标签的区别在于闭合标签包含的是会显示的实际内容，而自闭合标签只是给浏览器提供一个对要显示内容的引用。浏览器会在HTML页面加载的时候，额外想服务器发送请求，以取得自闭合标签引用的内容。下面就是使用自闭合标签标记的一张图片。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"images/cisco.jpg"</span> alt=<span class="string">"My dog Cisco"</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>属性负责为浏览器提供有关标签的额外信息，比如说，前面例子中的<code>&lt;img&gt;</code>标签有两个属性，一个属性是src(source，来源)，属性值是cisco.jpg，这个属性定义了图片的来源是一个名为cisco.jpg的文件，另一个属性是alt(alternative，替代内容)，定义的是在图片因故未能加载成功时在屏幕上显示的文本。</p>
-<p><strong>视障用户使用的屏幕阅读器会大声读出alt属性的内容，因此一定要给<code>&lt;img&gt;</code>标签的这个alt属性添加让人一听（或一看）就能明白的内容。</strong></p>
-<h3 id="标题与段落"><a href="#标题与段落" class="headerlink" title="标题与段落"></a>标题与段落</h3><p>一般来说，网页都会以一个<code>&lt;h1&gt;</code>标签开头，其中的文本用于告诉读者这个网页是干什么的，然后用<code>&lt;h2&gt;</code>标记下一级内容，或许是一个副标题，然后才是<code>&lt;h3&gt;</code>，以此类推。<br><code>&lt;h1&gt;</code>不仅是最大最突出的标题（除非你用CSS缩小它的字号），搜索引擎也会将其视为仅次于<code>&lt;title&gt;</code>标签的另一个搜索关键词的来源。<br>段落用于标记主要的文本内容，是所有文本元素中出场率最高的一个，简言之，只要有不适合放在其他文本标签中的文本，都可以把它放在一个段落里。</p>
-<h3 id="复合元素"><a href="#复合元素" class="headerlink" title="复合元素"></a>复合元素</h3><p>HTML不仅规定了标题、图片和段落等基本的内容标记，还规定了用于创建列表、表格和表单等复杂用户界面组件的标记，这些就是所谓的复合元素，即它们是由多个标签共同完成的。比如，<code>&lt;li&gt;</code>是一个列表项，它只在<code>&lt;ol&gt;</code>(有序列表)和<code>&lt;ul&gt;</code>(无序列表)中才有效，在<code>&lt;dl&gt;</code>(定义列表)中则无效。如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ol&gt;</span><br><span class="line">    &lt;li&gt;Save HTML file&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;Move file to Web server via FTP&lt;/</span>li&gt;</span><br><span class="line">    &lt;li&gt;Preview <span class="keyword">in</span> browser&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>ol&gt;</span><br></pre></td></tr></table></figure>
-
-<p>结果如下图所示：<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/HTML%E5%A4%8D%E5%90%88%E5%85%83%E7%B4%A0.png" alt="attr"></p>
-<h3 id="嵌套标签"><a href="#嵌套标签" class="headerlink" title="嵌套标签"></a>嵌套标签</h3><p>在上面的例子中，基于<code>&lt;li&gt;</code>标签与<code>&lt;ol&gt;</code>标签的嵌套关系，可以说<code>&lt;li&gt;</code>标签是<code>&lt;ol&gt;</code>标签的子标签（或子元素），或者说<code>&lt;ol&gt;</code>标签是<code>&lt;li&gt;</code>标签的夫标签（父元素）。<br>**注意：在一个标签里嵌套另一个标签必须先关闭后一个标签再关闭前一个标签，示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;That car is &lt;em&gt;fast&lt;<span class="regexp">/em&gt;.&lt;/</span>p&gt;</span><br></pre></td></tr></table></figure>
-
-<p>HTML文档的结构正是通过类似这样的标签嵌套，以及就此建立起来标签间的“父——子”关系形成的。</p>
-<h2 id="HTML文档剖析"><a href="#HTML文档剖析" class="headerlink" title="HTML文档剖析"></a>HTML文档剖析</h2><h3 id="HTML模板"><a href="#HTML模板" class="headerlink" title="HTML模板"></a>HTML模板</h3><p>按照HTML5语法编写的最简单的HTML页面的模板可以写成这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>/&gt;</span><br><span class="line">    &lt;title&gt;An HTML Template&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;!-- 这里是网页内容--&gt;</span><br><span class="line">    &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>模板的第一行代码是一种新语法，或者说是一种简化的DOCTYPE，这一行就是为了声明： “以下是一个HTML文档。”<strong>这个标签不用关闭。</strong><br><code>&lt;html&gt;</code>标签是根级标签，页面中所有的其他标签都嵌套在这个标签内部，而且它的闭标签也是整个页面中的最后一个闭标签，<code>&lt;html&gt;</code>标签只有两个直接的子标签：<code>&lt;head&gt;</code>和<br><code>&lt;body&gt;</code>。<br>帮助浏览器理解页面的信息都包含在<code>&lt;head&gt;</code>标签中，在上面的例子中，<code>&lt;head&gt;</code>标签里只包含<code>&lt;meta&gt;</code>和<code>&lt;title&gt;</code>两个标签，其中<code>&lt;meta&gt;</code>标签中有一个charset属性，它是在告诉浏览器这个页面使用的是UTF-8编码，<code>&lt;title&gt;</code>标签的文本会在页面显示时，作为整个页面的标题出现在浏览器窗口顶部的标题栏中。<br><code>&lt;body&gt;</code>标签则包含着标记所有内容的HTML元素。</p>
-<h3 id="块级元素和行内元素"><a href="#块级元素和行内元素" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h3><p><strong>下面介绍一些块级标签和行内标签：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">块级标签</span><br><span class="line">&lt;h1&gt;-&lt;h6&gt;: 6级标签，&lt;h1&gt;表示最重要</span><br><span class="line">&lt;p&gt;: 段落</span><br><span class="line">&lt;lo&gt;: 有序列表</span><br><span class="line">&lt;li&gt;：列表项</span><br><span class="line">&lt;blockquote&gt;: 独立引用</span><br><span class="line">行内标签</span><br><span class="line">&lt;a&gt;：链接（anchor，锚）</span><br><span class="line">&lt;img&gt;: 图片</span><br><span class="line">&lt;em&gt;：斜体</span><br><span class="line">&lt;strong&gt;：重要</span><br><span class="line">&lt;abbr&gt;：简写</span><br><span class="line">&lt;cite&gt;: 引证</span><br><span class="line">&lt;q&gt;: 文本内引用</span><br></pre></td></tr></table></figure>
-
-<p>几乎所有HTML元素的display属性值要么是block，要么是inline。最明显的一个例外是table元素，它有自己的display属性值。<br>块级元素（比如标题和段落）会相互堆叠在一起沿页面向下排列，每个元素分别占一行，而行内元素（比如链接和图片）则会相互并列，只有在空间不足以并列的情况下才会折到下一行显示。</p>
-<p><strong>使用块级元素和行内元素构建页面：</strong> 示例如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">    &lt;title&gt;Block and Inline Elements&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Types <span class="keyword">of</span> Guitars&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Guitars come in two main types: electric and acoustic.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h2&gt;Acoustic Guitars&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Acoustic guitars have a large hollow body that projects the sound of the strings.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h3&gt;Nylon <span class="built_in">String</span> Acoustic Guitars&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;Descendants of the gut-strung instruments pf yore,nylon string guitars have a mellow tone.&lt;/</span>p&gt;</span><br><span class="line">    &lt;h2&gt;Electric Guitars&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img src="images/</span>acoustic_nylon.jpg<span class="string">" alt="</span>nylon string acoustic guitar<span class="string">" /&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;Electric guitars have a solid or hollow body with pickups that capture the string vibration so it can be amplified.&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果如下：<br><img src="https://ningning-1259809020.cos.ap-chengdu.myqcloud.com/%E4%BD%BF%E7%94%A8%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%95%E9%A1%B5%E9%9D%A2.png" alt="attr"></p>
-<h3 id="嵌套的元素"><a href="#嵌套的元素" class="headerlink" title="嵌套的元素"></a>嵌套的元素</h3><p>嵌套标记实际上就是嵌套盒子，在后面CSS盒模型重点介绍</p>
-<h2 id="文档对象模型"><a href="#文档对象模型" class="headerlink" title="文档对象模型"></a>文档对象模型</h2><p>HTML结构所对应的文档对象模型（以下简称”DOM”）,DOM是从浏览器的视角观察页面中的元素以及每个元素的属性，由此得出这些元素的一个家族树，通过DOM可以确定元素之间的相互关系，在CSS中引用DOM中特定的位置，就可以选中响应的HTML元素，并修改其样式属性。示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;h1&gt;The Document <span class="built_in">Object</span> Model&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &lt;p&gt;The page's HTMLmarkup structure defines the DOM.&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br></pre></td></tr></table></figure>
-
-<p>对于这个例子中的DOM层次，我们可以做如下表述。</p>
-<ul>
-<li>section是h1和p的父元素，也是直接祖先元素；</li>
-<li>h1和p是section的子元素，也是直接后代元素；</li>
-<li>h1和p是同胞元素，它们有共同的父元素section;</li>
-<li>section、h1和p是body的后代元素，或者下面的元素（嵌套在后者的内部）；</li>
-<li>section和body是h1和p的祖先元素，或者上面的元素（在某一层次上包含后者）。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ningning0908.github.io/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/DOM%E9%80%89%E6%8B%A9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Ning Ning">
-      <meta itemprop="description" content="光、温暖、温柔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2020/04/17/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/DOM%E9%80%89%E6%8B%A9%E5%99%A8/" class="post-title-link" itemprop="url">DOM选择器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-17 20:38:59" itemprop="dateCreated datePublished" datetime="2020-04-17T20:38:59+08:00">2020-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 19:08:46" itemprop="dateModified" datetime="2019-11-17T19:08:46+08:00">2019-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/CSS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">CSS权威指南</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><p>属性选择器是在CSS2中引入的，他们能够指定一些规则，这些规则根据元素的属性（诸如href或title）以及这些属性的值对元素进行匹配</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">lang</span>=<span class="string">"en-GB"</span> <span class="attr">rel</span>=<span class="string">"friend net"</span>&gt;</span>Peter<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="" lang="es-ES" rel-"fiend"&gt;Pedro&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="" lang="es-MX" rel-"contact"&gt;Pancho&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="简单属性选择器"><a href="#简单属性选择器" class="headerlink" title="简单属性选择器"></a>简单属性选择器</h3><p>将规则应用到定义了指定属性的元素上，而不管属性的值是什么</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于所有元素都有rel属性，所以所有元素都会应用这条规则</p>
-<h3 id="精确属性值选择器"><a href="#精确属性值选择器" class="headerlink" title="精确属性值选择器"></a>精确属性值选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel=<span class="string">'friend'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个代码只会将规则标记到第二个a元素</p>
-<h3 id="部分属性选择器"><a href="#部分属性选择器" class="headerlink" title="部分属性选择器"></a>部分属性选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[rel~=<span class="string">'friend'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个代码会选择rel属性中带有friend的值的元素，则这个规则会标记到第一与第二个</p>
-<h3 id="语言属性选择器"><a href="#语言属性选择器" class="headerlink" title="语言属性选择器"></a>语言属性选择器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[lang|=<span class="string">'es'</span>] &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>选中所有属性值以es开头的lang语言，即会选中2和3</p>
-<h2 id="CSS3的新属性选择器"><a href="#CSS3的新属性选择器" class="headerlink" title="CSS3的新属性选择器"></a>CSS3的新属性选择器</h2><h3 id="开始字串属性值选择器（开始选择器）"><a href="#开始字串属性值选择器（开始选择器）" class="headerlink" title="开始字串属性值选择器（开始选择器）"></a>开始字串属性值选择器（开始选择器）</h3><p>该选择器会选择一些元素，这些元素所选择的属性是以一个字符串为起始，该字符串会作为参数提供给选择器，这个选择器使用插入符号(^)修饰属性中的等号</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E[attr^=<span class="string">'value'</span>] &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这行代码将在指定属性的起始处寻找指定的值<br>示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Lorem ipsum dolor &lt;a href=<span class="string">"mailto:email@example.com"</span>&gt;email&lt;a&gt; sit amet.&lt;<span class="regexp">/a&gt;&lt;/</span>p&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">a[href^=<span class="string">'mailto'</span>] &#123;</span><br><span class="line">    background-image: url(<span class="string">'email_go.png'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum dolor email sit amet.  #这里的email是一个地址即上述href绑定的地址 email原为一图片索引，本人懒就没放图片</span><br></pre></td></tr></table></figure>
-
-<h3 id="结束子串属性值选择器（结束选择器）"><a href="#结束子串属性值选择器（结束选择器）" class="headerlink" title="结束子串属性值选择器（结束选择器）"></a>结束子串属性值选择器（结束选择器）</h3><p>与开始选择器相反，使用该选择器去选择以指定的值结束的属性<br>语法差异为用($)去修饰(=)</p>
-<h3 id="任意子串属性值选择器（任意选择器）"><a href="#任意子串属性值选择器（任意选择器）" class="headerlink" title="任意子串属性值选择器（任意选择器）"></a>任意子串属性值选择器（任意选择器）</h3><p>该选择器使用规则即在指定的属性字符串的内部任意位置搜索指定的子串<br>该选择器使用的符号是(*)</p>
-<h3 id="多属性选择器"><a href="#多属性选择器" class="headerlink" title="多属性选择器"></a>多属性选择器</h3><p>可以把多个选择器串接在一起，这样在选择目标的时候能够做到非常的具体，使用多选择器，可以通过定义在开始、结束以及中间任意位置的值创建应用到属性上的规则</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://example.com/folder1/file.pdf"</span>&gt;</span>Lorem ipsum<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;&lt;a href="http:/</span><span class="regexp">/example.com/</span>folder2/file.pdf<span class="string">"&gt;Lorem ipsum&lt;/a&gt;&lt;/p&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p> 如果要指定一条只应用到第二个p元素的规则，可以把一些选择器串接到一起：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[href^=<span class="string">'http://'</span>][href*=<span class="string">'/folder2/'</span>][href$=<span class="string">'.pdf'</span>] &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这行代码会寻找这样的a元素，它具有一个href属性，是以 http: // 开始，以.pdf结束，并且在中间包含了/folder2/，非常明确</p>
-<h3 id="普通兄弟连结符"><a href="#普通兄弟连结符" class="headerlink" title="普通兄弟连结符"></a>普通兄弟连结符</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E + F &#123;&#125; #相邻兄弟连结符</span><br><span class="line">E ~ F &#123;&#125; #普通兄弟连结符</span><br></pre></td></tr></table></figure>
-
-<p>相邻兄弟连结符选择的是文档树的同一层级，紧邻在元素(E)之后的任意元素；<br>普通兄弟连结符选择的是文档树的同一层级，位于元素(E)之后的任意元素。<br>示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Next we are going to discuss ... &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;h2&gt;Ren&amp;eacute; Descartes&lt;/</span>h2&gt;</span><br><span class="line">&lt;p&gt;A highly influential French philosopher...&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;He only famously declared:&lt;/</span>p&gt;</span><br><span class="line">&lt;blockquote&gt;</span><br><span class="line">    &lt;p&gt;I think,therefore I am.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>blockquote&gt;  </span><br><span class="line">&lt;p&gt;However,<span class="keyword">this</span> presumes the existence <span class="keyword">of</span> the speaker.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">h2 + p &#123;</span></span><br><span class="line"><span class="regexp">    font-weight:bolder;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">h2 ~ p &#123;</span></span><br><span class="line"><span class="regexp">    font-style: italic;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果如下：</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2098,7 +2093,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

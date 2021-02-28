@@ -248,10 +248,10 @@
 <h3 id="Python的字符串"><a href="#Python的字符串" class="headerlink" title="Python的字符串"></a>Python的字符串</h3><p>Python的字符串支持多语言，对于单个字符的编码，Python提供了ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符<br>由于Python的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes。<br>Python对bytes类型的数据用带b前缀的单引号或双引号表示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">b'ABC'</span></span><br></pre></td></tr></table></figure>
 
-<p>注意：区分’ABC’和b’ABC’，前者是str，后者虽然内容显示得和前者一样，但bytes的每个字符都只占用一个字节</p>
+<p>注意：区分&#39;ABC&#39;和b&#39;ABC&#39;，前者是str，后者虽然内容显示得和前者一样，但bytes的每个字符都只占用一个字节</p>
 <p>以Unicode表示的str通过encode()方法可以编码为指定的bytes<br>英文的str可以用ASCII编码为bytes，内容是一样的，含有中文的str可以用UTF-8编码为bytes。含有中文的str无法用ASCII编码，因为中文编码的范围超过了ASCII编码的范围，Python会报错。在bytes中，无法显示为ASCII字符的字节，用\x##显示。反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。要把bytes变为str，就需要用decode()方法<br>len()函数计算的是str的字符数，如果换成bytes，len()函数计算字节数</p>
 <h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><div class="note info">
-            <p>\n: 换行符<br>\t: 空格符<br>\0：空字符<br>原始字符串： 取消转义<br>a = r”D:\学习资料\python-工作\01、python基础”</p>
+            <p>\n: 换行符<br>\t: 空格符<br>\0：空字符<br>原始字符串： 取消转义<br>a = r&quot;D:\学习资料\python-工作\01、python基础&quot;</p>
           </div>
 
 <h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p>运算符就是用来格式化字符串的。在字符串内部，%s表示用字符串替换，%d表示用整数替换，有几个%?占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个%?，括号可以省略。<br>常见的占位符有：%d（整数） %f（浮点数） %s（字符串） %x（十六进制整数）<br>还有一种方式是format()方法<br>使用字符串的format()方法，它会用传入的参数依次替换字符串内的占位符{0}、{1}……，不过这种方式写起来比%要麻烦得多<br>示例如下：</p>
@@ -268,17 +268,17 @@
 
 <h3 id="拼接与拆分函数"><a href="#拼接与拆分函数" class="headerlink" title="拼接与拆分函数"></a>拼接与拆分函数</h3><ul>
 <li><ol>
-<li>将多个字符串拼接为一个字符串<br>result = “连接符”.join(列表)</li>
+<li>将多个字符串拼接为一个字符串<br>result = &quot;连接符&quot;.join(列表)</li>
 </ol>
 </li>
 <li><ol start="2">
-<li>将一个字符串拆分为多个<br>列表 = “a-b-c-d”.split(“分隔符”)</li>
+<li>将一个字符串拆分为多个<br>列表 = &quot;a-b-c-d&quot;.split(&quot;分隔符&quot;)</li>
 </ol>
 </li>
 </ul>
 <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><h3 id="list操作"><a href="#list操作" class="headerlink" title="list操作"></a>list操作</h3><p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素。<br>示例如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">classmates = [<span class="string">'Michael'</span>, <span class="string">'Bob'</span>, <span class="string">'Tracy'</span>]</span><br></pre></td></tr></table></figure>
-<p>创建list有两种办法，一种是[元素1，元素2,…],另一种是list(可迭代对象)<br>变量classmates就是一个list，list的索引是从0开始的，最后一个元素的索引是len(classmates)-1<br>除此之外，还可以用-1做索引,以此类推-2、-3等等</p>
+<p>创建list有两种办法，一种是[元素1，元素2,...],另一种是list(可迭代对象)<br>变量classmates就是一个list，list的索引是从0开始的，最后一个元素的索引是len(classmates)-1<br>除此之外，还可以用-1做索引,以此类推-2、-3等等</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;classmates[<span class="number">-1</span>]</span><br><span class="line"><span class="string">'Tracy'</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>list中的经常使用的方法：</strong></p>
@@ -351,8 +351,8 @@
 <td>连接</td>
 </tr>
 <tr>
-<td>(‘Hi!’,)*4</td>
-<td>(‘Hi!’,’Hi!’,’Hi!’,’Hi!’)</td>
+<td>(&#39;Hi!&#39;,)*4</td>
+<td>(&#39;Hi!&#39;,&#39;Hi!&#39;,&#39;Hi!&#39;,&#39;Hi!&#39;)</td>
 <td>复制</td>
 </tr>
 <tr>
@@ -369,7 +369,7 @@
 <p><strong>元组索引、截取与列表相同。</strong></p>
 <h3 id="元组内置函数"><a href="#元组内置函数" class="headerlink" title="元组内置函数"></a>元组内置函数</h3><ul>
 <li><ol>
-<li>cmp(tuple1,tuple2):比较两个元组元素<br>如果比较的元素是同类型的,则比较其值,返回结果。<br>如果两个元素不是同一种类型,则检查它们是否是数字。<br>如果是数字,执行必要的数字强制类型转换,然后比较。<br>如果有一方的元素是数字,则另一方的元素”大”(数字是”最小的”)<br>否则,通过类型名字的字母顺序进行比较。<br>如果有一个列表首先到达末尾,则另一个长一点的列表”大”。<br>示例如下：</li>
+<li>cmp(tuple1,tuple2):比较两个元组元素<br>如果比较的元素是同类型的,则比较其值,返回结果。<br>如果两个元素不是同一种类型,则检查它们是否是数字。<br>如果是数字,执行必要的数字强制类型转换,然后比较。<br>如果有一方的元素是数字,则另一方的元素&quot;大&quot;(数字是&quot;最小的&quot;)<br>否则,通过类型名字的字母顺序进行比较。<br>如果有一个列表首先到达末尾,则另一个长一点的列表&quot;大&quot;。<br>示例如下：</li>
 </ol>
 </li>
 </ul>
@@ -574,7 +574,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
